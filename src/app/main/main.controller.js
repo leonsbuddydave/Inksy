@@ -2,7 +2,7 @@
 
 class MainCtrl {
   constructor ($scope) {
-
+    return this;
   }
 }
 

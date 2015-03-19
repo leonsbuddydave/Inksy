@@ -1,16 +1,54 @@
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
+$app-height: 700px;
+
+.app-container {
+	height: $app-height;
+
+	> .row {
+		height: 100%;
+
+		.col-md-2,
+		.col-md-3,
+		.col-md-6,
+		.col-md-7 {
+			height: 100%;
+		}
+	}
 }
 
-.thumbnail {
-  height: 200px;
+.asset-sources {
+	.asset-panel {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		height: 300px;
 
-  img.pull-right {
-    width: 50px;
-  }
+		.gallery {
+			flex: 1;
+			overflow-x: hidden;
+			overflow-y: auto;
+		}
+	}
 }
+
+.editor-area {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #ddd;
+}
+
+.cart-actions {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+
+	.cart-action {
+		width: 100%;
+		margin: 5px;
+	}
+}
+
+
 // injector
 // endinjector
