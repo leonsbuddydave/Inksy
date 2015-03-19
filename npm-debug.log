@@ -1,0 +1,193 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'generator-gulp-angular-subtask' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.33
+4 verbose cache add [ 'generator-gulp-angular-subtask', null ]
+5 verbose cache add name=undefined spec="generator-gulp-angular-subtask" args=["generator-gulp-angular-subtask",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'generator-gulp-angular-subtask',
+6 verbose parsed url   path: 'generator-gulp-angular-subtask',
+6 verbose parsed url   href: 'generator-gulp-angular-subtask' }
+7 silly lockFile 528fd475-generator-gulp-angular-subtask generator-gulp-angular-subtask
+8 verbose lock generator-gulp-angular-subtask /home/mitchell/.npm/528fd475-generator-gulp-angular-subtask.lock
+9 silly lockFile 528fd475-generator-gulp-angular-subtask generator-gulp-angular-subtask
+10 silly lockFile 528fd475-generator-gulp-angular-subtask generator-gulp-angular-subtask
+11 verbose addNamed [ 'generator-gulp-angular-subtask', '' ]
+12 verbose addNamed [ null, '*' ]
+13 silly lockFile 5c22da3d-generator-gulp-angular-subtask generator-gulp-angular-subtask@
+14 verbose lock generator-gulp-angular-subtask@ /home/mitchell/.npm/5c22da3d-generator-gulp-angular-subtask.lock
+15 silly addNameRange { name: 'generator-gulp-angular-subtask',
+15 silly addNameRange   range: '*',
+15 silly addNameRange   hasData: false }
+16 verbose request where is /generator-gulp-angular-subtask
+17 verbose request registry https://registry.npmjs.org/
+18 verbose request id 49500b2fa454686b
+19 verbose url raw /generator-gulp-angular-subtask
+20 verbose url resolving [ 'https://registry.npmjs.org/',
+20 verbose url resolving   './generator-gulp-angular-subtask' ]
+21 verbose url resolved https://registry.npmjs.org/generator-gulp-angular-subtask
+22 verbose request where is https://registry.npmjs.org/generator-gulp-angular-subtask
+23 info trying registry request attempt 1 at 12:21:25
+24 http GET https://registry.npmjs.org/generator-gulp-angular-subtask
+25 http 200 https://registry.npmjs.org/generator-gulp-angular-subtask
+26 silly registry.get cb [ 200,
+26 silly registry.get   { date: 'Thu, 19 Mar 2015 19:21:22 GMT',
+26 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+26 silly registry.get     etag: '"8E8TOPIBK7ZSISL1H8WIYXG3I"',
+26 silly registry.get     'content-type': 'application/json',
+26 silly registry.get     'cache-control': 'max-age=60',
+26 silly registry.get     'content-length': '37023',
+26 silly registry.get     'accept-ranges': 'bytes',
+26 silly registry.get     via: '1.1 varnish',
+26 silly registry.get     age: '0',
+26 silly registry.get     'x-served-by': 'cache-ord1734-ORD',
+26 silly registry.get     'x-cache': 'MISS',
+26 silly registry.get     'x-cache-hits': '0',
+26 silly registry.get     'x-timer': 'S1426792882.032534,VS0,VE340',
+26 silly registry.get     vary: 'Accept',
+26 silly registry.get     'keep-alive': 'timeout=10, max=50',
+26 silly registry.get     connection: 'Keep-Alive' } ]
+27 silly addNameRange number 2 { name: 'generator-gulp-angular-subtask',
+27 silly addNameRange   range: '*',
+27 silly addNameRange   hasData: true }
+28 silly addNameRange versions [ 'generator-gulp-angular-subtask',
+28 silly addNameRange   [ '0.0.0',
+28 silly addNameRange     '0.1.0',
+28 silly addNameRange     '0.1.1',
+28 silly addNameRange     '0.1.2',
+28 silly addNameRange     '0.2.0',
+28 silly addNameRange     '0.3.0',
+28 silly addNameRange     '0.3.1',
+28 silly addNameRange     '0.4.0',
+28 silly addNameRange     '0.4.1',
+28 silly addNameRange     '0.4.2',
+28 silly addNameRange     '0.4.3',
+28 silly addNameRange     '0.4.4',
+28 silly addNameRange     '0.5.0',
+28 silly addNameRange     '0.5.1',
+28 silly addNameRange     '0.5.2',
+28 silly addNameRange     '0.6.0',
+28 silly addNameRange     '0.7.0',
+28 silly addNameRange     '0.7.1',
+28 silly addNameRange     '0.8.0' ] ]
+29 verbose addNamed [ 'generator-gulp-angular-subtask', '0.8.0' ]
+30 verbose addNamed [ '0.8.0', '0.8.0' ]
+31 silly lockFile 84e515b9-rator-gulp-angular-subtask-0-8-0 generator-gulp-angular-subtask@0.8.0
+32 verbose lock generator-gulp-angular-subtask@0.8.0 /home/mitchell/.npm/84e515b9-rator-gulp-angular-subtask-0-8-0.lock
+33 silly lockFile 9da912af-r-gulp-angular-subtask-0-8-0-tgz https://registry.npmjs.org/generator-gulp-angular-subtask/-/generator-gulp-angular-subtask-0.8.0.tgz
+34 verbose lock https://registry.npmjs.org/generator-gulp-angular-subtask/-/generator-gulp-angular-subtask-0.8.0.tgz /home/mitchell/.npm/9da912af-r-gulp-angular-subtask-0-8-0-tgz.lock
+35 verbose addRemoteTarball [ 'https://registry.npmjs.org/generator-gulp-angular-subtask/-/generator-gulp-angular-subtask-0.8.0.tgz',
+35 verbose addRemoteTarball   '837acff698fb90535f9ea2ddd569bec2be6b8ef4' ]
+36 info retry fetch attempt 1 at 12:21:26
+37 verbose fetch to= /tmp/npm-25618-EqRChZXz/registry.npmjs.org/generator-gulp-angular-subtask/-/generator-gulp-angular-subtask-0.8.0.tgz
+38 http GET https://registry.npmjs.org/generator-gulp-angular-subtask/-/generator-gulp-angular-subtask-0.8.0.tgz
+39 http 200 https://registry.npmjs.org/generator-gulp-angular-subtask/-/generator-gulp-angular-subtask-0.8.0.tgz
+40 silly lockFile 9da912af-r-gulp-angular-subtask-0-8-0-tgz https://registry.npmjs.org/generator-gulp-angular-subtask/-/generator-gulp-angular-subtask-0.8.0.tgz
+41 silly lockFile 9da912af-r-gulp-angular-subtask-0-8-0-tgz https://registry.npmjs.org/generator-gulp-angular-subtask/-/generator-gulp-angular-subtask-0.8.0.tgz
+42 silly lockFile 84e515b9-rator-gulp-angular-subtask-0-8-0 generator-gulp-angular-subtask@0.8.0
+43 silly lockFile 84e515b9-rator-gulp-angular-subtask-0-8-0 generator-gulp-angular-subtask@0.8.0
+44 silly lockFile 5c22da3d-generator-gulp-angular-subtask generator-gulp-angular-subtask@
+45 silly lockFile 5c22da3d-generator-gulp-angular-subtask generator-gulp-angular-subtask@
+46 silly resolved [ { name: 'generator-gulp-angular-subtask',
+46 silly resolved     version: '0.8.0',
+46 silly resolved     description: 'A helper generator for gulp-angular to create sub tasks like controllers and directives',
+46 silly resolved     license: 'MIT',
+46 silly resolved     main: 'app/index.js',
+46 silly resolved     repository:
+46 silly resolved      { type: 'git',
+46 silly resolved        url: 'https://github.com/doronsever/generator-gulp-angular-subtask' },
+46 silly resolved     author: { name: 'Doron', url: 'https://github.com/doronsever' },
+46 silly resolved     engines: { node: '>=0.10.0' },
+46 silly resolved     scripts: { test: 'mocha' },
+46 silly resolved     files:
+46 silly resolved      [ 'app',
+46 silly resolved        'controller',
+46 silly resolved        'directive',
+46 silly resolved        'style',
+46 silly resolved        'partial',
+46 silly resolved        'factory',
+46 silly resolved        'service',
+46 silly resolved        'value',
+46 silly resolved        'constant',
+46 silly resolved        'provider',
+46 silly resolved        'filter' ],
+46 silly resolved     keywords:
+46 silly resolved      [ 'yeoman-generator',
+46 silly resolved        'yeoman generator',
+46 silly resolved        'angular',
+46 silly resolved        'gulp',
+46 silly resolved        'angularJS',
+46 silly resolved        'angular gulp',
+46 silly resolved        'generator',
+46 silly resolved        'subtasks' ],
+46 silly resolved     dependencies:
+46 silly resolved      { camelcase: '^1.0.2',
+46 silly resolved        chalk: '^0.5.1',
+46 silly resolved        'yeoman-generator': '^0.18.7',
+46 silly resolved        yosay: '^1.0.2' },
+46 silly resolved     devDependencies: { mocha: '*' },
+46 silly resolved     peerDependencies: { yo: '>=1.0.0' },
+46 silly resolved     gitHead: '046e5b2222bc09d9d08102f20f7e211283182e7d',
+46 silly resolved     bugs: { url: 'https://github.com/doronsever/generator-gulp-angular-subtask/issues' },
+46 silly resolved     homepage: 'https://github.com/doronsever/generator-gulp-angular-subtask',
+46 silly resolved     _id: 'generator-gulp-angular-subtask@0.8.0',
+46 silly resolved     _shasum: '837acff698fb90535f9ea2ddd569bec2be6b8ef4',
+46 silly resolved     _from: 'generator-gulp-angular-subtask@',
+46 silly resolved     _npmVersion: '1.4.28',
+46 silly resolved     _npmUser: { name: 'doronsever', email: 'doronsever@gmail.com' },
+46 silly resolved     maintainers: [ [Object] ],
+46 silly resolved     dist:
+46 silly resolved      { shasum: '837acff698fb90535f9ea2ddd569bec2be6b8ef4',
+46 silly resolved        tarball: 'http://registry.npmjs.org/generator-gulp-angular-subtask/-/generator-gulp-angular-subtask-0.8.0.tgz' },
+46 silly resolved     directories: {},
+46 silly resolved     _resolved: 'https://registry.npmjs.org/generator-gulp-angular-subtask/-/generator-gulp-angular-subtask-0.8.0.tgz' } ]
+47 info install generator-gulp-angular-subtask@0.8.0 into /usr/local/lib
+48 info installOne generator-gulp-angular-subtask@0.8.0
+49 verbose lib/node_modules/generator-gulp-angular-subtask unbuild
+50 verbose tar unpack /home/mitchell/.npm/generator-gulp-angular-subtask/0.8.0/package.tgz
+51 silly lockFile 53a6cb3b-s-generator-gulp-angular-subtask tar:///usr/local/lib/node_modules/generator-gulp-angular-subtask
+52 verbose lock tar:///usr/local/lib/node_modules/generator-gulp-angular-subtask /home/mitchell/.npm/53a6cb3b-s-generator-gulp-angular-subtask.lock
+53 silly lockFile 3f56cebb-ngular-subtask-0-8-0-package-tgz tar:///home/mitchell/.npm/generator-gulp-angular-subtask/0.8.0/package.tgz
+54 verbose lock tar:///home/mitchell/.npm/generator-gulp-angular-subtask/0.8.0/package.tgz /home/mitchell/.npm/3f56cebb-ngular-subtask-0-8-0-package-tgz.lock
+55 silly gunzTarPerm modes [ '755', '644' ]
+56 error Error: EACCES, mkdir '/usr/local/lib/node_modules/generator-gulp-angular-subtask'
+56 error  { [Error: EACCES, mkdir '/usr/local/lib/node_modules/generator-gulp-angular-subtask']
+56 error   errno: 3,
+56 error   code: 'EACCES',
+56 error   path: '/usr/local/lib/node_modules/generator-gulp-angular-subtask',
+56 error   fstream_type: 'Directory',
+56 error   fstream_path: '/usr/local/lib/node_modules/generator-gulp-angular-subtask',
+56 error   fstream_class: 'DirWriter',
+56 error   fstream_stack:
+56 error    [ '/usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23',
+56 error      '/usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53',
+56 error      'Object.oncomplete (fs.js:107:15)' ] }
+57 error Please try running this command again as root/Administrator.
+58 error System Linux 3.13.0-37-generic
+59 error command "/usr/local/bin/node" "/usr/local/bin/npm" "install" "-g" "generator-gulp-angular-subtask"
+60 error cwd /home/mitchell/Projects/Inksy
+61 error node -v v0.10.33
+62 error npm -v 1.4.28
+63 error path /usr/local/lib/node_modules/generator-gulp-angular-subtask
+64 error fstream_path /usr/local/lib/node_modules/generator-gulp-angular-subtask
+65 error fstream_type Directory
+66 error fstream_class DirWriter
+67 error code EACCES
+68 error errno 3
+69 error stack Error: EACCES, mkdir '/usr/local/lib/node_modules/generator-gulp-angular-subtask'
+70 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23
+70 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53
+70 error fstream_stack Object.oncomplete (fs.js:107:15)
+71 verbose exit [ 3, true ]

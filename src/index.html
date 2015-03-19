@@ -108,11 +108,11 @@
           <hr>
 
           <!-- Layers Palette -->
-          <div class="layers-palette">
+          <div ng-controller="LayerPaletteCtrl as layerPalette" class="layers-palette">
             <ul class="list-group">
-              <li class="list-group-item">LAYER ONE</li>
-              <li class="list-group-item">LAYER TWO</li>
-              <li class="list-group-item">LAYER THREE</li>
+              <li ng-repeat="layer in layerPalette.layers" class="list-group-item">
+                {{layer.name}}
+              </li>
             </ul>
           </div>
 
@@ -120,14 +120,16 @@
 
         <!-- The Editor -->
         <div class="col-md-7 editor-area">
-          ass horses
+          <div editor>
+            {{fuck}}
+          </div>
         </div>
 
         <!-- Cart Actions -->
-        <div class="col-md-2 cart-actions">
-          <h2>$19.99</h2>
-          <button class="btn btn-primary cart-action" type="button">Add to Cart</button>
-          <button class="btn btn-default cart-action" type="button">Save to Profile</button>
+        <div ng-controller="CartCtrl as cart" class="col-md-2 cart-actions">
+          <h2>${{cart.price}}</h2>
+          <button ng-click="cart.addToCart()" class="btn btn-primary cart-action" type="button">Add to Cart</button>
+          <button ng-click="cart.saveToProfile()" class="btn btn-default cart-action" type="button">Save to Profile</button>
         </div>
 
       </div>
