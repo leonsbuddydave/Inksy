@@ -11,6 +11,9 @@ class LayerPaletteCtrl {
 			name: "FUCK GRAPES"
 		}];
 
+		// TESt
+		// console.log(LayerService);
+
 		return this;
 	}
 }
