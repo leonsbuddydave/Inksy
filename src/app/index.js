@@ -15,7 +15,7 @@ import ProductImage from './models/product-image.model.js';
 
 angular.module('templates', []);
 
-angular.module('inksy', ['ngAnimate', 'ui.bootstrap', 'templates'])
+angular.module('inksy', ['ngAnimate', 'ui.bootstrap', 'templates', 'dndLists'])
 	.controller('MainCtrl', MainCtrl)
 	.controller('CartCtrl', CartCtrl)
 	.controller('LayerPaletteCtrl', LayerPaletteCtrl)

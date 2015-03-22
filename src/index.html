@@ -78,8 +78,13 @@
 
           <!-- Layers Palette -->
           <div ng-controller="LayerPaletteCtrl as layerPalette" class="layers-palette">
-            <ul class="list-group">
-              <li ng-repeat="layer in layerPalette.layers" class="list-group-item">
+            <ul dnd-list="layerPalette.layers" class="list-group">
+              <li ng-repeat="layer in layerPalette.layers"
+                  dnd-draggable="layer"
+                  dnd-moved="layerPalette.layers.splice($index, 1)"
+                  dnd-effect-allowed="move"
+                  dnd-drop="layerPalette.update()"
+                  class="list-group-item">
                 {{layer.name}}
               </li>
             </ul>
