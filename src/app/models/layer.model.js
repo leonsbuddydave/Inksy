@@ -22,10 +22,13 @@ class ImageLayer extends Layer {
 class TestLayer extends Layer {
 	constructor(options) {
 		this.name = options.name;
+
+		var color = ['red', 'blue', 'green', 'yellow'][Math.floor(Math.random() * 4)];
+
 		this.canvasObject = new fabric.Rect({
 			left: 600 * Math.random(),
 			top: 600 * Math.random(),
-			fill: 'red',
+			fill: color,
 			width: 20,
 			height: 20
 		});

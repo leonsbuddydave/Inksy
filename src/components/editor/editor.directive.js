@@ -21,13 +21,20 @@ function editor() {
 			fCanvas.setBackgroundColor('white');
 
 			scope.$on('layers:update', function(event, layers) {
+				console.log('Rebuilding');
 				// Rebuild
 				fCanvas.clear();
 
-				for (let layer of layers) {
-					fCanvas.add(layer.canvasObject);
+				var layerIndex = 0;
+				try {
+					for (let layer of layers) {
+						fCanvas.add(layer.canvasObject);
+						layer.canvasObject.moveTo(layerIndex++);
+					}
+					ctrl.update();
+				} catch (e) {
+					debugger
 				}
-				ctrl.update();
 			});
 
 			// Updates the canvas

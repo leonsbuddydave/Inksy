@@ -18,7 +18,7 @@ class GalleryCtrl {
 			uploadPromise = this.uploadFiles(files)
 
 			uploadPromise.then(function() {
-				console.log('DONE UPLOADING');
+				
 			});
 		}
 

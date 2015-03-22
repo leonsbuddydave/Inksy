@@ -78,16 +78,17 @@
 
           <!-- Layers Palette -->
           <div ng-controller="LayerPaletteCtrl as layerPalette" class="layers-palette">
-            <ul dnd-list="layerPalette.layers" class="list-group">
-              <li ng-repeat="layer in layerPalette.layers"
-                  dnd-draggable="layer"
-                  dnd-moved="layerPalette.layers.splice($index, 1)"
-                  dnd-effect-allowed="move"
-                  dnd-drop="layerPalette.update()"
-                  class="list-group-item">
+            <div class="list-group">
+              <span ng-repeat="layer in layerPalette.layers" class="list-group-item clearfix">
                 {{layer.name}}
-              </li>
-            </ul>
+
+                <span class="pull-right">
+                  <a ng-click="layerPalette.moveUp(layer)">▲</a>
+                  <a ng-click="layerPalette.moveDown(layer)">▼</a>
+                  <a ng-click="layerPalette.deleteLayer(layer)">x</a>
+                </span>
+              </span>
+            </div>
             <button class="btn btn-default" ng-click="layerPalette.newTestLayer()">Layer!</button>
           </div>
 
