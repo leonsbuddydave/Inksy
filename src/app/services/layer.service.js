@@ -1,11 +1,5 @@
 'use strict';
 
-class Layer {
-	constructor() {
-		
-	}
-}
-
 class LayerService {
 	constructor() {
 		return this;

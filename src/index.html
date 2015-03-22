@@ -31,55 +31,24 @@
         <div class="col-md-3">
           <tabset class="asset-sources">
             <tab heading="Images">
-              <div class="asset-panel">
+              <div ng-controller="GalleryCtrl as gallery" class="asset-panel">
 
                 <!-- Gallery Goes Here -->
                 <div class="gallery">
                   
                   <div class="row">
-                    <div class="col-md-6">
+                    <div ng-repeat="image in gallery.images" class="col-md-6">
                       <a class="thumbnail">
-                        <img style="height: 100px; width: 100%" src="" />
-                      </a>
-                    </div>
-
-                    <div class="col-md-6">
-                      <a class="thumbnail">
-                        <img style="height: 100px; width: 100%" src="" />
-                      </a>
-                    </div>
-
-                    <div class="col-md-6">
-                      <a class="thumbnail">
-                        <img style="height: 100px; width: 100%" src="" />
-                      </a>
-                    </div>
-
-                    <div class="col-md-6">
-                      <a class="thumbnail">
-                        <img style="height: 100px; width: 100%" src="" />
-                      </a>
-                    </div>
-
-                    <div class="col-md-6">
-                      <a class="thumbnail">
-                        <img style="height: 100px; width: 100%" src="" />
-                      </a>
-                    </div>
-
-                    <div class="col-md-6">
-                      <a class="thumbnail">
-                        <img style="height: 100px; width: 100%" src="" />
+                        <img style="height: 100px; width: 100%" ng-src="{{image.src}}" />
                       </a>
                     </div>
                   </div>
-
                 </div>
 
                 <!-- Image Upload Sources -->
                 <div class="row">
                   <div class="col-md-4">
-                    <a href="#">Upload</a>
+                    <a href="#" file-upload-button file-handler="gallery.fileHandler">Upload</a>
                   </div>
                   <div class="col-md-4">
                     <a href="#">Facebook</a>
@@ -114,6 +83,7 @@
                 {{layer.name}}
               </li>
             </ul>
+            <button class="btn btn-default" ng-click="layerPalette.newTestLayer()">Layer!</button>
           </div>
 
         </div>
@@ -135,7 +105,6 @@
       </div>
     </div>
     
-
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
@@ -146,6 +115,8 @@
       ga('create','UA-XXXXX-X');ga('send','pageview');
     </script>
 
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+
     <!-- build:js(src) scripts/vendor.js -->
     <!-- bower:js -->
     <!-- run `gulp inject` to automatically populate bower script dependencies -->
@@ -154,7 +125,7 @@
 
     <!-- build:js({.tmp/serve,.tmp/partials}) scripts/app.js -->
     <!-- inject:js -->
-    <script src="bower_components/fabric/dist/fabric.min.js"></script>
+
     <!-- js files will be automatically insert here -->
     <!-- endinject -->
 
