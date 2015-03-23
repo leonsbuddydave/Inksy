@@ -2,7 +2,7 @@
 
 import {TestLayer, ImageLayer} from '../models/layer.model';
 
-const MAX_LAYERS = 5;
+const MAX_LAYERS = 8;
 
 class LayerPaletteCtrl {
 	constructor($scope, $rootScope) {

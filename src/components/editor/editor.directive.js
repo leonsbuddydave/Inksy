@@ -29,12 +29,12 @@ function editor($rootScope) {
 				$rootScope.$broadcast('object:selected', selectedObject);
 			});
 
+			// On any broadcasted layer update, rebuild
 			scope.$on('layers:update', function(event, layers) {
-				console.info('Rebuilding canvas.');
-
+				var layerIndex;
 				fCanvas.clear();
 
-				var layerIndex = 0;
+				layerIndex = 0;
 				try {
 					for (let layer of layers) {
 						fCanvas.add(layer.canvasObject);
