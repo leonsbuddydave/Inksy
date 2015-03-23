@@ -7,6 +7,8 @@ import GalleryCtrl from './gallery/gallery.controller';
 
 import editor from '../components/editor/editor.directive';
 import fileUploadButton from './directives/fileUploadButton.directive';
+import draggable from './directives/draggable.directive';
+import droppable from './directives/droppable.directive';
 
 import LayerService from './services/layer.service';
 
@@ -23,6 +25,8 @@ angular.module('inksy', ['ngAnimate', 'ui.bootstrap', 'templates', 'dndLists'])
 
 	.directive('editor', editor)
 	.directive('fileUploadButton', fileUploadButton)
+	.directive('draggable', draggable)
+	.directive('droppable', droppable)
 
 	.factory('LayerService', LayerService)
 ;

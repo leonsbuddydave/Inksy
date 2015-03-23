@@ -1,6 +1,6 @@
 'use strict';
 
-function editor() {
+function editor($rootScope) {
 	return {
 		templateUrl: 'editor.html',
 		restrict: 'AE',
@@ -20,9 +20,18 @@ function editor() {
 			fCanvas.setWidth(600);
 			fCanvas.setBackgroundColor('white');
 
+			// Rebroadcast object:selected
+			// as an Angular event
+			fCanvas.on('object:selected', (event) => {
+				var selectedObject;
+
+				selectedObject = event.target;
+				$rootScope.$broadcast('object:selected', selectedObject);
+			});
+
 			scope.$on('layers:update', function(event, layers) {
-				console.log('Rebuilding');
-				// Rebuild
+				console.info('Rebuilding canvas.');
+
 				fCanvas.clear();
 
 				var layerIndex = 0;
@@ -33,7 +42,7 @@ function editor() {
 					}
 					ctrl.update();
 				} catch (e) {
-					debugger
+					console.error(e);
 				}
 			});
 
@@ -49,5 +58,7 @@ function editor() {
 		}
 	}
 }
+
+editor.$inject = ['$rootScope'];
 
 export default editor;

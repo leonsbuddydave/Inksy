@@ -51,6 +51,19 @@ $app-height: 700px;
 
 .layers-palette {
 	height: 300px;
+	display: flex;
+	flex-direction: column;
+
+	.layer-list {
+		background-color: lightgray;
+		flex: 1;
+		margin-bottom: 0;
+	}
+
+	.layer-actions-bar {
+		background-color: blue;
+		height: 20px;
+	}
 }
 
 // injector

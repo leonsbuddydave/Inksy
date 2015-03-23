@@ -25,7 +25,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div class="container app-container" ng-controller="MainCtrl">
+    <div class="container app-container" ng-controller="MainCtrl as main">
       <div class="row">
         
         <div class="col-md-3">
@@ -37,7 +37,7 @@
                 <div class="gallery">
                   
                   <div class="row">
-                    <div ng-repeat="image in gallery.images" class="col-md-6">
+                    <div ng-repeat="image in gallery.images" class="col-md-6" draggable="image.src" draggable-type="image">
                       <a class="thumbnail">
                         <img style="height: 100px; width: 100%" ng-src="{{image.src}}" />
                       </a>
@@ -78,26 +78,27 @@
 
           <!-- Layers Palette -->
           <div ng-controller="LayerPaletteCtrl as layerPalette" class="layers-palette">
-            <div class="list-group">
-              <span ng-repeat="layer in layerPalette.layers" class="list-group-item clearfix">
+            <div droppable="layerPalette.handleImageDrop" class="list-group layer-list">
+              <span ng-repeat="layer in layerPalette.layers" class="list-group-item clearfix" ng-class="{active: layerPalette.isSelected(layer) }" ng-click="layerPalette.selectLayer($event, layer)">
                 {{layer.name}}
 
                 <span class="pull-right">
-                  <a ng-click="layerPalette.moveUp(layer)">▲</a>
-                  <a ng-click="layerPalette.moveDown(layer)">▼</a>
-                  <a ng-click="layerPalette.deleteLayer(layer)">x</a>
+                  <a ng-click="layerPalette.moveUp($event, layer)">▲</a>
+                  <a ng-click="layerPalette.moveDown($event, layer)">▼</a>
+                  <a ng-click="layerPalette.deleteLayer($event, layer)">x</a>
                 </span>
               </span>
             </div>
-            <button class="btn btn-default" ng-click="layerPalette.newTestLayer()">Layer!</button>
-          </div>
 
+            <div class="layer-actions-bar">
+              asdf
+            </div>
+          </div>
         </div>
 
         <!-- The Editor -->
-        <div class="col-md-7 editor-area">
+        <div class="col-md-7 editor-area" droppable="main.handleImageDrop">
           <div editor>
-            {{fuck}}
           </div>
         </div>
 

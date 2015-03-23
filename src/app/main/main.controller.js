@@ -1,11 +1,34 @@
 'use strict';
 
 class MainCtrl {
-  constructor ($scope) {
+  constructor ($scope, $rootScope) {
+  	this.$scope = $scope;
+  	this.$rootScope = $rootScope;
+
+  	this.handleImageDrop = (data) => {
+  		switch (data.type) {
+  			case 'image': {
+  				var img = new Image();
+  				img.onload = () => {
+  					$scope.$apply(function() {
+  						$rootScope.$broadcast('drop:image:canvas', img);
+  					});
+  				}
+  				img.src = data.data;
+  			}
+  			break;
+
+  			case 'file': {
+  				$rootScope.$broadcast('drop:file:canvas', data.files);
+  			}
+  			break;
+  		}
+  	}
+
     return this;
   }
 }
 
-MainCtrl.$inject = ['$scope'];
+MainCtrl.$inject = ['$scope', '$rootScope'];
 
 export default MainCtrl;

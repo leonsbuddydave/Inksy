@@ -12,15 +12,45 @@ class LayerPaletteCtrl {
 		this.layers = [];
 		this.selectedLayer = null;
 
+		$scope.$on('drop:image:canvas', (event, image) => {
+			var imageLayer;
+
+			imageLayer = new ImageLayer({
+				name: "New Image"
+			}, image);
+			this.addLayer(imageLayer);
+		});
+
+		this.handleImageDrop = (image) => {
+			var img;
+
+			img = new Image();
+			img.onload = () => {
+				$scope.$apply( () => {
+					$rootScope.$broadcast('drop:image:canvas', img);
+				});
+			}
+			img.src = image.data;
+		}
+
 		return this;
 	}
 
 	newTestLayer() {
-		if (this.layers.length === MAX_LAYERS) return;
-
-		this.layers.push(new TestLayer({
+		this.addLayer(new TestLayer({
 			name: 'New Layer ' + (this.layers.length + 1)
 		}));
+	}
+
+	addLayer(layer) {
+		var layers;
+
+		layers = this.layers;
+
+		if (layers.length === MAX_LAYERS) return;
+
+		layers.push(layer);
+
 		this.update();
 	}
 
@@ -35,7 +65,7 @@ class LayerPaletteCtrl {
 		this.update();
 	}
 
-	moveDown(layer) {
+	moveDown(event, layer) {
 		var layerPos, layers;
 
 		layers = this.layers;
@@ -45,9 +75,11 @@ class LayerPaletteCtrl {
 			return;
 		else
 			this.swapLayers(layerPos, layerPos + 1)
+
+		return false;
 	}
 
-	moveUp(layer) {
+	moveUp(event, layer) {
 		var layerPos, layers;
 
 		layers = this.layers;
@@ -57,9 +89,12 @@ class LayerPaletteCtrl {
 			return;
 		else
 			this.swapLayers(layerPos, layerPos - 1);
+
+		event.stopPropagation();
+		return false;
 	}
 
-	deleteLayer(layer) {
+	deleteLayer(event, layer) {
 		var layerPos, layers;
 
 		layers = this.layers;
@@ -67,10 +102,18 @@ class LayerPaletteCtrl {
 
 		layers.splice(layerPos, 1);
 		this.update();
+
+		event.stopPropagation();
+		return false;
 	}
 
-	selectLayer(layer) {
+	selectLayer(event, layer) {
 		this.selectedLayer = layer;
+		event.stopPropagation();
+	}
+
+	isSelected(layer) {
+		return this.selectedLayer === layer;
 	}
 
 	update() {

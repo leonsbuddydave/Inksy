@@ -22,6 +22,22 @@ class GalleryCtrl {
 			});
 		}
 
+		$scope.$on('drop:file:canvas', (event, files) => {
+			var uploadPromise;
+
+			uploadPromise = this.uploadFiles(files);
+
+			uploadPromise.then((images) => {
+				for (let image of images) {
+					var img = new Image();
+					img.src = image.src;
+					$rootScope.$broadcast('drop:image:canvas', img);
+				}
+			}, () => {
+				console.error("Exception in file upload.");
+			});
+		});
+
 		return this;
 	}
 
@@ -41,15 +57,21 @@ class GalleryCtrl {
 
 			reader = new FileReader();
 			reader.onload = (event) => {
-				var src, result;
+				var src, result, img;
 
 				src = event.target.result;
+				img = new Image();
 				result = {
-					src: src
+					src: src,
+					img: img
 				};
 
+				img.onload = () => {
+					uploadPromise.resolve(result);
+				}
+				img.src = src;
+
 				this.images.push(result);
-				uploadPromise.resolve(result);
 			}
 			reader.readAsDataURL(file);
 
