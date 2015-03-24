@@ -1,6 +1,6 @@
 'use strict';
 
-function editor($rootScope) {
+function editor($rootScope, $window) {
 	return {
 		templateUrl: 'editor.html',
 		restrict: 'AE',
@@ -16,8 +16,6 @@ function editor($rootScope) {
 			element.append(rawCanvas);
 
 			fCanvas = new fabric.Canvas(canvasId);
-			fCanvas.setHeight(600);
-			fCanvas.setWidth(600);
 			fCanvas.setBackgroundColor('white');
 
 			// Rebroadcast object:selected
@@ -46,12 +44,22 @@ function editor($rootScope) {
 				}
 			});
 
+			ctrl.resize = () => {
+				console.log('Resize happening.');
+				fCanvas.setWidth(element.width());
+				fCanvas.setHeight(element.height());
+				fCanvas.calcOffset();
+				ctrl.update();
+			}
+
 			// Updates the canvas
 			ctrl.update = function() {
 				fCanvas.renderAll();
 			}
 
+			ctrl.resize();
 			ctrl.update();
+			$window.addEventListener('resize', ctrl.resize);
 		},
 		controller: function($scope) {
 			var self = this;
@@ -59,6 +67,6 @@ function editor($rootScope) {
 	}
 }
 
-editor.$inject = ['$rootScope'];
+editor.$inject = ['$rootScope', '$window'];
 
 export default editor;

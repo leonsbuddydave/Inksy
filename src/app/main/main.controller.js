@@ -4,6 +4,7 @@ class MainCtrl {
   constructor ($scope, $rootScope) {
   	this.$scope = $scope;
   	this.$rootScope = $rootScope;
+    this.productAngle = 0;
 
   	this.handleImageDrop = (data) => {
   		switch (data.type) {

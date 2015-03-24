@@ -32,9 +32,17 @@ $app-height: 700px;
 
 .editor-area {
 	display: flex;
-	align-items: center;
-	justify-content: center;
 	background-color: #ddd;
+	flex-direction: column;
+	padding: 0;
+
+	.editor-action-bar {
+		width: 100%;
+	}
+
+	.editor {
+		flex: 1;
+	}
 }
 
 .cart-actions {

@@ -11,6 +11,8 @@ class LayerPaletteCtrl {
 
 		this.layers = [];
 		this.selectedLayer = null;
+		
+		this.productAngle = 0;
 
 		$scope.$on('drop:image:canvas', (event, image) => {
 			var imageLayer;
