@@ -4,7 +4,14 @@ class MainCtrl {
   constructor ($scope, $rootScope) {
   	this.$scope = $scope;
   	this.$rootScope = $rootScope;
-    this.productAngle = 0;
+
+    this.product = {
+      angle: 0
+    };
+
+    $scope.$watch(() => this.product, function(newProduct, oldProduct) {
+      $rootScope.$broadcast('product:update', newProduct);
+    }, true);
 
   	this.handleImageDrop = (data) => {
   		switch (data.type) {

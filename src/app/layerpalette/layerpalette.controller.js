@@ -11,8 +11,6 @@ class LayerPaletteCtrl {
 
 		this.layers = [];
 		this.selectedLayer = null;
-		
-		this.productAngle = 0;
 
 		$scope.$on('drop:image:canvas', (event, image) => {
 			var imageLayer;
@@ -21,6 +19,10 @@ class LayerPaletteCtrl {
 				name: "New Image"
 			}, image);
 			this.addLayer(imageLayer);
+		});
+
+		$scope.$on('product:update', (event, product) => {
+			console.log('My scope watcher knows what you did in the dark');
 		});
 
 		this.handleImageDrop = (image) => {
