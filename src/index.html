@@ -34,7 +34,7 @@
               <div ng-controller="GalleryCtrl as gallery" class="asset-panel">
 
                 <!-- Gallery Goes Here -->
-                <div class="gallery">
+                <div class="gallery" droppable="gallery.handleImageDrop">
                   
                   <div class="row">
                     <div ng-repeat="image in gallery.images" class="col-md-6" draggable="image.src" draggable-type="image">
@@ -79,7 +79,7 @@
           <!-- Layers Palette -->
           <div ng-controller="LayerPaletteCtrl as layerPalette" class="layers-palette">
             <div droppable="layerPalette.handleImageDrop" class="list-group layer-list">
-              <span ng-repeat="layer in layerPalette.layers" class="list-group-item clearfix" ng-class="{active: layerPalette.isSelected(layer) }" ng-click="layerPalette.selectLayer($event, layer)">
+              <span ng-repeat="layer in layerPalette.getLayerSet()" class="list-group-item clearfix" ng-class="{active: layerPalette.isSelected(layer) }" ng-click="layerPalette.selectLayer($event, layer)">
                 {{layer.name}}
 
                 <span class="pull-right">
@@ -100,12 +100,11 @@
         <div class="col-md-7 editor-area" droppable="main.handleImageDrop">
           <div class="editor-action-bar">
             <div class="btn-group">
-              <label class="btn btn-default" ng-model="main.product.angle" btn-radio="0" uncheckable>Front</label>
-              <label class="btn btn-default" ng-model="main.product.angle" btn-radio="1" uncheckable>Back</label>
+              <label class="btn btn-default" ng-model="main.product.angle" btn-radio="main.ProductAngle.Front" uncheckable>Front</label>
+              <label class="btn btn-default" ng-model="main.product.angle" btn-radio="main.ProductAngle.Back" uncheckable>Back</label>
             </div>
           </div>
-          <div editor class="editor">
-          </div>
+          <div editor class="editor"></div>
         </div>
 
         <!-- Cart Actions -->

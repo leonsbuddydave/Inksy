@@ -12,8 +12,9 @@ import droppable from './directives/droppable.directive';
 
 import LayerService from './services/layer.service';
 
-import { ImageLayer } from './models/layer.model.js';
-import ProductImage from './models/product-image.model.js';
+import { ImageLayer } from './models/layer.model';
+import ProductImage from './models/product-image.model';
+import ProductAngle from './models/product-angle.constant';
 
 angular.module('templates', []);
 
@@ -29,4 +30,6 @@ angular.module('inksy', ['ngAnimate', 'ui.bootstrap', 'templates', 'dndLists'])
 	.directive('droppable', droppable)
 
 	.factory('LayerService', LayerService)
+
+	.constant('ProductAngle', ProductAngle)
 ;

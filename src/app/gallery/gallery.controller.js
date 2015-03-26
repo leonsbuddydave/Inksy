@@ -22,6 +22,26 @@ class GalleryCtrl {
 			});
 		}
 
+		this.handleImageDrop = (data) => {
+			switch (data.type) {
+				case 'image': {
+					var img = new Image();
+					img.onload = () => {
+						$scope.$apply(function() {
+							$rootScope.$broadcast('drop:image:canvas', img);
+						});
+					}
+					img.src = data.data;
+				}
+				break;
+
+				case 'file': {
+					$rootScope.$broadcast('drop:file:canvas', data.files);
+				}
+				break;
+			}
+		}
+
 		$scope.$on('drop:file:canvas', (event, files) => {
 			var uploadPromise;
 

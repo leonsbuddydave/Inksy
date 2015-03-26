@@ -5,12 +5,18 @@ import {TestLayer, ImageLayer} from '../models/layer.model';
 const MAX_LAYERS = 8;
 
 class LayerPaletteCtrl {
-	constructor($scope, $rootScope) {
+	constructor($scope, $rootScope, ProductAngle) {
 		this.$scope = $scope;
 		this.$rootScope = $rootScope;
 
 		this.layers = [];
 		this.selectedLayer = null;
+		this.layerSets = {
+			[ProductAngle.Front]: [],
+			[ProductAngle.Back]: []
+		};
+		this.product = null;
+
 
 		$scope.$on('drop:image:canvas', (event, image) => {
 			var imageLayer;
@@ -22,7 +28,7 @@ class LayerPaletteCtrl {
 		});
 
 		$scope.$on('product:update', (event, product) => {
-			console.log('My scope watcher knows what you did in the dark');
+			this.product = product;
 		});
 
 		this.handleImageDrop = (image) => {
@@ -40,16 +46,14 @@ class LayerPaletteCtrl {
 		return this;
 	}
 
-	newTestLayer() {
-		this.addLayer(new TestLayer({
-			name: 'New Layer ' + (this.layers.length + 1)
-		}));
+	getLayerSet() {
+		return this.layerSets[this.product.angle];
 	}
 
 	addLayer(layer) {
 		var layers;
 
-		layers = this.layers;
+		layers = this.getLayerSet();
 
 		if (layers.length === MAX_LAYERS) return;
 
@@ -61,7 +65,7 @@ class LayerPaletteCtrl {
 	swapLayers(indexA, indexB) {
 		var tmp, layers;
 
-		layers = this.layers;
+		layers = this.getLayerSet();
 		tmp = layers[indexA];
 
 		layers[indexA] = layers[indexB];
@@ -72,7 +76,7 @@ class LayerPaletteCtrl {
 	moveDown(event, layer) {
 		var layerPos, layers;
 
-		layers = this.layers;
+		layers = this.getLayerSet();
 		layerPos = layers.indexOf(layer);
 
 		if (layerPos === layers.length - 1)
@@ -86,7 +90,7 @@ class LayerPaletteCtrl {
 	moveUp(event, layer) {
 		var layerPos, layers;
 
-		layers = this.layers;
+		layers = this.getLayerSet();
 		layerPos = layers.indexOf(layer);
 
 		if (layerPos === 0)
@@ -101,7 +105,7 @@ class LayerPaletteCtrl {
 	deleteLayer(event, layer) {
 		var layerPos, layers;
 
-		layers = this.layers;
+		layers = this.getLayerSet();
 		layerPos = this.layers.indexOf(layer);
 
 		layers.splice(layerPos, 1);
@@ -121,10 +125,10 @@ class LayerPaletteCtrl {
 	}
 
 	update() {
-		this.$rootScope.$broadcast('layers:update', this.layers);
+		this.$rootScope.$broadcast('layers:update', this.getLayerSet());
 	}
 }
 
-LayerPaletteCtrl.$inject = ['$scope', '$rootScope'];
+LayerPaletteCtrl.$inject = ['$scope', '$rootScope', 'ProductAngle'];
 
 export default LayerPaletteCtrl;

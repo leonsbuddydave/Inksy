@@ -1,12 +1,13 @@
 'use strict';
 
 class MainCtrl {
-  constructor ($scope, $rootScope) {
+  constructor ($scope, $rootScope, ProductAngle) {
   	this.$scope = $scope;
   	this.$rootScope = $rootScope;
+    this.ProductAngle = ProductAngle;
 
     this.product = {
-      angle: 0
+      angle: ProductAngle.Front
     };
 
     $scope.$watch(() => this.product, function(newProduct, oldProduct) {
@@ -37,6 +38,6 @@ class MainCtrl {
   }
 }
 
-MainCtrl.$inject = ['$scope', '$rootScope'];
+MainCtrl.$inject = ['$scope', '$rootScope', 'ProductAngle'];
 
 export default MainCtrl;

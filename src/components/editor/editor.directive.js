@@ -1,6 +1,6 @@
 'use strict';
 
-function editor($rootScope, $window) {
+function editor($rootScope, $window, ProductAngle) {
 	return {
 		templateUrl: 'editor.html',
 		restrict: 'AE',
@@ -8,34 +8,56 @@ function editor($rootScope, $window) {
 
 		},
 		link: function(scope, element, attributes, ctrl) {
-			var rawCanvas, canvasId, fCanvas, layers;
+			var fabricCanvases;
 
-			canvasId = 'inksy-' + new Date().getTime();
-			rawCanvas = angular.element('<canvas></canvas>');
-			rawCanvas.attr('id', canvasId);
-			element.append(rawCanvas);
+			ctrl.product = null;
 
-			fCanvas = new fabric.Canvas(canvasId);
-			fCanvas.setBackgroundColor('white');
+			fabricCanvases = {};
 
-			// Rebroadcast object:selected
-			// as an Angular event
-			fCanvas.on('object:selected', (event) => {
-				var selectedObject;
+			var MakeCanvasForAngle = function(productAngle) {
+				var canvasId, rawCanvas, fCanvas;
 
-				selectedObject = event.target;
-				$rootScope.$broadcast('object:selected', selectedObject);
-			});
+				// Canvas setup
+				canvasId = 'inksy-' + new Date().getTime();
+				rawCanvas = angular.element('<canvas></canvas>');
+				rawCanvas.attr('id', canvasId);
+				element.append(rawCanvas);
+				fCanvas = new fabric.Canvas(canvasId);
+				fCanvas.setBackgroundColor('white');
+
+				// Rebroadcast object:selected
+				// as an Angular event
+				fCanvas.on('object:selected', (event) => {
+					var selectedObject;
+
+					selectedObject = event.target;
+					$rootScope.$broadcast('object:selected', {
+						selectedObject: selectedObject
+					});
+				});
+
+				fabricCanvases[productAngle] = fCanvas;
+			};
+
+			MakeCanvasForAngle(ProductAngle.Front);
+			MakeCanvasForAngle(ProductAngle.Back);
+
+			ctrl.getFabricCanvas = () => {
+				return fabricCanvases[ctrl.product.angle];
+			};
 
 			// On any broadcasted layer update, rebuild
 			scope.$on('layers:update', function(event, layers) {
-				var layerIndex;
-				fCanvas.clear();
+				var layerIndex, fabricCanvas;
+
+				fabricCanvas = ctrl.getFabricCanvas();
+
+				fabricCanvas.clear();
 
 				layerIndex = 0;
 				try {
 					for (let layer of layers) {
-						fCanvas.add(layer.canvasObject);
+						fabricCanvas.add(layer.canvasObject);
 						layer.canvasObject.moveTo(layerIndex++);
 					}
 					ctrl.update();
@@ -44,17 +66,43 @@ function editor($rootScope, $window) {
 				}
 			});
 
+			scope.$on('product:update', (event, product) => {
+				ctrl.product = product;
+
+				for (let angle in fabricCanvases) {
+					var canvasContainer;
+
+					canvasContainer = angular.element(fabricCanvases[angle].getElement()).parent();
+
+					if (product.angle === angle) {
+						canvasContainer.show();
+					} else {
+						canvasContainer.hide();
+					}
+				}
+			});
+
 			ctrl.resize = () => {
 				console.log('Resize happening.');
-				fCanvas.setWidth(element.width());
-				fCanvas.setHeight(element.height());
-				fCanvas.calcOffset();
+				for (let angle in fabricCanvases) {
+					var canvas;
+
+					canvas = fabricCanvases[angle];
+					canvas.setWidth(element.width());
+					canvas.setHeight(element.height());
+					canvas.calcOffset();
+				}
 				ctrl.update();
 			}
 
 			// Updates the canvas
 			ctrl.update = function() {
-				fCanvas.renderAll();
+				for (let angle in fabricCanvases) {
+					var canvas;
+					
+					canvas = fabricCanvases[angle];
+					canvas.renderAll();
+				}
 			}
 
 			ctrl.resize();
@@ -67,6 +115,6 @@ function editor($rootScope, $window) {
 	}
 }
 
-editor.$inject = ['$rootScope', '$window'];
+editor.$inject = ['$rootScope', '$window', 'ProductAngle'];
 
 export default editor;
