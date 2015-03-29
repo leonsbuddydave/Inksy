@@ -4,11 +4,13 @@ import MainCtrl from './main/main.controller';
 import CartCtrl from './cart/cart.controller';
 import LayerPaletteCtrl from './layerpalette/layerpalette.controller';
 import GalleryCtrl from './gallery/gallery.controller';
+import FacebookPhotoImportCtrl from './gallery/FacebookPhotoImport.controller';
 
 import editor from '../components/editor/editor.directive';
 import fileUploadButton from './directives/fileUploadButton.directive';
 import draggable from './directives/draggable.directive';
 import droppable from './directives/droppable.directive';
+import backgroundImage from './directives/backgroundImage.directive';
 
 import LayerService from './services/layer.service';
 
@@ -18,16 +20,21 @@ import ProductAngle from './models/product-angle.constant';
 
 angular.module('templates', []);
 
-angular.module('inksy', ['ngAnimate', 'ui.bootstrap', 'templates', 'dndLists'])
+angular.module('inksy', ['ngAnimate', 'ui.bootstrap', 'templates', 'dndLists', 'facebook'])
+	.config(function(FacebookProvider) {
+		FacebookProvider.init('1561447194144363');
+	})
 	.controller('MainCtrl', MainCtrl)
 	.controller('CartCtrl', CartCtrl)
 	.controller('LayerPaletteCtrl', LayerPaletteCtrl)
 	.controller('GalleryCtrl', GalleryCtrl)
+	.controller('FacebookPhotoImportCtrl', FacebookPhotoImportCtrl)
 
 	.directive('editor', editor)
 	.directive('fileUploadButton', fileUploadButton)
 	.directive('draggable', draggable)
 	.directive('droppable', droppable)
+	.directive('backgroundImage', backgroundImage)
 
 	.factory('LayerService', LayerService)
 

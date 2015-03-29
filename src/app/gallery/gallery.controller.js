@@ -1,11 +1,12 @@
 'use strict'
 
 class GalleryCtrl {
-	constructor($scope, $rootScope, $q) {
+	constructor($scope, $rootScope, $q, $modal) {
 
 		this.$scope = $scope;
 		this.$rootScope = $rootScope;
 		this.$q = $q;
+		this.$modal = $modal;
 
 		this.images = [];
 
@@ -101,8 +102,19 @@ class GalleryCtrl {
 		return this.$q.all(fileUploadPromises);
 	}
 
+	getFacebookPhotos($event) {
+		var facebookModal, $modal;
+
+		$modal = this.$modal;
+
+		facebookModal = $modal.open({
+			controller: 'FacebookPhotoImportCtrl',
+			templateUrl: 'FacebookPhotoImportModal.html',
+			size: 'lg'
+		});
+	}
 }
 
-GalleryCtrl.$inject = ['$scope', '$rootScope', '$q'];
+GalleryCtrl.$inject = ['$scope', '$rootScope', '$q', '$modal'];
 
 export default GalleryCtrl;
