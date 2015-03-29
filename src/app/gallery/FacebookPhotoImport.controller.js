@@ -4,6 +4,8 @@ class FacebookPhotoImportCtrl {
 	constructor($scope, Facebook) {
 
 		$scope.selectedAlbum = null;
+		$scope.selectedPhotos = {};
+		$scope.importing = false;
 
 		$scope.$watch( () => Facebook.isReady(), (isReady) => {
 			if (isReady) {
@@ -21,6 +23,31 @@ class FacebookPhotoImportCtrl {
 
 		$scope.selectAlbum = (album) => {
 			$scope.selectedAlbum = album;
+		};
+
+		$scope.togglePhotoSelection = (photo) => {
+			var id, selectedPhotos;
+
+			id = photo.id;
+			selectedPhotos = $scope.selectedPhotos;
+
+			selectedPhotos[id] = !selectedPhotos[id];
+		};
+
+		$scope.importSelected = () => {
+			var results = [];
+
+			$scope.importing = true;
+
+			for (let id in $scope.selectedPhotos) {
+				results.push( getUrlForPhotoId(id) );
+			}
+
+			$scope.$close(results);
+		}
+
+		var getUrlForPhotoId = function(id) {
+			return "https://graph.facebook.com/" + id + "/picture?access_token=" + $scope.auth.accessToken
 		}
 	}
 }

@@ -112,6 +112,22 @@ class GalleryCtrl {
 			templateUrl: 'FacebookPhotoImportModal.html',
 			size: 'lg'
 		});
+
+		facebookModal.result.then( (results) => {
+			results.forEach((url, index) => {
+				var img, result;
+
+				img = new Image();
+				img.src = url;
+				
+				result = {
+					src: url,
+					img: img
+				}
+
+				this.images.push(result);
+			});
+		});
 	}
 }
 

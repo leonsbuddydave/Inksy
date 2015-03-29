@@ -91,8 +91,8 @@ $app-height: 700px;
                                                               
 .album-grid {
 	
-	// height: 400px;
-	// overflow-y: scroll;
+	height: 400px;
+	overflow-y: scroll;
 
 	&:after {
 		content: " ";
@@ -121,6 +121,25 @@ $app-height: 700px;
 				bottom: 0;
 			}
 		}
+	}
+}
+
+.photo-selection-tray {
+	width: 100%;
+	min-height: 60px;
+
+	&:after {
+		content: " ";
+		display: block;
+		clear: both;
+		float: none;
+	}
+
+	.selected-photo-thumbnail {
+		float: left;
+		height: 50px;
+		width: 50px;
+		margin: 5px;
 	}
 }
 
