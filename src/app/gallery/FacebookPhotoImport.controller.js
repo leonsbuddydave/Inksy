@@ -35,6 +35,9 @@ class FacebookPhotoImportCtrl {
 		if (this.isInstagram()) {
 			Instagram.login((response) => {
 				this.auth = response.authResponse;
+				Instagram.api('/users/self').then(function(user) {
+					console.log(user);
+				});
 			});
 		}
 

@@ -2,7 +2,10 @@
 
 var settings = {
 	clientId: null,
-	redirectUri: null
+	redirectUri: null,
+	apiBasename: 'https://api.instagram.com/',
+	apiVersion: 'v1',
+	accessToken: null
 };
 
 var InstagramProvider = function() {
@@ -11,23 +14,67 @@ var InstagramProvider = function() {
 		settings.redirectUri = redirectUri;
 	}
 
-	this.$get = Instagram.$inject.concat(($http, $window, $document, $interval) => {
-		return new Instagram($http, $window, $document, $interval);
+	this.$get = Instagram.$inject.concat(($http, $window, $document, $interval, $q) => {
+		return new Instagram($http, $window, $document, $interval, $q);
 	});
 };
 
 class Instagram {
-	constructor($http, $window, $document, $interval) {
+	constructor($http, $window, $document, $interval, $q) {
 		this.$http = $http;
 		this.$window = $window;
 		this.$document = $document;
 		this.$interval = $interval;
+		this.$q = $q;
 
 		return this;
 	}
 
-	testMethod() {
-		console.log('Test method!');
+	getApiUrl() {
+		return [
+			settings.apiBasename,
+			settings.apiVersion
+		].join('');
+	}
+
+	api(url, params) {
+		var apiUrl, queryString, finalUrl, $http, $q, deferred;
+
+		$http = this.$http;
+		$q = this.$q;
+
+		deferred = $q.defer();
+
+		console.log('Api being called!');;
+
+		apiUrl = this.getApiUrl() + url;
+		queryString = [];
+		params = params || {};
+
+		params['access_token'] = settings.accessToken;
+		params['callback'] = 'JSON_CALLBACK';
+
+		for (let paramName in params) {
+			var param;
+
+			param = params[paramName];
+			queryString.push( paramName + '=' + param );
+		}
+
+		finalUrl = [apiUrl, '?', queryString.join('&')].join('')
+
+		$http.jsonp(finalUrl).then((response) => {
+			var instagramMeta, instagramData;
+
+			instagramMeta = response.data.meta;
+			instagramData = response.data.data;
+
+			deferred.resolve(instagramData);
+		}, () => {
+			// TODO: Graceful error handling for Instagram API failures
+		});
+
+		return deferred.promise;
 	}
 
 	getAuthUrl() {
@@ -92,6 +139,7 @@ class Instagram {
 					if (win.location.hash.length) {
 						$interval.cancel(interval);
 						accessToken = win.location.hash.replace('#access_token=', '');
+						settings.accessToken = accessToken;
 						win.close();
 
 						if (!angular.isUndefined(callback)) {
@@ -110,6 +158,6 @@ class Instagram {
 	}
 }
 
-Instagram.$inject = ['$http', '$window', '$document', '$interval'];
+Instagram.$inject = ['$http', '$window', '$document', '$interval', '$q'];
 
 export { Instagram, InstagramProvider };
