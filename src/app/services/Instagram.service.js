@@ -45,8 +45,6 @@ class Instagram {
 
 		deferred = $q.defer();
 
-		console.log('Api being called!');;
-
 		apiUrl = this.getApiUrl() + url;
 		queryString = [];
 		params = params || {};

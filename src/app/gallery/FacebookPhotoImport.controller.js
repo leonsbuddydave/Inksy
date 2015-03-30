@@ -11,6 +11,11 @@ class FacebookPhotoImportCtrl {
 		$scope.selectedPhotos = {};
 		$scope.importing = false;
 
+		this.socialData = {
+			'facebook': null,
+			'instagram': null
+		};
+
 		facebookReadyWatcher = $scope.$watch( () => Facebook.isReady(), (isReady) => {
 			if (isReady) {
 				// Done watching
@@ -24,6 +29,9 @@ class FacebookPhotoImportCtrl {
 						Facebook.api('/me/albums?fields=photos,name,description,cover_photo', (response) => {
 							console.log(response.data);
 							$scope.albums = response.data;
+							this.socialData.facebook = {
+								albums: response.data
+							}
 						});
 					}, {
 						scope: 'user_photos'
@@ -35,8 +43,10 @@ class FacebookPhotoImportCtrl {
 		if (this.isInstagram()) {
 			Instagram.login((response) => {
 				this.auth = response.authResponse;
-				Instagram.api('/users/self').then(function(user) {
-					console.log(user);
+				Instagram.api('/users/self/media/recent').then((photos) => {
+					this.socialData.instagram = {
+						photos: photos
+					};
 				});
 			});
 		}
@@ -77,6 +87,34 @@ class FacebookPhotoImportCtrl {
 
 	isInstagram() {
 		return (this.network === 'instagram');
+	}
+
+	getAlbums() {
+		if (this.isFacebook()) {
+			return this.socialData.facebook.albums;
+		} else if (this.isInstagram()) {
+			return [];
+		} else {
+			return [];
+		}
+	}
+
+	getPhotos() {
+		var $scope;
+
+		$scope = this.$scope;
+
+		if (this.isFacebook()) {
+			return $scope.selectedAlbum.photos.data;
+		} else if (this.isInstagram()) {
+			if (this.socialData.instagram !== null) {
+				return this.socialData.instagram.photos;	
+			} else {
+				return [];
+			}
+		} else {
+			return [];
+		}
 	}
 
 	/*
@@ -126,8 +164,7 @@ class FacebookPhotoImportCtrl {
 				accessToken
 			].join('');
 		} else if (this.isInstagram()) {
-			// ???
-			return null;
+			return photo.images.low_resolution.url;
 		} else {
 			return null;
 		}

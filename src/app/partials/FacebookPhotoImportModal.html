@@ -13,7 +13,7 @@
 	                                                           		
 	-->
 	<div class="album-grid" ng-hide="selectedAlbum || import.isInstagram()">
-		<div ng-repeat="album in albums" ng-click="selectAlbum(album)" class="album-preview">
+		<div ng-repeat="album in import.getAlbums()" ng-click="selectAlbum(album)" class="album-preview">
 			<div class="album-preview-image" background-image="{{import.getAlbumPreviewUrl(album)}}">
 				<div class="album-name">
 					{{album.name}}
@@ -31,13 +31,14 @@
 	                                                        
 	-->
 	<!-- <span ng-show="selectedAlbum">{{selectedAlbum.name}}</span> -->
-	<div class="album-grid" ng-show="selectedAlbum">
-		<div ng-repeat="photo in selectedAlbum.photos.data" ng-click="togglePhotoSelection(photo)" class="album-preview">
+	<div class="album-grid" ng-show="selectedAlbum || import.isInstagram()">
+		<div ng-repeat="photo in import.getPhotos()" ng-click="togglePhotoSelection(photo)" class="album-preview">
 			<div class="album-preview-image" background-image="{{import.getPhotoPreviewUrl(photo)}}">
 			</div>
 		</div>
 	</div>
 
+	<!-- TODO: Dynamic preview selection based on social network -->
 	<div class="photo-selection-tray">
 		<div ng-repeat="(id, selected) in selectedPhotos" background-image="https://graph.facebook.com/{{id}}/picture?access_token={{auth.accessToken}}" ng-if="selected" class="selected-photo-thumbnail">
 		</div>
