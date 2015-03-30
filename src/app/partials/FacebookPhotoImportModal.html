@@ -1,8 +1,9 @@
 <div class="modal-header">
-	<h3>If you want to the image of man in the book:</h3>
+	<h3 ng-if="import.isFacebook()">If you want to the image of man in the book:</h3>
+	<h3 ng-if="import.isInstagram()">To use pictures to instagram:</h3>
 </div>
 <div class="modal-body">
-	
+
 	<!-- 
 	    ___    ____                       _    ___             
 	   /   |  / / /_  __  ______ ___     | |  / (_)__ _      __
@@ -11,9 +12,9 @@
 	/_/  |_/_/_.___/\__,_/_/ /_/ /_/     |___/_/\___/|__/|__/  
 	                                                           		
 	-->
-	<div class="album-grid" ng-hide="selectedAlbum">
+	<div class="album-grid" ng-hide="selectedAlbum || import.isInstagram()">
 		<div ng-repeat="album in albums" ng-click="selectAlbum(album)" class="album-preview">
-			<div class="album-preview-image" background-image="https://graph.facebook.com/{{album.id}}/picture?type=album&access_token={{auth.accessToken}}">
+			<div class="album-preview-image" background-image="{{import.getAlbumPreviewUrl(album)}}">
 				<div class="album-name">
 					{{album.name}}
 				</div>
@@ -32,7 +33,7 @@
 	<!-- <span ng-show="selectedAlbum">{{selectedAlbum.name}}</span> -->
 	<div class="album-grid" ng-show="selectedAlbum">
 		<div ng-repeat="photo in selectedAlbum.photos.data" ng-click="togglePhotoSelection(photo)" class="album-preview">
-			<div class="album-preview-image" background-image="https://graph.facebook.com/{{photo.id}}/picture?access_token={{auth.accessToken}}">
+			<div class="album-preview-image" background-image="{{import.getPhotoPreviewUrl(photo)}}">
 			</div>
 		</div>
 	</div>

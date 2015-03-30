@@ -109,7 +109,11 @@ class GalleryCtrl {
 
 		facebookModal = $modal.open({
 			controller: 'FacebookPhotoImportCtrl',
+			controllerAs: 'import',
 			templateUrl: 'FacebookPhotoImportModal.html',
+			resolve: {
+				network: () => 'facebook'
+			},
 			size: 'lg'
 		});
 
@@ -128,6 +132,22 @@ class GalleryCtrl {
 				this.images.push(result);
 			});
 		});
+	}
+
+	getInstagramPhotos($event) {
+		var instagramModal, $modal;
+
+		$modal = this.$modal;
+
+		instagramModal = $modal.open({
+			controller: 'FacebookPhotoImportCtrl',
+			controllerAs: 'import',
+			templateUrl: 'FacebookPhotoImportModal.html',
+			resolve: {
+				network: () => 'instagram'
+			},
+			size: 'lg'
+		})
 	}
 }
 
