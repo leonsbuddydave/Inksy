@@ -6,6 +6,8 @@ class MainCtrl {
   	this.$rootScope = $rootScope;
     this.ProductAngle = ProductAngle;
 
+    this.selectedProduct = null;
+
     this.product = {
       angle: ProductAngle.Front
     };
@@ -13,6 +15,11 @@ class MainCtrl {
     $scope.$watch(() => this.product, function(newProduct, oldProduct) {
       $rootScope.$broadcast('product:update', newProduct);
     }, true);
+
+    $scope.$on('product:selected', (event, product) => {
+      this.selectedProduct = product;
+      this.product.angle = ProductAngle.Front;
+    });
 
   	this.handleImageDrop = (data) => {
   		switch (data.type) {
@@ -34,7 +41,15 @@ class MainCtrl {
   		}
   	}
 
+    this.productHasMultipleSides = () => {
+      return this.selectedProduct !== null && Object.keys(this.selectedProduct.angles).length > 1;
+    }
+
     return this;
+  };
+
+  what() {
+
   }
 }
 

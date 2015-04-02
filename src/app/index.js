@@ -4,6 +4,7 @@ import MainCtrl from './main/main.controller';
 import CartCtrl from './cart/cart.controller';
 import LayerPaletteCtrl from './layerpalette/layerpalette.controller';
 import GalleryCtrl from './gallery/gallery.controller';
+import ProductSelectorCtrl from './controllers/ProductSelector.controller';
 import FacebookPhotoImportCtrl from './gallery/FacebookPhotoImport.controller';
 
 import editor from '../components/editor/editor.directive';
@@ -13,6 +14,7 @@ import droppable from './directives/droppable.directive';
 import backgroundImage from './directives/backgroundImage.directive';
 
 import LayerService from './services/layer.service';
+import { ProductService, ProductServiceProvider } from './services/Product.service';
 import { Instagram, InstagramProvider } from './services/Instagram.service';
 
 import { ImageLayer } from './models/layer.model';
@@ -30,6 +32,7 @@ angular.module('inksy', ['ngAnimate', 'ui.bootstrap', 'templates', 'dndLists', '
 	.controller('CartCtrl', CartCtrl)
 	.controller('LayerPaletteCtrl', LayerPaletteCtrl)
 	.controller('GalleryCtrl', GalleryCtrl)
+	.controller('ProductSelectorCtrl', ProductSelectorCtrl)
 	.controller('FacebookPhotoImportCtrl', FacebookPhotoImportCtrl)
 
 	.directive('editor', editor)
@@ -39,9 +42,11 @@ angular.module('inksy', ['ngAnimate', 'ui.bootstrap', 'templates', 'dndLists', '
 	.directive('backgroundImage', backgroundImage)
 
 	.factory('LayerService', LayerService)
+	.factory('ProductService', ProductService)
 	.factory('Instagram', Instagram)
 
 	.provider('Instagram', InstagramProvider)
+	.provider('ProductService', ProductServiceProvider)
 
 	.constant('ProductAngle', ProductAngle)
 ;

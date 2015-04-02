@@ -11,8 +11,15 @@ function backgroundImage() {
 				element.css({
 					'background-image' : 'url(' + newVal + ')',
 					'background-size' : 'cover',
-					'background-position' : 'center'
+					'background-position' : 'center',
+					'background-repeat' : 'no-repeat'
 				})
+
+				if (attributes.cover === 'true') {
+					element.css({'background-size': 'cover'});
+				} else if (attributes.contain === 'true') {
+					element.css({'background-size': 'contain'});
+				}
 			});
 		}
 	}

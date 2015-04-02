@@ -98,13 +98,22 @@
 
         <!-- The Editor -->
         <div class="col-md-7 editor-area" droppable="main.handleImageDrop">
+
+          <!-- Action Bar -->
           <div class="editor-action-bar">
             <div class="btn-group">
               <label class="btn btn-default" ng-model="main.product.angle" btn-radio="main.ProductAngle.Front">Front</label>
-              <label class="btn btn-default" ng-model="main.product.angle" btn-radio="main.ProductAngle.Back">Back</label>
+              <label class="btn btn-default" ng-model="main.product.angle" btn-radio="main.ProductAngle.Back" ng-show="main.productHasMultipleSides()">Back</label>
             </div>
           </div>
+
+          <!-- Editor Canvas -->
           <div editor class="editor"></div>
+
+          <div ng-controller="ProductSelectorCtrl as selector" class="product-selector">
+            <div ng-repeat="product in selector.getProducts()" background-image="{{selector.getProductPreviewUrl(product)}}" contain='true' ng-click="selector.selectProduct(product)" class="product" ng-class="{selected: selector.isSelected(product)}">
+            </div>
+          </div>
         </div>
 
         <!-- Cart Actions -->

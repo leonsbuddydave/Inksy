@@ -51,6 +51,28 @@ $app-height: 700px;
 	.editor {
 		flex: 1;
 	}
+
+	.product-selector {
+		height: 100px;
+		background-color: red;
+		border: solid 1px black;
+
+		.product {
+			height: 100%;
+			width: 150px;
+			float: left;
+			background-color: #fff;
+			transition: .25s ease-in-out transform;
+
+			&:hover {
+				transform: translateY(-10px);
+			}
+
+			&.selected {
+				border: solid 1px blue;
+			}
+		}
+	}
 }
 
 .cart-actions {

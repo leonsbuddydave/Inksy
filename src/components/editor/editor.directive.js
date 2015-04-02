@@ -8,7 +8,7 @@ function editor($rootScope, $window, ProductAngle) {
 
 		},
 		link: function(scope, element, attributes, ctrl) {
-			var fabricCanvases;
+			var fabricCanvases, texture, shape;
 
 			ctrl.product = null;
 
@@ -60,6 +60,9 @@ function editor($rootScope, $window, ProductAngle) {
 						fabricCanvas.add(layer.canvasObject);
 						layer.canvasObject.moveTo(layerIndex++);
 					}
+
+					shape.sendToBack();
+					texture.bringToFront();
 					ctrl.update();
 				} catch (e) {
 					console.error(e);
@@ -80,6 +83,52 @@ function editor($rootScope, $window, ProductAngle) {
 						canvasContainer.hide();
 					}
 				}
+			});
+
+			scope.$on('product:selected', (event, product) => {
+				var angleImages, fCanvas;
+
+				if (texture) texture.remove();
+				if (shape) shape.remove();
+
+				angleImages = product.angles[ctrl.product.angle].images;
+				fCanvas = fabricCanvases[ctrl.product.angle];
+
+				var shapeImage = new Image();
+				shapeImage.src = angleImages.shape;
+				shapeImage.onload = () => {
+					var filter = new fabric.Image.filters.Tint({
+						color: "#f00"
+					});
+					shape.filters.push(filter);
+					shape.applyFilters(fCanvas.renderAll.bind(fCanvas));
+				}
+				shape = new fabric.Image(shapeImage, {
+					left: 0,
+					top: 0,
+					height: 500,
+					width: 500,
+					selectable: false,
+					evented: false
+				});
+				fCanvas.add(shape);
+				shape.center();
+				
+
+				var textureImage = new Image();
+				textureImage.src = angleImages.texture;
+				texture = new fabric.Image(textureImage, {
+					left: 0,
+					top: 0,
+					height: 500,
+					width: 500,
+					selectable: false,
+					evented: false
+				});
+				fCanvas.add(texture);
+				texture.center();
+
+				ctrl.update();
 			});
 
 			ctrl.resize = () => {
