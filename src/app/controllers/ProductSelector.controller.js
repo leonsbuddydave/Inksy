@@ -1,7 +1,7 @@
 'use strict'
 
 class ProductSelectorCtrl {
-	constructor($scope, $rootScope, ProductService, ProductAngle) {
+	constructor($scope, $rootScope, ProductService, ProductAngle, $timeout) {
 
 		this.$scope = $scope;
 		this.$rootScope = $rootScope;
@@ -12,6 +12,10 @@ class ProductSelectorCtrl {
 
 		ProductService.getProducts().then((products) => {
 			this.products = products;
+
+			$timeout(() => {
+				this.selectProduct(products[0]);
+			}, 0);
 		});
 	}
 
@@ -41,6 +45,6 @@ class ProductSelectorCtrl {
 	}
 }
 
-ProductSelectorCtrl.$inject = ['$scope', '$rootScope', 'ProductService', 'ProductAngle'];
+ProductSelectorCtrl.$inject = ['$scope', '$rootScope', 'ProductService', 'ProductAngle', '$timeout'];
 
 export default ProductSelectorCtrl;

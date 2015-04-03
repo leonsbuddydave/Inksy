@@ -67,6 +67,9 @@ function editor($rootScope, $window, ProductAngle, MathUtils) {
 			fabricCanvases = {};
 			productSides = {};
 
+			/*
+				Create a new canvas for a given product side
+			*/
 			var MakeCanvasForAngle = function(productAngle) {
 				var canvasId, rawCanvas, fCanvas, productSide;
 
@@ -95,6 +98,10 @@ function editor($rootScope, $window, ProductAngle, MathUtils) {
 				productSides[productAngle] = productSide;
 			};
 
+			/*
+				Return the canvas for the currently
+				selected product side
+			*/
 			ctrl.getFabricCanvas = () => {
 				return productSides[ctrl.product.angle].getCanvas();
 			};
@@ -102,6 +109,7 @@ function editor($rootScope, $window, ProductAngle, MathUtils) {
 			/*
 				Resets shape and texture layers
 				to be at the correct layer depth
+				for all canvases
 			*/
 			ctrl.correctLayerOrder = function() {
 				for (let side in productSides) {
@@ -115,6 +123,10 @@ function editor($rootScope, $window, ProductAngle, MathUtils) {
 				}
 			};
 
+			/*
+				Clears non-user product layers from
+				all canvases
+			*/
 			ctrl.clearProductFromCanvas = function() {
 				for (let side in productSides) {
 					var shape, texture, canvas;
@@ -129,6 +141,10 @@ function editor($rootScope, $window, ProductAngle, MathUtils) {
 				}
 			}
 
+			/*
+				Adds all non-user product layers
+				to all canvases
+			*/
 			ctrl.addProductToCanvas = function() {
 				for (let side in productSides) {
 					var shape, texture, canvas;
