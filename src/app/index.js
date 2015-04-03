@@ -14,6 +14,7 @@ import droppable from './directives/droppable.directive';
 import backgroundImage from './directives/backgroundImage.directive';
 
 import LayerService from './services/layer.service';
+import MathUtils from './services/MathUtils.service';
 import { ProductService, ProductServiceProvider } from './services/Product.service';
 import { Instagram, InstagramProvider } from './services/Instagram.service';
 
@@ -44,6 +45,8 @@ angular.module('inksy', ['ngAnimate', 'ui.bootstrap', 'templates', 'dndLists', '
 	.factory('LayerService', LayerService)
 	.factory('ProductService', ProductService)
 	.factory('Instagram', Instagram)
+
+	.service('MathUtils', MathUtils)
 
 	.provider('Instagram', InstagramProvider)
 	.provider('ProductService', ProductServiceProvider)

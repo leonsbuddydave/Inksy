@@ -1,6 +1,52 @@
 'use strict';
 
-function editor($rootScope, $window, ProductAngle) {
+class ProductSide {
+	constructor(side) {
+		this.setSide(side);
+	}
+
+	setCanvas(canvas) {
+		this.canvas = canvas;
+	}
+
+	getCanvas() {
+		return this.canvas;
+	}
+
+	setSide(side) {
+		this.side = side;
+	}
+
+	getSide() {
+		return this.side;
+	}
+
+	setTexture(texture) {
+		this.texture = texture;
+	}
+
+	getTexture() {
+		return this.texture;
+	}
+
+	setShape(shape) {
+		this.shape = shape;
+	}
+
+	getShape() {
+		return this.shape;
+	}
+
+	setLayers(layers) {
+		this.layers = layers;
+	}
+
+	getLayers() {
+		return this.layers;
+	}
+};
+
+function editor($rootScope, $window, ProductAngle, MathUtils) {
 	return {
 		templateUrl: 'editor.html',
 		restrict: 'AE',
@@ -8,14 +54,21 @@ function editor($rootScope, $window, ProductAngle) {
 
 		},
 		link: function(scope, element, attributes, ctrl) {
-			var fabricCanvases, texture, shape;
+			var fabricCanvases, productSides;
+
+			const PRODUCT_AREA_WIDTH = 400;
+			const PRODUCT_AREA_HEIGHT = 400;
+
+			const DESIGN_DEFAULT_WIDTH = 200;
+			const DESIGN_DEFAULT_HEIGHT = 200;
 
 			ctrl.product = null;
 
 			fabricCanvases = {};
+			productSides = {};
 
 			var MakeCanvasForAngle = function(productAngle) {
-				var canvasId, rawCanvas, fCanvas;
+				var canvasId, rawCanvas, fCanvas, productSide;
 
 				// Canvas setup
 				canvasId = 'inksy-' + new Date().getTime();
@@ -36,48 +89,86 @@ function editor($rootScope, $window, ProductAngle) {
 					});
 				});
 
-				fabricCanvases[productAngle] = fCanvas;
-			};
+				productSide = new ProductSide(productAngle);
+				productSide.setCanvas(fCanvas);
 
-			MakeCanvasForAngle(ProductAngle.Front);
-			MakeCanvasForAngle(ProductAngle.Back);
+				productSides[productAngle] = productSide;
+			};
 
 			ctrl.getFabricCanvas = () => {
-				return fabricCanvases[ctrl.product.angle];
+				return productSides[ctrl.product.angle].getCanvas();
 			};
 
-			// On any broadcasted layer update, rebuild
-			scope.$on('layers:update', function(event, layers) {
-				var layerIndex, fabricCanvas;
+			/*
+				Resets shape and texture layers
+				to be at the correct layer depth
+			*/
+			ctrl.correctLayerOrder = function() {
+				for (let side in productSides) {
+					var shape, texture;
+					
+					shape = productSides[side].getShape();
+					texture = productSides[side].getTexture();
 
-				fabricCanvas = ctrl.getFabricCanvas();
-
-				fabricCanvas.clear();
-
-				layerIndex = 0;
-				try {
-					for (let layer of layers) {
-						fabricCanvas.add(layer.canvasObject);
-						layer.canvasObject.moveTo(layerIndex++);
-					}
-
-					shape.sendToBack();
-					texture.bringToFront();
-					ctrl.update();
-				} catch (e) {
-					console.error(e);
+					if (shape) shape.sendToBack();
+					if (texture) texture.bringToFront();
 				}
+			};
+
+			ctrl.clearProductFromCanvas = function() {
+				for (let side in productSides) {
+					var shape, texture, canvas;
+
+					canvas = productSides[side].getCanvas();
+
+					shape = productSides[side].getShape();
+					texture = productSides[side].getTexture();
+
+					canvas.remove(shape);
+					canvas.remove(texture);
+				}
+			}
+
+			ctrl.addProductToCanvas = function() {
+				for (let side in productSides) {
+					var shape, texture, canvas;
+
+					canvas = productSides[side].getCanvas();
+
+					shape = productSides[side].getShape();
+					texture = productSides[side].getTexture();
+
+					canvas.add(shape);
+					canvas.add(texture);
+				}
+			}
+
+			/*
+				When we receive a layer update,
+				rebuild the canvas projection
+			*/
+			scope.$on('layers:update', function(event, layers) {
+				productSides[ctrl.product.angle].setLayers(layers);
+
+				ctrl.rebuild();
 			});
 
+			/*
+				This event is named shittily - this will
+				basically only be used when the selected
+				product angle changes.
+			*/
 			scope.$on('product:update', (event, product) => {
 				ctrl.product = product;
 
-				for (let angle in fabricCanvases) {
-					var canvasContainer;
+				for (let side in productSides) {
+					var canvas, canvasContainer;
 
-					canvasContainer = angular.element(fabricCanvases[angle].getElement()).parent();
+					canvas = productSides[side].getCanvas();
 
-					if (product.angle === angle) {
+					canvasContainer = angular.element(canvas.getElement()).parent();
+
+					if (product.angle === side) {
 						canvasContainer.show();
 					} else {
 						canvasContainer.hide();
@@ -85,74 +176,157 @@ function editor($rootScope, $window, ProductAngle) {
 				}
 			});
 
+			/*
+				Updates the displayed product whenever we
+				receive an update that it's changed
+
+				Rewrite this later, it's garbage
+			*/
 			scope.$on('product:selected', (event, product) => {
-				var angleImages, fCanvas;
 
-				if (texture) texture.remove();
-				if (shape) shape.remove();
+				ctrl.clear();
 
-				angleImages = product.angles[ctrl.product.angle].images;
-				fCanvas = fabricCanvases[ctrl.product.angle];
+				for (let side in product.angles) {
+					let productSide, canvas, images, shape, texture;
 
-				var shapeImage = new Image();
-				shapeImage.src = angleImages.shape;
-				shapeImage.onload = () => {
-					var filter = new fabric.Image.filters.Tint({
-						color: "#f00"
+					productSide = productSides[side];
+					canvas = productSide.getCanvas();
+					images = product.angles[side].images;
+
+					let shapeImage = new Image();
+					shapeImage.onload = () => {
+						let filter, width, height, naturalWidth, naturalHeight;
+
+						naturalWidth = shapeImage.naturalWidth;
+						naturalHeight = shapeImage.naturalHeight;
+
+						[shape.width, shape.height] = MathUtils.contain(naturalWidth, naturalHeight, PRODUCT_AREA_WIDTH, PRODUCT_AREA_HEIGHT);
+
+						shape.center();
+
+						filter = new fabric.Image.filters.Tint({
+							color: "#f00"
+						});
+						shape.filters.push(filter);
+						shape.applyFilters(canvas.renderAll.bind(canvas));
+						ctrl.rebuild();
+					}
+					shapeImage.src = images.shape;
+					shape = new fabric.Image(shapeImage, {
+						left: 0,
+						top: 0,
+						selectable: false,
+						evented: false
 					});
-					shape.filters.push(filter);
-					shape.applyFilters(fCanvas.renderAll.bind(fCanvas));
+					canvas.add(shape);
+					productSide.setShape(shape);
+					shape.center();
+
+					let textureImage = new Image();
+					textureImage.onload = () => {
+						let width, height, naturalWidth, naturalHeight;
+
+						naturalWidth = textureImage.naturalWidth;
+						naturalHeight = textureImage.naturalHeight;
+
+						[texture.width, texture.height] = MathUtils.contain(naturalWidth, naturalHeight, PRODUCT_AREA_WIDTH, PRODUCT_AREA_HEIGHT);
+
+						texture.center();
+						ctrl.rebuild();
+					};
+					textureImage.src = images.texture;
+					texture = new fabric.Image(textureImage, {
+						left: 0,
+						top: 0,
+						selectable: false,
+						evented: false
+					});
+					canvas.add(texture);
+					productSide.setTexture(texture);
+					texture.center();
+
+					ctrl.correctLayerOrder();
+					ctrl.update();
 				}
-				shape = new fabric.Image(shapeImage, {
-					left: 0,
-					top: 0,
-					height: 500,
-					width: 500,
-					selectable: false,
-					evented: false
-				});
-				fCanvas.add(shape);
-				shape.center();
-				
-
-				var textureImage = new Image();
-				textureImage.src = angleImages.texture;
-				texture = new fabric.Image(textureImage, {
-					left: 0,
-					top: 0,
-					height: 500,
-					width: 500,
-					selectable: false,
-					evented: false
-				});
-				fCanvas.add(texture);
-				texture.center();
-
-				ctrl.update();
 			});
 
+			/*
+				Handles updating the canvas whenever
+				the window is resized
+			*/
 			ctrl.resize = () => {
-				console.log('Resize happening.');
-				for (let angle in fabricCanvases) {
+				for (let side in productSides) {
 					var canvas;
 
-					canvas = fabricCanvases[angle];
+					canvas = productSides[side].getCanvas();
 					canvas.setWidth(element.width());
 					canvas.setHeight(element.height());
 					canvas.calcOffset();
 				}
+
 				ctrl.update();
 			}
 
-			// Updates the canvas
-			ctrl.update = function() {
-				for (let angle in fabricCanvases) {
-					var canvas;
-					
-					canvas = fabricCanvases[angle];
-					canvas.renderAll();
+			/*
+				Totally clears all canvases
+			*/
+			ctrl.clear = function() {
+				for (let side in productSides) {
+					productSides[side].getCanvas().clear();
 				}
-			}
+			};
+
+			/*
+				Re-renders all canvases
+			*/
+			ctrl.update = function() {
+				for (let side in productSides) {
+					productSides[side].getCanvas().renderAll();
+				}
+			};
+
+			/*
+				Reflects all user-controlled layers 
+				to the canvas
+			*/
+			ctrl.reflectLayersToCanvas = function() {
+				for (let side in productSides) {
+					var layerIndex, canvas, layers;
+					
+					layers = productSides[side].getLayers();
+					canvas = productSides[side].getCanvas();
+
+					layers = layers || [];
+
+					layerIndex = 0;
+					try {
+						for (let layer of layers) {
+							canvas.add(layer.canvasObject);
+							layer.canvasObject.moveTo(layerIndex++);
+						}
+					} catch (e) {
+						console.error(e);
+					}
+				}
+			};
+
+			/*
+				Clears and rebuilds the canvas
+				from scratch - layers, product
+				information, ordering info, etc
+			*/
+			ctrl.rebuild = function() {
+				ctrl.clear();
+
+				ctrl.reflectLayersToCanvas();
+				ctrl.addProductToCanvas();
+				ctrl.correctLayerOrder();
+
+				ctrl.update();
+			};
+
+			MakeCanvasForAngle(ProductAngle.Front);
+			MakeCanvasForAngle(ProductAngle.Back);
 
 			ctrl.resize();
 			ctrl.update();
@@ -164,6 +338,6 @@ function editor($rootScope, $window, ProductAngle) {
 	}
 }
 
-editor.$inject = ['$rootScope', '$window', 'ProductAngle'];
+editor.$inject = ['$rootScope', '$window', 'ProductAngle', 'MathUtils'];
 
 export default editor;
