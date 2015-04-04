@@ -29,7 +29,7 @@ class GalleryCtrl {
 					var img = new Image();
 					img.onload = () => {
 						$scope.$apply(function() {
-							$rootScope.$broadcast('drop:image:canvas', img);
+							$rootScope.$broadcast('image:new', img);
 						});
 					}
 					img.src = data.data;
@@ -37,13 +37,13 @@ class GalleryCtrl {
 				break;
 
 				case 'file': {
-					$rootScope.$broadcast('drop:file:canvas', data.files);
+					$rootScope.$broadcast('file:new', data.files);
 				}
 				break;
 			}
 		}
 
-		$scope.$on('drop:file:canvas', (event, files) => {
+		$scope.$on('file:new', (event, files) => {
 			var uploadPromise;
 
 			uploadPromise = this.uploadFiles(files);
@@ -52,7 +52,7 @@ class GalleryCtrl {
 				for (let image of images) {
 					var img = new Image();
 					img.src = image.src;
-					$rootScope.$broadcast('drop:image:canvas', img);
+					$rootScope.$broadcast('image:new', img);
 				}
 			}, () => {
 				console.error("Exception in file upload.");

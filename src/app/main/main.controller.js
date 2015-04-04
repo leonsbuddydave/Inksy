@@ -27,7 +27,7 @@ class MainCtrl {
   				var img = new Image();
   				img.onload = () => {
   					$scope.$apply(function() {
-  						$rootScope.$broadcast('drop:image:canvas', img);
+  						$rootScope.$broadcast('image:new', img);
   					});
   				}
   				img.src = data.data;
@@ -35,7 +35,7 @@ class MainCtrl {
   			break;
 
   			case 'file': {
-  				$rootScope.$broadcast('drop:file:canvas', data.files);
+  				$rootScope.$broadcast('file:new', data.files);
   			}
   			break;
   		}

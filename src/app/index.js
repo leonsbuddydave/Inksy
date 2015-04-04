@@ -5,6 +5,7 @@ import CartCtrl from './cart/cart.controller';
 import LayerPaletteCtrl from './layerpalette/layerpalette.controller';
 import GalleryCtrl from './gallery/gallery.controller';
 import ProductSelectorCtrl from './controllers/ProductSelector.controller';
+import TextPropertyCtrl from './controllers/TextProperty.controller';
 import FacebookPhotoImportCtrl from './gallery/FacebookPhotoImport.controller';
 
 import editor from '../components/editor/editor.directive';
@@ -35,6 +36,7 @@ angular.module('inksy', ['ngAnimate', 'ui.bootstrap', 'templates', 'dndLists', '
 	.controller('GalleryCtrl', GalleryCtrl)
 	.controller('ProductSelectorCtrl', ProductSelectorCtrl)
 	.controller('FacebookPhotoImportCtrl', FacebookPhotoImportCtrl)
+	.controller('TextPropertyCtrl', TextPropertyCtrl)
 
 	.directive('editor', editor)
 	.directive('fileUploadButton', fileUploadButton)

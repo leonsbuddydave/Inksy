@@ -4,6 +4,7 @@ class Layer {
 	constructor(options) {
 		this.name = options.name;
 		this.canvasObject = null;
+		this.added = false;
 	};
 };
 
@@ -18,6 +19,13 @@ class ImageLayer extends Layer {
 		this.canvasObject = new fabric.Image(image);
 	}
 };
+
+class TextLayer extends Layer {
+	constructor(options, text) {
+		this.name = options.name;
+		this.canvasObject = new fabric.Text(text);
+	}
+}
 
 class TestLayer extends Layer {
 	constructor(options) {
@@ -37,5 +45,6 @@ class TestLayer extends Layer {
 
 export { 
 	TestLayer,
-	ImageLayer
+	ImageLayer,
+	TextLayer
 }

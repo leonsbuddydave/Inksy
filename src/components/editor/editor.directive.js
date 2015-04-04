@@ -84,12 +84,19 @@ function editor($rootScope, $window, ProductAngle, MathUtils) {
 				// Rebroadcast object:selected
 				// as an Angular event
 				fCanvas.on('object:selected', (event) => {
-					var selectedObject;
+					var selectedObject, eventData;
 
 					selectedObject = event.target;
-					$rootScope.$broadcast('object:selected', {
+
+					eventData = {
 						selectedObject: selectedObject
-					});
+					};
+
+					if (selectedObject instanceof fabric.Text) {
+						$rootScope.$broadcast('text:selected', eventData);
+					} else if (selectedObject instanceof fabric.Image) {
+						$rootScope.$broadcast('image:selected', eventData);
+					}
 				});
 
 				productSide = new ProductSide(productAngle);
@@ -165,9 +172,20 @@ function editor($rootScope, $window, ProductAngle, MathUtils) {
 			*/
 			scope.$on('layers:update', function(event, layers) {
 				productSides[ctrl.product.angle].setLayers(layers);
-
 				ctrl.rebuild();
 			});
+
+			/*
+				When a layer gets selected,
+				select its corresponding fabric object
+			*/
+			scope.$on('layers:selected', (event, layer) => {
+				var canvas;
+				canvas = ctrl.getFabricCanvas();
+				canvas.setActiveObject(layer.canvasObject);
+				ctrl.update();
+			});
+
 
 			/*
 				This event is named shittily - this will
@@ -298,6 +316,7 @@ function editor($rootScope, $window, ProductAngle, MathUtils) {
 			ctrl.update = function() {
 				for (let side in productSides) {
 					productSides[side].getCanvas().renderAll();
+					productSides[side].getCanvas().calcOffset();
 				}
 			};
 
@@ -317,8 +336,28 @@ function editor($rootScope, $window, ProductAngle, MathUtils) {
 					layerIndex = 0;
 					try {
 						for (let layer of layers) {
-							canvas.add(layer.canvasObject);
-							layer.canvasObject.moveTo(layerIndex++);
+							let object;
+
+							object = layer.canvasObject;
+
+							canvas.add(object);
+							object.moveTo(layerIndex++);
+
+							// If the layer has not been added previously,
+							// do some fucking stuff to it
+							if (!layer.added) {
+								console.log(object.width, object.height);
+
+								if (object instanceof fabric.Image) {
+									[object.width, object.height] = MathUtils.contain(object.width, object.height, PRODUCT_AREA_WIDTH, PRODUCT_AREA_HEIGHT);
+								}
+
+								object.center();
+								object.setCoords();
+
+								// Mark this layer as added
+								layer.added = true;
+							}
 						}
 					} catch (e) {
 						console.error(e);

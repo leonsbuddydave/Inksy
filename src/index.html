@@ -61,8 +61,8 @@
             </tab>
 
             <tab heading="Text">
-              <div class="asset-panel">
-                
+              <div ng-controller="TextPropertyCtrl as textProperty" class="asset-panel">
+                <button ng-click="textProperty.test()" class="btn btn-primary">Add Text</button>
               </div>
             </tab>
 
@@ -90,10 +90,10 @@
               </span>
             </div>
 
-            <div class="layer-actions-bar">
+<!--             <div class="layer-actions-bar">
               stupid layer actions here
             </div>
-          </div>
+ -->          </div>
         </div>
 
         <!-- The Editor -->

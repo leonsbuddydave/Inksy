@@ -1,6 +1,6 @@
 'use strict'
 
-import {TestLayer, ImageLayer} from '../models/layer.model';
+import {TestLayer, ImageLayer, TextLayer} from '../models/layer.model';
 
 const MAX_LAYERS = 8;
 
@@ -18,13 +18,22 @@ class LayerPaletteCtrl {
 		this.product = null;
 
 
-		$scope.$on('drop:image:canvas', (event, image) => {
+		$scope.$on('image:new', (event, image) => {
 			var imageLayer;
 
 			imageLayer = new ImageLayer({
 				name: "New Image"
 			}, image);
 			this.addLayer(imageLayer);
+		});
+
+		$scope.$on('text:new', (event, text) => {
+			var textLayer;
+
+			textLayer = new TextLayer({
+				name: "New Text"
+			}, text);
+			this.addLayer(textLayer);
 		});
 
 		$scope.$on('product:update', (event, product) => {
@@ -37,7 +46,7 @@ class LayerPaletteCtrl {
 			img = new Image();
 			img.onload = () => {
 				$scope.$apply( () => {
-					$rootScope.$broadcast('drop:image:canvas', img);
+					$rootScope.$broadcast('image:new', img);
 				});
 			}
 			img.src = image.data;
@@ -116,7 +125,11 @@ class LayerPaletteCtrl {
 	}
 
 	selectLayer(event, layer) {
+		var $rootScope;
+		
+		$rootScope = this.$rootScope;
 		this.selectedLayer = layer;
+		$rootScope.$broadcast('layers:selected', this.selectedLayer);
 		event.stopPropagation();
 	}
 
