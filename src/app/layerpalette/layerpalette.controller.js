@@ -55,10 +55,18 @@ class LayerPaletteCtrl {
 		return this;
 	}
 
+	/*
+		Returns the currently selected
+		layer set
+	*/
 	getLayerSet() {
 		return this.layerSets[this.product.angle];
 	}
 
+	/*
+		Adds the given layer to the
+		current layer set
+	*/
 	addLayer(layer) {
 		var layers;
 
@@ -71,6 +79,10 @@ class LayerPaletteCtrl {
 		this.update();
 	}
 
+	/*
+		Switches the layers at the
+		provided indices
+	*/
 	swapLayers(indexA, indexB) {
 		var tmp, layers;
 
@@ -82,6 +94,9 @@ class LayerPaletteCtrl {
 		this.update();
 	}
 
+	/*
+		Move the given layer down in the list
+	*/
 	moveDown(event, layer) {
 		var layerPos, layers;
 
@@ -96,6 +111,9 @@ class LayerPaletteCtrl {
 		return false;
 	}
 
+	/*
+		Move the given layer up in the list
+	*/
 	moveUp(event, layer) {
 		var layerPos, layers;
 
@@ -111,6 +129,9 @@ class LayerPaletteCtrl {
 		return false;
 	}
 
+	/*
+		Delete the provided layer
+	*/
 	deleteLayer(event, layer) {
 		var layerPos, layers;
 
@@ -124,19 +145,30 @@ class LayerPaletteCtrl {
 		return false;
 	}
 
+	/*
+		Select a layer to perform actions on it
+	*/
 	selectLayer(event, layer) {
 		var $rootScope;
-		
+
 		$rootScope = this.$rootScope;
 		this.selectedLayer = layer;
 		$rootScope.$broadcast('layers:selected', this.selectedLayer);
 		event.stopPropagation();
 	}
 
+	/*
+		Returns a boolean indicating whether
+		a given layer is selected
+	*/
 	isSelected(layer) {
 		return this.selectedLayer === layer;
 	}
 
+	/*
+		Broadcasts an update containing the
+		current layer set
+	*/
 	update() {
 		this.$rootScope.$broadcast('layers:update', this.getLayerSet());
 	}

@@ -346,8 +346,6 @@ function editor($rootScope, $window, ProductAngle, MathUtils) {
 							// If the layer has not been added previously,
 							// do some fucking stuff to it
 							if (!layer.added) {
-								console.log(object.width, object.height);
-
 								if (object instanceof fabric.Image) {
 									[object.width, object.height] = MathUtils.contain(object.width, object.height, PRODUCT_AREA_WIDTH, PRODUCT_AREA_HEIGHT);
 								}

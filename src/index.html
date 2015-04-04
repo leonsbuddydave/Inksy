@@ -61,8 +61,26 @@
             </tab>
 
             <tab heading="Text">
-              <div ng-controller="TextPropertyCtrl as textProperty" class="asset-panel">
-                <button ng-click="textProperty.test()" class="btn btn-primary">Add Text</button>
+              <div ng-controller="TextPropertyCtrl as text" class="asset-panel">
+                <select class="form-control col-md-12" ng-disabled="!text.enabled()">
+                  <option>AAAAAUUUUGHHHH</option>
+                </select>
+                <input type="text" class="form-control col-md-12" ng-disabled="!text.enabled()" />
+                <div class="btn-group btn-group-justified">
+                  <div class="btn-group">
+                    <label class="btn btn-primary" ng-model="text.styles.bold" btn-checkbox ng-disabled="!text.enabled()">B</label>  
+                  </div>
+
+                  <div class="btn-group">
+                    <label class="btn btn-primary" ng-model="text.styles.italic" btn-checkbox ng-disabled="!text.enabled()">I</label>  
+                  </div>
+                  
+                  <div class="btn-group">
+                    <label class="btn btn-primary" ng-model="text.styles.underline" btn-checkbox ng-disabled="!text.enabled()">U</label>
+                  </div>
+                  
+                </div>
+                <button ng-click="text.test()" class="btn btn-primary">Add Text</button>
               </div>
             </tab>
 
