@@ -23,7 +23,10 @@ class ImageLayer extends Layer {
 class TextLayer extends Layer {
 	constructor(options, text) {
 		this.name = options.name;
-		this.canvasObject = new fabric.Text(text);
+		this.canvasObject = new fabric.Text(text, {
+			fill: "#000000",
+			fontFamily: 'Open Sans'
+		});
 	}
 }
 

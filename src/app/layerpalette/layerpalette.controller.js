@@ -17,6 +17,26 @@ class LayerPaletteCtrl {
 		};
 		this.product = null;
 
+		$scope.$on('fabric:object:selected', (event, data) => {
+			var object, layerSet;
+
+			object = data.selectedObject;
+			layerSet = this.getLayerSet();
+
+			for (let layerIndex in layerSet) {
+				let layer;
+				
+				layer = layerSet[layerIndex];
+
+				if (object === layer.canvasObject) {
+					this.selectLayer(null, layer);
+				}
+			}
+		});
+
+		// $scope.$on('fabric:selection:cleared', (event) => {
+		// 	this.onSelectionCleared(event);
+		// });
 
 		$scope.$on('image:new', (event, image) => {
 			var imageLayer;
@@ -149,12 +169,20 @@ class LayerPaletteCtrl {
 		Select a layer to perform actions on it
 	*/
 	selectLayer(event, layer) {
-		var $rootScope;
+		var $rootScope, $scope;
 
+		$scope = this.$scope;
 		$rootScope = this.$rootScope;
-		this.selectedLayer = layer;
-		$rootScope.$broadcast('layers:selected', this.selectedLayer);
-		event.stopPropagation();
+
+		if (!this.isSelected(layer)) {
+			this.selectedLayer = layer;
+
+			$rootScope.$broadcast('layers:selected', this.selectedLayer);
+
+			if (event !== null) {
+				event.stopPropagation();
+			}
+		}
 	}
 
 	/*
@@ -171,6 +199,10 @@ class LayerPaletteCtrl {
 	*/
 	update() {
 		this.$rootScope.$broadcast('layers:update', this.getLayerSet());
+	}
+
+	onSelectionCleared(event) {
+		this.selectLayer(null, null);
 	}
 }
 

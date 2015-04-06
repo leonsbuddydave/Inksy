@@ -1,6 +1,8 @@
 <!doctype html>
 <html ng-app="inksy">
   <head>
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700%7CLora:400,700,400italic,700italic%7CPress+Start+2P%7CIndie+Flower&subset=latin,latin,latin,latin">
+
     <meta charset="utf-8">
     <title>inksy</title>
     <meta name="description" content="">
@@ -21,10 +23,6 @@
     <!-- endbuild -->
   </head>
   <body>
-    <!--[if lt IE 10]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-
     <div class="container app-container" ng-controller="MainCtrl as main">
       <div class="row">
         
@@ -62,10 +60,18 @@
 
             <tab heading="Text">
               <div ng-controller="TextPropertyCtrl as text" class="asset-panel">
-                <select class="form-control col-md-12" ng-disabled="!text.enabled()">
-                  <option>AAAAAUUUUGHHHH</option>
-                </select>
-                <input type="text" class="form-control col-md-12" ng-disabled="!text.enabled()" />
+
+                <ui-select ng-model="text.styles.fontFamily" ng-disabled="!text.enabled()" them="bootstrap">
+                  <ui-select-match>{{$select.selected.name}}</ui-select-match>
+                  <ui-select-choices repeat="fontFamily in text.options.fontFamilies | filter: $select.search">
+                    <div style="font-family: '{{fontFamily.name}}';">{{fontFamily.name}}</div>
+                  </ui-select-choices>
+                </ui-select>
+
+                <textarea class="form-control col-md-12" ng-model="text.text" ng-disabled="!text.enabled()">
+                </textarea>
+
+                <!-- Text Styling -->
                 <div class="btn-group btn-group-justified">
                   <div class="btn-group">
                     <label class="btn btn-primary" ng-model="text.styles.bold" btn-checkbox ng-disabled="!text.enabled()">B</label>  
@@ -78,8 +84,26 @@
                   <div class="btn-group">
                     <label class="btn btn-primary" ng-model="text.styles.underline" btn-checkbox ng-disabled="!text.enabled()">U</label>
                   </div>
-                  
                 </div>
+
+                <!-- Text Alignment -->
+                <div class="btn-group btn-group-justified">
+                  <div class="btn-group">
+                    <label class="btn btn-primary" ng-model="text.styles.align" btn-radio="'left'" ng-disabled="!text.enabled()">Left</label>  
+                  </div>
+
+                  <div class="btn-group">
+                    <label class="btn btn-primary" ng-model="text.styles.align" btn-radio="'center'" ng-disabled="!text.enabled()">Center</label>  
+                  </div>
+                  
+                  <div class="btn-group">
+                    <label class="btn btn-primary" ng-model="text.styles.align" btn-radio="'right'" ng-disabled="!text.enabled()">Right</label>
+                  </div>
+                </div>
+
+                <button colorpicker colorpicker-position="top" ng-model="text.styles.color" type="button" class="btn btn-primary">Change Color</button>
+            
+
                 <button ng-click="text.test()" class="btn btn-primary">Add Text</button>
               </div>
             </tab>

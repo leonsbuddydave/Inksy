@@ -46,7 +46,7 @@ class ProductSide {
 	}
 };
 
-function editor($rootScope, $window, ProductAngle, MathUtils) {
+function editor($rootScope, $window, ProductAngle, MathUtils, $timeout) {
 	return {
 		templateUrl: 'editor.html',
 		restrict: 'AE',
@@ -71,7 +71,7 @@ function editor($rootScope, $window, ProductAngle, MathUtils) {
 				Create a new canvas for a given product side
 			*/
 			var MakeCanvasForAngle = function(productAngle) {
-				var canvasId, rawCanvas, fCanvas, productSide;
+				let canvasId, rawCanvas, fCanvas, productSide;
 
 				// Canvas setup
 				canvasId = 'inksy-' + new Date().getTime();
@@ -84,19 +84,33 @@ function editor($rootScope, $window, ProductAngle, MathUtils) {
 				// Rebroadcast object:selected
 				// as an Angular event
 				fCanvas.on('object:selected', (event) => {
-					var selectedObject, eventData;
+					$timeout(() => {
+						let selectedObject, eventData;
 
-					selectedObject = event.target;
+						selectedObject = event.target;
 
-					eventData = {
-						selectedObject: selectedObject
-					};
+						eventData = {
+							selectedObject: selectedObject
+						};
 
-					if (selectedObject instanceof fabric.Text) {
-						$rootScope.$broadcast('text:selected', eventData);
-					} else if (selectedObject instanceof fabric.Image) {
-						$rootScope.$broadcast('image:selected', eventData);
-					}
+						$rootScope.$broadcast('fabric:object:selected', eventData);
+
+						if (selectedObject instanceof fabric.Text) {
+							$rootScope.$broadcast('text:selected', eventData);
+						} else if (selectedObject instanceof fabric.Image) {
+							$rootScope.$broadcast('image:selected', eventData);
+						}
+					});
+				});
+
+				// fCanvas.on('selection:cleared', (event) => {
+				// 	$timeout(() => {
+				// 		$rootScope.$broadcast('fabric:selection:cleared');
+				// 	});
+				// });
+
+				fCanvas.on("after:render", () => {
+					fCanvas.calcOffset();
 				});
 
 				productSide = new ProductSide(productAngle);
@@ -165,6 +179,10 @@ function editor($rootScope, $window, ProductAngle, MathUtils) {
 					canvas.add(texture);
 				}
 			}
+
+			scope.$on('global:render', (event) => {
+				ctrl.rebuild();
+			});
 
 			/*
 				When we receive a layer update,
@@ -391,6 +409,6 @@ function editor($rootScope, $window, ProductAngle, MathUtils) {
 	}
 }
 
-editor.$inject = ['$rootScope', '$window', 'ProductAngle', 'MathUtils'];
+editor.$inject = ['$rootScope', '$window', 'ProductAngle', 'MathUtils', '$timeout'];
 
 export default editor;
