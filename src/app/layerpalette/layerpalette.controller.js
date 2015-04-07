@@ -18,6 +18,7 @@ class LayerPaletteCtrl {
 		this.product = null;
 
 		$scope.$on('fabric:object:selected', (event, data) => {
+			return;
 			var object, layerSet;
 
 			object = data.selectedObject;
@@ -29,14 +30,14 @@ class LayerPaletteCtrl {
 				layer = layerSet[layerIndex];
 
 				if (object === layer.canvasObject) {
-					this.selectLayer(null, layer);
+					this.selectLayer(layer);
 				}
 			}
 		});
 
-		// $scope.$on('fabric:selection:cleared', (event) => {
-		// 	this.onSelectionCleared(event);
-		// });
+		$scope.$on('fabric:selection:cleared', (event) => {
+			this.onSelectionCleared(event);
+		});
 
 		$scope.$on('image:new', (event, image) => {
 			var imageLayer;
@@ -168,21 +169,8 @@ class LayerPaletteCtrl {
 	/*
 		Select a layer to perform actions on it
 	*/
-	selectLayer(event, layer) {
-		var $rootScope, $scope;
-
-		$scope = this.$scope;
-		$rootScope = this.$rootScope;
-
-		if (!this.isSelected(layer)) {
-			this.selectedLayer = layer;
-
-			$rootScope.$broadcast('layers:selected', this.selectedLayer);
-
-			if (event !== null) {
-				event.stopPropagation();
-			}
-		}
+	selectLayer(layer) {
+		this.selectedLayer = layer;
 	}
 
 	/*
@@ -202,7 +190,22 @@ class LayerPaletteCtrl {
 	}
 
 	onSelectionCleared(event) {
-		this.selectLayer(null, null);
+		this.selectLayer(null);
+	}
+
+	onLayerClick(event, layer) {
+		var $rootScope;
+
+		$rootScope = this.$rootScope;
+
+		this.selectLayer(layer);
+		$rootScope.$broadcast('layers:selected', layer);
+		event.stopPropagation();
+	}
+
+	onLayerBackgroundClick(event) {
+		this.selectLayer(null);
+		// $rootScope.$broadcast('layers:cleared');
 	}
 }
 

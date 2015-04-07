@@ -120,8 +120,8 @@
 
           <!-- Layers Palette -->
           <div ng-controller="LayerPaletteCtrl as layerPalette" class="layers-palette">
-            <div droppable="layerPalette.handleImageDrop" class="list-group layer-list">
-              <span ng-repeat="layer in layerPalette.getLayerSet()" class="list-group-item clearfix" ng-class="{active: layerPalette.isSelected(layer) }" ng-click="layerPalette.selectLayer($event, layer)">
+            <div droppable="layerPalette.handleImageDrop" ng-click="layerPalette.onLayerBackgroundClick($event)" class="list-group layer-list">
+              <span ng-repeat="layer in layerPalette.getLayerSet()" class="list-group-item clearfix" ng-class="{active: layerPalette.isSelected(layer) }" ng-click="layerPalette.onLayerClick($event, layer)">
                 {{layer.name}}
 
                 <span class="pull-right">
@@ -151,6 +151,11 @@
 
           <!-- Editor Canvas -->
           <div editor class="editor"></div>
+
+          <ul ng-controller="ProductColorPickerCtrl as productColorPicker" class="product-color-picker">
+            <li ng-repeat="color in ::productColorPicker.colors" ng-click="productColorPicker.changeColor(color)" class="swatch" style="background-color: {{color}};">
+            </li>
+          </ul>
 
           <div ng-controller="ProductSelectorCtrl as selector" class="product-selector">
             <div ng-repeat="product in selector.getProducts()" background-image="{{selector.getProductPreviewUrl(product)}}" contain='true' ng-click="selector.selectProduct(product)" class="product" ng-class="{selected: selector.isSelected(product)}">

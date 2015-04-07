@@ -52,6 +52,41 @@ $app-height: 700px;
 		flex: 1;
 	}
 
+	.product-color-picker {
+		
+		display: block;
+		width: 100%;
+		margin: 0;
+		padding: 10px;
+		height: 40px;
+		background-color: #fff;
+
+		&:after {
+			content: " ";
+			display: block;
+			clear: both;
+			float: none;
+		}
+
+		.swatch {
+			float: left;
+			display: block;
+			height: 20px;
+			width: 20px;
+			transition: .25s linear all;
+
+			&:not(:first-child) {
+				margin-left: 10px;
+			}
+
+			&:hover, .selected {
+				opacity: .7;
+				outline: solid 1px black;
+				border: solid 1px white;
+			}
+		}
+	}
+
 	.product-selector {
 		height: 100px;
 		background-color: red;

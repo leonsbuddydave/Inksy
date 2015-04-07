@@ -63,6 +63,7 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout) {
 			const DESIGN_DEFAULT_HEIGHT = 200;
 
 			ctrl.product = null;
+			ctrl.productColor = "#fff";
 
 			fabricCanvases = {};
 			productSides = {};
@@ -103,11 +104,11 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout) {
 					});
 				});
 
-				// fCanvas.on('selection:cleared', (event) => {
-				// 	$timeout(() => {
-				// 		$rootScope.$broadcast('fabric:selection:cleared');
-				// 	});
-				// });
+				fCanvas.on('selection:cleared', (event) => {
+					$timeout(() => {
+						$rootScope.$broadcast('fabric:selection:cleared');
+					});
+				});
 
 				fCanvas.on("after:render", () => {
 					fCanvas.calcOffset();
@@ -204,6 +205,19 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout) {
 				ctrl.update();
 			});
 
+			scope.$on('color:selected', (event, color) => {
+				var productSide, shape, canvas;
+
+				ctrl.productColor = color;
+
+				productSide = productSides[ctrl.product.angle];
+				canvas = productSide.getCanvas();
+				shape = productSide.getShape();
+
+				shape.filters[0].color = color;
+
+				shape.applyFilters(canvas.renderAll.bind(canvas));
+			});
 
 			/*
 				This event is named shittily - this will
@@ -239,7 +253,7 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout) {
 				ctrl.clear();
 
 				for (let side in product.angles) {
-					let productSide, canvas, images, shape, texture;
+					let productSide, canvas, images, shape, texture, filter;
 
 					productSide = productSides[side];
 					canvas = productSide.getCanvas();
@@ -247,7 +261,7 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout) {
 
 					let shapeImage = new Image();
 					shapeImage.onload = () => {
-						let filter, width, height, naturalWidth, naturalHeight;
+						let width, height, naturalWidth, naturalHeight;
 
 						naturalWidth = shapeImage.naturalWidth;
 						naturalHeight = shapeImage.naturalHeight;
@@ -257,7 +271,7 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout) {
 						shape.center();
 
 						filter = new fabric.Image.filters.Tint({
-							color: "#f00"
+							color: ctrl.productColor
 						});
 						shape.filters.push(filter);
 						shape.applyFilters(canvas.renderAll.bind(canvas));

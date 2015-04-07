@@ -12,8 +12,7 @@ class TextPropertyCtrl {
 				{ name: 'Open Sans' },
 				{ name: 'Lora' },
 				{ name: 'Press Start 2P' },
-				// { name: 'Comic Sans' },
-				{ name: 'Indie Flower' },
+				{ name: 'Indie Flower' }
 			]
 		};
 
@@ -29,7 +28,6 @@ class TextPropertyCtrl {
 		this.text = "Sample Text";
 
 		$scope.$on('fabric:object:selected', (event, text) => {
-			console.log('Object selected');
 			this.onSelectionChanged(event, text);
 		});
 
@@ -62,7 +60,7 @@ class TextPropertyCtrl {
 	}
 
 	test() {
-		this.$rootScope.$broadcast('text:new', 'Sin');
+		this.$rootScope.$broadcast('text:new', 'Meme');
 	}
 
 	enabled() {
