@@ -79,7 +79,7 @@ $app-height: 700px;
 				margin-left: 10px;
 			}
 
-			&:hover, .selected {
+			&:hover, &.selected {
 				opacity: .7;
 				outline: solid 1px black;
 				border: solid 1px white;

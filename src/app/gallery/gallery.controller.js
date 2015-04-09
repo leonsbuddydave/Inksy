@@ -1,5 +1,12 @@
 'use strict'
 
+class InksyImage {
+	constructor(src, image) {
+		this.src = src;
+		this.image = image;
+	}
+}
+
 class GalleryCtrl {
 	constructor($scope, $rootScope, $q, $modal) {
 
@@ -82,10 +89,8 @@ class GalleryCtrl {
 
 				src = event.target.result;
 				img = new Image();
-				result = {
-					src: src,
-					img: img
-				};
+
+				result = new InksyImage(src, img);
 
 				img.onload = () => {
 					uploadPromise.resolve(result);
@@ -124,10 +129,7 @@ class GalleryCtrl {
 				img = new Image();
 				img.src = url;
 				
-				result = {
-					src: url,
-					img: img
-				}
+				result = new InksyImage(src, img);
 
 				this.images.push(result);
 			});
@@ -148,6 +150,41 @@ class GalleryCtrl {
 			},
 			size: 'lg'
 		})
+
+		// TODO: Make this do literally anything
+		instagramModal.result.then( (results) => {
+			console.log(results);
+		});
+	}
+
+	/*
+		Following methods might belong
+		in their own DPI-based service
+	*/
+	getPrintResolution(image, dpi) {
+		var naturalWidth, naturalHeight, printWidth, printHeight;
+
+		if (typeof dpi === 'undefined') dpi = 300;
+
+		naturalWidth = image.naturalWidth;
+		naturalHeight = image.naturalHeight;
+
+		printWidth = naturalWidth / dpi;
+		printHeight = naturalHeight / dpi;
+
+		return {
+			width: printWidth,
+			height: printHeight
+		}
+	}
+
+	/*
+		DOOT
+	*/
+	isDpiCool(image) {
+		var printResolution;
+
+		printResolution = getPrintResolution(image, 300);
 	}
 }
 

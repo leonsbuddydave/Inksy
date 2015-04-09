@@ -5,7 +5,16 @@ class Layer {
 		this.name = options.name;
 		this.canvasObject = null;
 		this.added = false;
+		this.pattern = null;
 	};
+
+	setPattern(pattern) {
+		this.pattern = pattern;
+	}
+
+	getPattern() {
+		return this.pattern;
+	}
 };
 
 class ImageLayer extends Layer {

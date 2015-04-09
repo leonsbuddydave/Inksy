@@ -61,6 +61,18 @@ class LayerPaletteCtrl {
 			this.product = product;
 		});
 
+		$scope.$on('pattern:selected', (event, pattern) => {
+			var layer;
+
+			layer = this.getSelectedLayer();
+
+			if (layer) {
+				layer.setPattern(pattern);
+			}
+
+			this.update();
+		});
+
 		this.handleImageDrop = (image) => {
 			var img;
 
@@ -179,6 +191,10 @@ class LayerPaletteCtrl {
 	*/
 	isSelected(layer) {
 		return this.selectedLayer === layer;
+	}
+
+	getSelectedLayer() {
+		return this.selectedLayer;
 	}
 
 	/*

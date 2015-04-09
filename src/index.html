@@ -109,8 +109,14 @@
             </tab>
 
             <tab heading="Patterns">
-              <div class="asset-panel">
-                
+              <div ng-controller="PatternCtrl as patternCtrl" class="asset-panel">
+                <div class="row">
+                  <div ng-repeat="pattern in patternCtrl.getPatterns()" class="col-md-6" draggable="pattern" draggable-type="pattern">
+                    <a ng-click="patternCtrl.selectPattern(pattern)" class="thumbnail">
+                      <img style="height: 100px; width: 100%" ng-src="{{pattern.getSrc()}}" />
+                    </a>
+                  </div>
+                </div>
               </div>
             </tab>
 
@@ -131,11 +137,7 @@
                 </span>
               </span>
             </div>
-
-<!--             <div class="layer-actions-bar">
-              stupid layer actions here
-            </div>
- -->          </div>
+         </div>
         </div>
 
         <!-- The Editor -->
@@ -153,7 +155,7 @@
           <div editor class="editor"></div>
 
           <ul ng-controller="ProductColorPickerCtrl as productColorPicker" class="product-color-picker">
-            <li ng-repeat="color in ::productColorPicker.colors" ng-click="productColorPicker.changeColor(color)" class="swatch" style="background-color: {{color}};">
+            <li ng-repeat="color in ::productColorPicker.colors" ng-click="productColorPicker.changeColor(color)" class="swatch" style="background-color: {{color}};" ng-class="{selected: productColorPicker.isSelected(color)}">
             </li>
           </ul>
 

@@ -205,6 +205,11 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout) {
 				ctrl.update();
 			});
 
+
+			/*
+				Fired when the color used for products
+				is changed
+			*/			
 			scope.$on('color:selected', (event, color) => {
 				var productSide, shape, canvas;
 
@@ -368,12 +373,27 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout) {
 					layerIndex = 0;
 					try {
 						for (let layer of layers) {
-							let object;
+							let object, mask, pattern;
 
 							object = layer.canvasObject;
+							pattern = layer.getPattern();
 
 							canvas.add(object);
 							object.moveTo(layerIndex++);
+
+							console.debug(pattern);
+
+							if (pattern) {
+								mask = new fabric.Image.filters.Mask({
+									mask: new fabric.Image(pattern.getImage())
+								});
+								debugger
+								object.filters = [mask];
+								object.applyFilters();
+								// object.applyFilters(canvas.renderAll.bind(canvas));
+								console.debug('Pattern exists', mask);
+							}
+
 
 							// If the layer has not been added previously,
 							// do some fucking stuff to it
@@ -401,6 +421,10 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout) {
 				information, ordering info, etc
 			*/
 			ctrl.rebuild = function() {
+				var t1, t2;
+
+				t1 = performance.now();
+
 				ctrl.clear();
 
 				ctrl.reflectLayersToCanvas();
@@ -408,6 +432,10 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout) {
 				ctrl.correctLayerOrder();
 
 				ctrl.update();
+
+				t2 = performance.now() - t1;
+
+				console.info('Editor rebuild completed in ', t2, ' milliseconds.');
 			};
 
 			MakeCanvasForAngle(ProductAngle.Front);
