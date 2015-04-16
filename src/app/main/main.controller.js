@@ -42,7 +42,7 @@ class MainCtrl {
   	}
 
     this.productHasMultipleSides = () => {
-      return this.selectedProduct !== null && Object.keys(this.selectedProduct.angles).length > 1;
+      return this.selectedProduct !== null && Object.keys(this.selectedProduct.getAllSides()).length > 1;
     }
 
     return this;

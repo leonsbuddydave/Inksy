@@ -28,7 +28,7 @@ class ProductSelectorCtrl {
 
 		ProductAngle = this.ProductAngle;
 
-		return product.angles[ProductAngle.Front].images.texture;
+		return product.getSide(ProductAngle.Front).getImage('texture');
 	}
 
 	selectProduct(product) {

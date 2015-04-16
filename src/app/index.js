@@ -10,7 +10,7 @@ import ProductColorPickerCtrl from './controllers/ProductColorPicker.controller'
 import PatternCtrl from './controllers/Pattern.controller';
 import FacebookPhotoImportCtrl from './gallery/FacebookPhotoImport.controller';
 
-import editor from '../components/editor/editor.directive';
+import editor from './directives/editor.directive';
 import fileUploadButton from './directives/fileUploadButton.directive';
 import draggable from './directives/draggable.directive';
 import droppable from './directives/droppable.directive';
@@ -24,6 +24,8 @@ import { Instagram, InstagramProvider } from './services/Instagram.service';
 import { ImageLayer } from './models/layer.model';
 import ProductImage from './models/product-image.model';
 import ProductAngle from './models/product-angle.constant';
+
+import MaskedImage from './lib/MaskedImage'
 
 angular.module('templates', []);
 

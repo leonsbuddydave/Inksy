@@ -1,5 +1,7 @@
 'use strict';
 
+import {Product} from '../models/product.model';
+
 var ProductServiceProvider = function() {
 	this.$get = ProductService.$inject.concat( (ProductAngle, $q) => {
 		return new ProductService(ProductAngle, $q);
@@ -14,26 +16,36 @@ class ProductService {
 		this.$q = $q;
 
 		this.products = [
-			{
-				name: "Mug",
-				angles: {
-					[ProductAngle.Front] : {
+			new Product('Mug', {
+				sides: {
+					[ProductAngle.Front]: {
 						images: {
 							shape: ASSET_PREFIX + '/0031-shape.png',
 							texture: ASSET_PREFIX + '/0031-texture.png'
+						},
+						area: {
+							width: 225,
+							height: 225,
+							offsetX: -175,
+							offsetY: -100
 						}
 					},
-					[ProductAngle.Back] : {
+					[ProductAngle.Back]: {
 						images: {
 							shape: ASSET_PREFIX + '/0035-shape.png',
 							texture: ASSET_PREFIX + '/0035-texture.png'
+						},
+						area: {
+							width: 225,
+							height: 225,
+							offsetX: -50,
+							offsetY: -100
 						}
 					}
 				}
-			},
-			{
-				name: "Coaster",
-				angles: {
+			}),
+			new Product('Coaster', {
+				sides: {
 					[ProductAngle.Front] : {
 						images: {
 							shape: ASSET_PREFIX + '/0044-shape.png',
@@ -41,10 +53,9 @@ class ProductService {
 						}
 					}
 				}
-			},
-			{
-				name: "Shirt",
-				angles: {
+			}),
+			new Product('Shirt', {
+				sides: {
 					[ProductAngle.Front] : {
 						images: {
 							shape: ASSET_PREFIX + '/0056-shape.png',
@@ -58,10 +69,9 @@ class ProductService {
 						}
 					}
 				}
-			},
-			{
-				name: "Hoodie",
-				angles: {
+			}),
+			new Product('Hoodie', {
+				sides: {
 					[ProductAngle.Front] : {
 						images: {
 							shape: ASSET_PREFIX + '/0070-shape.png',
@@ -75,7 +85,7 @@ class ProductService {
 						}
 					}
 				}
-			}
+			})
 		];
 
 		return this;

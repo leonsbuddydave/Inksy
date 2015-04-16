@@ -2,18 +2,32 @@
 
 class Pattern {
 	constructor(url) {
-		this.image = new Image();
+		this.path = null;
 		this.loadEvents = [];
+		this.loaded = false;
+		this.url = url;
 
-		this.image.onload = () => {
+		this.image = null;
+
+		// fabric.loadSVGFromURL(url, (objects, options) => {
+		// 	this.path = fabric.util.groupSVGElements(objects, options);
+
+		// 	this.path.scaleToWidth(200);
+
+		// 	this.loaded = true;
+		// 	this.loadEvents.forEach((func, index) => {
+		// 		func();
+		// 	});
+		// });
+
+		fabric.Image.fromURL(url, (image) => {
+			this.image = image;
+
 			this.loaded = true;
 			this.loadEvents.forEach((func, index) => {
 				func();
 			});
-		};
-
-		this.image.src = url;
-		this.loaded = false;
+		});
 	}
 
 	onLoad(func) {
@@ -24,12 +38,40 @@ class Pattern {
 		}
 	}
 
-	getSrc() {
-		return this.image.src;
-	}
-
 	getImage() {
 		return this.image;
+	}
+
+	getUrl() {
+		return this.url;
+	}
+
+	getPath() {
+		return this.path;
+	}
+
+	isLoaded() {
+		return this.loaded;
+	}
+
+	getClipTo() {
+		var path;
+
+		path = this.path;
+
+		return function(context) {
+			var cw, ch, pw, ph;
+
+			cw = context.canvas.width;
+			ch = context.canvas.height;
+			pw = path.currentWidth;
+			ph = path.currentHeight;
+
+			context.save();
+			context.setTransform(1, 0, 0, 1, cw / 2 - pw / 2, ch / 2 - ph / 2);
+			path.render(context);
+			context.restore();
+		};
 	}
 }
 
@@ -41,6 +83,8 @@ class PatternCtrl {
 		this.$rootScope = $rootScope;
 
 		this.patterns = [
+			// new Pattern('/assets/images/patterns/test_pattern.svg'),
+			// new Pattern('/assets/images/patterns/test_pattern_circle.svg')
 			new Pattern('/assets/images/patterns/pattern_1.png')
 		];
 
