@@ -1,5 +1,7 @@
 'use strict';
 
+import MaskedImage from '../lib/MaskedImage';
+
 class Layer {
 	constructor(options) {
 		this.name = options.name;
@@ -15,6 +17,18 @@ class Layer {
 	getPattern() {
 		return this.pattern;
 	}
+
+	select() {
+		this.selected = true;
+	}
+
+	deselect() {
+		this.selected = false;
+	}
+
+	isSelected() {
+		return this.selected;
+	}
 };
 
 class ImageLayer extends Layer {
@@ -22,10 +36,10 @@ class ImageLayer extends Layer {
 		this.name = options.name;
 
 		if ( !(image instanceof Image) ) {
-			throw new Error("Image is not an image.");
+			throw new Error("IKBmage is not an image.");
 		}
 
-		this.canvasObject = new fabric.Image(image);
+		this.canvasObject = new fabric.MaskedImage(image.src);
 	}
 };
 
@@ -39,24 +53,7 @@ class TextLayer extends Layer {
 	}
 }
 
-class TestLayer extends Layer {
-	constructor(options) {
-		this.name = options.name;
-
-		var color = ['red', 'blue', 'green', 'yellow'][Math.floor(Math.random() * 4)];
-
-		this.canvasObject = new fabric.Rect({
-			left: 600 * Math.random(),
-			top: 600 * Math.random(),
-			fill: color,
-			width: 20,
-			height: 20
-		});
-	};
-}
-
-export { 
-	TestLayer,
+export {
 	ImageLayer,
 	TextLayer
 }

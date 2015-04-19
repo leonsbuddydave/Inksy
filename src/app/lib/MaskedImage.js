@@ -8,7 +8,14 @@ var MaskedImage = (function() {
 		 * @return {Undefined}
 		 */
 		initialize: function(src, options) {
+			options = options || {};
+
 			this.callSuper('initialize', options);
+
+			// Set defaults
+			this.maskChannel = options.maskChannel || 0;
+
+			// Load source image
 			this.image = new Image();
 			this.image.src = src;
 			this.image.onload = () => {
@@ -16,16 +23,18 @@ var MaskedImage = (function() {
 				this.height = this.image.height;
 				this.loaded = true;
 				this.setCoords();
+				this._generateCompositeImage();
 				this.fire('image:loaded');
 			};
 
+			this.compositeImage = this.image;
+
+			// Create offscreen canvas' for masking
 			this.imageCanvas = fabric.util.createCanvasElement();
 			this.maskingCanvas = fabric.util.createCanvasElement();
 
-			this.compositeImage = this.image;
-
+			// Bind to events
 			this.on('mouseup', this._generateCompositeImage.bind(this));
-			this.on('mousedown', this._replaceWithPreviewImage.bind(this));
 			this.on('added', this._generateCompositeImage.bind(this));
 			this.on('image:loaded', this._generateCompositeImage.bind(this));
 			this.on('moving', this._generateCompositeImage.bind(this));
@@ -42,15 +51,6 @@ var MaskedImage = (function() {
 				ctx.drawImage(this.compositeImage, -this.width / 2, -this.height / 2);
 				ctx.restore();
 			}
-		},
-
-		/**
-		 * [_replaceWithPreviewImage Resets the main image to the source image]
-		 * @return {[type]}
-		 */
-		_replaceWithPreviewImage: function() {
-			this.compositeImage = this.image;
-			this.canvas.renderAll();
 		},
 
 		/**
@@ -82,7 +82,7 @@ var MaskedImage = (function() {
 			maskingDataArray = maskingData.data;
 
 			for (var i = 0; i < maskingDataArray.length; i += 4) {
-				imageDataArray[i + 3] = maskingDataArray[i];
+				imageDataArray[i + 3] = maskingDataArray[i + this.maskChannel];
 			}
 
 			imageCtx.putImageData(imageData, 0, 0);
@@ -157,4 +157,5 @@ var MaskedImage = (function() {
 	});	
 })();
 
+fabric.MaskedImage = MaskedImage;
 export default MaskedImage;

@@ -5,41 +5,29 @@ import MaskedImage from '../lib/MaskedImage';
 
 function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interval) {
 	return {
-		templateUrl: 'editor.html',
+		// templateUrl: 'editor.html',
 		restrict: 'AE',
-		scope: {
-
-		},
+		scope: true,
 		link: function(scope, element, attributes, ctrl) {
-			var fabricCanvases, productSides;
+			var productSides, fc;
 
 			const PRODUCT_AREA_WIDTH = 400;
 			const PRODUCT_AREA_HEIGHT = 400;
-
-			const DESIGN_DEFAULT_WIDTH = 200;
-			const DESIGN_DEFAULT_HEIGHT = 200;
 
 			ctrl.product = null;
 			ctrl.productColor = "#fff";
 			ctrl.selectedProduct = null;
 			ctrl.layers = {};
 
-			fabricCanvases = {};
-
-			var fc = null;
-
 			/*
 				Create a new canvas for a given product side
 			*/
 			var MakeCanvasForAngle = function() {
-				let canvasId, rawCanvas, fCanvas, productSide;
+				let rawCanvas, fCanvas, productSide;
 
-				// Canvas setup
-				canvasId = 'inksy-' + new Date().getTime();
-				rawCanvas = angular.element('<canvas></canvas>');
-				rawCanvas.attr('id', canvasId);
+				rawCanvas = fabric.util.createCanvasElement();
 				element.append(rawCanvas);
-				fCanvas = new fabric.Canvas(canvasId);
+				fCanvas = new fabric.Canvas(rawCanvas);
 				fCanvas.setBackgroundColor('white');
 
 				// Rebroadcast object:selected
@@ -88,14 +76,6 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 			}
 
 			/*
-				Return the canvas for the currently
-				selected product side
-			*/
-			ctrl.getFabricCanvas = () => {
-				return ctrl.selectedProduct.getSide(ctrl.product.angle).getCanvas();
-			};
-
-			/*
 				Resets shape and texture layers
 				to be at the correct layer depth
 				for all canvases
@@ -130,8 +110,6 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 
 				fc.add(shape);
 				fc.add(texture);
-
-				console.log(texture);
 
 				[texture.width, texture.height] = MathUtils.contain(texture._element.naturalWidth, texture._element.naturalHeight, PRODUCT_AREA_WIDTH, PRODUCT_AREA_HEIGHT);
 				texture.center();
@@ -260,18 +238,10 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 
 						object.setClipTo(side.getClipTo());
 
-						if (pattern) {
-							// console.log('Pattern exists!');
-							// var m = new fabric.Image.filters.Mask({
-							// 	mask: pattern.getImage()
-							// });
-
-							// object.filters = [m];
-							// object.applyFilters(fc.renderAll.bind(fc));
-							// m.applyTo(fc);
-							// ctrl.update();
+						if (layer.isSelected()) {
+							console.log('Setting active object', layer);
+							fc.setActiveObject(object);
 						}
-
 
 						// If the layer has not been added previously,
 						// do some fucking stuff to it
@@ -311,10 +281,10 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				ctrl.correctLayerOrder();
 
 				// DEBUG
-				var a = new MaskedImage('/assets/images/test/Lenna.png', {});
-				fc.add(a);
-				a.on('image:loaded', fc.renderAll.bind(fc));
-				a.setMask('/assets/images/patterns/pattern_1.png', {});
+				// var a = new MaskedImage('/assets/images/test/Lenna.png', {});
+				// fc.add(a);
+				// a.on('image:loaded', fc.renderAll.bind(fc));
+				// a.setMask('/assets/images/patterns/pattern_1.png', {});
 				// DEBUG
 
 				ctrl.update();

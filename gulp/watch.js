@@ -12,7 +12,7 @@ module.exports = function(options) {
 
     gulp.watch([options.src + '/*.html', 'bower.json'], ['inject']);
 
-    gulp.watch([options.src + '/app/partials/*.html'], ['html', 'inject'])
+    gulp.watch([options.src + '/app/partials/*.html'], ['templates', 'inject'])
 
     gulp.watch([
       options.src + '/{app,components}/**/*.css',

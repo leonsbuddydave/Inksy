@@ -27,14 +27,8 @@ class TextPropertyCtrl {
 
 		this.text = "Sample Text";
 
-		$scope.$on('fabric:object:selected', (event, text) => {
-			this.onSelectionChanged(event, text);
-		});
-
-		// $scope.$on('fabric:selection:cleared', (event) => {
-		// 	console.log('Selection cleared');
-		// 	this.onSelectionCleared(event);
-		// });
+		$scope.$on('fabric:object:selected', this.onSelectionChanged.bind(this));
+		$scope.$on('fabric:selection:cleared', this.onSelectionCleared.bind(this));
 
 		$scope.$watch(() => [this.styles, this.text], (newVal, oldVal) => {
 			var to;

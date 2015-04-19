@@ -18,7 +18,6 @@ class LayerPaletteCtrl {
 		this.product = null;
 
 		$scope.$on('fabric:object:selected', (event, data) => {
-			return;
 			var object, layerSet;
 
 			object = data.selectedObject;
@@ -31,13 +30,14 @@ class LayerPaletteCtrl {
 
 				if (object === layer.canvasObject) {
 					this.selectLayer(layer);
+					layer.select();
+				} else {
+					layer.deselect();
 				}
 			}
 		});
 
-		$scope.$on('fabric:selection:cleared', (event) => {
-			this.onSelectionCleared(event);
-		});
+		$scope.$on('fabric:selection:cleared', this.onSelectionCleared.bind(this));
 
 		$scope.$on('image:new', (event, image) => {
 			var imageLayer;
@@ -207,6 +207,9 @@ class LayerPaletteCtrl {
 
 	onSelectionCleared(event) {
 		this.selectLayer(null);
+		this.getLayerSet().forEach(function(layer) {
+			layer.deselect();
+		});
 	}
 
 	onLayerClick(event, layer) {

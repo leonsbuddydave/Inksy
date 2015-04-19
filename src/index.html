@@ -127,7 +127,7 @@
           <!-- Layers Palette -->
           <div ng-controller="LayerPaletteCtrl as layerPalette" class="layers-palette">
             <div droppable="layerPalette.handleImageDrop" ng-click="layerPalette.onLayerBackgroundClick($event)" class="list-group layer-list">
-              <span ng-repeat="layer in layerPalette.getLayerSet()" class="list-group-item clearfix" ng-class="{active: layerPalette.isSelected(layer) }" ng-click="layerPalette.onLayerClick($event, layer)">
+              <span ng-repeat="layer in layerPalette.getLayerSet()" class="list-group-item clearfix" ng-class="{active: layer.isSelected() }" ng-click="layerPalette.onLayerClick($event, layer)">
                 {{layer.name}}
 
                 <span class="pull-right">
@@ -185,7 +185,7 @@
       ga('create','UA-XXXXX-X');ga('send','pageview');
     </script>
 
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- <script src="bower_components/jquery/dist/jquery.min.js"></script> -->
 
     <!-- build:js(src) scripts/vendor.js -->
     <!-- bower:js -->
