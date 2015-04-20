@@ -38,6 +38,7 @@ var MaskedImage = (function() {
 			this.on('added', this._generateCompositeImage.bind(this));
 			this.on('image:loaded', this._generateCompositeImage.bind(this));
 			this.on('moving', this._generateCompositeImage.bind(this));
+			this.on('scaling', this._generateCompositeImage.bind(this));
 		},
 
 		/**
@@ -48,7 +49,8 @@ var MaskedImage = (function() {
 		_render: function(ctx) {
 			if (this.loaded) {
 				ctx.save();
-				ctx.drawImage(this.compositeImage, -this.width / 2, -this.height / 2);
+				ctx.setTransform(1, 0, 0, 1, this.getLeft(), this.getTop());
+				ctx.drawImage(this.compositeImage, 0, 0);
 				ctx.restore();
 			}
 		},
@@ -68,27 +70,33 @@ var MaskedImage = (function() {
 			 	maskingDataArray,
 			 	result;
 
-			if (!this.maskLoaded) return;
+			// if (!this.maskLoaded) return;
 
 			this._prepareMaskingCanvas();
 			this._prepareImageCanvas();
 
 			imageCtx = this.imageCanvas.getContext('2d');
-			maskingCtx = this.maskingCanvas.getContext('2d');
-
 			imageData = imageCtx.getImageData(0, 0, this.imageCanvas.width, this.imageCanvas.height);
 			imageDataArray = imageData.data;
-			maskingData = maskingCtx.getImageData(this.getLeft(), this.getTop(), this.imageCanvas.width, this.imageCanvas.width);
-			maskingDataArray = maskingData.data;
 
-			for (var i = 0; i < maskingDataArray.length; i += 4) {
-				imageDataArray[i + 3] = maskingDataArray[i + this.maskChannel];
+
+			if (this.maskLoaded) {
+				maskingCtx = this.maskingCanvas.getContext('2d');
+				maskingData = maskingCtx.getImageData(this.getLeft(), this.getTop(), this.imageCanvas.width, this.imageCanvas.height);
+				maskingDataArray = maskingData.data;
+				
+				var n = maskingDataArray.length;
+				for (var i = 0; i < n; i += 4) {
+					imageDataArray[i + 3] = maskingDataArray[i + 1];
+				}
 			}
 
 			imageCtx.putImageData(imageData, 0, 0);
 
 			result = new Image();
 			result.onload = () => {
+				// this.width = result.width;
+				// this.height = result.height;
 				this.canvas.renderAll();
 			};
 			this.compositeImage = result;
@@ -104,8 +112,8 @@ var MaskedImage = (function() {
 
 			if (!this.loaded) return false;
 
-			width = this.image.width;
-			height = this.image.height;
+			width = this.image.width * this.getScaleX();
+			height = this.image.height * this.getScaleY();
 
 			this.imageCanvas.width = width;
 			this.imageCanvas.height = height;
@@ -136,7 +144,7 @@ var MaskedImage = (function() {
 
 			ctx = this.maskingCanvas.getContext('2d');
 			ctx.clearRect(0, 0, width, height);
-			ctx.drawImage(this.mask, 0, 0 /*, width, height*/);
+			ctx.drawImage(this.mask, 0, 0);
 
 			return true;
 		},

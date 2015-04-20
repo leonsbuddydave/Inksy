@@ -236,6 +236,10 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 						fc.add(object);
 						object.moveTo(layerIndex++);
 
+						if (pattern) {
+							object.setMask(pattern.url);
+						}
+
 						object.setClipTo(side.getClipTo());
 
 						if (layer.isSelected()) {
