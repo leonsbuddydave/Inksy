@@ -1,0 +1,28 @@
+<div ng-controller="GalleryCtrl as gallery" class="asset-panel">
+
+  <!-- Gallery Goes Here -->
+  <div class="gallery" droppable="gallery.handleImageDrop">
+    
+    <div class="row">
+      <div ng-repeat="image in gallery.images" class="col-md-6" draggable="image.src" draggable-type="image">
+        <a class="thumbnail">
+          <img style="height: 100px; width: 100%" ng-src="{{image.src}}" />
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Image Upload Sources -->
+  <div class="row">
+    <div class="col-md-4">
+      <a href="#" file-upload-button file-handler="gallery.fileHandler">Upload</a>
+    </div>
+    <div class="col-md-4">
+      <a href="#" ng-click="gallery.getFacebookPhotos()">Facebook</a>
+    </div>
+    <div class="col-md-4">
+      <a href="#" ng-click="gallery.getInstagramPhotos()">Instagram</a>
+    </div>
+  </div>
+  
+</div>

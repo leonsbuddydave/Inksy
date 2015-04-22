@@ -10,6 +10,10 @@ var MaskedImage = (function() {
 		initialize: function(src, options) {
 			options = options || {};
 
+			if (src instanceof Image) {
+				src = src.src;
+			}
+
 			this.callSuper('initialize', options);
 
 			// Set defaults
@@ -18,6 +22,7 @@ var MaskedImage = (function() {
 			// Load source image
 			this.image = new Image();
 			this.image.src = src;
+
 			this.image.onload = () => {
 				this.width = this.image.width;
 				this.height = this.image.height;
@@ -84,7 +89,7 @@ var MaskedImage = (function() {
 				maskingCtx = this.maskingCanvas.getContext('2d');
 				maskingData = maskingCtx.getImageData(this.getLeft(), this.getTop(), this.imageCanvas.width, this.imageCanvas.height);
 				maskingDataArray = maskingData.data;
-				
+
 				var n = maskingDataArray.length;
 				for (var i = 0; i < n; i += 4) {
 					imageDataArray[i + 3] = maskingDataArray[i + 1];

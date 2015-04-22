@@ -23,156 +23,73 @@
     <!-- endbuild -->
   </head>
   <body>
-    <div class="container app-container" ng-controller="MainCtrl as main">
-      <div class="row">
-        
-        <div class="col-md-3">
-          <tabset class="asset-sources">
-            <tab heading="Images">
-              <div ng-controller="GalleryCtrl as gallery" class="asset-panel">
+    <div class="app-container" ng-controller="MainCtrl as main">
+      
+      <div class="left-sidebar">
+        <tabset class="asset-sources">
 
-                <!-- Gallery Goes Here -->
-                <div class="gallery" droppable="gallery.handleImageDrop">
-                  
-                  <div class="row">
-                    <div ng-repeat="image in gallery.images" class="col-md-6" draggable="image.src" draggable-type="image">
-                      <a class="thumbnail">
-                        <img style="height: 100px; width: 100%" ng-src="{{image.src}}" />
-                      </a>
-                    </div>
-                  </div>
-                </div>
+          <tab heading="Product">
 
-                <!-- Image Upload Sources -->
-                <div class="row">
-                  <div class="col-md-4">
-                    <a href="#" file-upload-button file-handler="gallery.fileHandler">Upload</a>
-                  </div>
-                  <div class="col-md-4">
-                    <a href="#" ng-click="gallery.getFacebookPhotos()">Facebook</a>
-                  </div>
-                  <div class="col-md-4">
-                    <a href="#" ng-click="gallery.getInstagramPhotos()">Instagram</a>
-                  </div>
-                </div>
-              </div>
-            </tab>
+          </tab>
 
-            <tab heading="Text">
-              <div ng-controller="TextPropertyCtrl as text" class="asset-panel">
-
-                <ui-select ng-model="text.styles.fontFamily" ng-disabled="!text.enabled()" them="bootstrap">
-                  <ui-select-match>{{$select.selected.name}}</ui-select-match>
-                  <ui-select-choices repeat="fontFamily in text.options.fontFamilies | filter: $select.search">
-                    <div style="font-family: '{{fontFamily.name}}';">{{fontFamily.name}}</div>
-                  </ui-select-choices>
-                </ui-select>
-
-                <textarea class="form-control col-md-12" ng-model="text.text" ng-disabled="!text.enabled()">
-                </textarea>
-
-                <!-- Text Styling -->
-                <div class="btn-group btn-group-justified">
-                  <div class="btn-group">
-                    <label class="btn btn-primary" ng-model="text.styles.bold" btn-checkbox ng-disabled="!text.enabled()">B</label>  
-                  </div>
-
-                  <div class="btn-group">
-                    <label class="btn btn-primary" ng-model="text.styles.italic" btn-checkbox ng-disabled="!text.enabled()">I</label>  
-                  </div>
-                  
-                  <div class="btn-group">
-                    <label class="btn btn-primary" ng-model="text.styles.underline" btn-checkbox ng-disabled="!text.enabled()">U</label>
-                  </div>
-                </div>
-
-                <!-- Text Alignment -->
-                <div class="btn-group btn-group-justified">
-                  <div class="btn-group">
-                    <label class="btn btn-primary" ng-model="text.styles.align" btn-radio="'left'" ng-disabled="!text.enabled()">Left</label>  
-                  </div>
-
-                  <div class="btn-group">
-                    <label class="btn btn-primary" ng-model="text.styles.align" btn-radio="'center'" ng-disabled="!text.enabled()">Center</label>  
-                  </div>
-                  
-                  <div class="btn-group">
-                    <label class="btn btn-primary" ng-model="text.styles.align" btn-radio="'right'" ng-disabled="!text.enabled()">Right</label>
-                  </div>
-                </div>
-
-                <button colorpicker colorpicker-position="top" ng-model="text.styles.color" type="button" class="btn btn-primary">Change Color</button>
+          <tab heading="Variant">
             
+          </tab>
 
-                <button ng-click="text.test()" class="btn btn-primary">Add Text</button>
-              </div>
-            </tab>
+          <tab heading="Design">
+            <tabset class="asset-sources">
+              <tab heading="Images">
+                <div ng-include="'gallery.html'"></div>
+              </tab>
 
-            <tab heading="Patterns">
-              <div ng-controller="PatternCtrl as patternCtrl" class="asset-panel">
-                <div class="row">
-                  <div ng-repeat="pattern in patternCtrl.getPatterns()" class="col-md-6" draggable="pattern" draggable-type="pattern">
-                    <a ng-click="patternCtrl.selectPattern(pattern)" class="thumbnail">
-                      <img style="height: 100px; width: 100%" ng-src="{{pattern.getUrl()}}" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </tab>
+              <tab heading="Text">
+                <div ng-include="'text-properties.html'"></div>
+              </tab>
 
-          </tabset>
-          
-          <hr>
+              <tab heading="Patterns">
+                <div ng-include="'patterns.html'"></div>
+              </tab>
+            </tabset>
+          </tab>
+        </tabset>
 
-          <!-- Layers Palette -->
-          <div ng-controller="LayerPaletteCtrl as layerPalette" class="layers-palette">
-            <div droppable="layerPalette.handleImageDrop" ng-click="layerPalette.onLayerBackgroundClick($event)" class="list-group layer-list">
-              <span ng-repeat="layer in layerPalette.getLayerSet()" class="list-group-item clearfix" ng-class="{active: layer.isSelected() }" ng-click="layerPalette.onLayerClick($event, layer)">
-                {{layer.name}}
+        <hr>
 
-                <span class="pull-right">
-                  <a ng-click="layerPalette.moveUp($event, layer)">▲</a>
-                  <a ng-click="layerPalette.moveDown($event, layer)">▼</a>
-                  <a ng-click="layerPalette.deleteLayer($event, layer)">x</a>
-                </span>
-              </span>
-            </div>
-         </div>
-        </div>
+        <!-- Layers Palette -->
+        <div ng-controller="LayerPaletteCtrl as layerPalette" class="layers-palette" ng-include="'layer-palette.html'"></div>
+      </div>
 
-        <!-- The Editor -->
-        <div class="col-md-7 editor-area" droppable="main.handleImageDrop">
-
-          <!-- Action Bar -->
-          <div class="editor-action-bar">
-            <div class="btn-group">
-              <label class="btn btn-default" ng-model="main.product.angle" btn-radio="main.ProductAngle.Front">Front</label>
-              <label class="btn btn-default" ng-model="main.product.angle" btn-radio="main.ProductAngle.Back" ng-show="main.productHasMultipleSides()">Back</label>
-            </div>
-          </div>
-
-          <!-- Editor Canvas -->
-          <div editor class="editor"></div>
-
-          <ul ng-controller="ProductColorPickerCtrl as productColorPicker" class="product-color-picker">
-            <li ng-repeat="color in ::productColorPicker.colors" ng-click="productColorPicker.changeColor(color)" class="swatch" style="background-color: {{color}};" ng-class="{selected: productColorPicker.isSelected(color)}">
-            </li>
-          </ul>
-
-          <div ng-controller="ProductSelectorCtrl as selector" class="product-selector">
-            <div ng-repeat="product in selector.getProducts()" background-image="{{selector.getProductPreviewUrl(product)}}" contain='true' ng-click="selector.selectProduct(product)" class="product" ng-class="{selected: selector.isSelected(product)}">
-            </div>
+      <div class="editor-area" droppable="main.handleImageDrop">
+        <!-- Action Bar -->
+        <div class="editor-action-bar">
+          <div class="btn-group">
+            <label class="btn btn-default" ng-model="main.product.angle" btn-radio="main.ProductAngle.Front">Front</label>
+            <label class="btn btn-default" ng-model="main.product.angle" btn-radio="main.ProductAngle.Back" ng-show="main.productHasMultipleSides()">Back</label>
           </div>
         </div>
 
-        <!-- Cart Actions -->
-        <div ng-controller="CartCtrl as cart" class="col-md-2 cart-actions">
+        <!-- Editor Canvas -->
+        <div editor class="editor"></div>
+
+        <ul ng-controller="ProductColorPickerCtrl as productColorPicker" class="product-color-picker">
+          <li ng-repeat="color in ::productColorPicker.colors" ng-click="productColorPicker.changeColor(color)" class="swatch" style="background-color: {{color}};" ng-class="{selected: productColorPicker.isSelected(color)}">
+          </li>
+        </ul>
+
+        <div ng-controller="ProductSelectorCtrl as selector" class="product-selector">
+          <div ng-repeat="product in selector.getProducts()" background-image="{{selector.getProductPreviewUrl(product)}}" contain='true' ng-click="selector.selectProduct(product)" class="product" ng-class="{selected: selector.isSelected(product)}">
+          </div>
+        </div>
+      </div>
+
+      <div class="right-sidebar">
+        <div ng-controller="CartCtrl as cart" class="cart-actions">
           <h2>${{cart.price}}</h2>
           <button ng-click="cart.addToCart()" class="btn btn-primary cart-action" type="button">Add to Cart</button>
           <button ng-click="cart.saveToProfile()" class="btn btn-default cart-action" type="button">Save to Profile</button>
         </div>
-
       </div>
+
     </div>
     
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

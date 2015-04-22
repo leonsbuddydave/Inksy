@@ -1,0 +1,9 @@
+<div ng-controller="PatternCtrl as patternCtrl" class="asset-panel">
+	<div class="row">
+		<div ng-repeat="pattern in patternCtrl.getPatterns()" class="col-md-6" draggable="pattern" draggable-type="pattern">
+			<a ng-click="patternCtrl.selectPattern(pattern)" class="thumbnail">
+				<img style="height: 100px; width: 100%" ng-src="{{pattern.getUrl()}}" />
+			</a>
+		</div>
+	</div>
+</div>
