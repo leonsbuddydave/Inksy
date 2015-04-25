@@ -1,6 +1,6 @@
 'use strict';
 
-import {Product} from '../models/product.model';
+import Product from '../models/product.model';
 
 var ProductServiceProvider = function() {
 	this.$get = ProductService.$inject.concat( (ProductAngle, $q) => {
@@ -88,6 +88,8 @@ class ProductService {
 			})
 		];
 
+		this.products = [];
+
 		return this;
 	}
 
@@ -95,9 +97,7 @@ class ProductService {
 		var deferred, $q;
 
 		$q = this.$q;
-
 		deferred = $q.defer();
-
 		deferred.resolve(this.products);
 
 		return deferred.promise;

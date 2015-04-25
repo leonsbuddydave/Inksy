@@ -3,20 +3,17 @@
 import {ProductSide} from '../models/product.model';
 import MaskedImage from '../lib/MaskedImage';
 
-function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interval) {
+function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interval, InksyEvents) {
 	return {
 		// templateUrl: 'editor.html',
 		restrict: 'AE',
-		scope: true,
 		link: function(scope, element, attributes, ctrl) {
-			var productSides, fc;
+			var productSides, fc, design;
 
 			const PRODUCT_AREA_WIDTH = 400;
 			const PRODUCT_AREA_HEIGHT = 400;
 
-			ctrl.product = null;
 			ctrl.productColor = "#fff";
-			ctrl.selectedProduct = null;
 			ctrl.layers = {};
 
 			/*
@@ -68,8 +65,8 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 			MakeCanvasForAngle();
 
 			var getCurrentSide = function() {
-				if (ctrl.selectedProduct && ctrl.product.angle) {
-					return ctrl.selectedProduct.getSide(ctrl.product.angle);
+				if (design && scope.product.angle) {
+					return design.getVariant().getSide(scope.product.angle);
 				}
 
 				return null;
@@ -120,15 +117,25 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				shape.setCoords();
 
 				shape.filters = [ new fabric.Image.filters.Tint({
-					color: ctrl.productColor
+					color: design.getColor()
 				})];
 
 				shape.applyFilters(fc.renderAll.bind(fc));
 			}
 
-			scope.$on('global:render', (event) => {
+			scope.$on(InksyEvents.DESIGN_CHANGED, function(event, _design) {
+				design = _design;
+				console.log(_design);
 				ctrl.rebuild();
 			});
+
+			scope.$on(InksyEvents.GLOBAL_RENDER, (event) => {
+				ctrl.rebuild();
+			});
+
+			scope.$watch(() => scope.product.angle, function() {
+				ctrl.rebuild();
+			}, true);
 
 			/*
 				When we receive a layer update,
@@ -152,16 +159,6 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				ctrl.update();
 			});
 
-
-			/*
-				Fired when the color used for products
-				is changed
-			*/			
-			scope.$on('color:selected', (event, color) => {
-				ctrl.productColor = color;
-				ctrl.rebuild();
-			});
-
 			/*
 				This event is named shittily - this will
 				basically only be used when the selected
@@ -169,18 +166,6 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 			*/
 			scope.$on('product:update', (event, product) => {
 				ctrl.product = product;
-				ctrl.rebuild();
-			});
-
-			/*
-				Updates the displayed product whenever we
-				receive an update that it's changed
-
-				Rewrite this later, it's garbage
-			*/
-			scope.$on('product:selected', (event, product) => {
-				var canvas, shape, texture, filter, shapeSrc, textureSrc, productSide;
-				ctrl.selectedProduct = product;
 				ctrl.rebuild();
 			});
 
@@ -196,7 +181,7 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 			}
 
 			/*
-				Totally clears all canvases
+				Totally clears the canvas
 			*/
 			ctrl.clear = function() {
 				fc.clear();
@@ -215,56 +200,49 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				to the canvas
 			*/
 			ctrl.reflectLayersToCanvas = function() {
-				var side, layerIndex, canvas, layers;
+				var sideDesignLayers, layerIndex, productSide;
 
-				if (ctrl.selectedProduct === null) return;
+				if (angular.isUndefined(design)) return;
 
-				side = getCurrentSide();
+				sideDesignLayers = design.getSides()[scope.product.angle];
+				productSide = getCurrentSide();
 
-				layers = ctrl.layers[side.id];
+				if (angular.isUndefined(sideDesignLayers)) return;
 
-				layers = layers || [];
+				sideDesignLayers.forEach((layer, index) => {
+					let object, mask, pattern;
 
-				layerIndex = 0;
-				try {
-					for (let layer of layers) {
-						let object, mask, pattern;
+					object = layer.canvasObject;
+					pattern = layer.getPattern();
 
-						object = layer.canvasObject;
-						pattern = layer.getPattern();
+					fc.add(object);
+					object.moveTo(index);
 
-						fc.add(object);
-						object.moveTo(layerIndex++);
-
-						if (pattern) {
-							object.setMask(pattern.url);
-						}
-
-						object.setClipTo(side.getClipTo());
-
-						if (layer.isSelected()) {
-							console.log('Setting active object', layer);
-							fc.setActiveObject(object);
-						}
-
-						// If the layer has not been added previously,
-						// do some fucking stuff to it
-						// fuck it right up
-						if (!layer.added) {
-							if (object instanceof fabric.Image) {
-								[object.width, object.height] = MathUtils.contain(object.width, object.height, PRODUCT_AREA_WIDTH, PRODUCT_AREA_HEIGHT);
-							}
-
-							object.center();
-							object.setCoords();
-
-							// Mark this layer as added
-							layer.added = true;
-						}
+					if (pattern) {
+						object.setMask(pattern.url);
 					}
-				} catch (e) {
-					console.error(e);
-				}
+
+					object.setClipTo(productSide.getClipTo());
+
+					if (layer.isSelected()) {
+						fc.setActiveObject(object);
+					}
+
+					// If the layer has not been added previously,
+					// do some fucking stuff to it
+					// fuck it right up
+					if (!layer.added) {
+						if (object instanceof fabric.Image) {
+							[object.width, object.height] = MathUtils.contain(object.width, object.height, PRODUCT_AREA_WIDTH, PRODUCT_AREA_HEIGHT);
+						}
+
+						object.center();
+						object.setCoords();
+
+						// Mark this layer as added
+						layer.added = true;
+					}
+				});
 			};
 
 			/*
@@ -309,6 +287,6 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 	}
 }
 
-editor.$inject = ['$rootScope', '$window', 'ProductAngle', 'MathUtils', '$timeout', '$interval'];
+editor.$inject = ['$rootScope', '$window', 'ProductAngle', 'MathUtils', '$timeout', '$interval', 'InksyEvents'];
 
 export default editor;

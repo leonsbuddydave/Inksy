@@ -1,0 +1,5 @@
+<div class="category-selector">
+	<div class="category" ng-repeat='category in categories' ng-click='selectCategory($index)' ng-class="{ selected: isSelected($index) }">
+		<img ng-src="{{category.icon}}">
+	</div>
+</div>

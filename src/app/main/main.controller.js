@@ -1,24 +1,20 @@
 'use strict';
 
 class MainCtrl {
-  constructor ($scope, $rootScope, ProductAngle) {
+  constructor ($scope, $rootScope, ProductAngle, DesignState, InksyEvents) {
   	this.$scope = $scope;
   	this.$rootScope = $rootScope;
     this.ProductAngle = ProductAngle;
 
     this.selectedProduct = null;
 
-    this.product = {
+    $scope.productSides = [];
+    $scope.product = {
       angle: ProductAngle.Front
     };
 
-    $scope.$watch(() => this.product, function(newProduct, oldProduct) {
-      $rootScope.$broadcast('product:update', newProduct);
-    }, true);
-
-    $scope.$on('product:selected', (event, product) => {
-      this.selectedProduct = product;
-      this.product.angle = ProductAngle.Front;
+    $scope.$on(InksyEvents.DESIGN_CHANGED, function(event, _design) {
+      $scope.productSides = Object.keys(_design.getVariant().getAllSides());
     });
 
   	this.handleImageDrop = (data) => {
@@ -41,18 +37,10 @@ class MainCtrl {
   		}
   	}
 
-    this.productHasMultipleSides = () => {
-      return this.selectedProduct !== null && Object.keys(this.selectedProduct.getAllSides()).length > 1;
-    }
-
     return this;
   };
-
-  what() {
-
-  }
 }
 
-MainCtrl.$inject = ['$scope', '$rootScope', 'ProductAngle'];
+MainCtrl.$inject = ['$scope', '$rootScope', 'ProductAngle', 'DesignState', 'InksyEvents'];
 
 export default MainCtrl;

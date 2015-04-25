@@ -1,10 +1,11 @@
 'use strict'
 
 class ProductColorPickerCtrl {
-	constructor($scope, $rootScope) {
+	constructor($scope, $rootScope, DesignState) {
 
 		this.$scope = $scope;
 		this.$rootScope = $rootScope;
+		this.DesignState = DesignState;
 
 		this.colors = [
 			"#1bc4a3",
@@ -24,12 +25,14 @@ class ProductColorPickerCtrl {
 	}
 
 	changeColor(color) {
-		var $rootScope;
+		var DesignState;
 
-		$rootScope = this.$rootScope;
+		DesignState = this.DesignState;
 
 		this.selectedColor = color;
-		$rootScope.$broadcast('color:selected', color);
+
+		DesignState.getDesign().setColor(color);
+		DesignState.commit();
 	}
 
 	isSelected(color) {
@@ -37,6 +40,6 @@ class ProductColorPickerCtrl {
 	}
 }
 
-ProductColorPickerCtrl.$inject = ['$scope', '$rootScope'];
+ProductColorPickerCtrl.$inject = ['$scope', '$rootScope', 'DesignState'];
 
 export default ProductColorPickerCtrl;

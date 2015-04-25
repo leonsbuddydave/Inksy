@@ -19,6 +19,7 @@ class Layer {
 	}
 
 	select() {
+		console.log('Select fired!');
 		this.selected = true;
 	}
 

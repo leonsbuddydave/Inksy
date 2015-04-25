@@ -15,15 +15,21 @@ import fileUploadButton from './directives/fileUploadButton.directive';
 import draggable from './directives/draggable.directive';
 import droppable from './directives/droppable.directive';
 import backgroundImage from './directives/backgroundImage.directive';
+import categorySelector from './directives/categorySelector.directive';
+import variantSelector from './directives/variantSelector.directive';
 
 import LayerService from './services/layer.service';
 import MathUtils from './services/MathUtils.service';
+import GarbageFactory from './services/GarbageFactory.service';
+import InksyAPI from './services/InksyAPI.service';
+import DesignState from './services/DesignState.service';
 import { ProductService, ProductServiceProvider } from './services/Product.service';
 import { Instagram, InstagramProvider } from './services/Instagram.service';
 
 import { ImageLayer } from './models/layer.model';
 import ProductImage from './models/product-image.model';
 import ProductAngle from './models/product-angle.constant';
+import InksyEvents from './constants/InksyEvents.constant';
 
 import MaskedImage from './lib/MaskedImage'
 
@@ -49,15 +55,21 @@ angular.module('inksy', ['ngAnimate', 'ui.bootstrap', 'templates', 'dndLists', '
 	.directive('draggable', draggable)
 	.directive('droppable', droppable)
 	.directive('backgroundImage', backgroundImage)
+	.directive('categorySelector', categorySelector)
+	.directive('variantSelector', variantSelector)
 
 	.factory('LayerService', LayerService)
 	.factory('ProductService', ProductService)
 	.factory('Instagram', Instagram)
 
 	.service('MathUtils', MathUtils)
+	.service('GarbageFactory', GarbageFactory)
+	.service('InksyAPI', InksyAPI)
+	.service('DesignState', DesignState)
 
 	.provider('Instagram', InstagramProvider)
 	.provider('ProductService', ProductServiceProvider)
 
 	.constant('ProductAngle', ProductAngle)
+	.constant('InksyEvents', InksyEvents)
 ;

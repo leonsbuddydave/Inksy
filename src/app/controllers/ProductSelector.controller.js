@@ -1,7 +1,7 @@
 'use strict'
 
 class ProductSelectorCtrl {
-	constructor($scope, $rootScope, ProductService, ProductAngle, $timeout) {
+	constructor($scope, $rootScope, ProductService, ProductAngle, $timeout, InksyAPI) {
 
 		this.$scope = $scope;
 		this.$rootScope = $rootScope;
@@ -10,12 +10,8 @@ class ProductSelectorCtrl {
 
 		this.selectedProduct = null;
 
-		ProductService.getProducts().then((products) => {
-			this.products = products;
-
-			$timeout(() => {
-				this.selectProduct(products[0]);
-			}, 0);
+		InksyAPI.getProductData(function(productData) {
+			console.log(productData);
 		});
 	}
 
@@ -45,6 +41,6 @@ class ProductSelectorCtrl {
 	}
 }
 
-ProductSelectorCtrl.$inject = ['$scope', '$rootScope', 'ProductService', 'ProductAngle', '$timeout'];
+ProductSelectorCtrl.$inject = ['$scope', '$rootScope', 'ProductService', 'ProductAngle', '$timeout', 'InksyAPI'];
 
 export default ProductSelectorCtrl;

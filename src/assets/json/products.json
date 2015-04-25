@@ -1,0 +1,75 @@
+{
+  "categories": [
+
+    {
+      "name": "mugs",
+      "displayName": "Mugs",
+      "icon": "/assets/images/icons/category_mug.png",
+      "products": [
+        {
+          "type": "Mug",
+          "name": "Skinny Ass Mug",
+          "pricing": {
+            "base": 19.99,
+            "suggested_sale": 24.99
+          },
+          "sides": {
+            "front" : {
+              "name": "front",
+              "images": {
+                "shape": "/assets/images/products-small/0031-shape.png",
+                "texture": "/assets/images/products-small/0031-texture.png"
+              },
+              "area": {
+                "width": 225,
+                "height": 225,
+                "offsetX": -175,
+                "offsetY": -100
+              }
+            },
+            "back" : {
+              "name": "back",
+              "images": {
+                "shape": "/assets/images/products-small/0035-shape.png",
+                "texture": "/assets/images/products-small/0035-texture.png"
+              },
+              "area": {
+                "width": 225,
+                "height": 225,
+                "offsetX": -50,
+                "offsetY": -100
+              }
+            }
+          }
+        }
+      ]
+    },
+
+    {
+    	"name": "coasters",
+    	"displayName": "Coasters",
+    	"icon": "/assets/images/icons/category_coaster.png",
+    	"products": [
+
+    	]
+    },
+
+    {
+    	"name": "shirts",
+    	"displayName": "Shirts",
+    	"icon": "/assets/images/icons/category_shirt.png",
+    	"products": [
+
+    	]
+    },
+
+    {
+    	"name": "hoodies",
+    	"displayName": "Hoodies",
+    	"icon": "/assets/images/icons/category_hoodie.png",
+    	"products": [
+
+    	]
+    }
+  ]
+}

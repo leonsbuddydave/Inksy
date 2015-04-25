@@ -1,13 +1,16 @@
 'use strict'
 
-import {TestLayer, ImageLayer, TextLayer} from '../models/layer.model';
+import {ImageLayer, TextLayer} from '../models/layer.model';
 
 const MAX_LAYERS = 8;
 
 class LayerPaletteCtrl {
-	constructor($scope, $rootScope, ProductAngle) {
+	constructor($scope, $rootScope, ProductAngle, DesignState, InksyEvents) {
+		var design;
+
 		this.$scope = $scope;
 		this.$rootScope = $rootScope;
+		this.DesignState = DesignState;
 
 		this.layers = [];
 		this.selectedLayer = null;
@@ -15,7 +18,7 @@ class LayerPaletteCtrl {
 			[ProductAngle.Front]: [],
 			[ProductAngle.Back]: []
 		};
-		this.product = null;
+		// this.product = null;
 
 		$scope.$on('fabric:object:selected', (event, data) => {
 			var object, layerSet;
@@ -36,6 +39,11 @@ class LayerPaletteCtrl {
 				}
 			}
 		});
+		
+		
+		$scope.$on(InksyEvents.DESIGN_CHANGED, function(event, _design) {
+			design = _design;
+		});
 
 		$scope.$on('fabric:selection:cleared', this.onSelectionCleared.bind(this));
 
@@ -55,10 +63,6 @@ class LayerPaletteCtrl {
 				name: "New Text"
 			}, text);
 			this.addLayer(textLayer);
-		});
-
-		$scope.$on('product:update', (event, product) => {
-			this.product = product;
 		});
 
 		$scope.$on('pattern:selected', (event, pattern) => {
@@ -82,6 +86,8 @@ class LayerPaletteCtrl {
 					$rootScope.$broadcast('image:new', img);
 				});
 			}
+
+			console.log(image);
 			img.src = image.data;
 		}
 
@@ -93,7 +99,10 @@ class LayerPaletteCtrl {
 		layer set
 	*/
 	getLayerSet() {
-		return this.layerSets[this.product.angle];
+		if (this.$scope.product) 
+			return this.layerSets[this.$scope.product.angle];
+		else
+			return [];
 	}
 
 	/*
@@ -202,7 +211,8 @@ class LayerPaletteCtrl {
 		current layer set
 	*/
 	update() {
-		this.$rootScope.$broadcast('layers:update', this.getLayerSet());
+		this.DesignState.getDesign().setSides(this.layerSets);
+		this.DesignState.commit();
 	}
 
 	onSelectionCleared(event) {
@@ -228,6 +238,6 @@ class LayerPaletteCtrl {
 	}
 }
 
-LayerPaletteCtrl.$inject = ['$scope', '$rootScope', 'ProductAngle'];
+LayerPaletteCtrl.$inject = ['$scope', '$rootScope', 'ProductAngle', 'DesignState', 'InksyEvents'];
 
 export default LayerPaletteCtrl;

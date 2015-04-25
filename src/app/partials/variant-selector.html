@@ -1,0 +1,7 @@
+<div class="variant-selector">
+	<ul>
+		<li ng-repeat='variant in getVariants()' ng-click='selectVariant($index)'>
+			{{variant.getName()}}<b ng-show="isSelected($index)"> - Yes!</b>
+		</li>
+	</ul>
+</div>

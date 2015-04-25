@@ -1,4 +1,5 @@
-$app-height: 700px;
+// $app-height: 700px;
+$app-height: 100%;
 $app-width: 100%;
 
 
@@ -8,6 +9,15 @@ $app-width: 100%;
 //  / /  / / /_/ / / / / /
 // /_/  /_/\__,_/_/_/ /_/ 
 //                       
+
+html {
+	height: 100%;
+}
+
+body {
+	min-height: 100%;
+	height: 100%;
+}
 
 .app-container {
 	height: $app-height;
@@ -44,6 +54,44 @@ $app-width: 100%;
 			flex: 1;
 			overflow-x: hidden;
 			overflow-y: auto;
+		}
+	}
+}
+
+//    ______      __                        _          
+//   / ____/___ _/ /____  ____ _____  _____(_)__  _____
+//  / /   / __ `/ __/ _ \/ __ `/ __ \/ ___/ / _ \/ ___/
+// / /___/ /_/ / /_/  __/ /_/ / /_/ / /  / /  __(__  ) 
+// \____/\__,_/\__/\___/\__, /\____/_/  /_/\___/____/  
+//                     /____/                          
+.category-selector {
+	background-color: #fafafa;
+
+	&:after {
+		content: " ";
+		display: block;
+		clear: both;
+		float: none;
+	}
+
+	.category {
+		width: 100px;
+		height: 100px;
+		float: left;
+		outline: solid 1px #f1f1f1;
+		cursor: pointer;
+
+		&.selected {
+			opacity: .5;
+		}
+
+		&:hover {
+			opacity: .8;
+		}
+
+		img {
+			width: 100%;
+			height: 100%;
 		}
 	}
 }
