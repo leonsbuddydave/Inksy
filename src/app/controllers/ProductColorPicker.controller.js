@@ -1,27 +1,32 @@
 'use strict'
 
 class ProductColorPickerCtrl {
-	constructor($scope, $rootScope, DesignState) {
+	constructor($scope, $rootScope, DesignState, InksyEvents) {
 
 		this.$scope = $scope;
 		this.$rootScope = $rootScope;
 		this.DesignState = DesignState;
 
-		this.colors = [
-			"#1bc4a3",
-			"#2ecc71",
-			"#3498db",
-			"#9b59b6",
-			"#34495e",
-			"#f1c40f",
-			"#e67e22",
-			"#e74c3c",
-			"#ecf0f1",
-			"#95a5a6",
-			"#000000"
-		];
+		this.colors = [];
 
 		this.selectedColor = null;
+
+		$scope.$on(InksyEvents.DESIGN_CHANGED, (event, design) => {
+			var material;
+
+			material = design.getMaterial();
+
+			if (material !== null) {
+				if (material.getColors() !== this.colors) {
+					this.setColors(material.getColors());	
+					this.changeColor(this.colors[0]);
+				}
+			}
+		});
+	}
+
+	setColors(colors) {
+		this.colors = colors;
 	}
 
 	changeColor(color) {
@@ -40,6 +45,6 @@ class ProductColorPickerCtrl {
 	}
 }
 
-ProductColorPickerCtrl.$inject = ['$scope', '$rootScope', 'DesignState'];
+ProductColorPickerCtrl.$inject = ['$scope', '$rootScope', 'DesignState', 'InksyEvents'];
 
 export default ProductColorPickerCtrl;

@@ -1,10 +1,12 @@
 import Product from './product.model';
+import Material from './Material.model';
 
 class ProductCategory {
 	constructor(name) {
 		this.name = name;
 		this.products = [];
 		this.icon = "";
+		this.materials = {};
 	}
 
 	static fromJson(json) {
@@ -17,6 +19,11 @@ class ProductCategory {
 			json.products.forEach(function(productJson, index) {
 				pc.addProduct( Product.fromJson(productJson) );
 			});
+		}
+
+		for (var materialName in json.materials) {
+			var material = json.materials[materialName];
+			pc.setMaterial(materialName, Material.fromJson(material));
 		}
 
 		return pc;
@@ -44,6 +51,18 @@ class ProductCategory {
 
 	getIcon() {
 		return this.icon;
+	}
+
+	getAllMaterials() {
+		return this.materials;
+	}
+
+	getMaterial(id) {
+		return this.materials[id];
+	}
+
+	setMaterial(id, material) {
+		this.materials[id] = material; 
 	}
 }
 

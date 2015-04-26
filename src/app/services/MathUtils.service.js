@@ -22,6 +22,10 @@ var MathUtils = function() {
 		return [wr, hr];
 	};
 
+	var inchesToPixels = function(inches, ppi) {
+		return inches * ppi;
+	}
+
 	return {
 		contain: contain
 	};

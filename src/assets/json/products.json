@@ -1,10 +1,36 @@
 {
   "categories": [
-
     {
       "name": "mugs",
       "displayName": "Mugs",
       "icon": "/assets/images/icons/category_mug.png",
+      "materials": {
+        "basic": {
+          "colors": [
+            "#1bc4a3",
+            "#3498db",
+            "#34495e",
+            "#e67e22",
+            "#ecf0f1",
+            "#000000"
+          ]
+        },
+        "premium": {
+          "colors": [
+            "#1bc4a3",
+            "#2ecc71",
+            "#3498db",
+            "#9b59b6",
+            "#34495e",
+            "#f1c40f",
+            "#e67e22",
+            "#e74c3c",
+            "#ecf0f1",
+            "#95a5a6",
+            "#000000"
+          ]
+        }
+      },
       "products": [
         {
           "type": "Mug",
@@ -14,7 +40,7 @@
             "suggested_sale": 24.99
           },
           "sides": {
-            "front" : {
+            "front": {
               "name": "front",
               "images": {
                 "shape": "/assets/images/products-small/0031-shape.png",
@@ -25,9 +51,14 @@
                 "height": 225,
                 "offsetX": -175,
                 "offsetY": -100
+              },
+              "printArea": {
+                "unit": "in",
+                "width": 3.25,
+                "height": 3.25
               }
             },
-            "back" : {
+            "back": {
               "name": "back",
               "images": {
                 "shape": "/assets/images/products-small/0035-shape.png",
@@ -38,38 +69,34 @@
                 "height": 225,
                 "offsetX": -50,
                 "offsetY": -100
+              },
+              "printArea": {
+                "unit": "in",
+                "width": 3.25,
+                "height": 3.25
               }
             }
           }
         }
       ]
     },
-
     {
-    	"name": "coasters",
-    	"displayName": "Coasters",
-    	"icon": "/assets/images/icons/category_coaster.png",
-    	"products": [
-
-    	]
+      "name": "coasters",
+      "displayName": "Coasters",
+      "icon": "/assets/images/icons/category_coaster.png",
+      "products": []
     },
-
     {
-    	"name": "shirts",
-    	"displayName": "Shirts",
-    	"icon": "/assets/images/icons/category_shirt.png",
-    	"products": [
-
-    	]
+      "name": "shirts",
+      "displayName": "Shirts",
+      "icon": "/assets/images/icons/category_shirt.png",
+      "products": []
     },
-
     {
-    	"name": "hoodies",
-    	"displayName": "Hoodies",
-    	"icon": "/assets/images/icons/category_hoodie.png",
-    	"products": [
-
-    	]
+      "name": "hoodies",
+      "displayName": "Hoodies",
+      "icon": "/assets/images/icons/category_hoodie.png",
+      "products": []
     }
   ]
 }

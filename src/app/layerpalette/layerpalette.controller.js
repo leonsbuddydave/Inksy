@@ -18,7 +18,6 @@ class LayerPaletteCtrl {
 			[ProductAngle.Front]: [],
 			[ProductAngle.Back]: []
 		};
-		// this.product = null;
 
 		$scope.$on('fabric:object:selected', (event, data) => {
 			var object, layerSet;
@@ -40,8 +39,7 @@ class LayerPaletteCtrl {
 			}
 		});
 		
-		
-		$scope.$on(InksyEvents.DESIGN_CHANGED, function(event, _design) {
+		$scope.$on(InksyEvents.DESIGN_CHANGED, (event, _design) => {
 			design = _design;
 		});
 
@@ -77,21 +75,25 @@ class LayerPaletteCtrl {
 			this.update();
 		});
 
-		this.handleImageDrop = (image) => {
-			var img;
-
-			img = new Image();
-			img.onload = () => {
-				$scope.$apply( () => {
-					$rootScope.$broadcast('image:new', img);
-				});
-			}
-
-			console.log(image);
-			img.src = image.data;
-		}
+		this.update();
 
 		return this;
+	}
+
+	handleImageDrop(image) {
+		var img, $scope;
+
+		$scope = this.$scope;
+
+		img = new Image();
+		img.onload = () => {
+			$scope.$apply( () => {
+				$rootScope.$broadcast('image:new', img);
+			});
+		}
+
+		console.log(image);
+		img.src = image.data;
 	}
 
 	/*

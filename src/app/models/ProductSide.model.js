@@ -6,8 +6,14 @@ class ProductSide {
 		this.texture = null;
 		this.shape = null;
 		this.area = null;
+		this.printArea = null;
 		this.color = "#fff";
 		this.layers = [];
+
+		this.images = {
+			texture: '',
+			shape: ''
+		};
 
 		if (!angular.isUndefined(options)) {
 			this.images = options.images;
@@ -53,6 +59,7 @@ class ProductSide {
 		ps.setShape(json.images.shape);
 		ps.setTexture(json.images.texture);
 		ps.setArea(json.area);
+		ps.setPrintArea(json.printArea);
 
 		return ps;
 	}
@@ -110,6 +117,8 @@ class ProductSide {
 	}
 
 	setTexture(texture) {
+		this.images.texture = texture;
+
 		let im = new Image();
 		this.texture = new fabric.Image(im, {
 			left: 0,
@@ -125,6 +134,8 @@ class ProductSide {
 	}
 
 	setShape(shape) {
+		this.images.shape = shape;
+		
 		var im = new Image();
 		this.shape = new fabric.Image(im, {
 			left: 0,
@@ -153,6 +164,14 @@ class ProductSide {
 
 	getArea(area) {
 		return this.area;
+	}
+
+	setPrintArea(printArea) {
+		this.printArea = printArea;
+	}
+
+	getPrintArea() {
+		return this.printArea;
 	}
 };
 

@@ -25,7 +25,7 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				rawCanvas = fabric.util.createCanvasElement();
 				element.append(rawCanvas);
 				fCanvas = new fabric.Canvas(rawCanvas);
-				fCanvas.setBackgroundColor('white');
+				// fCanvas.setBackgroundColor('white');
 
 				// Rebroadcast object:selected
 				// as an Angular event
@@ -65,10 +65,15 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 			MakeCanvasForAngle();
 
 			var getCurrentSide = function() {
-				if (design && scope.product.angle) {
-					return design.getVariant().getSide(scope.product.angle);
-				}
+				var variant;
 
+				if (design && scope.product.angle) {
+					variant = design.getVariant();
+
+					if (variant !== null) {
+						return variant.getSide(scope.product.angle);
+					}
+				}
 				return null;
 			}
 
@@ -125,7 +130,6 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 
 			scope.$on(InksyEvents.DESIGN_CHANGED, function(event, _design) {
 				design = _design;
-				console.log(_design);
 				ctrl.rebuild();
 			});
 
@@ -269,7 +273,8 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				// a.setMask('/assets/images/patterns/pattern_1.png', {});
 				// DEBUG
 
-				ctrl.update();
+				window.requestAnimationFrame(ctrl.update);
+				// ctrl.update();
 
 				t2 = performance.now() - t1;
 

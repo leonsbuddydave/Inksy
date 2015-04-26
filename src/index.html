@@ -68,33 +68,26 @@
         </div>
 
         <!-- Editor Canvas -->
-        <div editor class="editor"></div>
+        <div class="editor">
+          <div class="editor-inner" editor></div>
+        </div>
 
         <ul ng-controller="ProductColorPickerCtrl as productColorPicker" class="product-color-picker">
-          <li ng-repeat="color in ::productColorPicker.colors" ng-click="productColorPicker.changeColor(color)" class="swatch" style="background-color: {{color}};" ng-class="{selected: productColorPicker.isSelected(color)}">
+          <li ng-repeat="color in productColorPicker.colors track by color" ng-click="productColorPicker.changeColor(color)" class="swatch" style="background-color: {{color}};" ng-class="{selected: productColorPicker.isSelected(color)}">
           </li>
         </ul>
       </div>
 
       <div class="right-sidebar">
         <div ng-controller="CartCtrl as cart" class="cart-actions">
-          <h2>${{cart.price}}</h2>
+          <h2 class="price" ng-bind="(cart.price | currency:'$')"></h2>
+          <h2 class="name" ng-bind="cart.productName"></h2>
           <button ng-click="cart.addToCart()" class="btn btn-primary cart-action" type="button">Add to Cart</button>
           <button ng-click="cart.saveToProfile()" class="btn btn-default cart-action" type="button">Save to Profile</button>
         </div>
       </div>
 
     </div>
-    
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
-      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-      e.src='//www.google-analytics.com/analytics.js';
-      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','UA-XXXXX-X');ga('send','pageview');
-    </script>
 
     <!-- <script src="bower_components/jquery/dist/jquery.min.js"></script> -->
 

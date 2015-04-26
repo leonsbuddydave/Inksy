@@ -14,7 +14,13 @@ class MainCtrl {
     };
 
     $scope.$on(InksyEvents.DESIGN_CHANGED, function(event, _design) {
-      $scope.productSides = Object.keys(_design.getVariant().getAllSides());
+      var variant;
+
+      variant = _design.getVariant();
+
+      if (variant !== null) {
+        $scope.productSides = Object.keys(variant.getAllSides());  
+      }
     });
 
   	this.handleImageDrop = (data) => {

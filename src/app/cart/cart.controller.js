@@ -1,15 +1,29 @@
 'use strict'
 
 class CartCtrl {
-	constructor($scope) {
+	constructor($scope, DesignState, $rootScope, InksyEvents) {
 
-		this.price = 20;
+		this.price = 0.00;
+		this.productName = "No Product";
+		this.DesignState = DesignState;
+
+		$rootScope.$on(InksyEvents.DESIGN_CHANGED, (event, design) => {
+			var variant = design.getVariant();
+
+			if (variant) {
+				this.price = variant.getBasePrice();
+				this.productName = variant.getName();
+			}
+		});
 
 		return this;
 	}
 
 	addToCart() {
 		console.log('Adding to cart!');
+		this.DesignState.exportForPrint({}, function() {
+
+		});
 	}
 
 	saveToProfile() {
@@ -17,6 +31,6 @@ class CartCtrl {
 	}
 }
 
-CartCtrl.$inject = ['$scope'];
+CartCtrl.$inject = ['$scope', 'DesignState', '$rootScope', 'InksyEvents'];
 
 export default CartCtrl;

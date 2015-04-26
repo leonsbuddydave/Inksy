@@ -11,6 +11,10 @@ class Product {
 	static fromJson(json) {
 		var p = new Product(json.name);
 		p.setType(json.type || "N/A");
+		p.setPricing(json.pricing || {
+			base: 0.00,
+			suggested_sale: 0.00
+		});
 
 		for (var sideId in json.sides) {
 			var side = json.sides[sideId];
@@ -46,6 +50,18 @@ class Product {
 
 	getName() {
 		return this.name;
+	}
+
+	setPricing(pricing) {
+		this.pricing = pricing;
+	}
+
+	getBasePrice() {
+		return this.pricing.base;
+	}
+
+	getSuggestedSalePrice() {
+		return this.pricing.suggested_sale;
 	}
 };
 
