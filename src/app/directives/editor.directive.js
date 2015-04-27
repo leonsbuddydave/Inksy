@@ -2,6 +2,7 @@
 
 import {ProductSide} from '../models/product.model';
 import MaskedImage from '../lib/MaskedImage';
+import DynamicMaskedImage from '../lib/DynamicMaskedImage';
 
 function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interval, InksyEvents) {
 	return {
@@ -265,6 +266,10 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				ctrl.reflectLayersToCanvas();
 				ctrl.addProductToCanvas();
 				ctrl.correctLayerOrder();
+
+				// var a = new fabric.DynamicMaskedImage('/assets/images/test/Lenna.png');
+				// fc.add(a);
+				// fc.on('image:loaded', fc.renderAll.bind(fc));
 
 				// DEBUG
 				// var a = new MaskedImage('/assets/images/test/Lenna.png', {});

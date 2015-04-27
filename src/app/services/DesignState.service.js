@@ -60,7 +60,7 @@ var DesignState = function($rootScope, InksyEvents) {
 	};
 
 	var commit = function() {
-		console.log(design);
+		// console.log(design);
 		$rootScope.$broadcast(InksyEvents.DESIGN_CHANGED, design);
 	};
 
@@ -114,30 +114,37 @@ var DesignState = function($rootScope, InksyEvents) {
 
 				cloneObject = fabric.util.object.clone(layer.getCanvasObject());
 				cloneObject.clipTo = null;
-				referenceCanvas = layer.getCanvasObject().canvas;
 
-				console.log(referenceCanvas);
+				referenceCanvas = layer.getCanvasObject().canvas;
 
 				leftRelativeToClipArea = (cloneObject.left - ((referenceCanvas.width / 2) + area.offsetX)) * printScaleX;
 				topRelativeToClipArea = (cloneObject.top - ((referenceCanvas.height / 2) + area.offsetY)) * printScaleY;
+
+				console.log(leftRelativeToClipArea, topRelativeToClipArea);
 
 				cloneObject.set({
 					scaleX: cloneObject.scaleX * printScaleX,
 					scaleY: cloneObject.scaleY * printScaleY,
 					left: leftRelativeToClipArea,
 					top: topRelativeToClipArea
-				})
+				});
 				cloneObject.setCoords();
 
 				printCanvas.add(cloneObject);
+
+				if (cloneObject._generateCompositeImage) {
+					cloneObject._generateCompositeImage();
+				}
 			});
 
 			printCanvas.deactivateAll();
 			printCanvas.renderAll();
 
-			console.log(printCanvas.toDataURL({
+			var url = printCanvas.toDataURL({
 				format: 'png'
-			}));
+			});
+
+			console.log('DesignState', url);
 		}
 	}
 

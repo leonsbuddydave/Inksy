@@ -44,8 +44,8 @@ class ImageLayer extends Layer {
 			throw new Error("IKBmage is not an image.");
 		}
 
-		// this.canvasObject = new fabric.MaskedImage(image.src);
-		this.canvasObject = new fabric.Image(image);
+		this.canvasObject = new fabric.DynamicMaskedImage(image.src);
+		// this.canvasObject = new fabric.Image(image);
 	}
 };
 
