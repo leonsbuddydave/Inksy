@@ -1,8 +1,13 @@
 <div>
-	<select class="form-control" ng-model="selectedMaterial" ng-options="material as matName for (matName, material) in getMaterials()" ng-change="changeMaterial()"></select>
-	<div class="variant-selector">
-		<div class="variant" ng-repeat="variant in getVariants()" ng-click='selectVariant($index)' ng-class="{selected: isSelected($index)}">
-			<img ng-src="{{getPreviewImage(variant)}}">
+	<div class="notification light" ng-hide="hasCategory()">Select a product from the products tab.</div>
+
+	<div ng-show="hasCategory()">
+		<select class="form-control" ng-model="selectedMaterial" ng-options="material as matName for (matName, material) in getMaterials()" ng-change="changeMaterial()"></select>
+		
+		<div class="variant-selector">
+			<div class="variant" ng-repeat="variant in getVariants()" ng-click='selectVariant($index)' ng-class="{selected: isSelected($index)}">
+				<img ng-src="{{getPreviewImage(variant)}}">
+			</div>
 		</div>
 	</div>
 </div>

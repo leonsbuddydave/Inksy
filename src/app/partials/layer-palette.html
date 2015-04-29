@@ -1,11 +1,11 @@
 <div class="layers-palette" ng-controller="LayerPaletteCtrl as layerPalette">
 	<div droppable="layerPalette.handleImageDrop" ng-click="layerPalette.onLayerBackgroundClick($event)" class="list-group layer-list">
-	  <span ng-repeat="layer in layerPalette.getLayerSet()" class="list-group-item clearfix" ng-class="{active: layer.isSelected() }" ng-click="layerPalette.onLayerClick($event, layer)">
+	  <span ng-repeat="layer in layerPalette.getLayerSet().getLayers()" class="list-group-item clearfix" ng-class="{active: layer.isSelected() }" ng-click="layerPalette.onLayerClick($event, layer)">
 	    {{layer.name}}
 
 	    <span class="pull-right">
-	      <a ng-click="layerPalette.moveUp($event, layer)">▲</a>
-	      <a ng-click="layerPalette.moveDown($event, layer)">▼</a>
+	      <a ng-click="layerPalette.onClickUp($event, layer)">▲</a>
+	      <a ng-click="layerPalette.onClickDown($event, layer)">▼</a>
 	      <a ng-click="layerPalette.deleteLayer($event, layer)">x</a>
 	    </span>
 	  </span>

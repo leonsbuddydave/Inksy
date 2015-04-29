@@ -26,42 +26,28 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				rawCanvas = fabric.util.createCanvasElement();
 				element.append(rawCanvas);
 				fCanvas = new fabric.Canvas(rawCanvas);
-				// fCanvas.setBackgroundColor('white');
-
-				// Rebroadcast object:selected
-				// as an Angular event
-				fCanvas.on('object:selected', (event) => {
-					$timeout(() => {
-						let selectedObject, eventData;
-
-						selectedObject = event.target;
-
-						eventData = {
-							selectedObject: selectedObject
-						};
-
-						$rootScope.$broadcast('fabric:object:selected', eventData);
-
-						if (selectedObject instanceof fabric.Text) {
-							$rootScope.$broadcast('text:selected', eventData);
-						} else if (selectedObject instanceof fabric.Image) {
-							$rootScope.$broadcast('image:selected', eventData);
-						}
-					});
-				});
-
-				fCanvas.on('selection:cleared', (event) => {
-					$timeout(() => {
-						$rootScope.$broadcast('fabric:selection:cleared');
-					});
-				});
-
-				fCanvas.on("after:render", () => {
-					fCanvas.calcOffset();
-				});
-
 				fc = fCanvas;
+
+				bindCanvasEvents();
 			};
+
+			var onCanvasSelectionCleared = function(event) {
+				$rootScope.$broadcast('fabric:selection:cleared');
+			}
+
+			var onCanvasAfterRender = function(event) {
+				fc.calcOffset();
+			} 
+
+			var bindCanvasEvents = function() {
+				fc.on('selection:cleared', onCanvasSelectionCleared);
+				fc.on("after:render", onCanvasAfterRender);
+			}
+
+			var unbindCanvasEvents = function() {
+				fc.off('selection:cleared', onCanvasSelectionCleared);
+				fc.off('after:render', onCanvasAfterRender);
+			}
 
 			MakeCanvasForAngle();
 
@@ -161,7 +147,7 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 			*/
 			scope.$on('layers:selected', (event, layer) => {
 				fc.setActiveObject(layer.canvasObject);
-				ctrl.update();
+				// ctrl.update();
 			});
 
 			/*
@@ -171,6 +157,13 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 			*/
 			scope.$on('product:update', (event, product) => {
 				ctrl.product = product;
+				ctrl.rebuild();
+			});
+
+			scope.$on(InksyEvents.LAYER_PALETTE_SELECTION_CLEARED, (event) => {
+				unbindCanvasEvents();
+				fc.deactivateAll();
+				bindCanvasEvents();
 				ctrl.rebuild();
 			});
 
@@ -209,7 +202,7 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 
 				if (angular.isUndefined(design)) return;
 
-				sideDesignLayers = design.getSides()[scope.product.angle];
+				sideDesignLayers = design.getSides()[scope.product.angle].getLayers();
 				productSide = getCurrentSide();
 
 				if (angular.isUndefined(sideDesignLayers)) return;
@@ -260,8 +253,9 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 
 				t1 = performance.now();
 
-				ctrl.clear();
+				unbindCanvasEvents();
 
+				ctrl.clear();
 				ctrl.resize();
 				ctrl.reflectLayersToCanvas();
 				ctrl.addProductToCanvas();
@@ -280,6 +274,9 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 
 				window.requestAnimationFrame(ctrl.update);
 				// ctrl.update();
+				// 
+				
+				bindCanvasEvents();
 
 				t2 = performance.now() - t1;
 

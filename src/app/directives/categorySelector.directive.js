@@ -7,7 +7,7 @@ var categorySelector = function(InksyAPI, InksyEvents, $rootScope) {
 		scope: true,
 		link: function(scope, element, attributes) {
 			scope.categories = null;
-			scope.selectedCategory = 0;
+			scope.selectedCategory = -1;
 
 			/**
 			 * [selectCategory Changes the category to the selected one]

@@ -104,7 +104,7 @@ var DesignState = function($rootScope, InksyEvents) {
 			printCanvasElement.height = printHeightInPixels;
 			printCanvas = new fabric.Canvas(printCanvasElement);
 
-			layers = design.getSides()[sideId];
+			layers = design.getSides()[sideId].getLayers();
 
 			layers.forEach(function(layer, layerIndex) {
 				var cloneObject,

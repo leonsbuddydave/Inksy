@@ -25,11 +25,19 @@ var variantSelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) {
 			}
 
 			/**
+			 * [hasCategory Returns true if a category is selected]
+			 * @return {Boolean} []
+			 */
+			scope.hasCategory = function() {
+				return angular.isArray(categories) && angular.isNumber(categoryIndex)
+			}
+
+			/**
 			 * [getVariants Returns the product list for the selected category]
 			 * @return {[type]} [A list of products in the given category]
 			 */
 			scope.getVariants = function() {
-				if (angular.isArray(categories) && angular.isNumber(categoryIndex)) {
+				if (scope.hasCategory()) {
 					return categories[categoryIndex].getProducts();
 				} else {
 					return [];
@@ -61,7 +69,7 @@ var variantSelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) {
 			 * @return {[type]} [A list of Material objects]
 			 */
 			scope.getMaterials = function() {
-				if (angular.isDefined(categories) && angular.isDefined(categoryIndex)) {
+				if (scope.hasCategory()) {
 					return categories[categoryIndex].getAllMaterials();
 				} else {
 					return [];

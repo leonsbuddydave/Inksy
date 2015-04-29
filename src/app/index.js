@@ -26,7 +26,11 @@ import DesignState from './services/DesignState.service';
 import { ProductService, ProductServiceProvider } from './services/Product.service';
 import { Instagram, InstagramProvider } from './services/Instagram.service';
 
-import { ImageLayer } from './models/layer.model';
+import LayerSet from './models/LayerSet.model';
+import Layer from './models/Layer.model';
+import ImageLayer from './models/ImageLayer.model';
+import TextLayer from './models/TextLayer.model';
+
 import ProductImage from './models/product-image.model';
 import ProductAngle from './models/product-angle.constant';
 import InksyEvents from './constants/InksyEvents.constant';
@@ -66,6 +70,11 @@ angular.module('inksy', ['ngAnimate', 'ui.bootstrap', 'templates', 'dndLists', '
 	.service('GarbageFactory', GarbageFactory)
 	.service('InksyAPI', InksyAPI)
 	.service('DesignState', DesignState)
+
+	.service('LayerSet', LayerSet)
+	.service('Layer', Layer)
+	.service('ImageLayer', ImageLayer)
+	.service('TextLayer', TextLayer)
 
 	.provider('Instagram', InstagramProvider)
 	.provider('ProductService', ProductServiceProvider)
