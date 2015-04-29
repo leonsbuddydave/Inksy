@@ -1,14 +1,14 @@
 'use strict';
 
-import MainCtrl from './main/main.controller';
-import CartCtrl from './cart/cart.controller';
-import LayerPaletteCtrl from './layerpalette/layerpalette.controller';
-import GalleryCtrl from './gallery/gallery.controller';
+import MainCtrl from './controllers/main.controller';
+import CartCtrl from './controllers/cart.controller';
+import LayerPaletteCtrl from './controllers/layerpalette.controller';
+import GalleryCtrl from './controllers/gallery.controller';
 import ProductSelectorCtrl from './controllers/ProductSelector.controller';
 import TextPropertyCtrl from './controllers/TextProperty.controller';
 import ProductColorPickerCtrl from './controllers/ProductColorPicker.controller';
 import PatternCtrl from './controllers/Pattern.controller';
-import FacebookPhotoImportCtrl from './gallery/FacebookPhotoImport.controller';
+import FacebookPhotoImportCtrl from './controllers/FacebookPhotoImport.controller';
 
 import editor from './directives/editor.directive';
 import fileUploadButton from './directives/fileUploadButton.directive';
