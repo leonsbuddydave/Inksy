@@ -1,0 +1,3 @@
+'''gulp serve''' to start a local test server.
+
+'''gulp build''' to build a distro version. WIP.
