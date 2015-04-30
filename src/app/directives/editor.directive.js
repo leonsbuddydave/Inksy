@@ -37,16 +37,22 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 
 			var onCanvasAfterRender = function(event) {
 				fc.calcOffset();
-			} 
+			}
+
+			var onObjectSelected = function(event) {
+				$rootScope.$broadcast('fabric:object:selected', event.target);
+			}
 
 			var bindCanvasEvents = function() {
 				fc.on('selection:cleared', onCanvasSelectionCleared);
 				fc.on("after:render", onCanvasAfterRender);
+				fc.on('object:selected', onObjectSelected);
 			}
 
 			var unbindCanvasEvents = function() {
 				fc.off('selection:cleared', onCanvasSelectionCleared);
 				fc.off('after:render', onCanvasAfterRender);
+				fc.off('object:selected', onObjectSelected);
 			}
 
 			MakeCanvasForAngle();

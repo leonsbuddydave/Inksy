@@ -64,7 +64,7 @@ class TextPropertyCtrl {
 	onSelectionChanged(event, text) {
 		var to;
 
-		this.textObject = text.selectedObject;
+		this.textObject = text;
 		to = this.textObject;
 
 		if (!(to instanceof fabric.Text)) {
