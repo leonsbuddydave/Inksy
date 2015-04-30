@@ -1,23 +1,13 @@
 'use strict'
 
-class InksyImage {
-	constructor(src, image) {
-		this.src = src;
-		this.image = image;
-		this.dpi = {
-			x: 0,
-			y: 0
-		}
-	}
-}
-
 class GalleryCtrl {
-	constructor($scope, $rootScope, $q, $modal) {
+	constructor($scope, $rootScope, $q, $modal, InksyImage) {
 
 		this.$scope = $scope;
 		this.$rootScope = $rootScope;
 		this.$q = $q;
 		this.$modal = $modal;
+		this.InksyImage = InksyImage;
 
 		this.images = [];
 
@@ -94,7 +84,7 @@ class GalleryCtrl {
 				src = event.target.result;
 				img = new Image();
 
-				result = new InksyImage(src, img);
+				result = new this.InksyImage(src, img);
 
 				img.onload = () => {
 					uploadPromise.resolve(result);
@@ -133,7 +123,7 @@ class GalleryCtrl {
 				img = new Image();
 				img.src = url;
 				
-				result = new InksyImage(src, img);
+				result = new this.InksyImage(url, img);
 
 				this.images.push(result);
 			});
@@ -155,43 +145,21 @@ class GalleryCtrl {
 			size: 'lg'
 		})
 
-		// TODO: Make this do literally anything
 		instagramModal.result.then( (results) => {
-			console.log(results);
+			results.forEach((url, index) => {
+				var img, result;
+
+				img = new Image();
+				img.src = url;
+				
+				result = new this.InksyImage(url, img);
+
+				this.images.push(result);
+			});
 		});
-	}
-
-	/*
-		Following methods might belong
-		in their own DPI-based service
-	*/
-	getPrintResolution(image, dpi) {
-		var naturalWidth, naturalHeight, printWidth, printHeight;
-
-		if (typeof dpi === 'undefined') dpi = 300;
-
-		naturalWidth = image.naturalWidth;
-		naturalHeight = image.naturalHeight;
-
-		printWidth = naturalWidth / dpi;
-		printHeight = naturalHeight / dpi;
-
-		return {
-			width: printWidth,
-			height: printHeight
-		}
-	}
-
-	/*
-		DOOT
-	*/
-	isDpiCool(image) {
-		var printResolution;
-
-		printResolution = getPrintResolution(image, 300);
 	}
 }
 
-GalleryCtrl.$inject = ['$scope', '$rootScope', '$q', '$modal'];
+GalleryCtrl.$inject = ['$scope', '$rootScope', '$q', '$modal', 'InksyImage'];
 
 export default GalleryCtrl;

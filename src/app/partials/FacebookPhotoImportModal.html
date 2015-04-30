@@ -40,7 +40,7 @@
 
 	<!-- TODO: Dynamic preview selection based on social network -->
 	<div class="photo-selection-tray">
-		<div ng-repeat="(id, selected) in selectedPhotos" background-image="https://graph.facebook.com/{{id}}/picture?access_token={{auth.accessToken}}" ng-if="selected" class="selected-photo-thumbnail">
+		<div ng-repeat="photo in selectedPhotos" background-image="{{import.getPhotoPreviewUrl(photo)}}" class="selected-photo-thumbnail">
 		</div>
 	</div>
 

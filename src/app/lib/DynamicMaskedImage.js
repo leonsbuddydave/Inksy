@@ -6,6 +6,8 @@ var DynamicMaskedImage = (function() {
 				maskChannel: 0
 			}, options || {});
 
+			this.callSuper('initialize', options);
+
 			/* Support both image and url arguments, sort of */
 			if (src instanceof Image) {
 				this._imageSrc = src.src;
@@ -16,6 +18,7 @@ var DynamicMaskedImage = (function() {
 			/* Load the provided image */
 			this._objectImageLoaded = false;
 			this._objectImage = new Image();
+			this._objectImage.crossOrigin = "Anonymous";
 			this._objectImage.src = this._imageSrc;
 			this._objectImage.onload = () => {
 				this.width = this._objectImage.width;
@@ -24,10 +27,6 @@ var DynamicMaskedImage = (function() {
 				this.setCoords();
 				this.fire('image:loaded');
 			};
-
-			/* Create an empty image object for holding the final piece */
-			this._finalImage = new Image();
-			this._finalImageLoaded = false;
 
 			/* Create an in-memory canvas to perform operations on */
 			this._maskingCanvas = fabric.util.createCanvasElement();
@@ -66,6 +65,7 @@ var DynamicMaskedImage = (function() {
 			   of the canvas this object is attached to */
 			this._maskingCanvas.width = this.canvas.getWidth();
 			this._maskingCanvas.height = this.canvas.getHeight();
+			this._generateCompositeImage();
 		},
 
 		/**
@@ -74,6 +74,9 @@ var DynamicMaskedImage = (function() {
 		 */
 		_prepareMaskingCanvas: function() {
 			var ctx, width, height;
+
+			this._maskingCanvas.width = this.canvas.getWidth();
+			this._maskingCanvas.height = this.canvas.getHeight();
 
 			width = this._maskingCanvas.width;
 			height = this._maskingCanvas.height;
@@ -97,8 +100,6 @@ var DynamicMaskedImage = (function() {
 				objectImageLeft,
 				objectImageTop;
 
-			console.log('Regenerating composite image', this.canvas.width);
-
 			this._prepareMaskingCanvas();
 
 			/* Calculate dimensions and position for drawing the object image */
@@ -116,7 +117,7 @@ var DynamicMaskedImage = (function() {
 			ctx.restore();
 
 			/* Render our changes to the canvas */
-			this.canvas.renderAll();
+			if (this.canvas) this.canvas.renderAll();
 		},
 
 		/**
@@ -126,16 +127,31 @@ var DynamicMaskedImage = (function() {
 		 */
 		_render: function(ctx) {
 			if (this._ready()) {
-				console.log('DynamicMaskImage', this._maskingCanvas.toDataURL(), this.canvas.width);
 				ctx.save();
 				ctx.setTransform(1, 0, 0, 1, 0, 0);
 				ctx.drawImage(this._maskingCanvas, 0, 0);
+				console.log(this._maskingCanvas.toDataURL({format: 'png'}));
 				ctx.restore();
 			}
+		},
+
+		toObject: function(propertiesToInclude) {
+			return fabric.util.object.extend(this.callSuper('toObject', propertiesToInclude), {
+				src: this._imageSrc
+			});
+		},
+
+		clone: function(callback, propertiesToInclude) {
+			return this.constructor.fromObject(this.toObject(propertiesToInclude), callback);
 		}
 
 	});
 })();
+
+DynamicMaskedImage.fromObject = function(object, callback) {
+	var instance = new DynamicMaskedImage(object.src, object);
+	callback && callback(instance);
+};
 
 fabric.DynamicMaskedImage = DynamicMaskedImage;
 export default DynamicMaskedImage;

@@ -41,7 +41,7 @@ class Design {
 	}
 }
 
-var DesignState = function($rootScope, InksyEvents) {
+var DesignState = function($rootScope, InksyEvents, $q) {
 	
 	var design;
 
@@ -106,21 +106,25 @@ var DesignState = function($rootScope, InksyEvents) {
 
 			layers = design.getSides()[sideId].getLayers();
 
+			var objectReadyPromises = [];
+
 			layers.forEach(function(layer, layerIndex) {
 				var cloneObject,
 					leftRelativeToClipArea,
 					topRelativeToClipArea,
-					referenceCanvas;
+					referenceCanvas,
+					deferred;
+
+				deferred = $q.defer();
+				objectReadyPromises.push(deferred);
 
 				cloneObject = fabric.util.object.clone(layer.getCanvasObject());
 				cloneObject.clipTo = null;
-
+					
 				referenceCanvas = layer.getCanvasObject().canvas;
 
 				leftRelativeToClipArea = (cloneObject.left - ((referenceCanvas.width / 2) + area.offsetX)) * printScaleX;
 				topRelativeToClipArea = (cloneObject.top - ((referenceCanvas.height / 2) + area.offsetY)) * printScaleY;
-
-				console.log(leftRelativeToClipArea, topRelativeToClipArea);
 
 				cloneObject.set({
 					scaleX: cloneObject.scaleX * printScaleX,
@@ -128,13 +132,15 @@ var DesignState = function($rootScope, InksyEvents) {
 					left: leftRelativeToClipArea,
 					top: topRelativeToClipArea
 				});
-				cloneObject.setCoords();
+				// cloneObject.setCoords();
 
 				printCanvas.add(cloneObject);
 
 				if (cloneObject._generateCompositeImage) {
 					cloneObject._generateCompositeImage();
 				}
+
+				deferred.resolve();
 			});
 
 			printCanvas.deactivateAll();
@@ -156,6 +162,6 @@ var DesignState = function($rootScope, InksyEvents) {
 	};
 };
 
-DesignState.$inject = ['$rootScope', 'InksyEvents'];
+DesignState.$inject = ['$rootScope', 'InksyEvents', '$q'];
 
 export default DesignState;

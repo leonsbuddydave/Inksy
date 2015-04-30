@@ -8,7 +8,7 @@ class FacebookPhotoImportCtrl {
 		this.$scope = $scope;
 
 		$scope.selectedAlbum = null;
-		$scope.selectedPhotos = {};
+		$scope.selectedPhotos = [];
 		$scope.importing = false;
 
 		this.socialData = {
@@ -56,12 +56,17 @@ class FacebookPhotoImportCtrl {
 		};
 
 		$scope.togglePhotoSelection = (photo) => {
-			var id, selectedPhotos;
+			var id, selectedPhotos, selectedPhotoIndex;
 
 			id = photo.id;
 			selectedPhotos = $scope.selectedPhotos;
+			selectedPhotoIndex = selectedPhotos.indexOf(photo);
 
-			selectedPhotos[id] = !selectedPhotos[id];
+			if (selectedPhotoIndex === -1) {
+				selectedPhotos.push(photo);
+			} else {
+				selectedPhotos.splice(selectedPhotoIndex, 1);
+			}
 		};
 
 		$scope.importSelected = () => {
@@ -69,15 +74,21 @@ class FacebookPhotoImportCtrl {
 
 			$scope.importing = true;
 
-			for (let id in $scope.selectedPhotos) {
-				results.push( getUrlForPhotoId(id) );
-			}
+			$scope.selectedPhotos.forEach(function(photo, index) {
+				results.push( getUrlForPhoto(photo) );
+			});
 
 			$scope.$close(results);
 		}
 
-		var getUrlForPhotoId = function(id) {
-			return "https://graph.facebook.com/" + id + "/picture?access_token=" + $scope.auth.accessToken;
+		var getUrlForPhoto = (photo) => {
+			if (this.isFacebook()) {
+				return "https://graph.facebook.com/" + photo.id + "/picture?access_token=" + $scope.auth.accessToken;	
+			} else if (this.isInstagram()) {
+				return photo.images.standard_resolution.url;
+			} else {
+				return "";
+			}
 		}
 	}
 
@@ -90,9 +101,9 @@ class FacebookPhotoImportCtrl {
 	}
 
 	getAlbums() {
-		if (this.isFacebook()) {
+		if (this.isFacebook() && this.socialData.facebook) {
 			return this.socialData.facebook.albums;
-		} else if (this.isInstagram()) {
+		} else if (this.isInstagram() && this.socialData.instagram) {
 			return [];
 		} else {
 			return [];
@@ -104,7 +115,7 @@ class FacebookPhotoImportCtrl {
 
 		$scope = this.$scope;
 
-		if (this.isFacebook()) {
+		if (this.isFacebook() && $scope.selectedAlbum) {
 			return $scope.selectedAlbum.photos.data;
 		} else if (this.isInstagram()) {
 			if (this.socialData.instagram !== null) {
@@ -157,6 +168,7 @@ class FacebookPhotoImportCtrl {
 		id = photo.id;
 
 		if (this.isFacebook()) {
+			console.log('why is this happening')
 			return [
 				"https://graph.facebook.com/",
 				id,

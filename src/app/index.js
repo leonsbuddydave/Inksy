@@ -30,10 +30,12 @@ import LayerSet from './models/LayerSet.model';
 import Layer from './models/Layer.model';
 import ImageLayer from './models/ImageLayer.model';
 import TextLayer from './models/TextLayer.model';
+import InksyImage from './models/InksyImage.model';
 
 import ProductImage from './models/product-image.model';
 import ProductAngle from './models/product-angle.constant';
 import InksyEvents from './constants/InksyEvents.constant';
+import InksyConfig from './constants/InksyEvents.constant';
 
 import MaskedImage from './lib/MaskedImage'
 
@@ -75,10 +77,12 @@ angular.module('inksy', ['ngAnimate', 'ui.bootstrap', 'templates', 'dndLists', '
 	.service('Layer', Layer)
 	.service('ImageLayer', ImageLayer)
 	.service('TextLayer', TextLayer)
+	.service('InksyImage', InksyImage)
 
 	.provider('Instagram', InstagramProvider)
 	.provider('ProductService', ProductServiceProvider)
 
 	.constant('ProductAngle', ProductAngle)
 	.constant('InksyEvents', InksyEvents)
+	.constant('InksyConfig', InksyConfig)
 ;
