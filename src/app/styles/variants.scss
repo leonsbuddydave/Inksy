@@ -1,0 +1,42 @@
+//  _    __           _             __      
+// | |  / /___ ______(_)___ _____  / /______
+// | | / / __ `/ ___/ / __ `/ __ \/ __/ ___/
+// | |/ / /_/ / /  / / /_/ / / / / /_(__  ) 
+// |___/\__,_/_/  /_/\__,_/_/ /_/\__/____/  
+//                                         
+.variant-selector {
+
+	&:after {
+		content: " ";
+		display: block;
+		clear: both;
+		float: none;
+	}
+
+	.variant {
+		width: 70px;
+		height: 70px;
+		margin: 5px;
+		float: left;
+		cursor: pointer;
+		text-align: center;
+		overflow: hidden;
+		border-radius: 35px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		@include faint-shadow();
+
+		&.selected {
+			opacity: .5 !important;
+		}
+
+		&:hover {
+			opacity: .8;
+		}
+
+		img {
+			width: 40px;
+		}
+	}
+}

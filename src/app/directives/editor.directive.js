@@ -6,7 +6,7 @@ import DynamicMaskedImage from '../lib/DynamicMaskedImage';
 
 function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interval, InksyEvents) {
 	return {
-		// templateUrl: 'editor.html',
+		templateUrl: 'app/partials/editor.html',
 		restrict: 'AE',
 		link: function(scope, element, attributes, ctrl) {
 			var productSides, fc, design;

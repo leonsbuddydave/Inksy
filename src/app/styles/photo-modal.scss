@@ -1,0 +1,60 @@
+//     ____  __          __           __  ___          __      __
+//    / __ \/ /_  ____  / /_____     /  |/  /___  ____/ /___ _/ /
+//   / /_/ / __ \/ __ \/ __/ __ \   / /|_/ / __ \/ __  / __ `/ / 
+//  / ____/ / / / /_/ / /_/ /_/ /  / /  / / /_/ / /_/ / /_/ / /  
+// /_/   /_/ /_/\____/\__/\____/  /_/  /_/\____/\__,_/\__,_/_/   
+//
+
+.album-grid {
+	
+	height: 400px;
+	overflow-y: scroll;
+
+	&:after {
+		content: " ";
+		display: block;
+		clear: both;
+		float: none;
+	}
+
+	.album-preview {
+		width: 33%;
+		float: left;
+		position: relative;
+
+		.album-preview-image {
+			height: 200px;
+			margin: 5px;
+			position: relative;
+
+			.album-name {
+				overflow: hidden;
+				background-color: rgba(0, 0, 0, .75);
+				padding: 5px 10px;
+				color: #fff;
+				position: absolute;
+				width: 100%;
+				bottom: 0;
+			}
+		}
+	}
+}
+
+.photo-selection-tray {
+	width: 100%;
+	min-height: 60px;
+
+	&:after {
+		content: " ";
+		display: block;
+		clear: both;
+		float: none;
+	}
+
+	.selected-photo-thumbnail {
+		float: left;
+		height: 50px;
+		width: 50px;
+		margin: 5px;
+	}
+}

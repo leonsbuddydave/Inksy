@@ -23,40 +23,40 @@
     <!-- endbuild -->
   </head>
   <body>
-    <div class="app-container" ng-controller="MainCtrl as main">
+    <div class="inksy-product-designer" ng-controller="MainCtrl as main">
       
       <div class="left-sidebar">
-        <tabset class="asset-sources" justified="true">
+        <div class="left-sidebar-inner">
+          <tabset class="asset-sources inksy-tabset" justified="true">
 
-          <tab heading="Product">
-            <category-selector></category-selector>
-          </tab>
+            <tab heading="Product">
+              <category-selector></category-selector>
+            </tab>
 
-          <tab heading="Variant">
-            <variant-selector></variant-selector>
-          </tab>
+            <tab heading="Variant">
+              <variant-selector></variant-selector>
+            </tab>
 
-          <tab heading="Design">
-            <tabset class="asset-sources" justified="true">
-              <tab heading="Images">
-                <div ng-include="'gallery.html'"></div>
-              </tab>
+            <tab heading="Design">
+              <tabset class="asset-sources" justified="true">
+                <tab heading="Images">
+                  <div ng-include="'app/partials/gallery.html'"></div>
+                </tab>
 
-              <tab heading="Text">
-                <div ng-include="'text-properties.html'"></div>
-              </tab>
+                <tab heading="Text">
+                  <div ng-include="'app/partials/text-properties.html'"></div>
+                </tab>
 
-              <tab heading="Patterns">
-                <div ng-include="'patterns.html'"></div>
-              </tab>
-            </tabset>
+                <tab heading="Patterns">
+                  <div ng-include="'app/partials/patterns.html'"></div>
+                </tab>
+              </tabset>
 
-            <!-- Layers Palette -->
-            <div ng-include="'layer-palette.html'"></div>
-          </tab>
-        </tabset>
-
-        <hr>
+              <!-- Layers Palette -->
+              <div ng-include="'app/partials/layer-palette.html'"></div>
+            </tab>
+          </tabset>
+        </div>
       </div>
 
       <div class="editor-area" droppable="main.handleImageDrop">
@@ -82,8 +82,8 @@
         <div ng-controller="CartCtrl as cart" class="cart-actions">
           <h2 class="price" ng-bind="(cart.price | currency:'$')"></h2>
           <h2 class="name" ng-bind="cart.productName"></h2>
-          <button ng-click="cart.addToCart()" class="btn btn-primary cart-action" type="button">Add to Cart</button>
-          <!-- <button ng-click="cart.saveToProfile()" class="btn btn-default cart-action" type="button">Save to Profile</button> -->
+          <button ng-click="cart.addToCart()" class="cart-action add-to-cart" type="button">add to cart</button>
+          <!-- <button ng-click="cart.saveToProfile()" class="cart-action save" type="button">save</button> -->
         </div>
       </div>
 

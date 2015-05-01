@@ -1,0 +1,87 @@
+//     ______    ___ __            
+//    / ____/___/ (_) /_____  _____
+//   / __/ / __  / / __/ __ \/ ___/
+//  / /___/ /_/ / / /_/ /_/ / /    
+// /_____/\__,_/_/\__/\____/_/     
+.editor-area {
+	display: flex;
+	background-color: #ececec;
+	flex-direction: column;
+	padding: 0;
+	overflow: hidden;
+
+	.editor-action-bar {
+		width: 100%;
+	}
+
+	.editor {
+		flex: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+
+		.editor-inner {
+			width: 600px;
+			height: 600px;
+			@include faint-shadow();
+		}
+	}
+
+	.product-color-picker {
+		
+		display: block;
+		width: 100%;
+		margin: 0;
+		padding: 10px;
+		height: 40px;
+
+		&:after {
+			content: " ";
+			display: block;
+			clear: both;
+			float: none;
+		}
+
+		.swatch {
+			float: left;
+			display: block;
+			height: 20px;
+			width: 20px;
+			transition: .25s linear all;
+			@include faint-shadow();
+
+			&:not(:first-child) {
+				margin-left: 10px;
+			}
+
+			&:hover, &.selected {
+				opacity: .7;
+				outline: solid 1px black;
+				border: solid 1px white;
+			}
+		}
+	}
+
+	.product-selector {
+		height: 100px;
+		background-color: red;
+		border: solid 1px black;
+
+		.product {
+			height: 100%;
+			width: 150px;
+			float: left;
+			background-color: #fff;
+			transition: .25s ease-in-out transform;
+
+			&:hover {
+				transform: translateY(-10px);
+			}
+
+			&.selected {
+				border: solid 1px blue;
+			}
+		}
+	}
+}

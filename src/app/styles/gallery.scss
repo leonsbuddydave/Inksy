@@ -1,0 +1,20 @@
+//    ______      ____               
+//   / ____/___ _/ / /__  _______  __
+//  / / __/ __ `/ / / _ \/ ___/ / / /
+// / /_/ / /_/ / / /  __/ /  / /_/ / 
+// \____/\__,_/_/_/\___/_/   \__, /  
+//                          /____/   
+.asset-sources {
+	.asset-panel {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		height: 300px;
+
+		.gallery {
+			flex: 1;
+			overflow-x: hidden;
+			overflow-y: auto;
+		}
+	}
+}

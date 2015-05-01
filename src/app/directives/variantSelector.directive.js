@@ -2,7 +2,7 @@
 
 var variantSelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) {
 	return {
-		templateUrl: 'variant-selector.html',
+		templateUrl: 'app/partials/variant-selector.html',
 		restrict: 'AE',
 		scope: true,
 		link: function(scope, element, attributes) {
@@ -17,6 +17,8 @@ var variantSelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) {
 
 				scope.selectedMaterial = scope.getMaterials()['basic'];
 				scope.changeMaterial();
+
+				scope.selectVariant(0);
 			});
 
 			scope.changeMaterial = function() {

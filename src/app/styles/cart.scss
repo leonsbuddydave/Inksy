@@ -1,0 +1,66 @@
+//    ______           __ 
+//   / ____/___ ______/ /_
+//  / /   / __ `/ ___/ __/
+// / /___/ /_/ / /  / /_  
+// \____/\__,_/_/   \__/  
+// 
+.cart-actions {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	height: 100%;
+	flex: 1;
+
+	.price {
+		font-weight: bold;
+		padding: 0;
+		margin: 0;
+		margin-bottom: 5px;
+	}
+
+	.name {
+		padding: 0;
+		margin: 0;
+		margin-bottom: 10px;
+	}
+
+	.cart-action {
+		width: 100%;
+		margin: 5px;
+		border-radius: 3px;
+		color: #fff;
+		border: solid 1px;
+		padding: 8px;
+
+		&.add-to-cart {
+			$base-color: #00aeef;
+
+			background-color: $base-color;
+			border-color: #0076a3;
+
+			&:active {
+				background-color: darken($base-color, 10%) !important;
+			}
+
+			&:hover {
+				background-color: lighten($base-color, 5%);
+			}
+		}
+
+		&.save {
+			$base-color: #1e4460;
+
+			background-color: $base-color;
+			border-color: #0076a3;
+
+			&:active {
+				background-color: darken($base-color, 10%) !important;
+			}
+
+			&:hover {
+				background-color: lighten($base-color, 5%);
+			}
+		}
+	}
+}

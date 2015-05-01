@@ -2,7 +2,7 @@
 
 var categorySelector = function(InksyAPI, InksyEvents, $rootScope) {
 	return {
-		templateUrl: 'category-selector.html',
+		templateUrl: 'app/partials/category-selector.html',
 		restrict: 'AE',
 		scope: true,
 		link: function(scope, element, attributes) {
