@@ -1,0 +1,50 @@
+.product-color-picker {
+	
+	display: block;
+	width: 100%;
+	margin: 0;
+	padding: 10px;
+	height: 40px;
+	text-align: center;
+
+	&:after {
+		content: " ";
+		display: block;
+		clear: both;
+		float: none;
+	}
+
+	.swatch {
+		$size: 45px;
+
+		cursor: pointer;
+		display: inline-block;
+		height: $size;
+		width: $size;
+		border-radius: $size / 2;
+
+		transition: .25s ease-out all;
+
+		position: relative;
+		margin: 5px;
+
+		@include faint-shadow();
+
+		&:not(:first-child) {
+			margin-left: 10px;
+		}
+
+		&:hover {
+			transform: scale(1.2);
+		}
+
+		&.selected {
+			border: solid 2px white;
+		}
+
+		&:nth-child(9n):after {
+			content: ' ';
+			display: block;
+		}
+	}
+}

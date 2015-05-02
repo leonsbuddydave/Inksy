@@ -78,6 +78,14 @@ var variantSelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) {
 				}
 			}
 
+			scope.hasMaterials = function() {
+				if (scope.hasCategory()) {
+					return (Object.keys(scope.getMaterials()).length > 0);
+				}
+
+				return false;
+			}
+
 			/**
 			 * [getPreviewImage Gets a preview image for a variant]
 			 * @param  {[type]} variant [A variant to get a preview image for]

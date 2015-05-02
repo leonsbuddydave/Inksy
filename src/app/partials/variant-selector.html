@@ -2,12 +2,18 @@
 	<div class="notification light" ng-hide="hasCategory()">Select a product from the products tab.</div>
 
 	<div ng-show="hasCategory()">
-		<select class="form-control" ng-model="selectedMaterial" ng-options="material as matName for (matName, material) in getMaterials()" ng-change="changeMaterial()"></select>
+		<select ng-show="hasMaterials()" class="form-control" ng-model="selectedMaterial" ng-options="material as matName for (matName, material) in getMaterials()" ng-change="changeMaterial()"></select>
 		
 		<div class="variant-selector">
 			<div class="variant" ng-repeat="variant in getVariants()" ng-click='selectVariant($index)' ng-class="{selected: isSelected($index)}">
 				<img ng-src="{{getPreviewImage(variant)}}">
 			</div>
 		</div>
+
+		<ul ng-controller="ProductColorPickerCtrl as productColorPicker" class="product-color-picker">
+		  <li ng-repeat-start="color in productColorPicker.colors track by color" ng-click="productColorPicker.changeColor(color)" class="swatch" style="background-color: {{color}};" ng-class="{selected: productColorPicker.isSelected(color)}">
+		  </li>
+		  <br ng-repeat-end ng-show="($index + 1) % 9 === 0">
+		</ul>
 	</div>
 </div>
