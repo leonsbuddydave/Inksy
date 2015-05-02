@@ -37,6 +37,10 @@ class Instagram {
 		].join('');
 	}
 
+	isFullApiUrl(url) {
+		return /^https/.test(url);
+	}
+
 	api(url, params) {
 		var apiUrl, queryString, finalUrl, $http, $q, deferred;
 
@@ -45,29 +49,39 @@ class Instagram {
 
 		deferred = $q.defer();
 
-		apiUrl = this.getApiUrl() + url;
-		queryString = [];
-		params = params || {};
+		finalUrl = null;
 
-		params['access_token'] = settings.accessToken;
-		params['callback'] = 'JSON_CALLBACK';
+		/*
+		If we're being passed a full Instagram URL, make sure
+		that any JSONP callbacks get appropriate updated
+		 */
+		if (this.isFullApiUrl(url)) {
+			url = url.replace(/angular\.callbacks\._\d/g, 'JSON_CALLBACK');
+			finalUrl = url;
+		} else {
+			apiUrl = this.getApiUrl() + url;
+			queryString = [];
+			params = params || {};
 
-		for (let paramName in params) {
-			var param;
+			params['access_token'] = settings.accessToken;
+			params['callback'] = 'JSON_CALLBACK';
 
-			param = params[paramName];
-			queryString.push( paramName + '=' + param );
+			for (let paramName in params) {
+				var param;
+
+				param = params[paramName];
+				queryString.push( paramName + '=' + param );
+			}
+
+			finalUrl = [apiUrl, '?', queryString.join('&')].join('')
 		}
 
-		finalUrl = [apiUrl, '?', queryString.join('&')].join('')
-
 		$http.jsonp(finalUrl).then((response) => {
-			var instagramMeta, instagramData;
+			var data;
 
-			instagramMeta = response.data.meta;
-			instagramData = response.data.data;
+			data = response.data;
 
-			deferred.resolve(instagramData);
+			deferred.resolve(data);
 		}, () => {
 			// TODO: Graceful error handling for Instagram API failures
 		});

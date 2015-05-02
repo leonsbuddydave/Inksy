@@ -1,0 +1,18 @@
+<div class="instagram-panel">
+	<div class="action-bar" ng-hide="isConnected()">
+		<button ng-click="connectToInstagram()">
+			Connect to Instagram
+		</button>	
+	</div>
+
+	<div class="instagram-gallery" ng-show="isConnected()">
+		<div class="instagram-photo-container" ng-repeat="photo in getAlbum().getPhotos()">
+			<div class="instagram-photo" background-image="{{photo.getHD()}}" cover ng-click="onPhotoClick(photo)">
+			</div>
+		</div>
+	</div>
+
+	<div class="action-bar" ng-show="canLoadMore()">
+		<button ng-click="loadMorePhotos()">Load More</button>		
+	</div>
+</div>

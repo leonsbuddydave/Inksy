@@ -17,6 +17,7 @@ import droppable from './directives/droppable.directive';
 import backgroundImage from './directives/backgroundImage.directive';
 import categorySelector from './directives/categorySelector.directive';
 import variantSelector from './directives/variantSelector.directive';
+import instagramPanel from './directives/instagramPanel.directive';
 
 import LayerService from './services/layer.service';
 import MathUtils from './services/MathUtils.service';
@@ -31,6 +32,8 @@ import Layer from './models/Layer.model';
 import ImageLayer from './models/ImageLayer.model';
 import TextLayer from './models/TextLayer.model';
 import InksyImage from './models/InksyImage.model';
+import InksyAlbum from './models/InksyAlbum.model';
+import InksyPhoto from './models/InksyPhoto.model';
 
 import ProductImage from './models/product-image.model';
 import ProductAngle from './models/product-angle.constant';
@@ -63,6 +66,7 @@ angular.module('inksy', ['ngAnimate', 'ui.bootstrap', 'templates', 'dndLists', '
 	.directive('backgroundImage', backgroundImage)
 	.directive('categorySelector', categorySelector)
 	.directive('variantSelector', variantSelector)
+	.directive('instagramPanel', instagramPanel)
 
 	.factory('LayerService', LayerService)
 	.factory('ProductService', ProductService)
@@ -78,6 +82,8 @@ angular.module('inksy', ['ngAnimate', 'ui.bootstrap', 'templates', 'dndLists', '
 	.service('ImageLayer', ImageLayer)
 	.service('TextLayer', TextLayer)
 	.service('InksyImage', InksyImage)
+	.service('InksyAlbum', InksyAlbum)
+	.service('InksyPhoto', InksyPhoto)
 
 	.provider('Instagram', InstagramProvider)
 	.provider('ProductService', ProductServiceProvider)
