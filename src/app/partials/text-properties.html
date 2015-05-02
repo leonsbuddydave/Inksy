@@ -1,38 +1,29 @@
 <div ng-controller="TextPropertyCtrl as text" class="asset-panel">
-    <ui-select ng-model="text.styles.fontFamily" ng-disabled="!text.enabled()" them="bootstrap">
+    <ui-select ng-model="text.styles.fontFamily" theme="bootstrap">
         <ui-select-match>{{$select.selected.name}}</ui-select-match>
         <ui-select-choices repeat="fontFamily in text.options.fontFamilies | filter: $select.search">
             <div style="font-family: '{{fontFamily.name}}';">{{fontFamily.name}}</div>
         </ui-select-choices>
     </ui-select>
-    <textarea class="form-control col-md-12" ng-model="text.text" ng-disabled="!text.enabled()">
-    </textarea>
+    <input class="form-control col-md-12" ng-model="text.text" />
 
     <!-- Text Styling -->
     <div class="btn-group btn-group-justified">
         <div class="btn-group">
-            <label class="btn btn-primary" ng-model="text.styles.bold" btn-checkbox ng-disabled="!text.enabled()">B</label>
+            <label class="btn btn-primary" ng-model="text.styles.bold" btn-checkbox>B</label>
         </div>
         <div class="btn-group">
-            <label class="btn btn-primary" ng-model="text.styles.italic" btn-checkbox ng-disabled="!text.enabled()">I</label>
+            <label class="btn btn-primary" ng-model="text.styles.italic" btn-checkbox>I</label>
         </div>
         <div class="btn-group">
-            <label class="btn btn-primary" ng-model="text.styles.underline" btn-checkbox ng-disabled="!text.enabled()">U</label>
+            <label class="btn btn-primary" ng-model="text.styles.underline" btn-checkbox>U</label>
+        </div>
+        <div class="btn-group">
+            <label class="btn btn-primary" colorpicker colorpicker-position="top" ng-model="text.styles.color" type="button">
+                Color
+            </label>
         </div>
     </div>
-    
-    <!-- Text Alignment -->
-    <div class="btn-group btn-group-justified">
-        <div class="btn-group">
-            <label class="btn btn-primary" ng-model="text.styles.align" btn-radio="'left'" ng-disabled="!text.enabled()">Left</label>
-        </div>
-        <div class="btn-group">
-            <label class="btn btn-primary" ng-model="text.styles.align" btn-radio="'center'" ng-disabled="!text.enabled()">Center</label>
-        </div>
-        <div class="btn-group">
-            <label class="btn btn-primary" ng-model="text.styles.align" btn-radio="'right'" ng-disabled="!text.enabled()">Right</label>
-        </div>
-    </div>
-    <button colorpicker colorpicker-position="top" ng-model="text.styles.color" type="button" class="btn btn-primary">Change Color</button>
+
     <button ng-click="text.test()" class="btn btn-primary">Add Text</button>
 </div>

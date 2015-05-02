@@ -132,23 +132,14 @@ class LayerPaletteCtrl {
 	}
 
 	onClickDelete(event, layer) {
+		var layerSet = this.getLayerSet();
 
-	}
+		if (layerSet === null) return;
 
-	/*
-		Delete the provided layer
-	*/
-	deleteLayer(event, layer) {
-		var layerPos, layers;
-
-		layers = this.getLayerSet();
-		layerPos = this.layers.indexOf(layer);
-
-		layers.splice(layerPos, 1);
-		this.update();
+		layerSet.deleteLayer(layer);
 
 		event.stopPropagation();
-		return false;
+		this.update();
 	}
 
 	/*

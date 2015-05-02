@@ -57,6 +57,14 @@ var LayerSet = function() {
 			else
 				this.swapLayerPositions(layerPos, layerPos - 1);
 		}
+
+		deleteLayer(layer) {
+			var layerPos;
+
+			layerPos = this.layers.indexOf(layer);
+
+			this.layers.splice(layerPos, 1);
+		}
 	}
 }
 
