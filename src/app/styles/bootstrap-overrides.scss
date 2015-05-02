@@ -38,3 +38,23 @@
 		}
 	}
 }
+
+.design-tabs {
+
+	& > ul > li, li.active {
+		a, a:hover, a:focus {
+			border: none;
+			background-color: transparent;
+
+			&:hover {
+				background-color: transparent;
+			}
+		}
+
+		img {
+			height: 40px;
+			width: 40px;
+		}
+	}
+	
+}

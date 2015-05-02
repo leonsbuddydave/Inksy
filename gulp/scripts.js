@@ -17,7 +17,7 @@ module.exports = function(options) {
     };
 
     if(watch) {
-      webpackOptions.devtool = 'inline-source-map';
+      // webpackOptions.devtool = 'inline-source-map';
     }
 
     var webpackChangeHandler = function(err, stats) {

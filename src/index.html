@@ -38,17 +38,49 @@
             </tab>
 
             <tab heading="Design">
-              <tabset class="asset-sources" justified="true">
-                <tab heading="Images">
-                  <div ng-include="'app/partials/gallery.html'"></div>
+              <tabset class="asset-sources design-tabs" justified="true">
+                <tab active="active.upload">
+                  <tab-heading>
+                    <img src="/assets/images/icons/upload.png" ng-hide="active.upload">
+                    <img src="/assets/images/icons/upload_on.png" ng-show="active.upload">
+                  </tab-heading>
+                  <div ng-include="'app/partials/gallery.html'" class="asset-panel"></div>
                 </tab>
 
-                <tab heading="Text">
-                  <div ng-include="'app/partials/text-properties.html'"></div>
+                <tab active="active.facebook">
+                  <tab-heading>
+                    <img src="/assets/images/icons/facebook.png" ng-hide="active.facebook">
+                    <img src="/assets/images/icons/facebook_on.png" ng-show="active.facebook">
+                  </tab-heading>
+
+                  <div class="asset-panel">testing</div>
                 </tab>
 
-                <tab heading="Patterns">
-                  <div ng-include="'app/partials/patterns.html'"></div>
+                <tab active="active.instagram">
+                  <tab-heading>
+                    <img src="/assets/images/icons/instagram.png" ng-hide="active.instagram">
+                    <img src="/assets/images/icons/instagram_on.png" ng-show="active.instagram">
+                  </tab-heading>
+
+                  <div class="asset-panel">
+                    
+                  </div>
+                </tab>
+
+                <tab active="active.text">
+                  <tab-heading>
+                    <img src="/assets/images/icons/text.png" ng-hide="active.text">
+                    <img src="/assets/images/icons/text_on.png" ng-show="active.text">
+                  </tab-heading>
+                  <div ng-include="'app/partials/text-properties.html'" class="asset-panel"></div>
+                </tab>
+
+                <tab active="active.pattern">
+                  <tab-heading>
+                    <img src="/assets/images/icons/pattern.png" ng-hide="active.pattern">
+                    <img src="/assets/images/icons/pattern_on.png" ng-show="active.pattern">
+                  </tab-heading>
+                  <div ng-include="'app/partials/patterns.html'" class="asset-panel"></div>
                 </tab>
               </tabset>
 
