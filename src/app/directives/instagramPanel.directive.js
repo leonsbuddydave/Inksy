@@ -1,9 +1,10 @@
 'use strict';
 
-var instagramPanel = function(Instagram, InksyAlbum) {
+var instagramPanel = function(Instagram, InksyAlbum, $rootScope) {
 	return {
 		templateUrl: 'app/partials/instagram-panel.html',
 		restrict: 'AE',
+		scope: {},
 		link: function(scope, element, attributes) {
 			const PHOTOS_PER_REQUEST = 20;
 			var nextApiUrl = '/users/self/media/recent';
@@ -17,6 +18,8 @@ var instagramPanel = function(Instagram, InksyAlbum) {
 			 * and retrieves user photos]
 			 */
 			scope.connectToInstagram = function() {
+				if (apiRequestInProgress || scope.auth) return;
+
 				apiRequestInProgress = true;
 				Instagram.login(function(response) {
 					scope.auth = response.authResponse;
@@ -76,6 +79,13 @@ var instagramPanel = function(Instagram, InksyAlbum) {
 			}
 
 			scope.onPhotoClick = function(photo) {
+				var image = new Image();
+				image.onload = () => {
+					scope.$apply(function() {
+						$rootScope.$broadcast('image:new', image);
+					});
+				}
+				image.src = photo.getHD();
 				console.log('Photo clicked!');
 			}
 			
@@ -83,6 +93,6 @@ var instagramPanel = function(Instagram, InksyAlbum) {
 	}
 };
 
-instagramPanel.$inject = ['Instagram', 'InksyAlbum'];
+instagramPanel.$inject = ['Instagram', 'InksyAlbum', '$rootScope'];
 
 export default instagramPanel;

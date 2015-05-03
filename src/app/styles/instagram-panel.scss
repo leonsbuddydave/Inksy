@@ -1,6 +1,6 @@
-.instagram-panel {
+.gallery-panel {
 
-	.instagram-gallery {
+	.gallery {
 		
 		text-align: center;
 
@@ -10,7 +10,7 @@
 			clear: both;
 		}
 
-		.instagram-photo-container {
+		.photo-container {
 			width: 140px;
 			height: 140px;
 			display: inline-block;
@@ -20,7 +20,7 @@
 
 			@include faint-shadow();
 
-			.instagram-photo {
+			.photo {
 				width: 100%;
 				height: 100%;
 				overflow: hidden;

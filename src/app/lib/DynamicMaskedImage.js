@@ -130,7 +130,7 @@ var DynamicMaskedImage = (function() {
 				ctx.save();
 				ctx.setTransform(1, 0, 0, 1, 0, 0);
 				ctx.drawImage(this._maskingCanvas, 0, 0);
-				console.log(this._maskingCanvas.toDataURL({format: 'png'}));
+				// console.log(this._maskingCanvas.toDataURL({format: 'png'}));
 				ctx.restore();
 			}
 		},

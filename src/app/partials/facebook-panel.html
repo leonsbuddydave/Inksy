@@ -1,0 +1,25 @@
+<div class="gallery-panel">
+	<div class="action-bar" ng-hide="isConnected()">
+		<button ng-click="connectToFacebook()">
+			Connect to Facebook
+		</button>	
+	</div>
+
+	<div class="gallery" ng-show="isConnected() && !getSelectedAlbum()">
+		<div class="photo-container" ng-repeat="album in getAlbums()">
+			<div class="photo" background-image="{{getAlbumPreviewUrl(album)}}" cover ng-click="selectAlbum(album)">
+			</div>
+		</div>
+	</div>
+
+	<div class="gallery" ng-show="isConnected() && getSelectedAlbum()">
+		<div class="photo-container" ng-repeat="photo in getSelectedAlbum().getPhotos()">
+			<div class="photo" background-image="{{photo.getHD()}}" cover ng-click="onPhotoClick(photo)">
+			</div>
+		</div>
+	</div>
+
+	<div class="action-bar" ng-show="canLoadMoreAlbums()">
+		<button ng-click="loadMoreAlbums()">Load More</button>		
+	</div>
+</div>

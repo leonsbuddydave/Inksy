@@ -39,7 +39,7 @@
 
             <tab heading="Design">
               <tabset class="asset-sources design-tabs" justified="true">
-                <tab active="active.upload">
+                <tab active="active.upload" ng-click="$event.stopPropagation()">
                   <tab-heading>
                     <img src="/assets/images/icons/upload.png" ng-hide="active.upload">
                     <img src="/assets/images/icons/upload_on.png" ng-show="active.upload">
@@ -53,7 +53,7 @@
                     <img src="/assets/images/icons/facebook_on.png" ng-show="active.facebook">
                   </tab-heading>
 
-                  <div class="asset-panel">testing</div>
+                  <div class="asset-panel" facebook-panel></div>
                 </tab>
 
                 <tab active="active.instagram">
@@ -62,9 +62,7 @@
                     <img src="/assets/images/icons/instagram_on.png" ng-show="active.instagram">
                   </tab-heading>
 
-                  <div class="asset-panel" instagram-panel>
-                    
-                  </div>
+                  <div class="asset-panel" instagram-panel></div>
                 </tab>
 
                 <tab active="active.text">

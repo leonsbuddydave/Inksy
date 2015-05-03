@@ -7,6 +7,14 @@ var InksyAlbum = function(InksyPhoto) {
 			this.photos = [];
 		}
 
+		setExternalId(externalId) {
+			this.externalId = externalId;
+		}
+
+		getExternalId() {
+			return this.externalId;
+		}
+
 		getName() {
 			return this.name;
 		}
@@ -26,6 +34,22 @@ var InksyAlbum = function(InksyPhoto) {
 		getNextUrl() {
 			return this.nextUrl;
 		}
+
+		setCoverPhotoId(coverPhotoId) {
+			this.coverPhotoId = coverPhotoId;
+		}
+
+		getCoverPhotoId() {
+			return this.coverPhotoId;
+		}
+
+		setPaging(paging) {
+			this.paging = paging;
+		}
+
+		getPaging() {
+			return this.paging;
+		}
 	}
 
 	InksyAlbum.fromInstagramData = function(instagramData, album) {
@@ -44,8 +68,32 @@ var InksyAlbum = function(InksyPhoto) {
 		return stubAlbum;
 	}
 
-	InksyAlbum.fromFacebookData = function(facebookData) {
-		return new InksyAlbum('default');
+	InksyAlbum.fromFacebookData = function(facebookData, albums) {
+		var stubAlbums = albums || [];
+
+		if (angular.isArray(facebookData)) {
+			facebookData.forEach(function(item, index) {
+				var album = new InksyAlbum(item.name);
+				album.setCoverPhotoId(item.cover_photo);
+				album.setExternalId(item.id);
+
+				if (item.photos) {
+					album.setPaging(item.photos.paging);
+
+					item.photos.data.forEach(function(item, index) {
+						var photo;
+						photo = new InksyPhoto();
+						photo.setExternalId(item.id);
+						photo.setHD(item.source);
+						album.addPhoto(photo);
+					})
+				}
+
+				stubAlbums.push(album);
+			});
+		}
+
+		return stubAlbums;
 	}
 
 	return InksyAlbum;
