@@ -18,6 +18,7 @@ import categorySelector from './directives/categorySelector.directive';
 import variantSelector from './directives/variantSelector.directive';
 import instagramPanel from './directives/instagramPanel.directive';
 import facebookPanel from './directives/facebookPanel.directive';
+import galleryPanel from './directives/galleryPanel.directive';
 
 import LayerService from './services/layer.service';
 import MathUtils from './services/MathUtils.service';
@@ -67,6 +68,7 @@ angular.module('inksy', ['ngAnimate', 'ui.bootstrap', 'templates', 'dndLists', '
 	.directive('variantSelector', variantSelector)
 	.directive('instagramPanel', instagramPanel)
 	.directive('facebookPanel', facebookPanel)
+	.directive('galleryPanel', galleryPanel)
 
 	.factory('LayerService', LayerService)
 	.factory('ProductService', ProductService)

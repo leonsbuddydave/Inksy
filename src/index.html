@@ -44,7 +44,8 @@
                     <img src="/assets/images/icons/upload.png" ng-hide="active.upload">
                     <img src="/assets/images/icons/upload_on.png" ng-show="active.upload">
                   </tab-heading>
-                  <div ng-include="'app/partials/gallery.html'" class="asset-panel"></div>
+                  
+                  <div class="asset-panel" gallery-panel></div>
                 </tab>
 
                 <tab active="active.facebook">

@@ -1,0 +1,14 @@
+<div class="gallery-panel">
+	<div class="action-bar">
+		<button file-upload-button file-handler="uploadImages">
+			Add Photos
+		</button>	
+	</div>
+
+	<div class="gallery">
+		<div class="photo-container" ng-repeat="photo in getPhotos()">
+			<div class="photo" background-image="{{photo.getHD()}}" cover ng-click="onPhotoClick(photo)">
+			</div>
+		</div>
+	</div>
+</div>
