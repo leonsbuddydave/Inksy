@@ -30,7 +30,7 @@ class LayerPaletteCtrl {
 			if (layerSet === null) return;
 
 			imageLayer = new ImageLayer({
-				name: "New Image"
+				name: "Layer " + (layerSet.getLayerCount() + 1)
 			}, image);
 			layerSet.addLayer(imageLayer);
 			this.update();
@@ -45,7 +45,7 @@ class LayerPaletteCtrl {
 			if (layerSet === null) return;
 
 			textLayer = new TextLayer({
-				name: "New Text"
+				name: "Layer " + (layerSet.getLayerCount() + 1)
 			}, text);
 			layerSet.addLayer(textLayer);
 			this.update();

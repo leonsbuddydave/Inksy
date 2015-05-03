@@ -33,6 +33,10 @@ var LayerSet = function() {
 			return this.layers;
 		}
 
+		getLayerCount() {
+			return this.layers.length;
+		}
+
 		getSelectedLayer() {
 			return this.selectedLayer;
 		}
