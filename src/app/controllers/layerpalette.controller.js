@@ -66,26 +66,7 @@ class LayerPaletteCtrl {
 
 		this.update();
 
-		this.handleImageDrop = this.handleImageDrop.bind(this);
-
 		return this;
-	}
-
-	handleImageDrop(image) {
-		var img, $scope, $rootScope;
-
-		$scope = this.$scope;
-		$rootScope = this.$rootScope;
-
-		img = new Image();
-		img.onload = () => {
-			$scope.$apply( () => {
-				$rootScope.$broadcast('image:new', img);
-			});
-		}
-
-		console.log(image);
-		img.src = image.data;
 	}
 
 	/**

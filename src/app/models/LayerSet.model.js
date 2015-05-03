@@ -7,12 +7,21 @@ var LayerSet = function() {
 			this.selectedLayer = null;
 		}
 
-		select(layer) {
-			this.selectedLayer = layer;
+		select(layerToSelect) {
+			this.layers.forEach((layer) => {
+				layer.deselect();
+			});
+
+			this.selectedLayer = layerToSelect;
+			layerToSelect.select();
 		}
 
 		clearSelection() {
 			this.selectedLayer = null;
+
+			this.layers.forEach((layer) => {
+				layer.deselect();
+			});
 		}
 
 		addLayer(layer) {

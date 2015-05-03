@@ -13,6 +13,66 @@
 		background-color: lightgray;
 		flex: 1;
 		margin-bottom: 0;
+
+		.layer {
+			
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			background-color: white;
+
+			border: solid 1px #7d98ab;
+			color: #1e4460;
+
+			&.selected {
+				background-color: #cbdfe7;
+			}
+
+			.layer-thumbnail {
+				outline: solid 1px red;
+				width: 50px;
+				height: 50px;
+				// transform: scale(1.5);
+				// transform-origin: left center;
+				margin-right: 15px;
+			}
+
+			.layer-name {
+				flex: 1;
+				padding: 10px;
+			}
+
+			.layer-delete {
+				color: #7d98ab;
+				font-size: 2.4em;
+				margin: 0 20px;
+				cursor: pointer;
+			}
+
+			.layer-movement-controls {
+				width: 19px;
+				height: 40px;
+				margin-right: -10px;
+
+				.layer-control {
+
+					height: 50%;
+					background-repeat: no-repeat;
+					background-size: contain;
+
+					&.layer-up {
+						background-image: url('/assets/images/icons/layer_up.png');
+					}
+
+					&.layer-down {
+						background-image: url('/assets/images/icons/layer_down.png');
+					}
+
+				}
+			}
+
+		}
 	}
 
 	.layer-actions-bar {

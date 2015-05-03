@@ -6,7 +6,8 @@ var TextLayer = function(Layer) {
 			this.name = options.name;
 			this.setCanvasObject(new fabric.Text(text, {
 				fill: "#000000",
-				fontFamily: 'Open Sans'
+				fontFamily: 'Open Sans',
+				selectable: false
 			}));
 		}
 	}	

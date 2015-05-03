@@ -8,7 +8,6 @@ import ProductSelectorCtrl from './controllers/ProductSelector.controller';
 import TextPropertyCtrl from './controllers/TextProperty.controller';
 import ProductColorPickerCtrl from './controllers/ProductColorPicker.controller';
 import PatternCtrl from './controllers/Pattern.controller';
-import FacebookPhotoImportCtrl from './controllers/FacebookPhotoImport.controller';
 
 import editor from './directives/editor.directive';
 import fileUploadButton from './directives/fileUploadButton.directive';
@@ -55,7 +54,6 @@ angular.module('inksy', ['ngAnimate', 'ui.bootstrap', 'templates', 'dndLists', '
 	.controller('LayerPaletteCtrl', LayerPaletteCtrl)
 	.controller('GalleryCtrl', GalleryCtrl)
 	.controller('ProductSelectorCtrl', ProductSelectorCtrl)
-	.controller('FacebookPhotoImportCtrl', FacebookPhotoImportCtrl)
 	.controller('TextPropertyCtrl', TextPropertyCtrl)
 	.controller('ProductColorPickerCtrl', ProductColorPickerCtrl)
 	.controller('PatternCtrl', PatternCtrl)

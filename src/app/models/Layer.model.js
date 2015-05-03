@@ -16,12 +16,12 @@ var Layer = function($timeout) {
 
 		setCanvasObject(canvasObject) {
 			this.canvasObject = canvasObject;
-			canvasObject.on('selected', (event) => {
-				this.select(false);
+			// canvasObject.on('selected', (event) => {
+			// 	this.select(false);
 
-				// Force a digest
-				$timeout(angular.noop);
-			});
+			// 	// Force a digest
+			// 	$timeout(angular.noop);
+			// });
 		}
 
 		setPattern(pattern) {
@@ -32,24 +32,13 @@ var Layer = function($timeout) {
 			return this.pattern;
 		}
 
-		select(selectObjectToo) {
-			if (this.getLayerSet()) {
-				this.getLayerSet().select(this);
-
-				if (selectObjectToo) {
-					this.getCanvasObject().canvas.setActiveObject(this.canvasObject);
-				}
-			}
+		select() {
+			this.getCanvasObject().selectable = true;
+			this.getCanvasObject().canvas.setActiveObject(this.canvasObject);
 		}
 
-		/**
-		 * [deselect Clears the selection on its parent]
-		 * @return {[type]} [description]
-		 */
 		deselect() {
-			if (this.getLayerSet()) {
-				this.getLayerSet().clearSelection();
-			}
+			this.getCanvasObject().selectable = false;
 		}
 
 		isSelected() {

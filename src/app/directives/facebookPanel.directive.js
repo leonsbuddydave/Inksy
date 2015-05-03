@@ -68,8 +68,11 @@ var facebookPanel = function(Facebook, InksyAlbum, $rootScope) {
 				});
 			}
 
+			// TODO: Implement loading of more photos for a given Album
 			scope.loadMorePhotos = function() {
+				if (scope.getSelectedAlbum() === null) return;
 
+				console.log(scope.getSelectedAlbum());
 			}
 
 			scope.onPhotoClick = function(photo) {

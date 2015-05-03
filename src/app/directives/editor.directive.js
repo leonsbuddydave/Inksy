@@ -9,7 +9,7 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 		templateUrl: 'app/partials/editor.html',
 		restrict: 'AE',
 		link: function(scope, element, attributes, ctrl) {
-			var productSides, fc, design;
+			var productSides, fc, design, selectedObject;
 
 			const PRODUCT_AREA_WIDTH = 400;
 			const PRODUCT_AREA_HEIGHT = 400;
@@ -25,7 +25,9 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 
 				rawCanvas = fabric.util.createCanvasElement();
 				element.append(rawCanvas);
-				fCanvas = new fabric.Canvas(rawCanvas);
+				fCanvas = new fabric.Canvas(rawCanvas, {
+					selection: false
+				});
 				fc = fCanvas;
 
 				bindCanvasEvents();
@@ -33,6 +35,11 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 
 			var onCanvasSelectionCleared = function(event) {
 				$rootScope.$broadcast('fabric:selection:cleared');
+				fc.setActiveObject(selectedObject);
+			}
+
+			var onCanvasBeforeSelectionCleared = function(event) {
+				selectedObject = fc.getActiveObject();
 			}
 
 			var onCanvasAfterRender = function(event) {
@@ -45,12 +52,14 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 
 			var bindCanvasEvents = function() {
 				fc.on('selection:cleared', onCanvasSelectionCleared);
+				fc.on('before:selection:cleared', onCanvasBeforeSelectionCleared);
 				fc.on("after:render", onCanvasAfterRender);
 				fc.on('object:selected', onObjectSelected);
 			}
 
 			var unbindCanvasEvents = function() {
 				fc.off('selection:cleared', onCanvasSelectionCleared);
+				fc.off('before:selection:cleared', onCanvasBeforeSelectionCleared);
 				fc.off('after:render', onCanvasAfterRender);
 				fc.off('object:selected', onObjectSelected);
 			}
