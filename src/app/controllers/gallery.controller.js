@@ -24,26 +24,6 @@ class GalleryCtrl {
 			});
 		}
 
-		this.handleImageDrop = (data) => {
-			switch (data.type) {
-				case 'image': {
-					var img = new Image();
-					img.onload = () => {
-						$scope.$apply(function() {
-							$rootScope.$broadcast('image:new', img);
-						});
-					}
-					img.src = data.data;
-				}
-				break;
-
-				case 'file': {
-					$rootScope.$broadcast('file:new', data.files);
-				}
-				break;
-			}
-		}
-
 		$scope.$on('file:new', (event, files) => {
 			var uploadPromise;
 
@@ -99,64 +79,6 @@ class GalleryCtrl {
 		}
 
 		return this.$q.all(fileUploadPromises);
-	}
-
-	getFacebookPhotos($event) {
-		var facebookModal, $modal;
-
-		$modal = this.$modal;
-
-		facebookModal = $modal.open({
-			controller: 'FacebookPhotoImportCtrl',
-			controllerAs: 'import',
-			templateUrl: 'FacebookPhotoImportModal.html',
-			resolve: {
-				network: () => 'facebook'
-			},
-			size: 'lg'
-		});
-
-		facebookModal.result.then( (results) => {
-			results.forEach((url, index) => {
-				var img, result;
-
-				img = new Image();
-				img.src = url;
-				
-				result = new this.InksyImage(url, img);
-
-				this.images.push(result);
-			});
-		});
-	}
-
-	getInstagramPhotos($event) {
-		var instagramModal, $modal;
-
-		$modal = this.$modal;
-
-		instagramModal = $modal.open({
-			controller: 'FacebookPhotoImportCtrl',
-			controllerAs: 'import',
-			templateUrl: 'FacebookPhotoImportModal.html',
-			resolve: {
-				network: () => 'instagram'
-			},
-			size: 'lg'
-		})
-
-		instagramModal.result.then( (results) => {
-			results.forEach((url, index) => {
-				var img, result;
-
-				img = new Image();
-				img.src = url;
-				
-				result = new this.InksyImage(url, img);
-
-				this.images.push(result);
-			});
-		});
 	}
 }
 
