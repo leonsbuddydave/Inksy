@@ -20,7 +20,7 @@ class LayerPaletteCtrl {
 			design = _design;
 		});
 
-		$scope.$on('fabric:selection:cleared', this.onFabricSelectionCleared.bind(this));
+		// $scope.$on('fabric:selection:cleared', this.onFabricSelectionCleared.bind(this));
 
 		$scope.$on('image:new', (event, image) => {
 			var imageLayer, layerSet;
@@ -34,6 +34,7 @@ class LayerPaletteCtrl {
 			}, image);
 			layerSet.addLayer(imageLayer);
 			this.update();
+			layerSet.select(imageLayer);
 		});
 
 		$scope.$on('text:new', (event, text) => {
@@ -48,6 +49,7 @@ class LayerPaletteCtrl {
 			}, text);
 			layerSet.addLayer(textLayer);
 			this.update();
+			layerSet.select(textLayer);
 		});
 
 		$scope.$on('pattern:selected', (event, pattern) => {
@@ -158,7 +160,7 @@ class LayerPaletteCtrl {
 
 		if (layerSet === null) return;
 
-		layer.select(true);
+		layerSet.select(layer);
 		event.stopPropagation();
 	}
 

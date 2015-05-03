@@ -1,7 +1,7 @@
 'use strict';
 
 class TextPropertyCtrl {
-	constructor($scope, $rootScope) {
+	constructor($scope, $rootScope, InksyEvents) {
 		this.$scope = $scope;
 		this.$rootScope = $rootScope;
 
@@ -29,6 +29,7 @@ class TextPropertyCtrl {
 
 		$scope.$on('fabric:object:selected', this.onSelectionChanged.bind(this));
 		$scope.$on('fabric:selection:cleared', this.onSelectionCleared.bind(this));
+		$scope.$on(InksyEvents.LAYER_PALETTE_SELECTION_CLEARED, this.onSelectionCleared.bind(this));
 
 		$scope.$watch(() => [this.styles, this.text], (newVal, oldVal) => {
 			var to;
@@ -85,9 +86,16 @@ class TextPropertyCtrl {
 
 	onSelectionCleared(event, text) {
 		this.textObject = null;
+
+		this.styles.bold = false;
+		this.styles.italic = false;
+		this.styles.underline = false;
+		this.styles.fontFamily = this.options.fontFamilies[0];
+		this.styles.color = "#000";
+		this.text = "Sample Text";
 	}
 }
 
-TextPropertyCtrl.$inject = ['$scope', '$rootScope'];
+TextPropertyCtrl.$inject = ['$scope', '$rootScope', 'InksyEvents'];
 
 export default TextPropertyCtrl;
