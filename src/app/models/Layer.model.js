@@ -34,11 +34,13 @@ var Layer = function($timeout) {
 
 		select() {
 			this.getCanvasObject().selectable = true;
+			this.getCanvasObject().evented = true;
 			this.getCanvasObject().canvas.setActiveObject(this.canvasObject);
 		}
 
 		deselect() {
 			this.getCanvasObject().selectable = false;
+			this.getCanvasObject().evented = false;
 		}
 
 		isSelected() {
