@@ -5,6 +5,12 @@
 		</button>	
 	</div>
 
+	<div class="action-bar" ng-show="isConnected() && getSelectedAlbum()">
+		<button ng-click="clearSelectedAlbum()">
+			Return to Albums
+		</button>
+	</div>
+
 	<div class="gallery" ng-show="isConnected() && !getSelectedAlbum()">
 		<div class="photo-container" ng-repeat="album in getAlbums()">
 			<div class="photo" background-image="{{getAlbumPreviewUrl(album)}}" cover ng-click="selectAlbum(album)">
