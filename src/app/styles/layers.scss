@@ -60,13 +60,22 @@
 					height: 50%;
 					background-repeat: no-repeat;
 					background-size: contain;
+					cursor: pointer;
 
 					&.layer-up {
 						background-image: url('/assets/images/icons/layer_up.png');
+
+						&:hover {
+							background-image: url('/assets/images/icons/layer_up_on.png');							
+						}
 					}
 
 					&.layer-down {
 						background-image: url('/assets/images/icons/layer_down.png');
+
+						&:hover {
+							background-image: url('/assets/images/icons/layer_down_on.png');
+						}
 					}
 
 				}

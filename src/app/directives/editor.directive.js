@@ -26,7 +26,8 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				rawCanvas = fabric.util.createCanvasElement();
 				element.append(rawCanvas);
 				fCanvas = new fabric.Canvas(rawCanvas, {
-					selection: false
+					selection: false,
+					controlsAboveOverlay: true
 				});
 				fc = fCanvas;
 
