@@ -55,7 +55,7 @@ class TextPropertyCtrl {
 	}
 
 	test() {
-		this.$rootScope.$broadcast('text:new', 'Meme');
+		this.$rootScope.$broadcast('text:new', 'New Text');
 	}
 
 	enabled() {
