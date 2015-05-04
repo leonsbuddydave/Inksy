@@ -100,6 +100,8 @@ var DynamicMaskedImage = (function() {
 				objectImageLeft,
 				objectImageTop;
 
+			if (!this.canvas) return;
+
 			this._prepareMaskingCanvas();
 
 			/* Calculate dimensions and position for drawing the object image */
@@ -133,6 +135,23 @@ var DynamicMaskedImage = (function() {
 				// console.log(this._maskingCanvas.toDataURL({format: 'png'}));
 				ctx.restore();
 			}
+		},
+
+		_regenerateInternalState: function() {
+			this._objectImageLoaded = false;
+			this._objectImage = new Image();
+			this._objectImage.crossOrigin = "Anonymous";
+			this._objectImage.src = this._imageSrc;
+			this._objectImage.onload = () => {
+				this.width = this._objectImage.width;
+				this.height = this._objectImage.height;
+				this._objectImageLoaded = true;
+				this.setCoords();
+				this.fire('image:loaded');
+			};
+
+			/* Create an in-memory canvas to perform operations on */
+			this._maskingCanvas = fabric.util.createCanvasElement();
 		},
 
 		toObject: function(propertiesToInclude) {

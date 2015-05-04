@@ -119,6 +119,8 @@ var DesignState = function($rootScope, InksyEvents, $q) {
 				objectReadyPromises.push(deferred);
 
 				cloneObject = fabric.util.object.clone(layer.getCanvasObject());
+				// (cloneObject._regenerateInternalState || angular.noop).apply(cloneObject);
+				// (cloneObject._generateCompositeImage || angular.noop).apply(cloneObject);
 				cloneObject.clipTo = null;
 					
 				referenceCanvas = layer.getCanvasObject().canvas;
