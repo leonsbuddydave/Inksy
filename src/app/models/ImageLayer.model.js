@@ -4,6 +4,7 @@ var ImageLayer = function(Layer) {
 	return class ImageLayer extends Layer {
 		constructor(options, image) {
 			this.name = options.name;
+			this.image = image;
 
 			if ( !(image instanceof Image) ) {
 				throw new Error("IKBmage is not an image.");
@@ -13,6 +14,10 @@ var ImageLayer = function(Layer) {
 				selectable: false
 			}));
 			// this.canvasObject = new fabric.Image(image);
+		}
+
+		getLayerPreview() {
+			return this.image.src;
 		}
 	};
 }

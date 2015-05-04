@@ -1,7 +1,8 @@
 <div class="layers-palette" ng-controller="LayerPaletteCtrl as layerPalette">
 	<div class="layer-list">
 		<div ng-repeat="layer in layerPalette.getLayerSet().getLayers()" class="layer" ng-class="{selected: layer.isSelected() }" ng-click="layerPalette.onLayerClick($event, layer)">
-			<div class="layer-thumbnail"></div>
+			<div class="layer-thumbnail" background-image="{{layer.getLayerPreview()}}" cover>
+			</div>
 			<div class="layer-name">{{layer.name}}</div>
 			<div class="layer-delete" ng-click="layerPalette.onClickDelete($event, layer)">&times;</div>
 			<div class="layer-movement-controls">

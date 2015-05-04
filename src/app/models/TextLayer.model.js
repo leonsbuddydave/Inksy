@@ -10,6 +10,10 @@ var TextLayer = function(Layer) {
 				selectable: false
 			}));
 		}
+
+		getLayerPreview() {
+			return '/assets/images/icons/layer_text.png';
+		}
 	}	
 }
 

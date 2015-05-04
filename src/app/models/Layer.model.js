@@ -16,12 +16,6 @@ var Layer = function($timeout) {
 
 		setCanvasObject(canvasObject) {
 			this.canvasObject = canvasObject;
-			// canvasObject.on('selected', (event) => {
-			// 	this.select(false);
-
-			// 	// Force a digest
-			// 	$timeout(angular.noop);
-			// });
 		}
 
 		setPattern(pattern) {
@@ -57,6 +51,10 @@ var Layer = function($timeout) {
 
 		getLayerSet() {
 			return this.layerSet;
+		}
+
+		getLayerPreview() {
+			return '/assets/images/icons/layer_none.png';
 		}
 	};
 };
