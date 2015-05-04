@@ -27,7 +27,8 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				element.append(rawCanvas);
 				fCanvas = new fabric.Canvas(rawCanvas, {
 					selection: false,
-					controlsAboveOverlay: true
+					controlsAboveOverlay: true,
+					imageSmoothingEnabled: true
 				});
 				fc = fCanvas;
 
