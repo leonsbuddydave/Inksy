@@ -134,6 +134,9 @@ var DesignState = function($rootScope, InksyEvents, $q) {
 					left: leftRelativeToClipArea,
 					top: topRelativeToClipArea
 				});
+
+				cloneObject.maskOptions.scaleX = cloneObject.maskOptions.scaleX * printScaleX;
+				cloneObject.maskOptions.scaleY = cloneObject.maskOptions.scaleY * printScaleY;
 				// cloneObject.setCoords();
 
 				printCanvas.add(cloneObject);

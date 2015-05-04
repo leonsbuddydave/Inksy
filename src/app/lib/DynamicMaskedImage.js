@@ -40,8 +40,23 @@ var DynamicMaskedImage = (function() {
 			this.on('image:loaded', this._generateCompositeImage.bind(this));
 		},
 
-		setMask: function(src) {
-			
+		setMask: function(src, maskOptions) {
+			this.maskOptions = fabric.util.object.extend({
+				left: 0,
+				top: 0,
+				scaleX: 1,
+				scaleY: 1
+			}, maskOptions);
+
+			this._maskImageLoaded = false;
+			this._maskImage = new Image();
+			this._maskImage.crossOrigin = "Anonymous";
+			this._maskImage.onload = () => {
+				this._maskImageLoaded = true;
+				this.fire('mask:loaded');
+				console.log(this._maskImage);
+			}
+			this._maskImage.src = src;
 		},
 
 		/**
@@ -113,6 +128,25 @@ var DynamicMaskedImage = (function() {
 			/* Draw the object image to the masking canvas */
 			ctx = this._maskingCanvas.getContext('2d');
 			ctx.save();
+
+			// DEBUG
+			if (this._maskImage) {
+				var maskWidth,
+					maskHeight,
+					maskLeft,
+					maskTop;
+
+				maskWidth = this._maskImage.width * this.maskOptions.scaleX;
+				maskHeight = this._maskImage.height * this.maskOptions.scaleY;
+				maskLeft = (this.canvas.getWidth() / 2) - (maskWidth / 2);
+				maskTop = (this.canvas.getHeight() / 2) - (maskHeight / 2);
+
+				ctx.setTransform(1, 0, 0, 1, maskLeft, maskTop);
+				ctx.drawImage(this._maskImage, 0, 0, maskWidth, maskHeight);
+				ctx.globalCompositeOperation = 'source-in';
+			}
+			// END DEBUG
+
 			ctx.setTransform(1, 0, 0, 1, objectImageLeft, objectImageTop);
 			ctx.rotate(this._degreesToRadians(this.getAngle()));
 			ctx.drawImage(this._objectImage, 0, 0, objectImageWidth, objectImageHeight);

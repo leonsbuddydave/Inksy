@@ -53,11 +53,17 @@ class LayerPaletteCtrl {
 		});
 
 		$scope.$on('pattern:selected', (event, pattern) => {
-			var layer;
+			var layerSet, layer;
 
-			layer = this.getSelectedLayer();
+			layerSet = this.getLayerSet();
 
-			if (layer) {
+			if (layerSet === null) return;
+
+			layer = layerSet.getSelectedLayer();
+
+			if (layer === null) return;
+
+			if (layer && layer.setPattern) {
 				layer.setPattern(pattern);
 			}
 

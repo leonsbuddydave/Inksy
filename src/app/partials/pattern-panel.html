@@ -1,0 +1,8 @@
+<div class="gallery-panel">
+	<div class="gallery">
+		<div class="photo-container" ng-repeat="pattern in getPatterns()">
+			<div class="photo" background-image="{{pattern.getHD()}}" cover ng-click="onPatternClick(pattern)">
+			</div>
+		</div>
+	</div>
+</div>
