@@ -100,6 +100,28 @@ class ProductSide {
 		}
 	}
 
+	getAreaCenter() {
+		var area,
+			scaleX, scaleY,
+			cw, ch,
+			msx, msy;
+
+		area = this.area;
+		scaleX = this.shape.scaleX;
+		scaleY = this.shape.scaleY;
+
+		cw = this.shape.canvas.width;
+		ch = this.shape.canvas.height;
+
+		msx = area.offsetX * this.shape.scaleX;
+		msy = area.offsetY * this.shape.scaleY;
+
+		return {
+			left: (cw / 2) + (area.offsetX * scaleX),
+			top: (ch / 2) + (area.offsetY * scaleY)
+		}
+	}
+
 	getColor() {
 		return this.color;
 	}

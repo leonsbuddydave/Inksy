@@ -125,8 +125,11 @@ var DesignState = function($rootScope, InksyEvents, $q) {
 					
 				referenceCanvas = layer.getCanvasObject().canvas;
 
-				leftRelativeToClipArea = (cloneObject.left - ((referenceCanvas.width / 2) + area.offsetX)) * printScaleX;
-				topRelativeToClipArea = (cloneObject.top - ((referenceCanvas.height / 2) + area.offsetY)) * printScaleY;
+				var xOffset = ((referenceCanvas.width / 2) + area.offsetX);
+				var yOffset = ((referenceCanvas.height / 2) + area.offsetY);
+
+				leftRelativeToClipArea = (cloneObject.left - xOffset) * printScaleX;
+				topRelativeToClipArea = (cloneObject.top - yOffset) * printScaleY;
 
 				cloneObject.set({
 					scaleX: cloneObject.scaleX * printScaleX,
@@ -137,6 +140,8 @@ var DesignState = function($rootScope, InksyEvents, $q) {
 
 				cloneObject.maskOptions.scaleX = cloneObject.maskOptions.scaleX * printScaleX;
 				cloneObject.maskOptions.scaleY = cloneObject.maskOptions.scaleY * printScaleY;
+				cloneObject.maskOptions.left = (cloneObject.maskOptions.left - xOffset) * printScaleX;
+				cloneObject.maskOptions.top = (cloneObject.maskOptions.top - yOffset) * printScaleY;
 				// cloneObject.setCoords();
 
 				printCanvas.add(cloneObject);

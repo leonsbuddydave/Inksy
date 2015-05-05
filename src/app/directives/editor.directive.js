@@ -234,7 +234,11 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 					object.moveTo(index);
 
 					if (pattern) {
-						object.setMask(pattern.url);
+						console.log(productSide);
+						object.setMask(pattern.getHD(), {
+							left: productSide.getAreaCenter().left,
+							top: productSide.getAreaCenter().top,
+						});
 					}
 
 					object.setClipTo(productSide.getClipTo());

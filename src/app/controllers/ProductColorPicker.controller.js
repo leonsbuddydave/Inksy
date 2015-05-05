@@ -16,7 +16,7 @@ class ProductColorPickerCtrl {
 
 			material = design.getMaterial();
 
-			if (material !== null) {
+			if (material) {
 				if (material.getColors() !== this.colors) {
 					this.setColors(material.getColors());	
 					this.changeColor(this.colors[0]);

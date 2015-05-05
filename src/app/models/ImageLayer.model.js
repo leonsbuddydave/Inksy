@@ -19,12 +19,6 @@ var ImageLayer = function(Layer) {
 		getLayerPreview() {
 			return this.image.src;
 		}
-
-		setPattern(pattern) {
-			if (this.getCanvasObject()) {
-				this.getCanvasObject().setMask(pattern.getHD());
-			}
-		}
 	};
 }
 

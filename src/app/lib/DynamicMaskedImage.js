@@ -138,8 +138,8 @@ var DynamicMaskedImage = (function() {
 
 				maskWidth = this._maskImage.width * this.maskOptions.scaleX;
 				maskHeight = this._maskImage.height * this.maskOptions.scaleY;
-				maskLeft = (this.canvas.getWidth() / 2) - (maskWidth / 2);
-				maskTop = (this.canvas.getHeight() / 2) - (maskHeight / 2);
+				maskLeft = this.maskOptions.left;
+				maskTop = this.maskOptions.top;
 
 				ctx.setTransform(1, 0, 0, 1, maskLeft, maskTop);
 				ctx.drawImage(this._maskImage, 0, 0, maskWidth, maskHeight);
