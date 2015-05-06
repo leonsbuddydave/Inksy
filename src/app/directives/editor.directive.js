@@ -238,6 +238,8 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 						object.setMask(pattern.getHD(), {
 							left: productSide.getAreaCenter().left,
 							top: productSide.getAreaCenter().top,
+							scaleX: .2,
+							scaleY: .2
 						});
 					}
 

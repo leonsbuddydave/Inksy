@@ -48,6 +48,8 @@ var DynamicMaskedImage = (function() {
 				scaleY: 1
 			}, maskOptions);
 
+			this._maskImageSrc = src;
+
 			this._maskImageLoaded = false;
 			this._maskImage = new Image();
 			this._maskImage.crossOrigin = "Anonymous";
@@ -172,17 +174,17 @@ var DynamicMaskedImage = (function() {
 		},
 
 		_regenerateInternalState: function() {
-			this._objectImageLoaded = false;
-			this._objectImage = new Image();
-			this._objectImage.crossOrigin = "Anonymous";
-			this._objectImage.src = this._imageSrc;
-			this._objectImage.onload = () => {
-				this.width = this._objectImage.width;
-				this.height = this._objectImage.height;
-				this._objectImageLoaded = true;
-				this.setCoords();
-				this.fire('image:loaded');
-			};
+			// this._objectImageLoaded = false;
+			// this._objectImage = new Image();
+			// this._objectImage.crossOrigin = "Anonymous";
+			// this._objectImage.src = this._imageSrc;
+			// this._objectImage.onload = () => {
+			// 	this.width = this._objectImage.width;
+			// 	this.height = this._objectImage.height;
+			// 	this._objectImageLoaded = true;
+			// 	this.setCoords();
+			// 	this.fire('image:loaded');
+			// };
 
 			/* Create an in-memory canvas to perform operations on */
 			this._maskingCanvas = fabric.util.createCanvasElement();
@@ -190,7 +192,11 @@ var DynamicMaskedImage = (function() {
 
 		toObject: function(propertiesToInclude) {
 			return fabric.util.object.extend(this.callSuper('toObject', propertiesToInclude), {
-				src: this._imageSrc
+				src: this._imageSrc,
+				maskOptions: fabric.util.object.extend({}, this.maskOptions),
+				_maskImage: this._maskImage,
+				_maskImageSrc: this._maskImageSrc,
+				_objectImage: this._objectImage
 			});
 		},
 
@@ -204,6 +210,10 @@ var DynamicMaskedImage = (function() {
 DynamicMaskedImage.fromObject = function(object, callback) {
 	var instance = new DynamicMaskedImage(object.src, object);
 	callback && callback(instance);
+
+	instance._regenerateInternalState();
+
+	return instance;
 };
 
 fabric.DynamicMaskedImage = DynamicMaskedImage;
