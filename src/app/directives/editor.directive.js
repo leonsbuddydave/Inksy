@@ -235,11 +235,12 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 
 					if (pattern) {
 						console.log(productSide);
-						object.setMask(pattern.getHD(), {
-							left: productSide.getAreaCenter().left,
-							top: productSide.getAreaCenter().top,
-							scaleX: .2,
-							scaleY: .2
+						object.setMask(pattern.getHD());
+						object.setMaskOptions({
+							maskLeft: productSide.getAreaCenter().left,
+							maskTop: productSide.getAreaCenter().top,
+							maskScaleX: .2,
+							maskScaleY: .2
 						});
 					}
 

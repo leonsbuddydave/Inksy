@@ -119,7 +119,7 @@ var DesignState = function($rootScope, InksyEvents, $q) {
 				objectReadyPromises.push(deferred);
 
 				cloneObject = fabric.util.object.clone(layer.getCanvasObject());
-				// (cloneObject._regenerateInternalState || angular.noop).apply(cloneObject);
+				(cloneObject._regenerateInternalState || angular.noop).apply(cloneObject);
 				// (cloneObject._generateCompositeImage || angular.noop).apply(cloneObject);
 				// cloneObject = layer.getCanvasObject().clone();
 				cloneObject.clipTo = null;
@@ -139,11 +139,11 @@ var DesignState = function($rootScope, InksyEvents, $q) {
 					top: topRelativeToClipArea
 				});
 
-				if (angular.isDefined(cloneObject.maskOptions)) {
-					cloneObject.maskOptions.scaleX = cloneObject.maskOptions.scaleX * printScaleX;
-					cloneObject.maskOptions.scaleY = cloneObject.maskOptions.scaleY * printScaleY;
-					cloneObject.maskOptions.left = (cloneObject.maskOptions.left - xOffset) * printScaleX;
-					cloneObject.maskOptions.top = (cloneObject.maskOptions.top - yOffset) * printScaleY;
+				if (cloneObject._maskImage) {
+					cloneObject.maskScaleX = cloneObject.maskScaleX * printScaleX;
+					cloneObject.maskScaleY = cloneObject.maskScaleY * printScaleY;
+					cloneObject.maskLeft = (cloneObject.maskLeft - xOffset) * printScaleX;
+					cloneObject.maskTop = (cloneObject.maskTop - yOffset) * printScaleY;
 				}
 
 				printCanvas.add(cloneObject);
@@ -151,6 +151,8 @@ var DesignState = function($rootScope, InksyEvents, $q) {
 				if (cloneObject._generateCompositeImage) {
 					cloneObject._generateCompositeImage();
 				}
+
+				console.log(layer.getCanvasObject());
 
 				deferred.resolve();
 			});

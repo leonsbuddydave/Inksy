@@ -3,7 +3,11 @@ var DynamicMaskedImage = (function() {
 
 		initialize: function(src, options) {
 			options = this.options = fabric.util.object.extend({
-				maskChannel: 0
+				maskChannel: 0,
+				maskLeft: 0,
+				maskTop: 0,
+				maskScaleX: 1,
+				maskScaleY: 1
 			}, options || {});
 
 			this.callSuper('initialize', options);
@@ -40,14 +44,7 @@ var DynamicMaskedImage = (function() {
 			this.on('image:loaded', this._generateCompositeImage.bind(this));
 		},
 
-		setMask: function(src, maskOptions) {
-			this.maskOptions = fabric.util.object.extend({
-				left: 0,
-				top: 0,
-				scaleX: 1,
-				scaleY: 1
-			}, maskOptions);
-
+		setMask: function(src) {
 			this._maskImageSrc = src;
 
 			this._maskImageLoaded = false;
@@ -59,6 +56,14 @@ var DynamicMaskedImage = (function() {
 				console.log(this._maskImage);
 			}
 			this._maskImage.src = src;
+		},
+
+		hasMask: function() {
+			return angular.isDefined(this._maskImage);
+		},
+
+		setMaskOptions: function(options) {
+			fabric.util.object.extend(this, options);
 		},
 
 		/**
@@ -138,10 +143,10 @@ var DynamicMaskedImage = (function() {
 					maskLeft,
 					maskTop;
 
-				maskWidth = this._maskImage.width * this.maskOptions.scaleX;
-				maskHeight = this._maskImage.height * this.maskOptions.scaleY;
-				maskLeft = this.maskOptions.left;
-				maskTop = this.maskOptions.top;
+				maskWidth = this._maskImage.width * this.maskScaleX;
+				maskHeight = this._maskImage.height * this.maskScaleY;
+				maskLeft = this.maskLeft;
+				maskTop = this.maskTop;
 
 				ctx.setTransform(1, 0, 0, 1, maskLeft, maskTop);
 				ctx.drawImage(this._maskImage, 0, 0, maskWidth, maskHeight);
@@ -194,6 +199,10 @@ var DynamicMaskedImage = (function() {
 			return fabric.util.object.extend(this.callSuper('toObject', propertiesToInclude), {
 				src: this._imageSrc,
 				maskOptions: fabric.util.object.extend({}, this.maskOptions),
+				maskLeft: this.maskLeft,
+				maskTop: this.maskTop,
+				maskScaleX: this.maskScaleX,
+				maskScaleY: this.maskScaleY,
 				_maskImage: this._maskImage,
 				_maskImageSrc: this._maskImageSrc,
 				_objectImage: this._objectImage
