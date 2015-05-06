@@ -9,7 +9,6 @@ var patternPanel = function($rootScope, InksyPhoto) {
 			scope.patterns = [];
 
 			[
-				'/assets/images/patterns/pattern_1.png',
 				'/assets/images/patterns/pattern_2.png'
 			].forEach(function(url) {
 				var pattern = new InksyPhoto();
