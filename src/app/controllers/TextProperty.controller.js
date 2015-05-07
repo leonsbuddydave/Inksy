@@ -54,7 +54,7 @@ class TextPropertyCtrl {
 		}, true);
 	}
 
-	test() {
+	addNew() {
 		this.$rootScope.$broadcast('text:new', 'New Text');
 	}
 
@@ -93,6 +93,30 @@ class TextPropertyCtrl {
 		this.styles.fontFamily = this.options.fontFamilies[0];
 		this.styles.color = "#000";
 		this.text = "Sample Text";
+	}
+
+	bold() {
+		this.styles.bold = !this.styles.bold;
+	}
+
+	underline() {
+		this.styles.underline = !this.styles.underline;
+	}
+
+	italic() {
+		this.styles.italic = !this.styles.italic;
+	}
+
+	isBold() {
+		return this.styles.bold;
+	}
+
+	isUnderline() {
+		return this.styles.underline;
+	}
+
+	isItalic() {
+		return this.styles.italic;
 	}
 }
 

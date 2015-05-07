@@ -1,4 +1,4 @@
-<div ng-controller="TextPropertyCtrl as text" class="asset-panel">
+<div ng-controller="TextPropertyCtrl as text" class="asset-panel text-panel">
     <ui-select ng-model="text.styles.fontFamily" theme="bootstrap" ng-disabled="!text.enabled()">
         <ui-select-match>{{$select.selected.name}}</ui-select-match>
         <ui-select-choices repeat="fontFamily in text.options.fontFamilies | filter: $select.search">
@@ -7,23 +7,16 @@
     </ui-select>
     <input class="form-control col-md-12" ng-model="text.text" ng-disabled="!text.enabled()" />
 
-    <!-- Text Styling -->
-    <div class="btn-group btn-group-justified">
-        <div class="btn-group">
-            <label class="btn btn-primary" ng-model="text.styles.bold" btn-checkbox ng-disabled="!text.enabled()">B</label>
+    <div>
+        <div class="pull-left">
+            <button class="style-control bold" ng-click="text.bold()" ng-class="{enabled: text.isBold()}">B</button>
+            <button class="style-control underline" ng-click="text.underline()" ng-class="{enabled: text.isUnderline()}">U</button>
+            <button class="style-control italic" ng-click="text.italic()" ng-class="{enabled: text.isItalic()}">I</button>
+            <button class="style-control text-color-picker" colorpicker colorpicker-position="top" ng-model="text.styles.color" background-color="{{text.styles.color}}" text-color="{{text.styles.color}}">A</button>
+            {{text.styles.color}}
         </div>
-        <div class="btn-group">
-            <label class="btn btn-primary" ng-model="text.styles.italic" btn-checkbox ng-disabled="!text.enabled()">I</label>
-        </div>
-        <div class="btn-group">
-            <label class="btn btn-primary" ng-model="text.styles.underline" btn-checkbox ng-disabled="!text.enabled()">U</label>
-        </div>
-        <div class="btn-group">
-            <label class="btn btn-primary" colorpicker colorpicker-position="top" ng-model="text.styles.color" type="button" ng-disabled="!text.enabled()">
-                Color
-            </label>
+        <div class="pull-right">
+            <button class="style-control add" ng-click="text.addNew()">add</button>
         </div>
     </div>
-
-    <button ng-click="text.test()" class="btn btn-primary">Add Text</button>
 </div>

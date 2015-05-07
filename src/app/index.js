@@ -14,6 +14,8 @@ import fileUploadButton from './directives/fileUploadButton.directive';
 import draggable from './directives/draggable.directive';
 import droppable from './directives/droppable.directive';
 import backgroundImage from './directives/backgroundImage.directive';
+import backgroundColor from './directives/backgroundColor.directive';
+import textColor from './directives/textColor.directive';
 import categorySelector from './directives/categorySelector.directive';
 import variantSelector from './directives/variantSelector.directive';
 import instagramPanel from './directives/instagramPanel.directive';
@@ -42,6 +44,8 @@ import ProductAngle from './models/product-angle.constant';
 import InksyEvents from './constants/InksyEvents.constant';
 import InksyConfig from './constants/InksyEvents.constant';
 
+import invertColor from './filters/invertColor.filter';
+
 import MaskedImage from './lib/MaskedImage'
 
 angular.module('templates', []);
@@ -65,6 +69,8 @@ angular.module('inksy', ['ngAnimate', 'ui.bootstrap', 'templates', 'dndLists', '
 	.directive('draggable', draggable)
 	.directive('droppable', droppable)
 	.directive('backgroundImage', backgroundImage)
+	.directive('backgroundColor', backgroundColor)
+	.directive('textColor', textColor)
 	.directive('categorySelector', categorySelector)
 	.directive('variantSelector', variantSelector)
 	.directive('instagramPanel', instagramPanel)
@@ -95,4 +101,6 @@ angular.module('inksy', ['ngAnimate', 'ui.bootstrap', 'templates', 'dndLists', '
 	.constant('ProductAngle', ProductAngle)
 	.constant('InksyEvents', InksyEvents)
 	.constant('InksyConfig', InksyConfig)
+
+	.filter('invertColor', invertColor)
 ;
