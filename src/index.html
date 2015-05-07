@@ -86,6 +86,10 @@
 
               <!-- Layers Palette -->
               <div ng-include="'app/partials/layer-palette.html'"></div>
+
+              <div class="btn-group">
+                <label class="btn btn-default" ng-repeat="side in productSides" ng-model="product.angle" btn-radio="side">{{side}}</label>
+              </div>
             </tab>
           </tabset>
         </div>
@@ -94,9 +98,7 @@
       <div class="editor-area" droppable="main.handleImageDrop">
         <!-- Action Bar -->
         <div class="editor-action-bar">
-          <div class="btn-group">
-            <label class="btn btn-default" ng-repeat="side in productSides" ng-model="product.angle" btn-radio="side">{{side}}</label>
-          </div>
+          
         </div>
 
         <!-- Editor Canvas -->

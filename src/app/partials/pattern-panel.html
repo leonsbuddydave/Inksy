@@ -1,6 +1,7 @@
 <div class="gallery-panel">
+	<div class="pattern-label">add a pattern to your design</div>
 	<div class="gallery">
-		<div class="photo-container" ng-repeat="pattern in getPatterns()">
+		<div class="photo-container pattern" ng-repeat="pattern in getPatterns()">
 			<div class="photo" background-image="{{pattern.getHD()}}" cover ng-click="onPatternClick(pattern)">
 			</div>
 		</div>

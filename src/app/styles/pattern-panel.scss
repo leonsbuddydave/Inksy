@@ -1,0 +1,23 @@
+//    ____        __  __                      
+//   / __ \____ _/ /_/ /____  _________  _____
+//  / /_/ / __ `/ __/ __/ _ \/ ___/ __ \/ ___/
+// / ____/ /_/ / /_/ /_/  __/ /  / / / (__  ) 
+///_/    \__,_/\__/\__/\___/_/  /_/ /_/____/  
+//
+
+.pattern-label {
+	color: #1e4460;
+	text-align: center;
+	font-size: 1.3em;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+.pattern {
+	box-shadow: none !important;
+	border: solid 3px #fff;
+
+	.photo {
+		box-shadow: none;
+	}
+}
