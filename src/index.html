@@ -24,7 +24,7 @@
   </head>
   <body>
     <div class="inksy-product-designer" ng-controller="MainCtrl as main">
-      
+
       <div class="left-sidebar">
         <div class="left-sidebar-inner">
           <tabset class="asset-sources inksy-tabset" justified="true">
@@ -41,17 +41,17 @@
               <tabset class="asset-sources design-tabs" justified="true">
                 <tab active="active.upload" ng-click="$event.stopPropagation()">
                   <tab-heading>
-                    <img src="/assets/images/icons/upload.png" ng-hide="active.upload">
-                    <img src="/assets/images/icons/upload_on.png" ng-show="active.upload">
+                    <img src="assets/images/icons/upload.png" ng-hide="active.upload">
+                    <img src="assets/images/icons/upload_on.png" ng-show="active.upload">
                   </tab-heading>
-                  
+
                   <div class="asset-panel" gallery-panel></div>
                 </tab>
 
                 <tab active="active.facebook">
                   <tab-heading>
-                    <img src="/assets/images/icons/facebook.png" ng-hide="active.facebook">
-                    <img src="/assets/images/icons/facebook_on.png" ng-show="active.facebook">
+                    <img src="assets/images/icons/facebook.png" ng-hide="active.facebook">
+                    <img src="assets/images/icons/facebook_on.png" ng-show="active.facebook">
                   </tab-heading>
 
                   <div class="asset-panel" facebook-panel></div>
@@ -59,8 +59,8 @@
 
                 <tab active="active.instagram">
                   <tab-heading>
-                    <img src="/assets/images/icons/instagram.png" ng-hide="active.instagram">
-                    <img src="/assets/images/icons/instagram_on.png" ng-show="active.instagram">
+                    <img src="assets/images/icons/instagram.png" ng-hide="active.instagram">
+                    <img src="assets/images/icons/instagram_on.png" ng-show="active.instagram">
                   </tab-heading>
 
                   <div class="asset-panel" instagram-panel></div>
@@ -68,20 +68,20 @@
 
                 <tab active="active.text">
                   <tab-heading>
-                    <img src="/assets/images/icons/text.png" ng-hide="active.text">
-                    <img src="/assets/images/icons/text_on.png" ng-show="active.text">
+                    <img src="assets/images/icons/text.png" ng-hide="active.text">
+                    <img src="assets/images/icons/text_on.png" ng-show="active.text">
                   </tab-heading>
                   <div ng-include="'app/partials/text-properties.html'" class="asset-panel"></div>
                 </tab>
-                
+
                 <tab active="active.pattern">
                   <tab-heading>
-                    <img src="/assets/images/icons/pattern.png" ng-hide="active.pattern">
-                    <img src="/assets/images/icons/pattern_on.png" ng-show="active.pattern">
+                    <img src="assets/images/icons/pattern.png" ng-hide="active.pattern">
+                    <img src="assets/images/icons/pattern_on.png" ng-show="active.pattern">
                   </tab-heading>
                   <div class="asset-panel" pattern-panel></div>
                 </tab>
-                
+
               </tabset>
 
               <!-- Layers Palette -->
@@ -98,7 +98,7 @@
       <div class="editor-area" droppable="main.handleImageDrop">
         <!-- Action Bar -->
         <div class="editor-action-bar">
-          
+
         </div>
 
         <!-- Editor Canvas -->

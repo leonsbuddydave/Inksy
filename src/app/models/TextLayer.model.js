@@ -12,9 +12,9 @@ var TextLayer = function(Layer) {
 		}
 
 		getLayerPreview() {
-			return '/assets/images/icons/layer_text.png';
+			return 'assets/images/icons/layer_text.png';
 		}
-	}	
+	}
 }
 
 TextLayer.$inject = ['Layer'];

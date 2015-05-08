@@ -3,7 +3,7 @@
     {
       "name": "mugs",
       "displayName": "Mugs",
-      "icon": "/assets/images/icons/category_mug.png",
+      "icon": "assets/images/icons/category_mug.png",
       "materials": {
         "basic": {
           "colors": [
@@ -43,8 +43,8 @@
             "front": {
               "name": "front",
               "images": {
-                "shape": "/assets/images/products-small/0031-shape.png",
-                "texture": "/assets/images/products-small/0031-texture.png"
+                "shape": "assets/images/products-small/0031-shape.png",
+                "texture": "assets/images/products-small/0031-texture.png"
               },
               "area": {
                 "width": 225,
@@ -61,8 +61,8 @@
             "back": {
               "name": "back",
               "images": {
-                "shape": "/assets/images/products-small/0035-shape.png",
-                "texture": "/assets/images/products-small/0035-texture.png"
+                "shape": "assets/images/products-small/0035-shape.png",
+                "texture": "assets/images/products-small/0035-texture.png"
               },
               "area": {
                 "width": 225,
@@ -83,19 +83,19 @@
     {
       "name": "coasters",
       "displayName": "Coasters",
-      "icon": "/assets/images/icons/category_coaster.png",
+      "icon": "assets/images/icons/category_coaster.png",
       "products": []
     },
     {
       "name": "shirts",
       "displayName": "Shirts",
-      "icon": "/assets/images/icons/category_shirt.png",
+      "icon": "assets/images/icons/category_shirt.png",
       "products": []
     },
     {
       "name": "hoodies",
       "displayName": "Hoodies",
-      "icon": "/assets/images/icons/category_hoodie.png",
+      "icon": "assets/images/icons/category_hoodie.png",
       "products": []
     }
   ]
