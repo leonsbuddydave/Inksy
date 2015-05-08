@@ -254,8 +254,11 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 					// do some fucking stuff to it
 					// fuck it right up
 					if (!layer.added) {
-						if (object instanceof fabric.Image) {
-							[object.width, object.height] = MathUtils.contain(object.width, object.height, PRODUCT_AREA_WIDTH, PRODUCT_AREA_HEIGHT);
+						if (object instanceof fabric.DynamicMaskedImage) {
+							// [object.width, object.height] = MathUtils.contain(object.width, object.height, PRODUCT_AREA_WIDTH, PRODUCT_AREA_HEIGHT);
+							// object.setLeft(productSide.getAreaCenter().left - object.width / 2);
+							// object.setTop(productSide.getAreaCenter().top - object.height / 2);
+							object.scaleToWidth(200);
 						}
 
 						object.center();

@@ -66,6 +66,15 @@ var DynamicMaskedImage = (function() {
 			fabric.util.object.extend(this, options);
 		},
 
+		scaleToWidth: function(width) {
+			if (this._objectImage) {
+				var nw = this._objectImage.naturalWidth;
+				var sf = width / nw;
+				this.scaleX = sf;
+				this.scaleY = sf;
+			}
+		},
+
 		/**
 		 * [_ready Returns true if this object is ready to render]
 		 * @return {[Boolean]} [description]
