@@ -54,7 +54,7 @@ var Layer = function($timeout) {
 		}
 
 		getLayerPreview() {
-			return '/assets/images/icons/layer_none.png';
+			return 'assets/images/icons/layer_none.png';
 		}
 	};
 };
