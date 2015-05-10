@@ -12,6 +12,7 @@ class ProductCategory {
 	static fromJson(json) {
 		var pc = new ProductCategory(json.name);
 
+		pc.setId(json.id || 0);
 		pc.setDisplayName(json.displayName || "None");
 		pc.setIcon(json.icon || "");
 
@@ -27,6 +28,14 @@ class ProductCategory {
 		}
 
 		return pc;
+	}
+
+	setId(id) {
+		this.id = id; 
+	}
+
+	getId() {
+		return this.id;
 	}
 
 	addProduct(product) {

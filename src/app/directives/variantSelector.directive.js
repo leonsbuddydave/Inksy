@@ -6,24 +6,48 @@ var variantSelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) {
 		restrict: 'AE',
 		scope: true,
 		link: function(scope, element, attributes) {
-			var categories, categoryIndex, selectedVariant;
+			var categories, categoryIndex, selectedVariant, selectedCategory, selectedVariantId, selectedCategoryId;
 
 			scope.selectedMaterial = null;
+			scope.selectedCategoryId = null;
+			selectedCategory = null;
+			categories = null;
+			selectedVariant = null;
+			selectedVariantId = null;
+			selectedCategoryId = null;
+
+			var reset = function() {
+				if (selectedCategoryId !== null && categories !== null) {
+					scope.selectedMaterial = scope.getMaterials()['basic'];
+					scope.changeMaterial();
+					scope.selectVariant(getCategory().getProducts()[0]);
+				}
+			}
+
+			var getCategory = function() {
+				return _.find(categories, (c) => c.getId() === selectedCategoryId ) || null;
+			}
+
+			scope.$on(InksyEvents.PRODUCT_DATA_READY, function(event, _categories) {
+				categories = _categories;
+				reset();
+			});
 
 			/* Update and reset when category changes */
-			scope.$on(InksyEvents.CATEGORY_SELECTED, function(event, _categoryIndex) {
-				categoryIndex = _categoryIndex;
-				selectedVariant = null;
+			scope.$on(InksyEvents.DESIGN_CHANGED, function(event, design, sourceContext) {
 
-				scope.selectedMaterial = scope.getMaterials()['basic'];
-				scope.changeMaterial();
+				var productId = design.getProduct();
 
-				scope.selectVariant(0);
+				if (selectedCategoryId === productId) return;
+
+				selectedCategoryId = productId;
+
+				reset();
 			});
 
 			scope.changeMaterial = function() {
 				DesignState.getDesign().setMaterial(scope.selectedMaterial);
-				DesignState.commit();
+				DesignState.commit(this);
 			}
 
 			/**
@@ -31,7 +55,7 @@ var variantSelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) {
 			 * @return {Boolean} []
 			 */
 			scope.hasCategory = function() {
-				return angular.isArray(categories) && angular.isNumber(categoryIndex)
+				return angular.isArray(categories) && (selectedCategoryId !== null)
 			}
 
 			/**
@@ -40,7 +64,7 @@ var variantSelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) {
 			 */
 			scope.getVariants = function() {
 				if (scope.hasCategory()) {
-					return categories[categoryIndex].getProducts();
+					return getCategory().getProducts();
 				} else {
 					return [];
 				}
@@ -51,10 +75,12 @@ var variantSelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) {
 			 * @param  {[type]} index [The variant to switch to]
 			 * @return {[type]}       [description]
 			 */
-			scope.selectVariant = function(index) {
-				selectedVariant = index;
-				DesignState.getDesign().setVariant(categories[categoryIndex].getProducts()[index]);
-				DesignState.commit();
+			scope.selectVariant = function(variant) {
+				if (variant) {
+					selectedVariantId = variant.getId();
+					DesignState.getDesign().setVariant(variant);
+					DesignState.commit(this);
+				}
 			}
 
 			/**
@@ -62,8 +88,8 @@ var variantSelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) {
 			 * @param  {[type]}  index [The index to check]
 			 * @return {Boolean}       [description]
 			 */
-			scope.isSelected = function(index) {
-				return selectedVariant === index;
+			scope.isSelected = function(variant) {
+				return variant && (selectedVariantId === variant.getId());
 			}
 
 			/**
@@ -72,7 +98,7 @@ var variantSelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) {
 			 */
 			scope.getMaterials = function() {
 				if (scope.hasCategory()) {
-					return categories[categoryIndex].getAllMaterials();
+					return getCategory().getAllMaterials();
 				} else {
 					return [];
 				}
@@ -101,11 +127,6 @@ var variantSelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) {
 					return "";
 				}
 			}
-
-			/* Called when the selector is initialized */
-			InksyAPI.getProductData(function(_categories) {
-				categories = _categories;
-			});
 		}
 	};
 }

@@ -1,6 +1,7 @@
 {
   "categories": [
     {
+      "id": 0,
       "name": "mugs",
       "displayName": "Mugs",
       "icon": "/assets/images/icons/category_mug.png",
@@ -33,6 +34,7 @@
       },
       "products": [
         {
+          "id": 222,
           "type": "Mug",
           "name": "Skinny Ass Mug",
           "pricing": {
@@ -81,18 +83,21 @@
       ]
     },
     {
+      "id": 2,
       "name": "coasters",
       "displayName": "Coasters",
       "icon": "/assets/images/icons/category_coaster.png",
       "products": []
     },
     {
+      "id": 3,
       "name": "shirts",
       "displayName": "Shirts",
       "icon": "/assets/images/icons/category_shirt.png",
       "products": []
     },
     {
+      "id": 4,
       "name": "hoodies",
       "displayName": "Hoodies",
       "icon": "/assets/images/icons/category_hoodie.png",

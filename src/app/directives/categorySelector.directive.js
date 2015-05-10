@@ -1,22 +1,24 @@
 'use strict';
 
-var categorySelector = function(InksyAPI, InksyEvents, $rootScope) {
+var categorySelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) {
 	return {
 		templateUrl: 'app/partials/category-selector.html',
 		restrict: 'AE',
 		scope: true,
 		link: function(scope, element, attributes) {
 			scope.categories = null;
-			scope.selectedCategory = -1;
+			scope.selectedCategory = null;
 
 			/**
 			 * [selectCategory Changes the category to the selected one]
 			 * @param  {[type]} index [The category to switch to]
 			 * @return {[type]}       [description]
 			 */
-			scope.selectCategory = function(index) {
-				scope.selectedCategory = index;
-				$rootScope.$broadcast(InksyEvents.CATEGORY_SELECTED, index);
+			scope.selectCategory = function(category) {
+				scope.selectedCategory = category.getId();
+
+				DesignState.getDesign().setProduct(category.getId());
+				DesignState.commit(this);
 			};
 
 			/**
@@ -24,18 +26,18 @@ var categorySelector = function(InksyAPI, InksyEvents, $rootScope) {
 			 * @param  {[type]}  index [The index to check]
 			 * @return {Boolean}       [description]
 			 */
-			scope.isSelected = function(index) {
-				return scope.selectedCategory === index;
+			scope.isSelected = function(category) {
+				return scope.selectedCategory === category.getId();
 			}
 
-			/* Called when the selector is initialized */
-			InksyAPI.getProductData(function(categories) {
+			$rootScope.$on(InksyEvents.PRODUCT_DATA_READY, function(event, categories) {
 				scope.categories = categories;
-			});
+				scope.selectCategory(categories[0]);
+			})
 		}
 	}
 };
 
-categorySelector.$inject = ['InksyAPI', 'InksyEvents', '$rootScope'];
+categorySelector.$inject = ['InksyAPI', 'InksyEvents', '$rootScope', 'DesignState'];
 
 export default categorySelector;

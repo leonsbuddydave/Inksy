@@ -1,7 +1,7 @@
 'use strict'
 
 class ProductSelectorCtrl {
-	constructor($scope, $rootScope, ProductService, ProductAngle, $timeout, InksyAPI) {
+	constructor($scope, $rootScope, ProductService, ProductAngle, $timeout, InksyAPI, DesignState) {
 
 		this.$scope = $scope;
 		this.$rootScope = $rootScope;
@@ -41,6 +41,6 @@ class ProductSelectorCtrl {
 	}
 }
 
-ProductSelectorCtrl.$inject = ['$scope', '$rootScope', 'ProductService', 'ProductAngle', '$timeout', 'InksyAPI'];
+ProductSelectorCtrl.$inject = ['$scope', '$rootScope', 'ProductService', 'ProductAngle', '$timeout', 'InksyAPI', 'DesignState'];
 
 export default ProductSelectorCtrl;

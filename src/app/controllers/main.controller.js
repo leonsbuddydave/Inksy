@@ -1,7 +1,7 @@
 'use strict';
 
 class MainCtrl {
-  constructor ($scope, $rootScope, ProductAngle, DesignState, InksyEvents) {
+  constructor ($scope, $rootScope, ProductAngle, DesignState, InksyEvents, InksyAPI) {
   	this.$scope = $scope;
   	this.$rootScope = $rootScope;
     this.ProductAngle = ProductAngle;
@@ -12,6 +12,7 @@ class MainCtrl {
     $scope.product = {
       angle: ProductAngle.Front
     };
+    $scope.productData = null;
 
     $scope.$on(InksyEvents.DESIGN_CHANGED, function(event, _design) {
       var variant;
@@ -23,30 +24,15 @@ class MainCtrl {
       }
     });
 
-  	this.handleImageDrop = (data) => {
-  		switch (data.type) {
-  			case 'image': {
-  				var img = new Image();
-  				img.onload = () => {
-  					$scope.$apply(function() {
-  						$rootScope.$broadcast('image:new', img);
-  					});
-  				}
-  				img.src = data.data;
-  			}
-  			break;
-
-  			case 'file': {
-  				$rootScope.$broadcast('file:new', data.files);
-  			}
-  			break;
-  		}
-  	}
+    /* Load some product data */
+    InksyAPI.getProductData(function(products) {
+      $rootScope.$broadcast(InksyEvents.PRODUCT_DATA_READY, products);
+    });
 
     return this;
   };
 }
 
-MainCtrl.$inject = ['$scope', '$rootScope', 'ProductAngle', 'DesignState', 'InksyEvents'];
+MainCtrl.$inject = ['$scope', '$rootScope', 'ProductAngle', 'DesignState', 'InksyEvents', 'InksyAPI'];
 
 export default MainCtrl;

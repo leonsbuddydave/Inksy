@@ -6,6 +6,24 @@ class Design {
 		this.sides = {};
 		this.variant = null;
 		this.material = null;
+		this.product = null;
+	}
+
+	toJson() {
+		return JSON.stringify({
+			color: this.color,
+			material: this.material,
+			product: this.product.getId(),
+			variant: this.variant.getId()
+		})
+	}
+
+	setProduct(product) {
+		this.product = product;
+	}
+
+	getProduct() {
+		return this.product;
 	}
 
 	getSides() {
@@ -59,10 +77,14 @@ var DesignState = function($rootScope, InksyEvents, $q) {
 		return design;
 	};
 
-	var commit = function() {
+	var commit = function(sourceContext) {
 		// console.log(design);
-		$rootScope.$broadcast(InksyEvents.DESIGN_CHANGED, design);
+		$rootScope.$broadcast(InksyEvents.DESIGN_CHANGED, design, sourceContext);
 	};
+
+	var designToJson = function() {
+		return JSON.stringify(design);
+	}
 
 	var exportForPrint = function(options, callback) {
 		var side,
@@ -172,7 +194,8 @@ var DesignState = function($rootScope, InksyEvents, $q) {
 	return {
 		getDesign: getDesign,
 		commit: commit,
-		exportForPrint: exportForPrint
+		exportForPrint: exportForPrint,
+		designToJson: designToJson
 	};
 };
 

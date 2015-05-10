@@ -10,6 +10,7 @@ class Product {
 
 	static fromJson(json) {
 		var p = new Product(json.name);
+		p.setId(json.id || 0);
 		p.setType(json.type || "N/A");
 		p.setPricing(json.pricing || {
 			base: 0.00,
@@ -22,6 +23,14 @@ class Product {
 		}
 
 		return p;
+	}
+
+	setId(id) {
+		this.id = id;
+	}
+
+	getId() {
+		return this.id;
 	}
 
 	setSide(id, side) {

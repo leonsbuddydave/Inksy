@@ -95,7 +95,7 @@
         </div>
       </div>
 
-      <div class="editor-area" droppable="main.handleImageDrop">
+      <div class="editor-area">
         <!-- Action Bar -->
         <div class="editor-action-bar">
           
@@ -112,7 +112,7 @@
           <h2 class="price" ng-bind="(cart.price | currency:'$')"></h2>
           <h2 class="name" ng-bind="cart.productName"></h2>
           <button ng-click="cart.addToCart()" class="cart-action add-to-cart" type="button">add to cart</button>
-          <!-- <button ng-click="cart.saveToProfile()" class="cart-action save" type="button">save</button> -->
+          <button ng-click="cart.saveToProfile()" class="cart-action save" type="button">save</button>
         </div>
       </div>
 

@@ -215,11 +215,15 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				to the canvas
 			*/
 			ctrl.reflectLayersToCanvas = function() {
-				var sideDesignLayers, layerIndex, productSide;
+				var sideDesignLayers, layerIndex, productSide, designSide;
 
 				if (angular.isUndefined(design)) return;
 
-				sideDesignLayers = design.getSides()[scope.product.angle].getLayers();
+				designSide = design.getSides()[scope.product.angle];
+
+				if (angular.isUndefined(designSide)) return;
+
+				sideDesignLayers = designSide.getLayers();
 				productSide = getCurrentSide();
 
 				if (angular.isUndefined(sideDesignLayers)) return;
