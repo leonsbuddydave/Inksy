@@ -6,8 +6,8 @@ class Material {
 		this.colors = [];
 	}
 
-	static fromJson(json) {
-		var m = new Material(json.name);
+	static fromJson(json, name) {
+		var m = new Material(name);
 
 		m.setColors(json.colors);
 
@@ -20,6 +20,10 @@ class Material {
 
 	getColors() {
 		return this.colors;
+	}
+
+	getName() {
+		return this.name;
 	}
 }
 

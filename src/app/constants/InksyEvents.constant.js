@@ -8,5 +8,6 @@ InksyEvents.DESIGN_CHANGED = "2";
 InksyEvents.LAYER_PALETTE_SELECTION_CLEARED = "3";
 InksyEvents.GLOBAL_RENDER = "global:render";
 InksyEvents.PRODUCT_DATA_READY = "4";
+InksyEvents.DESIGN_LOADED = "5";
 
 export default InksyEvents;

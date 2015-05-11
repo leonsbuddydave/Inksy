@@ -10,12 +10,36 @@ class Design {
 	}
 
 	toJson() {
-		return JSON.stringify({
-			color: this.color,
-			material: this.material,
-			product: this.product.getId(),
-			variant: this.variant.getId()
-		})
+		var json = {
+			designer: {},
+			design: {}
+		};
+
+		json.designer.color = this.color;
+
+		if (this.material) json.designer.material = this.material.getName();
+		if (this.product) json.designer.product = this.product.getId();
+		if (this.variant) json.designer.variant = this.variant.getId();
+
+		json.design.sides = {};
+		_.each(this.sides, (side, key, list) => {
+			json.design.sides[key] = side.toJson();
+		});
+
+		return JSON.stringify(json);
+	}
+
+	static fromJson(json, productData) {
+		var instance;
+
+		instance = new Design();
+
+		instance.color = json.designer.color;
+		instance.product = _.find(productData, (p) => p.getId() === json.designer.product);
+		instance.variant = _.find(instance.product.getProducts(), (v) => v.getId() === json.designer.variant);
+		instance.material = instance.product.getMaterial(json.designer.material);
+
+		return instance;
 	}
 
 	setProduct(product) {
@@ -74,6 +98,11 @@ var DesignState = function($rootScope, InksyEvents, $q) {
 	 * @return {[type]} [A reference to the design state singleton]
 	 */
 	var getDesign = function() {
+		return design;
+	};
+
+	var loadDesign = function(json, productData) {
+		design = Design.fromJson(json, productData);
 		return design;
 	};
 
@@ -193,6 +222,7 @@ var DesignState = function($rootScope, InksyEvents, $q) {
 	/* Public Methods */
 	return {
 		getDesign: getDesign,
+		loadDesign: loadDesign,
 		commit: commit,
 		exportForPrint: exportForPrint,
 		designToJson: designToJson

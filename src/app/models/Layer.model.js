@@ -10,6 +10,17 @@ var Layer = function($timeout) {
 			this.layerSet = null;
 		};
 
+		toJson() {
+			var json = {};
+
+			json.name = this.name;
+			if (this.pattern) json.pattern = this.pattern.toJSON();
+			if (this.canvasObject) json.canvasObject = this.canvasObject.toObject();
+
+
+			return json;
+		}
+
 		getCanvasObject() {
 			return this.canvasObject;
 		}

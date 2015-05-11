@@ -1,7 +1,7 @@
 'use strict';
 
 class MainCtrl {
-  constructor ($scope, $rootScope, ProductAngle, DesignState, InksyEvents, InksyAPI) {
+  constructor ($scope, $rootScope, ProductAngle, DesignState, InksyEvents, InksyAPI, $timeout) {
   	this.$scope = $scope;
   	this.$rootScope = $rootScope;
     this.ProductAngle = ProductAngle;
@@ -27,12 +27,18 @@ class MainCtrl {
     /* Load some product data */
     InksyAPI.getProductData(function(products) {
       $rootScope.$broadcast(InksyEvents.PRODUCT_DATA_READY, products);
+
+      $timeout(function() {
+        $rootScope.$broadcast(InksyEvents.DESIGN_LOADED, {
+
+        });
+      }, 100);
     });
 
     return this;
   };
 }
 
-MainCtrl.$inject = ['$scope', '$rootScope', 'ProductAngle', 'DesignState', 'InksyEvents', 'InksyAPI'];
+MainCtrl.$inject = ['$scope', '$rootScope', 'ProductAngle', 'DesignState', 'InksyEvents', 'InksyAPI', '$timeout'];
 
 export default MainCtrl;

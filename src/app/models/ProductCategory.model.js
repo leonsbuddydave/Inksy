@@ -24,7 +24,7 @@ class ProductCategory {
 
 		for (var materialName in json.materials) {
 			var material = json.materials[materialName];
-			pc.setMaterial(materialName, Material.fromJson(material));
+			pc.setMaterial(materialName, Material.fromJson(material, materialName));
 		}
 
 		return pc;

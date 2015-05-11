@@ -6,6 +6,15 @@ var InksyPhoto = function() {
 			this.images = {};
 		}
 
+		toJSON() {
+			var json = {};
+
+			json.images = this.images;
+			json.externalId = this.externalId;
+
+			return json;
+		}
+
 		setExternalId(id) {
 			this.externalId = id;
 		}

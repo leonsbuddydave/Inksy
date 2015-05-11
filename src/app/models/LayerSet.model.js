@@ -7,6 +7,18 @@ var LayerSet = function() {
 			this.selectedLayer = null;
 		}
 
+		toJson() {
+			var json = {};
+
+			json.layers = [];
+
+			_.each(this.layers, (layer, index) => {
+				json.layers.push(layer.toJson());
+			});
+
+			return json;
+		}
+
 		select(layerToSelect) {
 			this.layers.forEach((layer) => {
 				layer.deselect();

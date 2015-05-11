@@ -1,6 +1,8 @@
 var DynamicMaskedImage = (function() {
 	return fabric.util.createClass(fabric.Object, fabric.Observable, {
 
+		type: 'dynamic-masked-image',
+
 		initialize: function(src, options) {
 			options = this.options = fabric.util.object.extend({
 				maskChannel: 0,
@@ -207,14 +209,13 @@ var DynamicMaskedImage = (function() {
 		toObject: function(propertiesToInclude) {
 			return fabric.util.object.extend(this.callSuper('toObject', propertiesToInclude), {
 				src: this._imageSrc,
-				maskOptions: fabric.util.object.extend({}, this.maskOptions),
 				maskLeft: this.maskLeft,
 				maskTop: this.maskTop,
 				maskScaleX: this.maskScaleX,
 				maskScaleY: this.maskScaleY,
-				_maskImage: this._maskImage,
+				// _maskImage: this._maskImage,
 				_maskImageSrc: this._maskImageSrc,
-				_objectImage: this._objectImage
+				// _objectImage: this._objectImage
 			});
 		},
 

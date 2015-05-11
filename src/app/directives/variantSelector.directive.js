@@ -6,18 +6,27 @@ var variantSelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) {
 		restrict: 'AE',
 		scope: true,
 		link: function(scope, element, attributes) {
-			var categories, categoryIndex, selectedVariant, selectedCategory, selectedVariantId, selectedCategoryId;
+			var categories,
+				products,
+				categoryIndex,
+				selectedVariant,
+				selectedCategory,
+				selectedVariantId,
+				selectedCategoryId,
+				selectedProduct;
 
 			scope.selectedMaterial = null;
 			scope.selectedCategoryId = null;
+
 			selectedCategory = null;
-			categories = null;
+			products = null;
 			selectedVariant = null;
 			selectedVariantId = null;
 			selectedCategoryId = null;
+			selectedProduct = null;
 
 			var reset = function() {
-				if (selectedCategoryId !== null && categories !== null) {
+				if (selectedProduct !== null && products !== null) {
 					scope.selectedMaterial = scope.getMaterials()['basic'];
 					scope.changeMaterial();
 					scope.selectVariant(getCategory().getProducts()[0]);
@@ -25,22 +34,22 @@ var variantSelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) {
 			}
 
 			var getCategory = function() {
-				return _.find(categories, (c) => c.getId() === selectedCategoryId ) || null;
+				return selectedProduct || null;
 			}
 
 			scope.$on(InksyEvents.PRODUCT_DATA_READY, function(event, _categories) {
-				categories = _categories;
+				products = _categories;
 				reset();
 			});
 
 			/* Update and reset when category changes */
 			scope.$on(InksyEvents.DESIGN_CHANGED, function(event, design, sourceContext) {
 
-				var productId = design.getProduct();
+				var product = design.getProduct();
 
-				if (selectedCategoryId === productId) return;
+				if (selectedProduct === product) return;
 
-				selectedCategoryId = productId;
+				selectedProduct = product;
 
 				reset();
 			});
@@ -55,7 +64,7 @@ var variantSelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) {
 			 * @return {Boolean} []
 			 */
 			scope.hasCategory = function() {
-				return angular.isArray(categories) && (selectedCategoryId !== null)
+				return angular.isArray(products) && (selectedProduct !== null)
 			}
 
 			/**

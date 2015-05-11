@@ -17,7 +17,7 @@ var categorySelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) 
 			scope.selectCategory = function(category) {
 				scope.selectedCategory = category.getId();
 
-				DesignState.getDesign().setProduct(category.getId());
+				DesignState.getDesign().setProduct(category);
 				DesignState.commit(this);
 			};
 
