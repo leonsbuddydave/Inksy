@@ -85,7 +85,7 @@ var Layer = function($timeout, $injector) {
 		}
 
 		getLayerPreview() {
-			return '/assets/images/icons/layer_none.png';
+			return 'assets/images/icons/layer_none.png';
 		}
 	};
 };

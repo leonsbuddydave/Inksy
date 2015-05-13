@@ -83,9 +83,9 @@ class PatternCtrl {
 		this.$rootScope = $rootScope;
 
 		this.patterns = [
-			// new Pattern('/assets/images/patterns/test_pattern.svg'),
-			// new Pattern('/assets/images/patterns/test_pattern_circle.svg')
-			new Pattern('/assets/images/patterns/pattern_1.png')
+			// new Pattern('assets/images/patterns/test_pattern.svg'),
+			// new Pattern('assets/images/patterns/test_pattern_circle.svg')
+			new Pattern('assets/images/patterns/pattern_1.png')
 		];
 
 		this.patterns.forEach((pattern) => {

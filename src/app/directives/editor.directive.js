@@ -305,15 +305,15 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				ctrl.addProductToCanvas();
 				ctrl.correctLayerOrder();
 
-				// var a = new fabric.DynamicMaskedImage('/assets/images/test/Lenna.png');
+				// var a = new fabric.DynamicMaskedImage('assets/images/test/Lenna.png');
 				// fc.add(a);
 				// fc.on('image:loaded', fc.renderAll.bind(fc));
 
 				// DEBUG
-				// var a = new MaskedImage('/assets/images/test/Lenna.png', {});
+				// var a = new MaskedImage('assets/images/test/Lenna.png', {});
 				// fc.add(a);
 				// a.on('image:loaded', fc.renderAll.bind(fc));
-				// a.setMask('/assets/images/patterns/pattern_1.png', {});
+				// a.setMask('assets/images/patterns/pattern_1.png', {});
 				// DEBUG
 
 				window.requestAnimationFrame(ctrl.update);
