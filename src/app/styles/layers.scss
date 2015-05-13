@@ -65,18 +65,18 @@
 					cursor: pointer;
 
 					&.layer-up {
-						background-image: url('/assets/images/icons/layer_up.png');
+						background-image: url('assets/images/icons/layer_up.png');
 
 						&:hover {
-							background-image: url('/assets/images/icons/layer_up_on.png');							
+							background-image: url('assets/images/icons/layer_up_on.png');							
 						}
 					}
 
 					&.layer-down {
-						background-image: url('/assets/images/icons/layer_down.png');
+						background-image: url('assets/images/icons/layer_down.png');
 
 						&:hover {
-							background-image: url('/assets/images/icons/layer_down_on.png');
+							background-image: url('assets/images/icons/layer_down_on.png');
 						}
 					}
 
