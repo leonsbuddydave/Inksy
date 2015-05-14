@@ -25,6 +25,7 @@
       },
       "products":[
         {
+          "id" : 1,
           "type":"shirt",
           "pricing":{
             "base":14.5,
@@ -96,6 +97,7 @@
       },
       "products":[
         {
+          "id": 222,
           "type":"hoodie",
           "pricing":{
             "base":14.5,
@@ -167,6 +169,7 @@
       },
       "products":[
         {
+          "id": 4344,
           "type":"phone_case",
           "pricing":{
             "base":14.5,
@@ -238,6 +241,7 @@
       },
       "products":[
         {
+          "id": 2229839,
           "type":"coaster",
           "pricing":{
             "base":14.5,
@@ -309,6 +313,7 @@
       },
       "products":[
         {
+          "id": 2837912,
           "type":"mug",
           "pricing":{
             "base":14.5,
