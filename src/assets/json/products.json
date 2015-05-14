@@ -1,81 +1,70 @@
 {
-  "categories": [
+  "categories":[
     {
-      "id": 0,
-      "name": "mugs",
-      "displayName": "Mugs",
-      "icon": "/assets/images/icons/category_mug.png",
-      "materials": {
-        "basic": {
-          "colors": [
-            "#1bc4a3",
-            "#3498db",
-            "#34495e",
-            "#e67e22",
-            "#ecf0f1",
-            "#000000"
+      "id":0,
+      "name":"shirt",
+      "displayName":"shirt",
+      "icon":"http://s3.amazonaws.com/inksy-dev/product_types/icons/000/000/001/original/category_shirt.png?1431485822",
+      "materials":{
+        "basic":{
+          "colors":[
+            "#FFFFFF",
+            "#000000",
+            "#330066",
+            "#020D35"
           ]
         },
-        "premium": {
-          "colors": [
-            "#1bc4a3",
-            "#2ecc71",
-            "#3498db",
-            "#9b59b6",
-            "#34495e",
-            "#f1c40f",
-            "#e67e22",
-            "#e74c3c",
-            "#ecf0f1",
-            "#95a5a6",
-            "#000000"
+        "premium":{
+          "colors":[
+            "#FFFFFF",
+            "#000000",
+            "#330066",
+            "#020D35"
           ]
         }
       },
-      "products": [
+      "products":[
         {
-          "id": 222,
-          "type": "Mug",
-          "name": "Skinny Ass Mug",
-          "pricing": {
-            "base": 19.99,
-            "suggested_sale": 24.99
+          "type":"shirt",
+          "pricing":{
+            "base":14.5,
+            "suggested_sale":18.99
           },
-          "sides": {
-            "front": {
-              "name": "front",
-              "images": {
-                "shape": "/assets/images/products-small/0031-shape.png",
-                "texture": "/assets/images/products-small/0031-texture.png"
+          "sides":{
+            "back":{
+              "name":"back",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-dev/product_sides/shapes/000/000/002/original/0030-back-shape.png?1431485878",
+                "texture":"http://s3.amazonaws.com/inksy-dev/product_sides/textures/000/000/002/original/0030-back-texture.png?1431485878"
               },
-              "area": {
-                "width": 225,
-                "height": 225,
-                "offsetX": -175,
-                "offsetY": -100
+              "area":{
+                "width":225,
+                "height":225,
+                "offsetX":-50,
+                "offsetY":-100
               },
-              "printArea": {
-                "unit": "in",
-                "width": 3.25,
-                "height": 3.25
+              "printArea":{
+                "unit": "mm",
+                "height": "82.55",
+                "width": "82.55"
               }
             },
-            "back": {
-              "name": "back",
-              "images": {
-                "shape": "/assets/images/products-small/0035-shape.png",
-                "texture": "/assets/images/products-small/0035-texture.png"
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-dev/product_sides/shapes/000/000/001/original/0030-shape.png?1431485873",
+                "texture":"http://s3.amazonaws.com/inksy-dev/product_sides/textures/000/000/001/original/0030-texture.png?1431485873"
               },
-              "area": {
-                "width": 225,
-                "height": 225,
-                "offsetX": -50,
-                "offsetY": -100
+              "area":{
+                "width":225,
+                "height":225,
+                "offsetX":-175,
+                "offsetY":-100
               },
-              "printArea": {
-                "unit": "in",
-                "width": 3.25,
-                "height": 3.25
+              "printArea":{
+                "unit": "mm",
+                "height": "82.55",
+                "width": "82.55"
               }
             }
           }
@@ -83,25 +72,288 @@
       ]
     },
     {
-      "id": 2,
-      "name": "coasters",
-      "displayName": "Coasters",
-      "icon": "/assets/images/icons/category_coaster.png",
-      "products": []
+      "id":1,
+      "name":"hoodie",
+      "displayName":"hoodie",
+      "icon":"http://s3.amazonaws.com/inksy-dev/product_types/icons/000/000/002/original/category_hoodie.png?1431485830",
+      "materials":{
+        "basic":{
+          "colors":[
+            "#FFFFFF",
+            "#000000",
+            "#330066",
+            "#020D35"
+          ]
+        },
+        "premium":{
+          "colors":[
+            "#FFFFFF",
+            "#000000",
+            "#330066",
+            "#020D35"
+          ]
+        }
+      },
+      "products":[
+        {
+          "type":"hoodie",
+          "pricing":{
+            "base":14.5,
+            "suggested_sale":18.99
+          },
+          "sides":{
+            "back":{
+              "name":"back",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-dev/product_sides/shapes/000/000/006/original/0030-back-shape.png?1431485891",
+                "texture":"http://s3.amazonaws.com/inksy-dev/product_sides/textures/000/000/006/original/0030-back-texture.png?1431485891"
+              },
+              "area":{
+                "width":225,
+                "height":225,
+                "offsetX":-50,
+                "offsetY":-100
+              },
+              "printArea":{
+                "unit":"in",
+                "width":3.25,
+                "height":3.25
+              }
+            },
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-dev/product_sides/shapes/000/000/005/original/0030-shape.png?1431485888",
+                "texture":"http://s3.amazonaws.com/inksy-dev/product_sides/textures/000/000/005/original/0030-texture.png?1431485888"
+              },
+              "area":{
+                "width":225,
+                "height":225,
+                "offsetX":-175,
+                "offsetY":-100
+              },
+              "printArea":{
+                "unit":"in",
+                "width":1.25,
+                "height":1.25
+              }
+            }
+          }
+        }
+      ]
     },
     {
-      "id": 3,
-      "name": "shirts",
-      "displayName": "Shirts",
-      "icon": "/assets/images/icons/category_shirt.png",
-      "products": []
+      "id":2,
+      "name":"phone_case",
+      "displayName":"phone_case",
+      "icon":"http://s3.amazonaws.com/inksy-dev/product_types/icons/000/000/003/original/category_phone_case.png?1431485833",
+      "materials":{
+        "basic":{
+          "colors":[
+            "#FFFFFF",
+            "#000000",
+            "#330066",
+            "#020D35"
+          ]
+        },
+        "premium":{
+          "colors":[
+            "#FFFFFF",
+            "#000000",
+            "#330066",
+            "#020D35"
+          ]
+        }
+      },
+      "products":[
+        {
+          "type":"phone_case",
+          "pricing":{
+            "base":14.5,
+            "suggested_sale":18.99
+          },
+          "sides":{
+            "back":{
+              "name":"back",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-dev/product_sides/shapes/000/000/010/original/0030-back-shape.png?1431485906",
+                "texture":"http://s3.amazonaws.com/inksy-dev/product_sides/textures/000/000/010/original/0030-back-texture.png?1431485906"
+              },
+              "area":{
+                "width":225,
+                "height":225,
+                "offsetX":-50,
+                "offsetY":-100
+              },
+              "printArea":{
+                "unit":"in",
+                "width":3.25,
+                "height":3.25
+              }
+            },
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-dev/product_sides/shapes/000/000/009/original/0030-shape.png?1431485901",
+                "texture":"http://s3.amazonaws.com/inksy-dev/product_sides/textures/000/000/009/original/0030-texture.png?1431485901"
+              },
+              "area":{
+                "width":225,
+                "height":225,
+                "offsetX":-175,
+                "offsetY":-100
+              },
+              "printArea":{
+                "unit":"in",
+                "width":1.25,
+                "height":1.25
+              }
+            }
+          }
+        }
+      ]
     },
     {
-      "id": 4,
-      "name": "hoodies",
-      "displayName": "Hoodies",
-      "icon": "/assets/images/icons/category_hoodie.png",
-      "products": []
+      "id":3,
+      "name":"coaster",
+      "displayName":"coaster",
+      "icon":"http://s3.amazonaws.com/inksy-dev/product_types/icons/000/000/004/original/category_coaster.png?1431485834",
+      "materials":{
+        "basic":{
+          "colors":[
+            "#FFFFFF",
+            "#000000",
+            "#330066",
+            "#020D35"
+          ]
+        },
+        "premium":{
+          "colors":[
+            "#FFFFFF",
+            "#000000",
+            "#330066",
+            "#020D35"
+          ]
+        }
+      },
+      "products":[
+        {
+          "type":"coaster",
+          "pricing":{
+            "base":14.5,
+            "suggested_sale":18.99
+          },
+          "sides":{
+            "back":{
+              "name":"back",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-dev/product_sides/shapes/000/000/014/original/0030-back-shape.png?1431485924",
+                "texture":"http://s3.amazonaws.com/inksy-dev/product_sides/textures/000/000/014/original/0030-back-texture.png?1431485924"
+              },
+              "area":{
+                "width":225,
+                "height":225,
+                "offsetX":-50,
+                "offsetY":-100
+              },
+              "printArea":{
+                "unit":"in",
+                "width":3.25,
+                "height":3.25
+              }
+            },
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-dev/product_sides/shapes/000/000/013/original/0030-shape.png?1431485919",
+                "texture":"http://s3.amazonaws.com/inksy-dev/product_sides/textures/000/000/013/original/0030-texture.png?1431485919"
+              },
+              "area":{
+                "width":225,
+                "height":225,
+                "offsetX":-175,
+                "offsetY":-100
+              },
+              "printArea":{
+                "unit":"in",
+                "width":1.25,
+                "height":1.25
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id":4,
+      "name":"mug",
+      "displayName":"mug",
+      "icon":"http://s3.amazonaws.com/inksy-dev/product_types/icons/000/000/005/original/category_mug.png?1431485837",
+      "materials":{
+        "basic":{
+          "colors":[
+            "#FFFFFF",
+            "#000000",
+            "#330066",
+            "#020D35"
+          ]
+        },
+        "premium":{
+          "colors":[
+            "#FFFFFF",
+            "#000000",
+            "#330066",
+            "#020D35"
+          ]
+        }
+      },
+      "products":[
+        {
+          "type":"mug",
+          "pricing":{
+            "base":14.5,
+            "suggested_sale":18.99
+          },
+          "sides":{
+            "back":{
+              "name":"back",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-dev/product_sides/shapes/000/000/018/original/0030-back-shape.png?1431485939",
+                "texture":"http://s3.amazonaws.com/inksy-dev/product_sides/textures/000/000/018/original/0030-back-texture.png?1431485939"
+              },
+              "area":{
+                "width":225,
+                "height":225,
+                "offsetX":-50,
+                "offsetY":-100
+              },
+              "printArea":{
+                "unit":"in",
+                "width":3.25,
+                "height":3.25
+              }
+            },
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-dev/product_sides/shapes/000/000/017/original/0030-shape.png?1431485935",
+                "texture":"http://s3.amazonaws.com/inksy-dev/product_sides/textures/000/000/017/original/0030-texture.png?1431485935"
+              },
+              "area":{
+                "width":225,
+                "height":225,
+                "offsetX":-175,
+                "offsetY":-100
+              },
+              "printArea":{
+                "unit":"in",
+                "width":1.25,
+                "height":1.25
+              }
+            }
+          }
+        }
+      ]
     }
   ]
 }

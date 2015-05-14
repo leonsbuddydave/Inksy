@@ -192,6 +192,12 @@ class ProductSide {
 
 	setPrintArea(printArea) {
 		this.printArea = printArea;
+
+		if (this.printArea.unit.toLowerCase() === 'mm') {
+			this.printArea.width *= 0.039370;
+			this.printArea.height *= 0.039370;
+			this.printArea.unit = 'in';
+		}
 	}
 
 	getPrintArea() {
