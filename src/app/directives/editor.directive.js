@@ -129,7 +129,13 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 					color: design.getColor()
 				})];
 
-				shape.applyFilters(fc.renderAll.bind(fc));
+				if (shape.complete) {
+					shape.applyFilters(fc.renderAll.bind(fc));	
+				} else {
+					shape.onload = function() {
+						shape.applyFilters(fc.renderAll.bind(fc));
+					}
+				}
 			}
 
 			scope.$on(InksyEvents.DESIGN_CHANGED, function(event, _design) {

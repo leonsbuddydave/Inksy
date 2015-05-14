@@ -23,16 +23,14 @@ var DynamicMaskedImage = (function() {
 
 			/* Load the provided image */
 			this._objectImageLoaded = false;
-			this._objectImage = new Image();
-			this._objectImage.crossOrigin = "Anonymous";
-			this._objectImage.src = this._imageSrc;
-			this._objectImage.onload = () => {
-				this.width = this._objectImage.width;
-				this.height = this._objectImage.height;
+			fabric.util.loadImage(this._imageSrc, (img) => {
+				this._objectImage = img;
+				this.width = img.width;
+				this.height = img.height;
 				this._objectImageLoaded = true;
 				this.setCoords();
 				this.fire('image:loaded');
-			};
+			}, this, "anonymous");
 
 			/* Create an in-memory canvas to perform operations on */
 			this._maskingCanvas = fabric.util.createCanvasElement();
@@ -134,6 +132,7 @@ var DynamicMaskedImage = (function() {
 				objectImageTop;
 
 			if (!this.canvas) return;
+			if (!this._objectImageLoaded) return;
 
 			this._prepareMaskingCanvas();
 

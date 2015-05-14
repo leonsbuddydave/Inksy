@@ -13,7 +13,9 @@ var ImageLayer = function(Layer) {
 			this.setCanvasObject(new fabric.DynamicMaskedImage(image.src, {
 				selectable: false
 			}));
-			// this.canvasObject = new fabric.Image(image);
+			// this.canvasObject = new fabric.Image(image, {
+			// 	selectable: false
+			// });
 		}
 
 		getLayerPreview() {
