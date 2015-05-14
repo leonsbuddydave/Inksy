@@ -36,6 +36,7 @@ class ProductSide {
 					selectable: false,
 					evented: false
 				});
+				im.crossOrigin = "Anonymous";
 				im.src = this.images.shape;
 			}
 
@@ -47,6 +48,7 @@ class ProductSide {
 					selectable: false,
 					evented: false
 				});
+				im.crossOrigin = "Anonymous";
 				im.src = this.images.texture;
 			}
 		}
