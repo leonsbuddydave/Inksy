@@ -144,6 +144,7 @@ class ProductSide {
 		this.images.texture = texture;
 
 		let im = new Image();
+		im.crossOrigin = "anonymous";
 		this.texture = new fabric.Image(im, {
 			left: 0,
 			top: 0,
@@ -161,6 +162,7 @@ class ProductSide {
 		this.images.shape = shape;
 		
 		var im = new Image();
+		im.crossOrigin = "anonymous";
 		this.shape = new fabric.Image(im, {
 			left: 0,
 			top: 0,

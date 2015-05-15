@@ -129,10 +129,10 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 					color: design.getColor()
 				})];
 
-				if (shape.complete) {
+				if (shape.getElement().complete) {
 					shape.applyFilters(fc.renderAll.bind(fc));	
 				} else {
-					shape.onload = function() {
+					shape.getElement().onload = function() {
 						shape.applyFilters(fc.renderAll.bind(fc));
 					}
 				}
