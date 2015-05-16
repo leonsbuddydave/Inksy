@@ -17,8 +17,15 @@ var InksyAPI = function($http, GarbageFactory, $q) {
 		}
 	};
 
+	var getSavedDesign = function(callback) {
+		return $http.get('/assets/json/saved.json').then(function(response) {
+			callback && callback(response.data);
+		});
+	};
+
 	return {
-		getProductData: getProductData
+		getProductData: getProductData,
+		getSavedDesign: getSavedDesign
 	};
 };
 

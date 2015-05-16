@@ -17,8 +17,13 @@ var Layer = function($timeout) {
 			if (this.pattern) json.pattern = this.pattern.toJSON();
 			if (this.canvasObject) json.canvasObject = this.canvasObject.toObject();
 
-
 			return json;
+		}
+
+		static fromJson(json) {
+			var layer = new Layer(json);
+
+			return layer;
 		}
 
 		getCanvasObject() {

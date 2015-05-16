@@ -28,11 +28,11 @@ class MainCtrl {
     InksyAPI.getProductData(function(products) {
       $rootScope.$broadcast(InksyEvents.PRODUCT_DATA_READY, products);
 
-      $timeout(function() {
-        $rootScope.$broadcast(InksyEvents.DESIGN_LOADED, {
-
-        });
-      }, 100);
+      InksyAPI.getSavedDesign(function(savedDesign) {
+        var design = DesignState.loadDesign(savedDesign, products);
+        DesignState.commit();
+        $rootScope.$broadcast(InksyEvents.DESIGN_LOADED, design);
+      });
     });
 
     return this;

@@ -1,6 +1,6 @@
 'use strict';
 
-var LayerSet = function() {
+var LayerSet = function(Layer) {
 	return class LayerSet {
 		constructor() {
 			this.layers = [];
@@ -17,6 +17,16 @@ var LayerSet = function() {
 			});
 
 			return json;
+		}
+
+		static fromJson(json) {
+			var layerSet = new LayerSet();
+
+			_.each(json.layers, (layer, index) => {
+				layerSet.layers.push( Layer.fromJson(layer) )
+			});
+
+			return layerSet;
 		}
 
 		select(layerToSelect) {
@@ -93,6 +103,6 @@ var LayerSet = function() {
 	}
 }
 
-LayerSet.$inject = [];
+LayerSet.$inject = ['Layer'];
 
 export default LayerSet;

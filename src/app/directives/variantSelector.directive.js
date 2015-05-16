@@ -42,6 +42,10 @@ var variantSelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) {
 				reset();
 			});
 
+			scope.$on(InksyEvents.DESIGN_LOADED, function(event, design) {
+				scope.selectVariant(design.getVariant());
+			});
+
 			/* Update and reset when category changes */
 			scope.$on(InksyEvents.DESIGN_CHANGED, function(event, design, sourceContext) {
 

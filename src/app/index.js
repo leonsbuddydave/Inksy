@@ -39,6 +39,7 @@ import TextLayer from './models/TextLayer.model';
 import InksyImage from './models/InksyImage.model';
 import InksyAlbum from './models/InksyAlbum.model';
 import InksyPhoto from './models/InksyPhoto.model';
+import Design from './models/Design.model';
 
 import ProductImage from './models/product-image.model';
 import ProductAngle from './models/product-angle.constant';
@@ -96,6 +97,7 @@ angular.module('inksy', ['ngAnimate', 'ui.bootstrap', 'templates', 'dndLists', '
 	.service('InksyImage', InksyImage)
 	.service('InksyAlbum', InksyAlbum)
 	.service('InksyPhoto', InksyPhoto)
+	.service('Design', Design)
 
 	.provider('Instagram', InstagramProvider)
 	.provider('ProductService', ProductServiceProvider)

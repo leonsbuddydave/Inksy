@@ -34,6 +34,10 @@ var categorySelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) 
 				scope.categories = categories;
 				scope.selectCategory(categories[0]);
 			})
+
+			$rootScope.$on(InksyEvents.DESIGN_LOADED, function(event, design) {
+				scope.selectCategory(design.getProduct());
+			})
 		}
 	}
 };
