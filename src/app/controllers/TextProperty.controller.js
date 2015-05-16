@@ -25,7 +25,7 @@ class TextPropertyCtrl {
 			color: '#000000'
 		};
 
-		this.text = "Sample Text";
+		this.text = "";
 
 		$scope.$on('fabric:object:selected', this.onSelectionChanged.bind(this));
 		$scope.$on('fabric:selection:cleared', this.onSelectionCleared.bind(this));
@@ -55,7 +55,7 @@ class TextPropertyCtrl {
 	}
 
 	addNew() {
-		this.$rootScope.$broadcast('text:new', 'New Text');
+		this.$rootScope.$broadcast('text:new', '');
 	}
 
 	enabled() {

@@ -13,6 +13,12 @@ var ImageLayer = function(Layer) {
 			this.setCanvasObject(new fabric.DynamicMaskedImage(image.src, {
 				selectable: false
 			}));
+			this.canvasObject.setControlsVisibility({
+				ml: false,
+				mt: false,
+				mr: false,
+				mb: false
+			});
 			// this.canvasObject = new fabric.Image(image, {
 			// 	selectable: false
 			// });

@@ -54,6 +54,28 @@
 		border-bottom: solid 1px #41627a;
 		border-radius: 0;
 		box-shadow: none;
+		color: #1e4460;
+
+		&:focus {
+			border-bottom-width: 3px;
+			padding-bottom: 4px;
+		}
+
+		&::-webkit-input-placeholder {  
+			color: #1e4460;
+		}
+
+		&:-moz-placeholder {
+			color: #1e4460;
+		}
+
+		&:-moz-placeholder {
+			color: #1e4460;
+		}
+
+		&:-ms-input-placeholder {
+			color: #1e4460;
+		}
 	}
 
 }

@@ -9,6 +9,12 @@ var TextLayer = function(Layer) {
 				fontFamily: 'Open Sans',
 				selectable: false
 			}));
+			this.canvasObject.setControlsVisibility({
+				ml: false,
+				mt: false,
+				mr: false,
+				mb: false
+			});
 		}
 
 		getLayerPreview() {
