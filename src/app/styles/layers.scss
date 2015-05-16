@@ -5,12 +5,15 @@
 // /_____/\__,_/\__, /\___/_/  /____/  
 //             /____/                  
 .layers-palette {
-	height: 300px;
+	height: 500px;
 	display: flex;
 	flex-direction: column;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	padding-right: 13px;
+	width: calc(100% + 30px);
 
 	.layer-list {
-		background-color: lightgray;
 		flex: 1;
 		margin-bottom: 0;
 
