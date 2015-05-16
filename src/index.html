@@ -38,51 +38,58 @@
             </tab>
 
             <tab heading="Design">
-              <tabset class="asset-sources design-tabs" justified="true">
-                <tab active="active.upload" ng-click="$event.stopPropagation()">
-                  <tab-heading>
+
+              <div class="design-elements-container" ng-controller="DesignElementsTabCtrl">
+
+                <ul>
+                    
+                  <li ng-click="toggle('upload')">
                     <img src="/assets/images/icons/upload.png" ng-hide="active.upload">
                     <img src="/assets/images/icons/upload_on.png" ng-show="active.upload">
-                  </tab-heading>
-                  
-                  <div class="asset-panel" gallery-panel></div>
-                </tab>
+                  </li>
 
-                <tab active="active.facebook">
-                  <tab-heading>
+                  <li ng-click="toggle('facebook')">
                     <img src="/assets/images/icons/facebook.png" ng-hide="active.facebook">
                     <img src="/assets/images/icons/facebook_on.png" ng-show="active.facebook">
-                  </tab-heading>
+                  </li>
 
-                  <div class="asset-panel" facebook-panel></div>
-                </tab>
-
-                <tab active="active.instagram">
-                  <tab-heading>
+                  <li ng-click="toggle('instagram')">
                     <img src="/assets/images/icons/instagram.png" ng-hide="active.instagram">
                     <img src="/assets/images/icons/instagram_on.png" ng-show="active.instagram">
-                  </tab-heading>
+                  </li>
 
-                  <div class="asset-panel" instagram-panel></div>
-                </tab>
-
-                <tab active="active.text">
-                  <tab-heading>
+                  <li ng-click="toggle('text')">
                     <img src="/assets/images/icons/text.png" ng-hide="active.text">
                     <img src="/assets/images/icons/text_on.png" ng-show="active.text">
-                  </tab-heading>
+                  </li>
+
+                  <li ng-click="toggle('patterns')">
+                    <img src="/assets/images/icons/pattern.png" ng-hide="active.patterns">
+                    <img src="/assets/images/icons/pattern_on.png" ng-show="active.patterns">
+                  </li>
+
+                </ul>
+
+                <div class="floating-panel" ng-class="{show: isActive('upload')}">
+                  <div class="asset-panel" gallery-panel></div>
+                </div>
+
+                <div class="floating-panel" ng-class="{show: isActive('facebook')}">
+                  <div class="asset-panel" facebook-panel></div>
+                </div>
+                
+                <div class="floating-panel" ng-class="{show: isActive('instagram')}">
+                  <div class="asset-panel" instagram-panel></div>
+                </div>
+
+                <div class="floating-panel" ng-class="{show: isActive('text')}">
                   <div ng-include="'app/partials/text-properties.html'" class="asset-panel"></div>
-                </tab>
-                
-                <tab active="active.pattern">
-                  <tab-heading>
-                    <img src="/assets/images/icons/pattern.png" ng-hide="active.pattern">
-                    <img src="/assets/images/icons/pattern_on.png" ng-show="active.pattern">
-                  </tab-heading>
-                  <div class="asset-panel" pattern-panel></div>
-                </tab>
-                
-              </tabset>
+                </div>
+
+                <div class="floating-panel" ng-class="{show: isActive('patterns')}">
+                  <div class="asset-panel" pattern-panel></div>  
+                </div>
+              </div>
 
               <!-- Layers Palette -->
               <div ng-include="'app/partials/layer-palette.html'"></div>

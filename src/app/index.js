@@ -8,6 +8,7 @@ import ProductSelectorCtrl from './controllers/ProductSelector.controller';
 import TextPropertyCtrl from './controllers/TextProperty.controller';
 import ProductColorPickerCtrl from './controllers/ProductColorPicker.controller';
 import PatternCtrl from './controllers/Pattern.controller';
+import DesignElementsTabCtrl from './controllers/DesignElementsTab.controller';
 
 import editor from './directives/editor.directive';
 import fileUploadButton from './directives/fileUploadButton.directive';
@@ -63,6 +64,7 @@ angular.module('inksy', ['ngAnimate', 'ui.bootstrap', 'templates', 'dndLists', '
 	.controller('TextPropertyCtrl', TextPropertyCtrl)
 	.controller('ProductColorPickerCtrl', ProductColorPickerCtrl)
 	.controller('PatternCtrl', PatternCtrl)
+	.controller('DesignElementsTabCtrl', DesignElementsTabCtrl)
 
 	.directive('editor', editor)
 	.directive('fileUploadButton', fileUploadButton)

@@ -1,0 +1,48 @@
+.design-elements-container {
+
+	height: 60px;
+	overflow: visible;
+
+	& > ul {
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+		width: 100%;
+
+		li {
+			float: left;
+			width: 20%;
+			text-align: center;
+			padding: 10px;
+			cursor: pointer;
+
+			img {
+				height: 40px;
+			}
+		}
+	}
+
+	& > .floating-panel {
+		width: 365px;
+		height: 0;		
+		top: 115px;
+		background-color: #cddae3;
+		position: absolute;
+		z-index: 1000;
+		border: solid 1px #7d98ab;
+		border-radius: 5px;
+		overflow: hidden;
+		box-shadow: 2px 5px 10px rgba(0, 0, 0, .2);
+
+		transition: .25s ease-in-out all;
+		transition-property: opacity, transform;
+		opacity: 0;
+		transform: translateY(-15px);
+
+		&.show {
+			opacity: 1;
+			transform: translateY(0);
+			height: 500px;
+		}
+	}
+}
