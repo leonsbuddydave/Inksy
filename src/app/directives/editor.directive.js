@@ -129,21 +129,12 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 					color: design.getColor()
 				})];
 
-				if (texture.getElement().complete) {
+				texture.getElement().onload = function() {
 					fc.renderAll();
-				} else {
-					shape.getElement().onload = function() {
-						ctrl.rebuild();
-					}
 				}
 
-				if (shape.getElement().complete) {
+				shape.getElement().onload = function() {
 					shape.applyFilters(fc.renderAll.bind(fc));
-				} else {
-					shape.getElement().onload = function() {
-						shape.applyFilters(fc.renderAll.bind(fc));
-						ctrl.rebuild();
-					}
 				}
 			}
 
@@ -198,6 +189,10 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				bindCanvasEvents();
 				ctrl.rebuild();
 			});
+
+			$interval(function() {
+				ctrl.rebuild();
+			}, 500);
 
 			/*
 				Handles updating the canvas whenever
@@ -326,7 +321,7 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 
 				t2 = performance.now() - t1;
 
-				console.info('Editor rebuild completed in ', t2, ' milliseconds.');
+				// console.info('Editor rebuild completed in ', t2, ' milliseconds.');
 			};
 
 			
