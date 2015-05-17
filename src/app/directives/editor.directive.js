@@ -250,7 +250,6 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 					object.moveTo(index);
 
 					if (pattern) {
-						console.log(productSide);
 						object.setMask(pattern.getHD());
 						object.setMaskOptions({
 							maskLeft: productSide.getAreaCenter().left,

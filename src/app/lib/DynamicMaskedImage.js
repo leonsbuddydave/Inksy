@@ -53,7 +53,6 @@ var DynamicMaskedImage = (function() {
 			this._maskImage.onload = () => {
 				this._maskImageLoaded = true;
 				this.fire('mask:loaded');
-				console.log(this._maskImage);
 			}
 			this._maskImage.src = src;
 		},
@@ -204,6 +203,8 @@ var DynamicMaskedImage = (function() {
 			// 	this.setCoords();
 			// 	this.fire('image:loaded');
 			// };
+			// 
+			this.setMask(this._maskImageSrc);
 
 			/* Create an in-memory canvas to perform operations on */
 			this._maskingCanvas = fabric.util.createCanvasElement();
