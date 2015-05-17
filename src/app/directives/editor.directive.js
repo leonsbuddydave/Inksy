@@ -129,6 +129,14 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 					color: design.getColor()
 				})];
 
+				if (texture.getElement().complete) {
+					fc.renderAll();
+				} else {
+					shape.getElement().onload = function() {
+						ctrl.rebuild();
+					}
+				}
+
 				if (shape.getElement().complete) {
 					shape.applyFilters(fc.renderAll.bind(fc));
 				} else {
