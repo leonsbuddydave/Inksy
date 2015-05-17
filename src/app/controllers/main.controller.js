@@ -33,9 +33,10 @@ class MainCtrl {
         InksyAPI.getSavedDesign(function(savedDesign) {
 
           $timeout(function() {
-            var design = DesignState.loadDesign(savedDesign, products);
-            DesignState.commit();
-            $rootScope.$broadcast(InksyEvents.DESIGN_LOADED, design);
+            // TEMPORARILY DISABLED
+            // var design = DesignState.loadDesign(savedDesign, products);
+            // DesignState.commit();
+            // $rootScope.$broadcast(InksyEvents.DESIGN_LOADED, design);
           }, ARTIFICIAL_DELAY);
         });
       }, ARTIFICIAL_DELAY);
