@@ -19,13 +19,40 @@ var ImageLayer = function(Layer) {
 				mr: false,
 				mb: false
 			});
-			// this.canvasObject = new fabric.Image(image, {
-			// 	selectable: false
-			// });
+		}
+
+		toJson() {
+			var json = {};
+
+			json.name = this.name;
+			if (this.pattern) json.pattern = this.pattern.toJSON();
+			if (this.canvasObject) json.canvasObject = this.canvasObject.toObject();
+			json.layerClass = this.constructor.name;
+			json.imageSrc = this.image.src;
+
+			return json;
+		}
+
+		static fromJson(json) {
+			var im, instance;
+
+			instance = new ImageLayer(json, new Image());
+			
+			instance.image = new Image();
+			instance.image.src = json.imageSrc;
+
+			return instance;
 		}
 
 		getLayerPreview() {
-			return this.image.src;
+			if (angular.isDefined(this.canvasObject)) {
+				var element = this.canvasObject.getElement();
+
+				if (angular.isDefined(element)) {
+					return element.src;
+				}
+			}
+			return null;
 		}
 	};
 }

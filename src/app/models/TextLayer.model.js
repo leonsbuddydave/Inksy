@@ -17,6 +17,14 @@ var TextLayer = function(Layer) {
 			});
 		}
 
+		static fromJson(json) {
+			var instance = new TextLayer(json, '');
+
+			instance.name = json.name;
+
+			return instance;
+		}
+
 		getLayerPreview() {
 			return '/assets/images/icons/layer_text.png';
 		}

@@ -62,6 +62,10 @@ var DynamicMaskedImage = (function() {
 			return angular.isDefined(this._maskImage);
 		},
 
+		getElement: function() {
+			return this._objectImage;
+		},
+
 		setMaskOptions: function(options) {
 			fabric.util.object.extend(this, options);
 		},

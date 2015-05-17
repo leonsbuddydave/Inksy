@@ -41,8 +41,10 @@ var Design = function(LayerSet) {
 			instance.material = instance.product.getMaterial(json.designer.material);
 
 			instance.sides = {};
+
 			_.each(json.design.sides, function(side, key, list) {
 				instance.sides[key] = LayerSet.fromJson(side);
+				// instance.sides[key] = null;
 			});
 
 			console.log(instance);

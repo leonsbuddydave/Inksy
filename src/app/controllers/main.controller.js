@@ -19,20 +19,26 @@ class MainCtrl {
 
       variant = _design.getVariant();
 
-      if (variant !== null) {
+      if (variant !== null && angular.isDefined(variant)) {
         $scope.productSides = Object.keys(variant.getAllSides());  
       }
     });
 
     /* Load some product data */
+    const ARTIFICIAL_DELAY = 0;
     InksyAPI.getProductData(function(products) {
-      $rootScope.$broadcast(InksyEvents.PRODUCT_DATA_READY, products);
+      $timeout(function() {
+        $rootScope.$broadcast(InksyEvents.PRODUCT_DATA_READY, products);  
+        
+        InksyAPI.getSavedDesign(function(savedDesign) {
 
-      InksyAPI.getSavedDesign(function(savedDesign) {
-        var design = DesignState.loadDesign(savedDesign, products);
-        DesignState.commit();
-        $rootScope.$broadcast(InksyEvents.DESIGN_LOADED, design);
-      });
+          $timeout(function() {
+            var design = DesignState.loadDesign(savedDesign, products);
+            DesignState.commit();
+            $rootScope.$broadcast(InksyEvents.DESIGN_LOADED, design);
+          }, ARTIFICIAL_DELAY);
+        });
+      }, ARTIFICIAL_DELAY);
     });
 
     return this;

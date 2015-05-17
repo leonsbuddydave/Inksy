@@ -83,11 +83,11 @@ class ProductSide {
 		area = this.area;
 		shape = this.shape;
 
-		return function(context) {
+		return function(ctx) {
 			var cw, ch, mw, mh, msx, msy;
 
-			cw = context.canvas.width;
-			ch = context.canvas.height;
+			cw = ctx.canvas.width;
+			ch = ctx.canvas.height;
 
 			mw = area.width * shape.scaleX;
 			mh = area.height * shape.scaleY;
@@ -95,10 +95,10 @@ class ProductSide {
 			msx = area.offsetX * shape.scaleX;
 			msy = area.offsetY * shape.scaleY;
 
-			context.save();
-			context.setTransform(1, 0, 0, 1, cw / 2 + msx, ch / 2 + msy);
-			context.rect(0, 0, mw, mh);
-			context.restore();
+			ctx.save();
+			ctx.setTransform(1, 0, 0, 1, cw / 2 + msx, ch / 2 + msy);
+			ctx.rect(0, 0, mw, mh);
+			ctx.restore();
 		}
 	}
 

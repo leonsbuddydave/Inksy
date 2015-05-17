@@ -130,10 +130,11 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				})];
 
 				if (shape.getElement().complete) {
-					shape.applyFilters(fc.renderAll.bind(fc));	
+					shape.applyFilters(fc.renderAll.bind(fc));
 				} else {
 					shape.getElement().onload = function() {
 						shape.applyFilters(fc.renderAll.bind(fc));
+						ctrl.rebuild();
 					}
 				}
 			}
@@ -240,6 +241,8 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 					object = layer.canvasObject;
 					pattern = layer.getPattern();
 
+					object.setClipTo(productSide.getClipTo());
+
 					fc.add(object);
 					object.moveTo(index);
 
@@ -253,8 +256,6 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 							maskScaleY: .2
 						});
 					}
-
-					object.setClipTo(productSide.getClipTo());
 
 					if (layer.isSelected()) {
 						fc.setActiveObject(object);

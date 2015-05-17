@@ -43,7 +43,7 @@ var variantSelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) {
 			});
 
 			scope.$on(InksyEvents.DESIGN_LOADED, function(event, design) {
-				scope.selectVariant(design.getVariant());
+				selectedVariantId = design.getVariant().getId();
 			});
 
 			/* Update and reset when category changes */

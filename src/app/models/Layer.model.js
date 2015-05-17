@@ -1,6 +1,6 @@
 'use strict';
 
-var Layer = function($timeout) {
+var Layer = function($timeout, $injector) {
 	return class Layer {
 		constructor(options) {
 			this.name = options.name;
@@ -16,12 +16,27 @@ var Layer = function($timeout) {
 			json.name = this.name;
 			if (this.pattern) json.pattern = this.pattern.toJSON();
 			if (this.canvasObject) json.canvasObject = this.canvasObject.toObject();
+			json.layerClass = this.constructor.name;
 
 			return json;
 		}
 
 		static fromJson(json) {
-			var layer = new Layer(json);
+			var layerClass = $injector.get(json.layerClass);
+			var layer = layerClass.fromJson(json);
+
+			json.canvasObject.selectable = false;
+			fabric.util.enlivenObjects([json.canvasObject], (objects) => {
+				layer.canvasObject = objects[0];
+			})
+			layer.canvasObject.setControlsVisibility({
+				ml: false,
+				mt: false,
+				mr: false,
+				mb: false
+			});
+
+			layer.added = true;
 
 			return layer;
 		}
@@ -75,6 +90,6 @@ var Layer = function($timeout) {
 	};
 };
 
-Layer.$inject = ['$timeout'];
+Layer.$inject = ['$timeout', '$injector'];
 
 export default Layer;

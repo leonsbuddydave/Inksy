@@ -20,6 +20,10 @@ class LayerPaletteCtrl {
 			design = _design;
 		});
 
+		$scope.$on(InksyEvents.DESIGN_LOADED, (event, design) => {
+			this.layerSets = design.getSides();
+		})
+
 		// $scope.$on('fabric:selection:cleared', this.onFabricSelectionCleared.bind(this));
 
 		$scope.$on('image:new', (event, image) => {

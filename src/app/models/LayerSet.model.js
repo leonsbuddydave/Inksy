@@ -23,7 +23,7 @@ var LayerSet = function(Layer) {
 			var layerSet = new LayerSet();
 
 			_.each(json.layers, (layer, index) => {
-				layerSet.layers.push( Layer.fromJson(layer) )
+				layerSet.addLayer(Layer.fromJson(layer));
 			});
 
 			return layerSet;
