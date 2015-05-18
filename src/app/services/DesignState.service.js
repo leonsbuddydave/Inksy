@@ -1,7 +1,7 @@
 'use strict';
 
 var DesignState = function(Design, $rootScope, InksyEvents, $q) {
-	
+
 	var design;
 
 	/**
@@ -91,7 +91,7 @@ var DesignState = function(Design, $rootScope, InksyEvents, $q) {
 				// (cloneObject._generateCompositeImage || angular.noop).apply(cloneObject);
 				// cloneObject = layer.getCanvasObject().clone();
 				cloneObject.clipTo = null;
-					
+
 				referenceCanvas = layer.getCanvasObject().canvas;
 
 				var xOffset = ((referenceCanvas.width / 2) + area.offsetX);

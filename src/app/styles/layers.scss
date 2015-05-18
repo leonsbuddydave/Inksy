@@ -1,9 +1,9 @@
-//     __                              
+//     __
 //    / /   ____ ___  _____  __________
 //   / /   / __ `/ / / / _ \/ ___/ ___/
-//  / /___/ /_/ / /_/ /  __/ /  (__  ) 
-// /_____/\__,_/\__, /\___/_/  /____/  
-//             /____/                  
+//  / /___/ /_/ / /_/ /  __/ /  (__  )
+// /_____/\__,_/\__, /\___/_/  /____/
+//             /____/
 .layers-palette {
 	height: 500px;
 	display: flex;
@@ -18,7 +18,7 @@
 		margin-bottom: 0;
 
 		.layer {
-			
+
 			display: flex;
 			flex-direction: row;
 			justify-content: center;
@@ -68,7 +68,7 @@
 						background-image: url('assets/images/icons/layer_up.png');
 
 						&:hover {
-							background-image: url('assets/images/icons/layer_up_on.png');							
+							background-image: url('assets/images/icons/layer_up_on.png');
 						}
 					}
 

@@ -28,8 +28,19 @@ class CartCtrl {
 
 	saveToProfile() {
 		console.log('Saving to profile!');
-		console.log(this.DesignState.getDesign());
-		console.log(this.DesignState.getDesign().toJson());
+		var json_result = this.DesignState.getDesign().toJson();
+		// var saving = $.post('/products/tool', json_result);
+		$.ajax({
+			url:  "/products/tool",
+			method: "POST",
+			contentType: "application/json",
+			dataType: "json",
+			data: json_result,
+			success: function(data) {
+				 var r = $.parseJSON(data);
+				 console.log(r);
+			}
+		});
 	}
 }
 

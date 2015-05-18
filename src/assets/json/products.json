@@ -36,8 +36,8 @@
             "back":{
               "name":"back",
               "images":{
-                "shape":"http://s3.amazonaws.com/inksy-dev/product_sides/shapes/000/000/002/original/0030-back-shape.png?1431485878",
-                "texture":"http://s3.amazonaws.com/inksy-dev/product_sides/textures/000/000/002/original/0030-back-texture.png?1431485878"
+                "shape":"http://inksy-dev.s3.amazonaws.com/product_sides/shapes/000/000/041/original/0030-shape.png?1431529017",
+                "texture":"http://inksy-dev.s3.amazonaws.com/product_sides/textures/000/000/041/original/0030-texture.png?1431529017"
               },
               "area":{
                 "width":225,
@@ -54,8 +54,8 @@
             "front":{
               "name":"front",
               "images":{
-                "shape":"http://s3.amazonaws.com/inksy-dev/product_sides/shapes/000/000/001/original/0030-shape.png?1431485873",
-                "texture":"http://s3.amazonaws.com/inksy-dev/product_sides/textures/000/000/001/original/0030-texture.png?1431485873"
+                "shape":"http://inksy-dev.s3.amazonaws.com/product_sides/shapes/000/000/041/original/0030-shape.png?1431529017",
+                "texture":"http://inksy-dev.s3.amazonaws.com/product_sides/textures/000/000/041/original/0030-texture.png?1431529017"
               },
               "area":{
                 "width":225,
@@ -108,8 +108,8 @@
             "back":{
               "name":"back",
               "images":{
-                "shape":"http://s3.amazonaws.com/inksy-dev/product_sides/shapes/000/000/006/original/0030-back-shape.png?1431485891",
-                "texture":"http://s3.amazonaws.com/inksy-dev/product_sides/textures/000/000/006/original/0030-back-texture.png?1431485891"
+                "shape":"http://inksy-dev.s3.amazonaws.com/product_sides/shapes/000/000/041/original/0030-shape.png?1431529017",
+                "texture":"http://inksy-dev.s3.amazonaws.com/product_sides/textures/000/000/041/original/0030-texture.png?1431529017"
               },
               "area":{
                 "width":225,
@@ -126,8 +126,8 @@
             "front":{
               "name":"front",
               "images":{
-                "shape":"http://s3.amazonaws.com/inksy-dev/product_sides/shapes/000/000/005/original/0030-shape.png?1431485888",
-                "texture":"http://s3.amazonaws.com/inksy-dev/product_sides/textures/000/000/005/original/0030-texture.png?1431485888"
+                "shape":"http://inksy-dev.s3.amazonaws.com/product_sides/shapes/000/000/041/original/0030-shape.png?1431529017",
+                "texture":"http://inksy-dev.s3.amazonaws.com/product_sides/textures/000/000/041/original/0030-texture.png?1431529017"
               },
               "area":{
                 "width":225,
@@ -180,8 +180,8 @@
             "back":{
               "name":"back",
               "images":{
-                "shape":"http://s3.amazonaws.com/inksy-dev/product_sides/shapes/000/000/010/original/0030-back-shape.png?1431485906",
-                "texture":"http://s3.amazonaws.com/inksy-dev/product_sides/textures/000/000/010/original/0030-back-texture.png?1431485906"
+                "shape":"http://inksy-dev.s3.amazonaws.com/product_sides/shapes/000/000/041/original/0030-shape.png?1431529017",
+                "texture":"http://inksy-dev.s3.amazonaws.com/product_sides/textures/000/000/041/original/0030-texture.png?1431529017"
               },
               "area":{
                 "width":225,
@@ -198,8 +198,8 @@
             "front":{
               "name":"front",
               "images":{
-                "shape":"http://s3.amazonaws.com/inksy-dev/product_sides/shapes/000/000/009/original/0030-shape.png?1431485901",
-                "texture":"http://s3.amazonaws.com/inksy-dev/product_sides/textures/000/000/009/original/0030-texture.png?1431485901"
+                "shape":"http://inksy-dev.s3.amazonaws.com/product_sides/shapes/000/000/041/original/0030-shape.png?1431529017",
+                "texture":"http://inksy-dev.s3.amazonaws.com/product_sides/textures/000/000/041/original/0030-texture.png?1431529017"
               },
               "area":{
                 "width":225,
@@ -252,8 +252,8 @@
             "back":{
               "name":"back",
               "images":{
-                "shape":"http://s3.amazonaws.com/inksy-dev/product_sides/shapes/000/000/014/original/0030-back-shape.png?1431485924",
-                "texture":"http://s3.amazonaws.com/inksy-dev/product_sides/textures/000/000/014/original/0030-back-texture.png?1431485924"
+                "shape":"http://inksy-dev.s3.amazonaws.com/product_sides/shapes/000/000/041/original/0030-shape.png?1431529017",
+                "texture":"http://inksy-dev.s3.amazonaws.com/product_sides/textures/000/000/041/original/0030-texture.png?1431529017"
               },
               "area":{
                 "width":225,
@@ -270,8 +270,8 @@
             "front":{
               "name":"front",
               "images":{
-                "shape":"http://s3.amazonaws.com/inksy-dev/product_sides/shapes/000/000/013/original/0030-shape.png?1431485919",
-                "texture":"http://s3.amazonaws.com/inksy-dev/product_sides/textures/000/000/013/original/0030-texture.png?1431485919"
+                "shape":"http://inksy-dev.s3.amazonaws.com/product_sides/shapes/000/000/041/original/0030-shape.png?1431529017",
+                "texture":"http://inksy-dev.s3.amazonaws.com/product_sides/textures/000/000/041/original/0030-texture.png?1431529017"
               },
               "area":{
                 "width":225,
@@ -324,8 +324,8 @@
             "back":{
               "name":"back",
               "images":{
-                "shape":"http://s3.amazonaws.com/inksy-dev/product_sides/shapes/000/000/018/original/0030-back-shape.png?1431485939",
-                "texture":"http://s3.amazonaws.com/inksy-dev/product_sides/textures/000/000/018/original/0030-back-texture.png?1431485939"
+                "shape":"http://inksy-dev.s3.amazonaws.com/product_sides/shapes/000/000/041/original/0030-shape.png?1431529017",
+                "texture":"http://inksy-dev.s3.amazonaws.com/product_sides/textures/000/000/041/original/0030-texture.png?1431529017"
               },
               "area":{
                 "width":225,
@@ -342,8 +342,8 @@
             "front":{
               "name":"front",
               "images":{
-                "shape":"http://s3.amazonaws.com/inksy-dev/product_sides/shapes/000/000/017/original/0030-shape.png?1431485935",
-                "texture":"http://s3.amazonaws.com/inksy-dev/product_sides/textures/000/000/017/original/0030-texture.png?1431485935"
+                "shape":"http://inksy-dev.s3.amazonaws.com/product_sides/shapes/000/000/041/original/0030-shape.png?1431529017",
+                "texture":"http://inksy-dev.s3.amazonaws.com/product_sides/textures/000/000/041/original/0030-texture.png?1431529017"
               },
               "area":{
                 "width":225,
