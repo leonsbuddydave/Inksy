@@ -1,7 +1,7 @@
 'use strict';
 
 var DesignState = function(Design, $rootScope, InksyEvents, $q) {
-	
+
 	var design;
 
 	/**
@@ -88,7 +88,7 @@ var DesignState = function(Design, $rootScope, InksyEvents, $q) {
 
 				cloneObject = fabric.util.object.clone(layer.getCanvasObject());
 				cloneObject.clipTo = null;
-					
+
 				referenceCanvas = layer.getCanvasObject().canvas;
 
 				var xOffset = ((referenceCanvas.width / 2) + area.offsetX);

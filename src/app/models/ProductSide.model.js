@@ -151,6 +151,7 @@ class ProductSide {
 			selectable: false,
 			evented: false
 		});
+		im.crossOrigin = "Anonymous"
 		im.src = texture;
 	}
 
@@ -160,7 +161,7 @@ class ProductSide {
 
 	setShape(shape) {
 		this.images.shape = shape;
-		
+
 		var im = new Image();
 		im.crossOrigin = "anonymous";
 		this.shape = new fabric.Image(im, {
@@ -169,6 +170,7 @@ class ProductSide {
 			selectable: false,
 			evented: false
 		});
+		im.crossOrigin = "Anonymous"
 		im.src = shape;
 	}
 

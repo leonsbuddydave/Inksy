@@ -93,7 +93,7 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				side = getCurrentSide();
 
 				if (!side) return;
-				
+
 				shape = side.getShape();
 				texture = side.getTexture();
 
@@ -222,7 +222,7 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 			};
 
 			/*
-				Reflects all user-controlled layers 
+				Reflects all user-controlled layers
 				to the canvas
 			*/
 			ctrl.reflectLayersToCanvas = function() {
@@ -318,8 +318,8 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 
 				window.requestAnimationFrame(ctrl.update);
 				// ctrl.update();
-				// 
-				
+				//
+
 				bindCanvasEvents();
 
 				t2 = performance.now() - t1;
@@ -327,7 +327,7 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				// console.info('Editor rebuild completed in ', t2, ' milliseconds.');
 			};
 
-			
+
 			ctrl.resize();
 			ctrl.update();
 			$window.addEventListener('resize', ctrl.resize);
