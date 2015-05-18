@@ -13,7 +13,7 @@
             "name": "Layer 1",
             "pattern": {
               "images": {
-                "hd": "/assets/images/patterns/pattern_2.png"
+                "hd": "assets/images/patterns/pattern_2.png"
               }
             },
             "canvasObject": {
@@ -48,10 +48,10 @@
               "maskTop": 200,
               "maskScaleX": 0.2,
               "maskScaleY": 0.2,
-              "_maskImageSrc": "/assets/images/patterns/pattern_2.png"
+              "_maskImageSrc": "assets/images/patterns/pattern_2.png"
             },
             "layerClass": "ImageLayer",
-            "imageSrc": "/assets/images/patterns/pattern_2.png"
+            "imageSrc": "assets/images/patterns/pattern_2.png"
           }
         ]
       },
