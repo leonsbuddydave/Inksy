@@ -54,7 +54,7 @@ angular.module('templates', []);
 
 angular.module('inksy', ['ngAnimate', 'ui.bootstrap', 'templates', 'dndLists', 'facebook', 'ui.select', 'colorpicker.module'])
 	.config(function(FacebookProvider, InstagramProvider) {
-		FacebookProvider.init('1561447194144363');
+		FacebookProvider.init('890048857724673');
 		InstagramProvider.init('755dd07bfe2e49408dd93d59cc810b2c', 'http://localhost:3000/assets/instagram_redirect.html');
 	})
 	.controller('MainCtrl', MainCtrl)
