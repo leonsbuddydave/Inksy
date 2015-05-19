@@ -24,15 +24,15 @@ var DynamicMaskedImage = (function() {
 				maskLeft = this.maskLeft;
 				maskTop = this.maskTop;
 
-				newCtx.drawImage(this._maskImageElement, maskLeft, maskTop, maskWidth, maskHeight);  
+				newCtx.drawImage(this._maskImageElement, maskLeft, maskTop, maskWidth, maskHeight);
 				newCtx.globalCompositeOperation = 'source-in';
 			}
-			
+
 			newCtx.save();
 			this.transform(newCtx);
 			this.callSuper('_render', newCtx);
 			newCtx.restore();
-			
+
 			ctx.save();
 			ctx.setTransform(1, 0, 0, 1, 0, 0);
 			ctx.drawImage(this._maskCanvas, 0, 0, this.canvas.width, this.canvas.height);
@@ -83,7 +83,7 @@ DynamicMaskedImage.fromObject = function(object, callback) {
 					}, null, object.maskCrossOrigin);
 				}
 				else {
-					callback && callback(instance);  
+					callback && callback(instance);
 				}
 			});
 		});
