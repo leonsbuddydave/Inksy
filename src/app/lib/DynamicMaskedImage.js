@@ -204,7 +204,7 @@ var DynamicMaskedImage = (function() {
 			// 	this.fire('image:loaded');
 			// };
 			// 
-			this.setMask(this._maskImageSrc);
+			// this.setMask(this._maskImageSrc);
 
 			/* Create an in-memory canvas to perform operations on */
 			this._maskingCanvas = fabric.util.createCanvasElement();
