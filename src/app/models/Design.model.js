@@ -27,7 +27,9 @@ var Design = function(LayerSet) {
 				json.design.sides[key] = side.toJson();
 			});
 
-			return JSON.stringify(json);
+			json["here"] = "i am!!!!!";
+
+			return json;
 		}
 
 		static fromJson(json, productData) {
