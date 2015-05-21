@@ -24,12 +24,14 @@ var DesignState = function(Design, $rootScope, InksyEvents, $q) {
 	};
 
 	var commit = function(sourceContext) {
-		// console.log(design);
+		console.log(design);
 		$rootScope.$broadcast(InksyEvents.DESIGN_CHANGED, design, sourceContext);
 	};
 
 	var designToJson = function() {
-		return JSON.stringify(design);
+		var json = JSON.stringify(design);
+		json["image_cropped"] = "here it is!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+		return "duuude";
 	}
 
 	var exportForPrint = function(options, callback) {
@@ -124,8 +126,9 @@ var DesignState = function(Design, $rootScope, InksyEvents, $q) {
 			var url = printCanvas.toDataURL({
 				format: 'png'
 			});
-
-			console.log('DesignState', url);
+			var json = design.toJson();
+			json["final_design"] = url;
+			console.log(JSON.stringify(json));
 		}
 	}
 
