@@ -10,7 +10,7 @@ var ImageLayer = function(Layer) {
 				throw new Error("IKBmage is not an image.");
 			}
 
-			this.setCanvasObject(new fabric.DynamicMaskedImage(image.src, {
+			this.setCanvasObject(new fabric.DynamicMaskedImage(image, {
 				selectable: false
 			}));
 			this.canvasObject.setControlsVisibility({

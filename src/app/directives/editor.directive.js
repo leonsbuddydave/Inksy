@@ -250,13 +250,16 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 					object.moveTo(index);
 
 					if (pattern) {
-						object.setMask(pattern.getHD());
-						object.setMaskOptions({
-							maskLeft: productSide.getAreaCenter().left,
-							maskTop: productSide.getAreaCenter().top,
-							maskScaleX: .2,
-							maskScaleY: .2
-						});
+						var patternImage = new Image();
+						patternImage.onload = function() {
+							object.setMaskImageElement(patternImage, {
+								maskLeft: productSide.getAreaCenter().left,
+								maskTop: productSide.getAreaCenter().top,
+								maskScaleX: .2,
+								maskScaleY: .2
+							});
+						}
+						patternImage.src = pattern.getHD();
 					}
 
 					if (layer.isSelected()) {
