@@ -3,6 +3,7 @@
 import {ProductSide} from '../models/product.model';
 import MaskedImage from '../lib/MaskedImage';
 import DynamicMaskedImage from '../lib/DynamicMaskedImage';
+import DynamicMaskedText from '../lib/DynamicMaskedText';
 
 function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interval, InksyEvents) {
 	return {
