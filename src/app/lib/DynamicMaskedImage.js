@@ -56,7 +56,7 @@ var DynamicMaskedImage = (function() {
 		toObject: function(propertiesToInclude) {
 			var object = fabric.util.object.extend(this.callSuper('toObject', propertiesToInclude), {
 				maskSrc: this._maskImageElement && this._maskImageElement.src,
-				maskCrossOrigin: this.maskImageElement && this._maskImageElement.crossOrigin,
+				maskCrossOrigin: this._maskImageElement && this._maskImageElement.crossOrigin,
 				maskLeft: this.maskLeft,
 				maskTop: this.maskTop,
 				maskScaleX: this.maskScaleX,

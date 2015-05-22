@@ -24,6 +24,7 @@ var DynamicMaskedText = (function() {
 				maskLeft = this.maskLeft;
 				maskTop = this.maskTop;
 
+				newCtx.globalCompositeOperation = 'source-over';
 				newCtx.drawImage(this._maskImageElement, maskLeft, maskTop, maskWidth, maskHeight);
 				this.globalCompositeOperation = 'source-in';
 			}
@@ -41,7 +42,7 @@ var DynamicMaskedText = (function() {
 			this.transform(newCtx);
 			this.callSuper('_render', newCtx);
 			newCtx.restore();
-			
+
 			ctx.save();
 			ctx.setTransform(1, 0, 0, 1, 0, 0);
 			ctx.drawImage(this._maskCanvas, 0, 0, this.canvas.width, this.canvas.height);
@@ -65,7 +66,7 @@ var DynamicMaskedText = (function() {
 		toObject: function(propertiesToInclude) {
 			var object = fabric.util.object.extend(this.callSuper('toObject', propertiesToInclude), {
 				maskSrc: this._maskImageElement && this._maskImageElement.src,
-				maskCrossOrigin: this.maskImageElement && this._maskImageElement.crossOrigin,
+				maskCrossOrigin: this._maskImageElement && this._maskImageElement.crossOrigin,
 				maskLeft: this.maskLeft,
 				maskTop: this.maskTop,
 				maskScaleX: this.maskScaleX,
@@ -78,7 +79,7 @@ var DynamicMaskedText = (function() {
 })();
 
 DynamicMaskedText.fromObject = function(object, callback) {
-	var instance = new fabric.DynamicMaskedImage(object.text, clone(object))
+	var instance = new fabric.DynamicMaskedText(object.text, fabric.util.object.clone(object))
 
 	if (typeof object.maskSrc === 'string') {
 		fabric.util.loadImage(object.maskSrc, function(maskImage) {
