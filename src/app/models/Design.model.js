@@ -8,6 +8,7 @@ var Design = function(LayerSet) {
 			this.variant = null;
 			this.material = null;
 			this.product = null;
+			this.canvasPreview = null;
 		}
 
 		toJson() {
@@ -90,6 +91,14 @@ var Design = function(LayerSet) {
 
 		setMaterial(material) {
 			this.material = material;
+		}
+
+		setCanvasPreview(canvasPreview) {
+			this.canvasPreview = canvasPreview;
+		}
+
+		getCanvasPreview() {
+			return this.canvasPreview;
 		}
 	}
 };
