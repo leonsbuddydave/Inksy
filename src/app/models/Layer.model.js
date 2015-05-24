@@ -53,6 +53,10 @@ var Layer = function($timeout, $injector) {
 			this.pattern = pattern;
 		}
 
+		clearPattern() {
+			this.pattern = null;
+		}
+
 		getPattern() {
 			return this.pattern;
 		}

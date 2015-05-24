@@ -261,6 +261,8 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 							});
 						}
 						patternImage.src = pattern.getHD();
+					} else {
+						object.clearMaskImageElement();
 					}
 
 					if (layer.isSelected()) {

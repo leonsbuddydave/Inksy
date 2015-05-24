@@ -45,6 +45,11 @@ var DynamicMaskedImage = (function() {
 			this.canvas && this.canvas.renderAll();
 		},
 
+		clearMaskImageElement: function() {
+			this._maskImageElement = null;
+			this.canvas && this.canvas.renderAll();
+		},
+
 		setMaskOptions: function(options) {
 			fabric.util.object.extend(this, options);
 		},
