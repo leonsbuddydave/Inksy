@@ -9,6 +9,7 @@ var Design = function(LayerSet) {
 			this.material = null;
 			this.product = null;
 			this.canvasPreview = null;
+			this.fullCanvas = null;
 		}
 
 		toJson() {
@@ -93,12 +94,22 @@ var Design = function(LayerSet) {
 			this.material = material;
 		}
 
+		setFullCanvas(fc){
+			this.fullCanvas = fc;
+		}
+
 		setCanvasPreview(canvasPreview) {
 			this.canvasPreview = canvasPreview;
 		}
 
 		getCanvasPreview() {
 			return this.canvasPreview;
+		}
+
+		getFullCanvasPreview() {
+			return this.fullCanvas.deactivateAll().toDataURL({
+						format: 'png'
+					});
 		}
 	}
 };

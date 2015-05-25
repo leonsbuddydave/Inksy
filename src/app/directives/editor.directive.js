@@ -314,9 +314,7 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				t2 = performance.now() - t1;
 
 				if (design) {
-					design.setCanvasPreview(fc.toDataURL({
-						format: 'png'
-					}));
+					design.setFullCanvas(fc);
 				}
 				// console.info('Editor rebuild completed in ', t2, ' milliseconds.');
 			};

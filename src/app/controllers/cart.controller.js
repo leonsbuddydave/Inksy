@@ -28,8 +28,8 @@ class CartCtrl {
 
 	saveToProfile() {
 		console.log('Saving to profile!');
-		console.log(this.DesignState.getDesign());
-		console.log(this.DesignState.getDesign().toJson());
+		console.log(this.DesignState.getDesign().getFullCanvasPreview());
+		// console.log(this.DesignState.getDesign().toJson());
 	}
 }
 
