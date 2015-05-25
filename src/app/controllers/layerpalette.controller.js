@@ -135,6 +135,12 @@ class LayerPaletteCtrl {
 		this.update();
 	}
 
+	onClickRemovePattern(event, layer) {
+		if (layer === null) return;
+		layer.clearPattern();
+		this.update();
+	}
+
 	/*
 		Broadcasts an update containing the
 		current layer set

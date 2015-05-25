@@ -42,9 +42,9 @@ class CartCtrl {
 		// 		 console.log(r);
 		// 	}
 		// });
-
-		// console.log(this.DesignState.getDesign());
-		console.log(this.DesignState.getDesign().toJson());
+		console.log('Saving to profile!');
+		console.log(this.DesignState.getDesign().getFullCanvasPreview());
+		// console.log(this.DesignState.getDesign().toJson());
 	}
 }
 

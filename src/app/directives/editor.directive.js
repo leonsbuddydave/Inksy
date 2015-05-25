@@ -3,6 +3,7 @@
 import {ProductSide} from '../models/product.model';
 import MaskedImage from '../lib/MaskedImage';
 import DynamicMaskedImage from '../lib/DynamicMaskedImage';
+import DynamicMaskedText from '../lib/DynamicMaskedText';
 
 function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interval, InksyEvents) {
 	return {
@@ -250,13 +251,18 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 					object.moveTo(index);
 
 					if (pattern) {
-						object.setMask(pattern.getHD());
-						object.setMaskOptions({
-							maskLeft: productSide.getAreaCenter().left,
-							maskTop: productSide.getAreaCenter().top,
-							maskScaleX: .2,
-							maskScaleY: .2
-						});
+						var patternImage = new Image();
+						patternImage.onload = function() {
+							object.setMaskImageElement(patternImage, {
+								maskLeft: productSide.getAreaCenter().left,
+								maskTop: productSide.getAreaCenter().top,
+								maskScaleX: .2,
+								maskScaleY: .2
+							});
+						}
+						patternImage.src = pattern.getHD();
+					} else {
+						object.clearMaskImageElement();
 					}
 
 					if (layer.isSelected()) {
@@ -301,25 +307,15 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				ctrl.addProductToCanvas();
 				ctrl.correctLayerOrder();
 
-				// var a = new fabric.DynamicMaskedImage('assets/images/test/Lenna.png');
-				// fc.add(a);
-				// fc.on('image:loaded', fc.renderAll.bind(fc));
-
-				// DEBUG
-				// var a = new MaskedImage('assets/images/test/Lenna.png', {});
-				// fc.add(a);
-				// a.on('image:loaded', fc.renderAll.bind(fc));
-				// a.setMask('assets/images/patterns/pattern_1.png', {});
-				// DEBUG
-
 				window.requestAnimationFrame(ctrl.update);
-				// ctrl.update();
-				//
 
 				bindCanvasEvents();
 
 				t2 = performance.now() - t1;
 
+				if (design) {
+					design.setFullCanvas(fc);
+				}
 				// console.info('Editor rebuild completed in ', t2, ' milliseconds.');
 			};
 

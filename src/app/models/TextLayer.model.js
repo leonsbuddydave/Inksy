@@ -4,7 +4,7 @@ var TextLayer = function(Layer) {
 	return class TextLayer extends Layer {
 		constructor(options, text) {
 			this.name = options.name;
-			this.setCanvasObject(new fabric.Text(text, {
+			this.setCanvasObject(new fabric.DynamicMaskedText(text, {
 				fill: "#000000",
 				fontFamily: 'Open Sans',
 				selectable: false

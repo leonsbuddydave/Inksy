@@ -1,14 +1,14 @@
 'use strict';
 
-var DynamicMaskedImage = (function() {
-	return fabric.util.createClass(fabric.Image, {
-		type: 'dynamicMaskedImage',
-		initialize: function(image, options) {
-			this.callSuper('initialize', image, options);
+var DynamicMaskedText = (function() {
+	return fabric.util.createClass(fabric.Text, {
+		type: 'dynamicMaskedText',
+		initialize: function(text, options) {
+			this.callSuper('initialize', text, options);
 			this._maskCanvas = fabric.util.createCanvasElement();
 			this._maskImageElement = null;
 		},
-
+		
 		_render: function(ctx) {
 			this._maskCanvas.width = this.canvas.width;
 			this._maskCanvas.height = this.canvas.height;
@@ -24,21 +24,31 @@ var DynamicMaskedImage = (function() {
 				maskLeft = this.maskLeft;
 				maskTop = this.maskTop;
 
-				newCtx.drawImage(this._maskImageElement, maskLeft, maskTop, maskWidth, maskHeight);  
-				newCtx.globalCompositeOperation = 'source-in';
+				newCtx.globalCompositeOperation = 'source-over';
+				newCtx.drawImage(this._maskImageElement, maskLeft, maskTop, maskWidth, maskHeight);
+				this.globalCompositeOperation = 'source-in';
+			}
+
+			newCtx.save();
+			this._setTextStyles(newCtx);
+			
+			if (this._shouldClearCache()) {
+				this._initDimensions(newCtx);
 			}
 			
-			newCtx.save();
+			this._setStrokeStyles(newCtx);
+			this._setFillStyles(newCtx);
+			
 			this.transform(newCtx);
 			this.callSuper('_render', newCtx);
 			newCtx.restore();
-			
+
 			ctx.save();
 			ctx.setTransform(1, 0, 0, 1, 0, 0);
 			ctx.drawImage(this._maskCanvas, 0, 0, this.canvas.width, this.canvas.height);
 			ctx.restore();
 		},
-
+		
 		setMaskImageElement: function(image, options) {
 			this.setMaskOptions(options);
 			this._maskImageElement = image;
@@ -67,35 +77,28 @@ var DynamicMaskedImage = (function() {
 				maskScaleX: this.maskScaleX,
 				maskScaleY: this.maskScaleY
 			});
-
+			
 			return object;
 		}
 	});
 })();
 
-DynamicMaskedImage.fromObject = function(object, callback) {
-	fabric.util.loadImage(object.src, function(img) {
-		fabric.DynamicMaskedImage.prototype._initFilters.call(object, object, function(filters) {
-			object.filters = filters || [ ];
-			fabric.DynamicMaskedImage.prototype._initFilters.call(object, object, function(resizeFilters) {
-				object.resizeFilters = resizeFilters || [ ];
-				var instance = new fabric.DynamicMaskedImage(img, object);
+DynamicMaskedText.fromObject = function(object, callback) {
+	var instance = new fabric.DynamicMaskedText(object.text, fabric.util.object.clone(object))
 
-				if (typeof object.maskSrc === 'string') {
-					fabric.util.loadImage(object.maskSrc, function(maskImage) {
-						instance.setMaskImageElement(maskImage);
-						callback && callback(instance);
-					}, null, object.maskCrossOrigin);
-				}
-				else {
-					callback && callback(instance);  
-				}
-			});
-		});
-	}, null, object.crossOrigin);
+	if (typeof object.maskSrc === 'string') {
+		fabric.util.loadImage(object.maskSrc, function(maskImage) {
+			instance.setMaskImageElement(maskImage);
+			callback && callback(instance);
+		}, null, object.maskCrossOrigin);
+	}
+	else {
+		callback && callback(instance);  
+	}
 }
 
-DynamicMaskedImage.async = true;
+DynamicMaskedText.async = true;
 
-fabric.DynamicMaskedImage = DynamicMaskedImage;
-export default DynamicMaskedImage;
+fabric.DynamicMaskedText = DynamicMaskedText;
+
+export default DynamicMaskedText;

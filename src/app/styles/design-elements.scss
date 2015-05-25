@@ -43,6 +43,26 @@
 			opacity: 1;
 			transform: translateY(0);
 			height: 500px;
+
+			&.upload-panel {
+
+			}
+
+			&.facebook-panel {
+
+			}
+
+			&.instagram-panel {
+
+			}
+
+			&.text-panel {
+				height: 130px;
+			}
+
+			&.pattern-panel {
+
+			}
 		}
 	}
 }
