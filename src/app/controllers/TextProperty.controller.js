@@ -1,9 +1,10 @@
 'use strict';
 
 class TextPropertyCtrl {
-	constructor($scope, $rootScope, InksyEvents) {
+	constructor($scope, $rootScope, InksyEvents, $timeout) {
 		this.$scope = $scope;
 		this.$rootScope = $rootScope;
+		this.$timeout = $timeout;
 
 		this.textObject = null;
 
@@ -81,6 +82,14 @@ class TextPropertyCtrl {
 
 			this.styles.color = to.getFill();
 			this.styles.align = to.getTextAlign();
+
+			console.log('Doin it right');
+			
+			// this is so far from the correct way to do this
+			// that it's giving me heart palpitations
+			this.$timeout(function() {
+				$('.text-properties-input').focus();
+			}, 100);
 		}
 	}
 
@@ -120,6 +129,6 @@ class TextPropertyCtrl {
 	}
 }
 
-TextPropertyCtrl.$inject = ['$scope', '$rootScope', 'InksyEvents'];
+TextPropertyCtrl.$inject = ['$scope', '$rootScope', 'InksyEvents', '$timeout'];
 
 export default TextPropertyCtrl;
