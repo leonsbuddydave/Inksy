@@ -29,7 +29,7 @@ var Design = function(LayerSet) {
 				json.design.sides[key] = side.toJson();
 			});
 
-			json["here"] = "i am!!!!!";
+			json["fullCanvas"] = this.getFullCanvasPreview();
 
 			return json;
 		}

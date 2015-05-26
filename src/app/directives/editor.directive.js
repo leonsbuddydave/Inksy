@@ -12,8 +12,8 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 		link: function(scope, element, attributes, ctrl) {
 			var productSides, fc, design, selectedObject;
 
-			const PRODUCT_AREA_WIDTH = 550;
-			const PRODUCT_AREA_HEIGHT = 550;
+			const PRODUCT_AREA_WIDTH = 400;
+			const PRODUCT_AREA_HEIGHT = 400;
 
 			ctrl.productColor = "#fff";
 			ctrl.layers = {};
