@@ -1,6 +1,6 @@
 'use strict';
 
-var facebookPanel = function(Facebook, InksyAlbum, $rootScope) {
+var facebookPanel = function(Facebook, InksyAlbum, $rootScope, InksyEvents) {
 	return {
 		templateUrl: 'app/partials/facebook-panel.html',
 		restrict: 'AE',
@@ -13,6 +13,12 @@ var facebookPanel = function(Facebook, InksyAlbum, $rootScope) {
 			scope.auth = null;
 			scope.albums = null;
 			scope.selectedAlbum = null;
+
+			scope.$on(InksyEvents.TAB_STATUS_CHANGED, function(event, id) {
+				if (id === 'facebook' && !scope.isConnected()) {
+					scope.connectToFacebook();
+				}
+			});
 
 			/**
 			 * [connectToFacebook Connects to the user's Facebook account
@@ -112,6 +118,6 @@ var facebookPanel = function(Facebook, InksyAlbum, $rootScope) {
 	}
 };
 
-facebookPanel.$inject = ['Facebook', 'InksyAlbum', '$rootScope'];
+facebookPanel.$inject = ['Facebook', 'InksyAlbum', '$rootScope', 'InksyEvents'];
 
 export default facebookPanel;

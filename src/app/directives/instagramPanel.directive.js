@@ -1,6 +1,6 @@
 'use strict';
 
-var instagramPanel = function(Instagram, InksyAlbum, $rootScope) {
+var instagramPanel = function(Instagram, InksyAlbum, $rootScope, InksyEvents) {
 	return {
 		templateUrl: 'app/partials/instagram-panel.html',
 		restrict: 'AE',
@@ -12,6 +12,12 @@ var instagramPanel = function(Instagram, InksyAlbum, $rootScope) {
 
 			scope.auth = null;
 			scope.album = null;
+
+			scope.$on(InksyEvents.TAB_STATUS_CHANGED, function(event, id) {
+				if (id === 'instagram' && !scope.isConnected()) {
+					scope.connectToInstagram();
+				}
+			});
 
 			/**
 			 * [connectToInstagram Connects to the user's Instagram account
@@ -86,13 +92,12 @@ var instagramPanel = function(Instagram, InksyAlbum, $rootScope) {
 					});
 				}
 				image.src = photo.getHD();
-				console.log('Photo clicked!');
 			}
 			
 		}
 	}
 };
 
-instagramPanel.$inject = ['Instagram', 'InksyAlbum', '$rootScope'];
+instagramPanel.$inject = ['Instagram', 'InksyAlbum', '$rootScope', 'InksyEvents'];
 
 export default instagramPanel;

@@ -1,10 +1,4 @@
 <div class="gallery-panel">
-	<div class="action-bar" ng-hide="isConnected()">
-		<button ng-click="connectToFacebook()">
-			Connect to Facebook
-		</button>	
-	</div>
-
 	<div class="action-bar" ng-show="isConnected() && getSelectedAlbum()">
 		<button ng-click="clearSelectedAlbum()">
 			Return to Albums

@@ -1,4 +1,4 @@
-var DesignElementsTabCtrl = function($scope) {
+var DesignElementsTabCtrl = function($scope, InksyEvents) {
 	$scope.active = {
 		upload: false,
 		facebook: false,
@@ -16,6 +16,8 @@ var DesignElementsTabCtrl = function($scope) {
 			})
 			$scope.active[id] = true
 		}
+
+		$scope.$broadcast(InksyEvents.TAB_STATUS_CHANGED, id);
 	}
 
 	$scope.isActive = function(id) {
@@ -23,7 +25,7 @@ var DesignElementsTabCtrl = function($scope) {
 	}
 };
 
-DesignElementsTabCtrl.$inject = ['$scope'];
+DesignElementsTabCtrl.$inject = ['$scope', 'InksyEvents'];
 
 export default DesignElementsTabCtrl;
 
