@@ -10,5 +10,6 @@ InksyEvents.GLOBAL_RENDER = "global:render";
 InksyEvents.PRODUCT_DATA_READY = "4";
 InksyEvents.DESIGN_LOADED = "5";
 InksyEvents.TAB_STATUS_CHANGED = "6";
+InksyEvents.NEW_FILE_INCOMING = "7";
 
 export default InksyEvents;

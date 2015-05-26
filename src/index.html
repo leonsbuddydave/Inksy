@@ -43,7 +43,7 @@
 
                 <ul>
                     
-                  <li ng-click="toggle('upload')">
+                  <li file-upload-button>
                     <img src="/assets/images/icons/upload.png" ng-hide="active.upload">
                     <img src="/assets/images/icons/upload_on.png" ng-show="active.upload">
                   </li>
@@ -70,7 +70,7 @@
 
                 </ul>
 
-                <div class="floating-panel upload-panel" ng-class="{show: isActive('upload')}">
+                <div class="floating-panel upload-panel" ng-class="{show: false}">
                   <div class="asset-panel" gallery-panel></div>
                 </div>
 

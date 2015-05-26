@@ -1,12 +1,28 @@
 'use strict';
 
-var galleryPanel = function(InksyPhoto, $q, $rootScope) {
+var galleryPanel = function(InksyPhoto, $q, $rootScope, InksyEvents) {
 	return {
 		templateUrl: 'app/partials/gallery-panel.html',
 		restrict: 'AE',
 		scope: {},
 		link: function(scope, element, attributes) {
 			scope.photos = [];
+
+			scope.$on(InksyEvents.NEW_FILE_INCOMING, function(event, files) {
+				var uploadPromise = scope.uploadImages(event, files);
+
+				uploadPromise.then(function(results) {
+					results.forEach(function(photo, index) {
+						var image = new Image();
+						image.onload = () => {
+							scope.$apply(function() {
+								$rootScope.$broadcast('image:new', image);
+							});
+						}
+						image.src = photo.getHD();
+					});
+				});
+			});
 
 			scope.uploadImages = function(event, files) {
 				var allUploadPromises = [];
@@ -16,6 +32,7 @@ var galleryPanel = function(InksyPhoto, $q, $rootScope) {
 
 					file = files[i];
 					uploadPromise = $q.defer();
+					allUploadPromises.push(uploadPromise.promise);
 
 					reader = new FileReader();
 					reader.onload = (event) => {
@@ -32,6 +49,7 @@ var galleryPanel = function(InksyPhoto, $q, $rootScope) {
 
 					uploadPromise.promise.then(function(result) {
 						scope.addPhoto(result);
+						return result;
 					});
 				}
 
@@ -59,6 +77,6 @@ var galleryPanel = function(InksyPhoto, $q, $rootScope) {
 	}
 }
 
-galleryPanel.$inject = ['InksyPhoto', '$q', '$rootScope'];
+galleryPanel.$inject = ['InksyPhoto', '$q', '$rootScope', 'InksyEvents'];
 
 export default galleryPanel;
