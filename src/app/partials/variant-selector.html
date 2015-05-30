@@ -2,9 +2,9 @@
 	<div class="notification light" ng-hide="hasCategory()">Select a product from the products tab.</div>
 
 	<div ng-show="hasCategory()">
-		<select ng-show="hasMaterials()" class="form-control" ng-model="selectedMaterial" ng-options="material as matName for (matName, material) in getMaterials()" ng-change="changeMaterial()"></select>
+		<select ng-show="showMaterials()" class="form-control" ng-model="selectedMaterial" ng-options="material as matName for (matName, material) in getMaterials()" ng-change="changeMaterial()"></select>
 		
-		<div class="variant-selector">
+		<div class="variant-selector" ng-show="showVariants()">
 			<div class="variant" ng-repeat="variant in getVariants()" ng-click='selectVariant(variant)' ng-class="{selected: isSelected(variant)}">
 				<img ng-src="{{getPreviewImage(variant)}}">
 			</div>

@@ -83,6 +83,10 @@ var variantSelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) {
 				}
 			}
 
+			scope.showVariants = function() {
+				return (scope.getVariants().length > 1);
+			}
+
 			/**
 			 * [selectVariant Changes the variant to the selected one]
 			 * @param  {[type]} index [The variant to switch to]
@@ -120,6 +124,14 @@ var variantSelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) {
 			scope.hasMaterials = function() {
 				if (scope.hasCategory()) {
 					return (Object.keys(scope.getMaterials()).length > 0);
+				}
+
+				return false;
+			}
+
+			scope.showMaterials = function() {
+				if (scope.hasCategory()) {
+					return (Object.keys(scope.getMaterials()).length > 1);
 				}
 
 				return false;
