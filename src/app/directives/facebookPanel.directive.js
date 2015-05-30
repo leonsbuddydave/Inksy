@@ -4,7 +4,9 @@ var facebookPanel = function(Facebook, InksyAlbum, $rootScope, InksyEvents) {
 	return {
 		templateUrl: 'app/partials/facebook-panel.html',
 		restrict: 'AE',
-		scope: {},
+		scope: {
+			active: '=active'
+		},
 		link: function(scope, element, attributes) {
 			const PHOTOS_PER_REQUEST = 20;
 			var nextApiUrl = '/me/albums?fields=photos,name,description,cover_photo';
@@ -89,6 +91,7 @@ var facebookPanel = function(Facebook, InksyAlbum, $rootScope, InksyEvents) {
 					});
 				}
 				image.src = photo.getHD();
+				scope.active = false
 			}
 
 			scope.getAlbumPreviewUrl = function(album) {

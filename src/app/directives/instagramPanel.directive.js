@@ -4,7 +4,9 @@ var instagramPanel = function(Instagram, InksyAlbum, $rootScope, InksyEvents) {
 	return {
 		templateUrl: 'app/partials/instagram-panel.html',
 		restrict: 'AE',
-		scope: {},
+		scope: {
+			active: '=active'
+		},
 		link: function(scope, element, attributes) {
 			const PHOTOS_PER_REQUEST = 20;
 			var nextApiUrl = '/users/self/media/recent';
@@ -92,6 +94,7 @@ var instagramPanel = function(Instagram, InksyAlbum, $rootScope, InksyEvents) {
 					});
 				}
 				image.src = photo.getHD();
+				scope.active = false
 			}
 			
 		}
