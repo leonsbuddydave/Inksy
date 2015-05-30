@@ -15,6 +15,15 @@ var InksyPhoto = function() {
 			return json;
 		}
 
+		static fromJson(json) {
+			var instance = new InksyPhoto();
+
+			instance.images = json.images;
+			instance.externalId = json.externalId;
+
+			return instance;
+		}
+
 		setExternalId(id) {
 			this.externalId = id;
 		}

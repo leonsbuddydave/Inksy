@@ -1,6 +1,6 @@
 'use strict';
 
-var Layer = function($timeout, $injector) {
+var Layer = function($timeout, $injector, InksyPhoto) {
 	return class Layer {
 		constructor(options) {
 			this.name = options.name;
@@ -37,6 +37,7 @@ var Layer = function($timeout, $injector) {
 			});
 
 			layer.added = true;
+			layer.setPattern(InksyPhoto.fromJson(json.pattern));
 
 			return layer;
 		}
@@ -51,10 +52,18 @@ var Layer = function($timeout, $injector) {
 
 		setPattern(pattern) {
 			this.pattern = pattern;
+			this.patternImage = new Image();
+			this.patternImage.crossOrigin = "anonymous";
+			this.patternImage.src = pattern.getHD();
+		}
+
+		getPatternImage() {
+			return this.patternImage;
 		}
 
 		clearPattern() {
 			this.pattern = null;
+			this.patternImage = null;
 		}
 
 		getPattern() {
@@ -94,6 +103,6 @@ var Layer = function($timeout, $injector) {
 	};
 };
 
-Layer.$inject = ['$timeout', '$injector'];
+Layer.$inject = ['$timeout', '$injector', 'InksyPhoto'];
 
 export default Layer;

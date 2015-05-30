@@ -4,6 +4,7 @@ import {ProductSide} from '../models/product.model';
 import MaskedImage from '../lib/MaskedImage';
 import DynamicMaskedImage from '../lib/DynamicMaskedImage';
 import DynamicMaskedText from '../lib/DynamicMaskedText';
+import LayerMask from '../lib/LayerMask';
 
 function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interval, InksyEvents) {
 	return {
@@ -244,29 +245,23 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				if (angular.isUndefined(sideDesignLayers)) return;
 
 				sideDesignLayers.forEach((layer, index) => {
-					let object, mask, pattern;
+					let object, mask, patternImage, baseShapeMask;
 
 					object = layer.canvasObject;
-					pattern = layer.getPattern();
+					patternImage = layer.getPatternImage();
 
 					object.setClipTo(productSide.getClipTo());
 
 					fc.add(object);
 					object.moveTo(index);
 
-					if (pattern) {
-						var patternImage = new Image();
-						patternImage.onload = function() {
-							object.setMaskImageElement(patternImage, {
-								maskLeft: productSide.getAreaCenter().left,
-								maskTop: productSide.getAreaCenter().top,
-								maskScaleX: .2,
-								maskScaleY: .2
-							});
-						}
-						patternImage.src = pattern.getHD();
-					} else {
-						object.clearMaskImageElement();
+					object.clearMasks();
+					baseShapeMask = object.createMask(productSide.getShape().getElement(), {});
+					[baseShapeMask.width, baseShapeMask.height] = MathUtils.contain(baseShapeMask._element.naturalWidth, baseShapeMask._element.naturalHeight, PRODUCT_AREA_WIDTH, PRODUCT_AREA_HEIGHT);
+					
+					if (patternImage) {
+						var patternMask = object.createMask(patternImage, {});
+						[patternMask.width, patternMask.height] = MathUtils.contain(patternMask._element.naturalWidth, patternMask._element.naturalHeight, PRODUCT_AREA_WIDTH, PRODUCT_AREA_HEIGHT);		
 					}
 
 					if (layer.isSelected()) {
@@ -278,9 +273,6 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 					// fuck it right up
 					if (!layer.added) {
 						if (object instanceof fabric.DynamicMaskedImage) {
-							// [object.width, object.height] = MathUtils.contain(object.width, object.height, PRODUCT_AREA_WIDTH, PRODUCT_AREA_HEIGHT);
-							// object.setLeft(productSide.getAreaCenter().left - object.width / 2);
-							// object.setTop(productSide.getAreaCenter().top - object.height / 2);
 							object.scaleToWidth(200);
 						}
 
