@@ -88,12 +88,13 @@ var DesignState = function(Design, $rootScope, InksyEvents, $q) {
 
 				cloneObject = fabric.util.object.clone(layer.getCanvasObject());
 				cloneObject.clipTo = null;
-				cloneObject.popMask();
+				// cloneObject.popMask();
+				cloneObject.removeFirstMask();
 					
 				referenceCanvas = layer.getCanvasObject().canvas;
 
-				var xOffset = ((referenceCanvas.width / 2) + area.offsetX);
-				var yOffset = ((referenceCanvas.height / 2) + area.offsetY);
+				var xOffset = ((referenceCanvas.width / 2) - area.width / 2);
+				var yOffset = ((referenceCanvas.height / 2) - area.height / 2);
 
 				leftRelativeToClipArea = (cloneObject.left - xOffset) * printScaleX;
 				topRelativeToClipArea = (cloneObject.top - yOffset) * printScaleY;
@@ -105,16 +106,12 @@ var DesignState = function(Design, $rootScope, InksyEvents, $q) {
 					top: topRelativeToClipArea
 				});
 
-				if (cloneObject.hasMask && cloneObject.hasMask()) {
-					cloneObject.maskScaleX = cloneObject.maskScaleX * printScaleX;
-					cloneObject.maskScaleY = cloneObject.maskScaleY * printScaleY;
-					cloneObject.maskLeft = (cloneObject.maskLeft - xOffset) * printScaleX;
-					cloneObject.maskTop = (cloneObject.maskTop - yOffset) * printScaleY;
-				}
+				cloneObject.getMasks().forEach(function(mask) {
+					mask.setWidth( mask.getWidth() * mask.scaleX * printScaleX );
+					mask.setHeight( mask.getHeight() * mask.scaleY * printScaleY );
+				})
 
 				printCanvas.add(cloneObject);
-
-				console.log(layer.getCanvasObject());
 
 				deferred.resolve();
 			});

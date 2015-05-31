@@ -13,8 +13,10 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 		link: function(scope, element, attributes, ctrl) {
 			var productSides, fc, design, selectedObject;
 
-			const PRODUCT_AREA_WIDTH = 400;
-			const PRODUCT_AREA_HEIGHT = 400;
+			const CANVAS_SCALE = 1.0;
+
+			const PRODUCT_AREA_WIDTH = 400 * CANVAS_SCALE;
+			const PRODUCT_AREA_HEIGHT = 400 * CANVAS_SCALE;
 
 			ctrl.productColor = "#fff";
 			ctrl.layers = {};
@@ -119,12 +121,17 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				fc.add(shape);
 				fc.add(texture);
 
+				var shapeLeft = fc.getCenter().left - (side.area.width / 2) - side.area.offsetX;
+				var shapeTop = fc.getCenter().top - (side.area.height / 2) - side.area.offsetY;
+
 				[texture.width, texture.height] = MathUtils.contain(texture._element.naturalWidth, texture._element.naturalHeight, PRODUCT_AREA_WIDTH, PRODUCT_AREA_HEIGHT);
-				texture.center();
+				texture.setLeft(shapeLeft);
+				texture.setTop(shapeTop);
 				texture.setCoords();
 
 				[shape.width, shape.height] = MathUtils.contain(shape._element.naturalWidth, shape._element.naturalHeight, PRODUCT_AREA_WIDTH, PRODUCT_AREA_HEIGHT);
-				shape.center();
+				shape.setLeft(shapeLeft);
+				shape.setTop(shapeTop);
 				shape.setCoords();
 
 				shape.filters = [ new fabric.Image.filters.Tint({
@@ -254,11 +261,17 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 
 					fc.add(object);
 					object.moveTo(index);
-
 					object.clearMasks();
+
+					// Create a mask and size it
 					baseShapeMask = object.createMask(productSide.getShape().getElement(), {});
 					[baseShapeMask.width, baseShapeMask.height] = MathUtils.contain(baseShapeMask._element.naturalWidth, baseShapeMask._element.naturalHeight, PRODUCT_AREA_WIDTH, PRODUCT_AREA_HEIGHT);
 					
+					// Create and set an offset for the mask image
+					var sideLeft = fc.getCenter().left - (productSide.area.width / 2) - productSide.area.offsetX;
+					var sideTop = fc.getCenter().top - (productSide.area.height / 2) - productSide.area.offsetY;
+					baseShapeMask.setCenterPoint(new fabric.Point(sideLeft, sideTop));
+
 					if (patternImage) {
 						var patternMask = object.createMask(patternImage, {});
 						[patternMask.width, patternMask.height] = MathUtils.contain(patternMask._element.naturalWidth, patternMask._element.naturalHeight, PRODUCT_AREA_WIDTH, PRODUCT_AREA_HEIGHT);		
@@ -299,6 +312,7 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 
 				ctrl.clear();
 				ctrl.resize();
+				// fc.setViewportTransform([2, 0, 0, 2, -fc.getWidth() / 2, -fc.getHeight() / 2]);
 				ctrl.reflectLayersToCanvas();
 				ctrl.addProductToCanvas();
 				ctrl.correctLayerOrder();

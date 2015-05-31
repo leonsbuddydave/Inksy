@@ -9,6 +9,10 @@ var DynamicMaskedImage = (function() {
 			this.masks = [];
 		},
 
+		getMasks: function() {
+			return this.masks;
+		},
+
 		clearMasks: function() {
 			this.masks = [];
 		},
@@ -27,10 +31,16 @@ var DynamicMaskedImage = (function() {
 			return this.masks.pop();
 		},
 
+		removeFirstMask: function() {
+			this.masks.splice(0, 1);
+		},
+
 		_render: function(ctx) {
 			this._maskCanvas.width = this.canvas.width;
 			this._maskCanvas.height = this.canvas.height;
 			var newCtx = this._maskCanvas.getContext('2d');
+
+			// newCtx.setTransform(2, 0, 0, 2, -this.canvas.width / 2, -this.canvas.height / 2);
 
 			this.masks.forEach((mask, mi) => {
 				mask.applyTo(newCtx);

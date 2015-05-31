@@ -9,6 +9,10 @@ var LayerMask = (function() {
 		type: 'layerMask',
 		initialize: function(image, options) {
 			this.callSuper('initialize', image, options);
+			this.centerPoint = null;
+		},
+		setCenterPoint: function(point) {
+			this.centerPoint = point;
 		},
 		applyTo: function(ctx) {
 			var renderWidth,
@@ -20,8 +24,14 @@ var LayerMask = (function() {
 			// use case at this time
 			renderWidth = this.getWidth() * this.getScaleX();
 			renderHeight = this.getHeight() * this.getScaleY();
-			renderLeft = (ctx.canvas.width / 2) - (renderWidth / 2);
-			renderTop = (ctx.canvas.height / 2) - (renderHeight / 2);
+
+			if (this.centerPoint === null) {
+				renderLeft = (ctx.canvas.width / 2) - (renderWidth / 2);
+				renderTop = (ctx.canvas.height / 2) - (renderHeight / 2);
+			} else {
+				renderLeft = this.centerPoint.x - (renderWidth / 2);
+				renderTop = this.centerPoint.y - (renderHeight / 2);
+			}
 
 			ctx.drawImage(this.getElement(), renderLeft, renderTop, renderWidth, renderHeight);
 		}
