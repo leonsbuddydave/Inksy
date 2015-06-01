@@ -40,7 +40,8 @@ var DynamicMaskedImage = (function() {
 			this._maskCanvas.height = this.canvas.height;
 			var newCtx = this._maskCanvas.getContext('2d');
 
-			// newCtx.setTransform(2, 0, 0, 2, -this.canvas.width / 2, -this.canvas.height / 2);
+			var oldTransform = this.canvas.viewportTransform;
+			newCtx.setTransform.apply(newCtx, oldTransform);
 
 			this.masks.forEach((mask, mi) => {
 				mask.applyTo(newCtx);
@@ -51,10 +52,11 @@ var DynamicMaskedImage = (function() {
 			this.transform(newCtx);
 			this.callSuper('_render', newCtx);
 			newCtx.restore();
-			
+
 			ctx.save();
 			ctx.setTransform(1, 0, 0, 1, 0, 0);
 			ctx.drawImage(this._maskCanvas, 0, 0, this.canvas.width, this.canvas.height);
+			ctx.setTransform.apply(ctx, oldTransform);
 			ctx.restore();
 		},
 

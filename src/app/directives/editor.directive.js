@@ -13,10 +13,10 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 		link: function(scope, element, attributes, ctrl) {
 			var productSides, fc, design, selectedObject;
 
-			const CANVAS_SCALE = 1.0;
+			const CANVAS_SCALE = 1;
 
-			const PRODUCT_AREA_WIDTH = 400 * CANVAS_SCALE;
-			const PRODUCT_AREA_HEIGHT = 400 * CANVAS_SCALE;
+			const PRODUCT_AREA_WIDTH = 400;
+			const PRODUCT_AREA_HEIGHT = 400;
 
 			ctrl.productColor = "#fff";
 			ctrl.layers = {};
@@ -117,6 +117,8 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 
 				shape = side.getShape();
 				texture = side.getTexture();
+
+				side.setScale(CANVAS_SCALE);
 
 				fc.add(shape);
 				fc.add(texture);
@@ -312,7 +314,7 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 
 				ctrl.clear();
 				ctrl.resize();
-				// fc.setViewportTransform([2, 0, 0, 2, -fc.getWidth() / 2, -fc.getHeight() / 2]);
+				fc.setViewportTransform([CANVAS_SCALE, 0, 0, CANVAS_SCALE, -fc.getWidth() / 2 * (CANVAS_SCALE - 1), -fc.getHeight() / 2 * (CANVAS_SCALE - 1)]);
 				ctrl.reflectLayersToCanvas();
 				ctrl.addProductToCanvas();
 				ctrl.correctLayerOrder();

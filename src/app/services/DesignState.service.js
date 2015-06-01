@@ -59,7 +59,7 @@ var DesignState = function(Design, $rootScope, InksyEvents, $q) {
 
 			side = variantSides[sideId];
 			printArea = side.getPrintArea();
-			area = side.getArea();
+			area = side.area;
 
 			printWidthInPixels = options.ppi * printArea.width;
 			printHeightInPixels = options.ppi * printArea.height;

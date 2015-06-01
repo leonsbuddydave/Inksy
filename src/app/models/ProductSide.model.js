@@ -9,6 +9,7 @@ class ProductSide {
 		this.printArea = null;
 		this.color = "#fff";
 		this.layers = [];
+		this.scale = 1;
 
 		this.images = {
 			texture: '',
@@ -78,10 +79,11 @@ class ProductSide {
 	}
 
 	getClipTo() {
-		var area, shape;
+		var area, shape, scale;
 
 		area = this.area;
 		shape = this.shape;
+		scale = this.scale;
 
 		return function(ctx) {
 			var cw, ch, mw, mh, msx, msy;
@@ -89,17 +91,13 @@ class ProductSide {
 			cw = ctx.canvas.width;
 			ch = ctx.canvas.height;
 
-			mw = area.width * shape.scaleX;
-			mh = area.height * shape.scaleY;
+			mw = area.width * shape.getScaleX() * scale;
+			mh = area.height * shape.getScaleY() * scale;
 
-			msx = area.offsetX * shape.scaleX;
-			msy = area.offsetY * shape.scaleY;
-			// 
-			// msx = mw / 2;
-			// msy = mh / 2;
+			msx = area.offsetX * shape.getScaleX() * scale;
+			msy = area.offsetY * shape.getScaleY() * scale;
 
 			ctx.save();
-			// ctx.setTransform(1, 0, 0, 1, cw / 2 + msx, ch / 2 + msy);
 			ctx.setTransform(1, 0, 0, 1, cw / 2 - mw / 2, ch / 2 - mh / 2);
 			ctx.rect(0, 0, mw, mh);
 			ctx.resetTransform();
@@ -198,7 +196,10 @@ class ProductSide {
 	}
 
 	getArea(area) {
-		return this.area;
+		var a = angular.copy(this.area);
+		a.width *= this.scale;
+		a.height *= this.scale;
+		return a;
 	}
 
 	setPrintArea(printArea) {
@@ -213,6 +214,10 @@ class ProductSide {
 
 	getPrintArea() {
 		return this.printArea;
+	}
+
+	setScale(scale) {
+		this.scale = scale;
 	}
 };
 
