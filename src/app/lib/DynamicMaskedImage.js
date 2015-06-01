@@ -1,7 +1,9 @@
 'use strict';
 
+import MaskedObject from './MaskedObject';
+
 var DynamicMaskedImage = (function() {
-	return fabric.util.createClass(fabric.Image, {
+	return fabric.util.createClass(fabric.Image, MaskedObject, {
 		type: 'dynamicMaskedImage',
 		initialize: function(image, options) {
 			this.callSuper('initialize', image, options);
@@ -9,59 +11,13 @@ var DynamicMaskedImage = (function() {
 			this.masks = [];
 		},
 
-		getMasks: function() {
-			return this.masks;
-		},
-
-		clearMasks: function() {
-			this.masks = [];
-		},
-
-		createMask: function(image, options) {
-			var layerMask = new fabric.LayerMask(image, options);
-			this.pushMask(layerMask);
-			return layerMask;
-		},
-
-		pushMask: function(mask) {
-			this.masks.push(mask);
-		},
-
-		popMask: function() {
-			return this.masks.pop();
-		},
-
-		removeFirstMask: function() {
-			this.masks.splice(0, 1);
-		},
-
 		_render: function(ctx) {
-			this._maskCanvas.width = this.canvas.width;
-			this._maskCanvas.height = this.canvas.height;
-			var newCtx = this._maskCanvas.getContext('2d');
-
-			var oldTransform = this.canvas.viewportTransform;
-			newCtx.setTransform.apply(newCtx, oldTransform);
-
-			this.masks.forEach((mask, mi) => {
-				mask.applyTo(newCtx);
-				newCtx.globalCompositeOperation = 'source-in';
+			this._renderMask(ctx, (newCtx) => {
+				newCtx.save();
+				this.transform(newCtx);
+				this.callSuper('_render', newCtx);
+				newCtx.restore();
 			});
-			
-			newCtx.save();
-			this.transform(newCtx);
-			this.callSuper('_render', newCtx);
-			newCtx.restore();
-
-			ctx.save();
-			ctx.setTransform(1, 0, 0, 1, 0, 0);
-			ctx.drawImage(this._maskCanvas, 0, 0, this.canvas.width, this.canvas.height);
-			ctx.setTransform.apply(ctx, oldTransform);
-			ctx.restore();
-		},
-
-		hasMask: function() {
-			return this.masks.length > 0;
 		},
 
 		toObject: function(propertiesToInclude) {
