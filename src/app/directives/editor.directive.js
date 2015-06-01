@@ -13,7 +13,7 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 		link: function(scope, element, attributes, ctrl) {
 			var productSides, fc, design, selectedObject;
 
-			const CANVAS_SCALE = 1;
+			var CANVAS_SCALE = .8;
 
 			const PRODUCT_AREA_WIDTH = 400;
 			const PRODUCT_AREA_HEIGHT = 400;
@@ -224,7 +224,19 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				Totally clears the canvas
 			*/
 			ctrl.clear = function() {
+				var ww;
 				fc.clear();
+
+				// sets the canvas scale based on window size
+				ww = $window.innerWidth;
+				if (ww < 1000) {
+					CANVAS_SCALE = .8;
+				}
+				else if (ww >= 1000 && ww <= 1350) {
+					CANVAS_SCALE = .8 + (.7 * (ww - 1000) / 350);
+				} else {
+					CANVAS_SCALE = 1.5;
+				}
 			};
 
 			/*
