@@ -9,6 +9,10 @@ var DynamicMaskedText = (function() {
 			this.masks = [];
 		},
 
+		getMasks: function() {
+			return this.masks;
+		},
+
 		clearMasks: function() {
 			this.masks = [];
 		},
@@ -26,11 +30,18 @@ var DynamicMaskedText = (function() {
 		popMask: function() {
 			return this.masks.pop();
 		},
+
+		removeFirstMask: function() {
+			this.masks.splice(0, 1);
+		},
 		
 		_render: function(ctx) {
 			this._maskCanvas.width = this.canvas.width;
 			this._maskCanvas.height = this.canvas.height;
 			var newCtx = this._maskCanvas.getContext('2d');
+
+			var oldTransform = this.canvas.viewportTransform;
+			newCtx.setTransform.apply(newCtx, oldTransform);
 
 			this.masks.forEach((mask, mi) => {
 				mask.applyTo(newCtx);
@@ -55,6 +66,7 @@ var DynamicMaskedText = (function() {
 			ctx.save();
 			ctx.setTransform(1, 0, 0, 1, 0, 0);
 			ctx.drawImage(this._maskCanvas, 0, 0, this.canvas.width, this.canvas.height);
+			ctx.setTransform.apply(ctx, oldTransform);
 			ctx.restore();
 		},
 		
