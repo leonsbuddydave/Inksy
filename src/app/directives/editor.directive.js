@@ -137,6 +137,10 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				shape.getElement().onload = function() {
 					shape.applyFilters(fc.renderAll.bind(fc));
 				}
+
+				if(shape.getElement().width > 0){
+					shape.applyFilters(fc.renderAll.bind(fc));
+				}
 			}
 
 			scope.$on(InksyEvents.DESIGN_CHANGED, function(event, _design) {
