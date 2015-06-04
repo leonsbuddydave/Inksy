@@ -6,6 +6,7 @@ class CartCtrl {
 		this.price = 0.00;
 		this.productName = "No Product";
 		this.DesignState = DesignState;
+		this.modalOpened = false;
 
 		$rootScope.$on(InksyEvents.DESIGN_CHANGED, (event, design) => {
 			var variant = design.getVariant();
@@ -31,6 +32,20 @@ class CartCtrl {
 		console.log(this.DesignState.getDesign().getFullCanvasPreview());
 		console.log(this.DesignState.getDesign().toJson());
 	}
+
+	addProductDetails(){
+		this.modalOpened = true;
+	}
+
+	sendProductToRails(){
+		this.modalOpened = false;
+		var json = this.DesignState.getDesign().toJson();
+		json.details.title = this.productName;
+		json.details.price = this.price;
+
+		console.log(JSON.stringify(json));
+	}
+
 }
 
 CartCtrl.$inject = ['$scope', 'DesignState', '$rootScope', 'InksyEvents'];
