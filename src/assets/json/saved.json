@@ -13,7 +13,7 @@
             "name": "Layer 1",
             "pattern": {
               "images": {
-                "hd": "/assets/images/patterns/pattern_2.png"
+                "hd": "assets/images/patterns/pattern_2.png"
               }
             },
             "canvasObject": {

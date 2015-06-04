@@ -10,7 +10,7 @@ var ProductServiceProvider = function() {
 
 class ProductService {
 	constructor(ProductAngle, $q) {
-		const ASSET_PREFIX = '/assets/images/products-small';
+		const ASSET_PREFIX = 'assets/images/products-small';
 
 		this.ProductAngle = ProductAngle;
 		this.$q = $q;
