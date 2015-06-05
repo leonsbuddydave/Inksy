@@ -43,7 +43,19 @@ class CartCtrl {
 		json.details.title = this.productName;
 		json.details.price = this.price;
 
-		console.log(JSON.stringify(json));
+		// console.log(JSON.stringify(json));
+
+		$.ajax({
+			url:  "/api/products",
+			method: "POST",
+			// contentType: "application/json",
+			data: json,
+			success: function(data) {
+				 var r = $.parseJSON(data);
+				 console.log(r);
+			}
+		});
+		console.log('Saving to profile!');
 	}
 
 }

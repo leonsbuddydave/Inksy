@@ -30,6 +30,8 @@ var Design = function(LayerSet) {
 				json.design.sides[key] = side.toJson();
 			});
 
+			json["fullCanvas"] = this.getFullCanvasPreview();
+
 			return json;
 		}
 

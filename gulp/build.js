@@ -12,11 +12,6 @@ module.exports = function(options) {
       options.src + '/{app,components}/**/*.html',
       options.tmp + '/serve/{app,components}/**/*.html'
     ])
-      .pipe($.minifyHtml({
-        empty: true,
-        spare: true,
-        quotes: true
-      }))
       .pipe($.angularTemplatecache('templateCacheHtml.js', {
         module: 'inksy'
       }))
@@ -52,12 +47,6 @@ module.exports = function(options) {
       .pipe($.useref())
       .pipe($.revReplace())
       .pipe(htmlFilter)
-      .pipe($.minifyHtml({
-        empty: true,
-        spare: true,
-        quotes: true,
-        conditionals: true
-      }))
       .pipe(htmlFilter.restore())
       .pipe(gulp.dest(options.dist + '/'))
       .pipe($.size({ title: options.dist + '/', showFiles: true }));
