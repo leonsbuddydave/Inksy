@@ -94,7 +94,7 @@
               <!-- Layers Palette -->
               <div ng-include="'app/partials/layer-palette.html'"></div>
 
-              <div class="btn-group">
+              <div class="btn-group" ng-show="productSides.length > 1">
                 <label class="btn btn-default" ng-repeat="side in productSides" ng-model="product.angle" btn-radio="side">{{side}}</label>
               </div>
             </tab>
