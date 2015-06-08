@@ -4,6 +4,9 @@ class CartCtrl {
 	constructor($scope, DesignState, $rootScope, InksyEvents) {
 
 		this.price = 0.00;
+		this.suggestedPrice = 0.00;
+		this.userPrice = 0.00;
+		this.profit = 0.00;
 		this.productName = "No Product";
 		this.DesignState = DesignState;
 		this.modalOpened = false;
@@ -13,11 +16,30 @@ class CartCtrl {
 
 			if (variant) {
 				this.price = variant.getBasePrice();
+				this.suggestedPrice = variant.getSuggestedSalePrice();
+				this.userPrice = variant.getBasePrice();
 				this.productName = variant.getName();
 			}
 		});
 
 		return this;
+	}
+
+	getProfit(){
+		var profit = this.userPrice - this.price;
+		if(profit > 0){
+			this.profit = profit;
+		}
+	}
+
+	priceUp(){
+		this.userPrice ++;
+		this.profit = this.userPrice - this.price;
+	}
+	priceDown(){
+		if(this.userPrice > this.price){
+			this.userPrice --;
+		}
 	}
 
 	addToCart() {
@@ -37,11 +59,15 @@ class CartCtrl {
 		this.modalOpened = true;
 	}
 
+	cancelProductDetails(){
+		this.modalOpened = false;
+	}
+
 	sendProductToRails(){
 		this.modalOpened = false;
 		var json = this.DesignState.getDesign().toJson();
 		json.details.title = this.productName;
-		json.details.price = this.price;
+		json.details.price = this.userPrice;
 
 		// console.log(JSON.stringify(json));
 
