@@ -24,7 +24,7 @@
   </head>
   <body>
     <div class="inksy-product-designer" ng-controller="MainCtrl as main">
-      
+
       <div class="left-sidebar">
         <div class="left-sidebar-inner">
           <tabset class="asset-sources inksy-tabset" justified="true">
@@ -42,30 +42,30 @@
               <div class="design-elements-container" ng-controller="DesignElementsTabCtrl">
 
                 <ul>
-                    
+
                   <li file-upload-button>
-                    <img src="/assets/images/icons/upload.png" ng-hide="active.upload">
-                    <img src="/assets/images/icons/upload_on.png" ng-show="active.upload">
+                    <img src="assets/images/icons/upload.png" ng-hide="active.upload">
+                    <img src="assets/images/icons/upload_on.png" ng-show="active.upload">
                   </li>
 
                   <li ng-click="toggle('facebook')">
-                    <img src="/assets/images/icons/facebook.png" ng-hide="active.facebook">
-                    <img src="/assets/images/icons/facebook_on.png" ng-show="active.facebook">
+                    <img src="assets/images/icons/facebook.png" ng-hide="active.facebook">
+                    <img src="assets/images/icons/facebook_on.png" ng-show="active.facebook">
                   </li>
 
                   <li ng-click="toggle('instagram')">
-                    <img src="/assets/images/icons/instagram.png" ng-hide="active.instagram">
-                    <img src="/assets/images/icons/instagram_on.png" ng-show="active.instagram">
+                    <img src="assets/images/icons/instagram.png" ng-hide="active.instagram">
+                    <img src="assets/images/icons/instagram_on.png" ng-show="active.instagram">
                   </li>
 
                   <li ng-click="toggle('text')">
-                    <img src="/assets/images/icons/text.png" ng-hide="active.text">
-                    <img src="/assets/images/icons/text_on.png" ng-show="active.text">
+                    <img src="assets/images/icons/text.png" ng-hide="active.text">
+                    <img src="assets/images/icons/text_on.png" ng-show="active.text">
                   </li>
 
                   <li ng-click="toggle('patterns')">
-                    <img src="/assets/images/icons/pattern.png" ng-hide="active.patterns">
-                    <img src="/assets/images/icons/pattern_on.png" ng-show="active.patterns">
+                    <img src="assets/images/icons/pattern.png" ng-hide="active.patterns">
+                    <img src="assets/images/icons/pattern_on.png" ng-show="active.patterns">
                   </li>
 
                 </ul>
@@ -77,7 +77,7 @@
                 <div class="floating-panel facebook-panel" ng-class="{show: isActive('facebook')}">
                   <div class="asset-panel" facebook-panel active="active.facebook"></div>
                 </div>
-                
+
                 <div class="floating-panel instagram-panel" ng-class="{show: isActive('instagram')}">
                   <div class="asset-panel" instagram-panel active="active.instagram"></div>
                 </div>
@@ -87,7 +87,7 @@
                 </div>
 
                 <div class="floating-panel pattern-panel" ng-class="{show: isActive('patterns')}">
-                  <div class="asset-panel" pattern-panel></div>  
+                  <div class="asset-panel" pattern-panel></div>
                 </div>
               </div>
 
@@ -105,7 +105,7 @@
       <div class="editor-area">
         <!-- Action Bar -->
         <div class="editor-action-bar">
-          
+
         </div>
 
         <!-- Editor Canvas -->
@@ -116,10 +116,25 @@
 
       <div class="right-sidebar">
         <div ng-controller="CartCtrl as cart" class="cart-actions">
-          <h2 class="price" ng-bind="(cart.price | currency:'$')"></h2>
-          <h2 class="name" ng-bind="cart.productName"></h2>
-          <button ng-click="cart.addToCart()" class="cart-action add-to-cart" type="button">add to cart</button>
-          <button ng-click="cart.saveToProfile()" class="cart-action save" type="button">save</button>
+          <h2 class="price">for yourself:</h2>
+          <h2 class="price" ng-bind="(cart.suggestedPrice | currency:'$')"></h2>
+          <!-- <h2 class="name" ng-bind="cart.productName"></h2> -->
+          <button ng-click="cart.addToCart()" class="cart-action add-to-cart" type="button">Add to cart</button>
+          <h2>for your store:</h2>
+          <h3>your profit per item: {{cart.profit | currency:'$'}}</h3>
+          <div class="arrow arrow-upside" ng-click="cart.priceUp()"><div class="arrow-up"></div></div>
+          <div class="user-price">{{cart.userPrice | currency:'$'}}</div>
+          <div class="arrow arrow-downside" ng-click="cart.priceDown()"><div class="arrow-down"></div></div>
+          <button ng-click="cart.addProductDetails()" ng-hide="cart.modalOpened" class="cart-action save" type="button">Save</button>
+          <div class="product-details-modal" ng-show="cart.modalOpened">
+            <h2>Modal is here</h2>
+            <form action="">
+              <label for="productName">Product Name: </label>
+              <input type="text" name="productName" ng-model="cart.productName">
+              <button ng-click="cart.sendProductToRails()" class="cart-action save" type="button">Send</button>
+              <button ng-click="cart.cancelProductDetails()" class="cart-action cancel" type="button">Cancel</button>
+            </form>
+          </div>
         </div>
       </div>
 

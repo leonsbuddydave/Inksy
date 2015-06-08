@@ -132,9 +132,9 @@
               },
               "area": {
                 "width": 200,
-                "height": 400,
-                "offsetX": -90,
-                "offsetY": -193
+                "height": 415,
+                "offsetX": -100,
+                "offsetY": -210
               },
               "printArea": {
                 "unit": "mm",

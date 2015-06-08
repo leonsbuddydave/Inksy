@@ -15,7 +15,8 @@ var Design = function(LayerSet) {
 		toJson() {
 			var json = {
 				designer: {},
-				design: {}
+				design: {},
+				details: {}
 			};
 
 			json.designer.color = this.color;
@@ -29,7 +30,9 @@ var Design = function(LayerSet) {
 				json.design.sides[key] = side.toJson();
 			});
 
-			return JSON.stringify(json);
+			json["fullCanvas"] = this.getFullCanvasPreview();
+
+			return json;
 		}
 
 		static fromJson(json, productData) {
