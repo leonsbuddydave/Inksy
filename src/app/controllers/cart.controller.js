@@ -8,9 +8,10 @@ class CartCtrl {
 		this.userPrice = 0.00;
 		this.profit = 0.00;
 		this.productName = "No Product";
-		// this.productDescription = "No Description";
+		this.productDescription = "";
 		this.DesignState = DesignState;
 		this.modalOpened = false;
+		this.modalInstance = '';
 
 		$rootScope.$on(InksyEvents.DESIGN_CHANGED, (event, design) => {
 			var variant = design.getVariant();
@@ -20,7 +21,6 @@ class CartCtrl {
 				this.suggestedPrice = variant.getSuggestedSalePrice();
 				this.userPrice = variant.getBasePrice();
 				this.productName = variant.getName();
-				this.productDescription = variant.getDescription();
 			}
 		});
 
@@ -44,21 +44,39 @@ class CartCtrl {
 		}
 	}
 
-	addToCart() {
+	addToCart(json) {
 		console.log('Adding to cart!');
-		this.DesignState.exportForPrint({}, function() {
-
+		this.modalOpened = false;
+		json.details.to_cart = true;
+		$.ajax({
+			url:  "/api/products/to_cart",
+			method: "POST",
+			// contentType: "application/json",
+			data: json,
+			success: function(data) {
+				 var r = $.parseJSON(data);
+				 console.log(r);
+			}
 		});
 	}
 
-	saveToProfile() {
+	saveToProfile(json) {
+		$.ajax({
+			url:  "/api/products",
+			method: "POST",
+			// contentType: "application/json",
+			data: json,
+			success: function(data) {
+				 var r = $.parseJSON(data);
+				 console.log(r);
+			}
+		});
 		console.log('Saving to profile!');
-		console.log(this.DesignState.getDesign().getFullCanvasPreview());
-		console.log(this.DesignState.getDesign().toJson());
 	}
 
-	addProductDetails(){
+	addProductDetails(instance){
 		this.modalOpened = true;
+		this.modalInstance = instance;
 	}
 
 	cancelProductDetails(){
@@ -71,20 +89,11 @@ class CartCtrl {
 		json.details.title = this.productName;
 		json.details.description = this.productDescription;
 		json.details.price = this.userPrice;
-
-		// console.log(JSON.stringify(json));
-
-		$.ajax({
-			url:  "/api/products",
-			method: "POST",
-			// contentType: "application/json",
-			data: json,
-			success: function(data) {
-				 var r = $.parseJSON(data);
-				 console.log(r);
-			}
-		});
-		console.log('Saving to profile!');
+		if(this.modalInstance == 'Send'){
+			this.saveToProfile(json);
+		}else{
+			this.addToCart(json);
+		}
 	}
 
 }
