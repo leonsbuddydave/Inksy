@@ -130,14 +130,15 @@
             <h2>Modal is here</h2>
             <form action="">
               <label for="productName">Product Name: </label>
-              <input type="text" name="productName" ng-model="cart.productName">
+              <input type="text" name="productName" ng-model="cart.productName"><br/>
+               <label for="productName">Product Description: </label>
+              <input type="text" name="productDescription" ng-model="cart.productDescription">
               <button ng-click="cart.sendProductToRails()" class="cart-action save" type="button">Send</button>
               <button ng-click="cart.cancelProductDetails()" class="cart-action cancel" type="button">Cancel</button>
             </form>
           </div>
         </div>
       </div>
-
     </div>
 
     <!-- <script src="bower_components/jquery/dist/jquery.min.js"></script> -->

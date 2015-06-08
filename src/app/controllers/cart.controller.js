@@ -8,6 +8,7 @@ class CartCtrl {
 		this.userPrice = 0.00;
 		this.profit = 0.00;
 		this.productName = "No Product";
+		// this.productDescription = "No Description";
 		this.DesignState = DesignState;
 		this.modalOpened = false;
 
@@ -19,6 +20,7 @@ class CartCtrl {
 				this.suggestedPrice = variant.getSuggestedSalePrice();
 				this.userPrice = variant.getBasePrice();
 				this.productName = variant.getName();
+				this.productDescription = variant.getDescription();
 			}
 		});
 
@@ -67,6 +69,7 @@ class CartCtrl {
 		this.modalOpened = false;
 		var json = this.DesignState.getDesign().toJson();
 		json.details.title = this.productName;
+		json.details.description = this.productDescription;
 		json.details.price = this.userPrice;
 
 		// console.log(JSON.stringify(json));
