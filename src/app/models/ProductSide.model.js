@@ -100,7 +100,6 @@ class ProductSide {
 			ctx.save();
 			ctx.setTransform(1, 0, 0, 1, cw / 2 - mw / 2, ch / 2 - mh / 2);
 			ctx.rect(0, 0, mw, mh);
-			ctx.resetTransform();
 			ctx.restore();
 		}
 	}
