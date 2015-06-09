@@ -123,8 +123,8 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				fc.add(shape);
 				fc.add(texture);
 
-				var shapeLeft = fc.getCenter().left;// - (side.area.width / 2) - side.area.offsetX;
-				var shapeTop = fc.getCenter().top;// - (side.area.height / 2) - side.area.offsetY;
+				var shapeLeft = fc.getCenter().left; - (side.area.width / 2) - side.area.offsetX;
+				var shapeTop = fc.getCenter().top; - (side.area.height / 2) - side.area.offsetY;
 
 				[texture.width, texture.height] = MathUtils.contain(texture._element.naturalWidth, texture._element.naturalHeight, PRODUCT_AREA_WIDTH, PRODUCT_AREA_HEIGHT);
 				texture.setLeft(shapeLeft);
