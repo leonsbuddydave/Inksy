@@ -29,7 +29,11 @@ var variantSelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) {
 				if (selectedProduct !== null && products !== null) {
 					scope.selectedMaterial = scope.getMaterials()['basic'];
 					scope.changeMaterial();
-					scope.selectVariant(getCategory().getProducts()[0]);
+					if (selectedProduct["name"] == "phone_case"){
+						scope.selectVariant(getCategory().getProducts()[9]);
+					}else{
+						scope.selectVariant(getCategory().getProducts()[0]);
+					}
 				}
 			}
 
