@@ -40,7 +40,7 @@
 			.pattern-thumbnail {
 				width: 50px;
 				height: 50px;
-				background-image: url('assets/images/icons/pattern.png');
+				background-image: url('./../assets/images/icons/pattern.png');
 				background-position: center;
 				background-size: 30px;
 				background-repeat: no-repeat;
@@ -48,7 +48,7 @@
 				cursor: pointer;
 
 				&.active {
-					background-image: url('assets/images/icons/pattern_on.png');
+					background-image: url('./../assets/images/icons/pattern_on.png');
 				}
 			}
 
@@ -78,18 +78,18 @@
 					cursor: pointer;
 
 					&.layer-up {
-						background-image: url('assets/images/icons/layer_up.png');
+						background-image: url('./../assets/images/icons/layer_up.png');
 
 						&:hover {
-							background-image: url('assets/images/icons/layer_up_on.png');
+							background-image: url('./../assets/images/icons/layer_up_on.png');
 						}
 					}
 
 					&.layer-down {
-						background-image: url('assets/images/icons/layer_down.png');
+						background-image: url('./../assets/images/icons/layer_down.png');
 
 						&:hover {
-							background-image: url('assets/images/icons/layer_down_on.png');
+							background-image: url('./../assets/images/icons/layer_down_on.png');
 						}
 					}
 
