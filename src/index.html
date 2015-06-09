@@ -110,21 +110,21 @@
           <h2 class="price">buy it:</h2>
           <h2 class="price" ng-bind="(cart.suggestedPrice | currency:'$')"></h2>
           <!-- <h2 class="name" ng-bind="cart.productName"></h2> -->
-          <button ng-click="cart.addProductDetails('Add to cart')" class="cart-action add-to-cart" type="button">Add to cart</button>
+          <button ng-click="cart.addProductDetails('Add to cart')" class="cart-action add-to-cart" type="button">add to cart</button>
           <h2 class="price sell-it-text">sell it:</h2>
-          <h3 class="price-profit">your profit per item: {{cart.profit | currency:'$'}}</h3>
           <div class="arrow arrow-upside" ng-click="cart.priceUp()"><div class="arrow-up"></div></div>
           <div class="user-price">{{cart.userPrice | currency:'$'}}</div>
           <div class="arrow arrow-downside" ng-click="cart.priceDown()"><div class="arrow-down"></div></div>
-          <button ng-click="cart.addProductDetails('Send')" ng-hide="cart.modalOpened" class="cart-action save" type="button">Save</button>
+          <h3 class="price-profit">your profit per item: {{cart.profit | currency:'$'}}</h3>
+          <button ng-click="cart.addProductDetails('Send')" ng-hide="cart.modalOpened" class="cart-action save" type="button">list it!</button>
           <div class="product-details-modal" ng-show="cart.modalOpened">
-            <h2>Modal is here</h2>
+            <h2>Product Details</h2>
             <form action="">
-              <label for="productName">Product Name: </label>
-              <input type="text" name="productName" ng-model="cart.productName"><br/>
-               <label for="productName">Product Description: </label>
-              <input type="text" name="productDescription" ng-model="cart.productDescription">
-              <button ng-click="cart.sendProductToRails()" class="cart-action save" type="button">{{ cart.modalInstance }}</button>
+              <label for="productName">Product Name: </label><br>
+              <input type="text" name="productName" ng-model="cart.productName"><br/><br>
+               <label for="productName">Product Description: </label><br>
+              <textarea type="text"  cols="60" name="productDescription" ng-model="cart.productDescription"></textarea>
+              <button ng-click="cart.sendProductToRails()" class="cart-action save" type="button">Save</button>
               <button ng-click="cart.cancelProductDetails()" class="cart-action cancel" type="button">Cancel</button>
             </form>
           </div>
