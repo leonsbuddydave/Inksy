@@ -84,7 +84,15 @@ var variantSelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) {
 			}
 
 			scope.showVariants = function() {
-				return (scope.getVariants().length > 1);
+				/**
+			 * [showVariants Returns true if the products variants contain icons]
+			 * @return {Boolean} []
+			 */
+				if (scope.hasCategory()) {
+					return getCategory().getProducts()[0].icon.length > 5;
+				} else {
+					return false;
+				}
 			}
 
 			/**
@@ -144,10 +152,11 @@ var variantSelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) {
 			 */
 			scope.getPreviewImage = function(variant) {
 				if (angular.isDefined(variant)) {
-					var allSides = variant.getAllSides();
-					var side = allSides["front"];
+					// var allSides = variant.getAllSides();
+					// var side = allSides["front"];
+					var icon = variant.getIcon();
 
-					return side.getImage('texture');
+					return icon;
 				} else {
 					return "";
 				}
