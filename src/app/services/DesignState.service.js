@@ -93,8 +93,10 @@ var DesignState = function(Design, $rootScope, InksyEvents, $q) {
 					
 				referenceCanvas = layer.getCanvasObject().canvas;
 
-				var xOffset = ((referenceCanvas.width / 2) - area.width / 2);
-				var yOffset = ((referenceCanvas.height / 2) - area.height / 2);
+				var topLeftOfClipArea = side.getOffsetFromCenter();
+
+				var xOffset = ((referenceCanvas.width / 2) + topLeftOfClipArea.x);
+				var yOffset = ((referenceCanvas.height / 2) + topLeftOfClipArea.y);
 
 				leftRelativeToClipArea = (cloneObject.left - xOffset) * printScaleX;
 				topRelativeToClipArea = (cloneObject.top - yOffset) * printScaleY;

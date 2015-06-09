@@ -282,8 +282,8 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 					[baseShapeMask.width, baseShapeMask.height] = MathUtils.contain(baseShapeMask._element.naturalWidth, baseShapeMask._element.naturalHeight, PRODUCT_AREA_WIDTH, PRODUCT_AREA_HEIGHT);
 					
 					// Create and set an offset for the mask image
-					var sideLeft = fc.getCenter().left - (productSide.area.width / 2) - productSide.area.offsetX;
-					var sideTop = fc.getCenter().top - (productSide.area.height / 2) - productSide.area.offsetY;
+					var sideLeft = fc.getCenter().left;
+					var sideTop = fc.getCenter().top;
 					baseShapeMask.setCenterPoint(new fabric.Point(sideLeft, sideTop));
 
 					if (patternImage) {

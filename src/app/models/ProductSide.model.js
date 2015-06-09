@@ -98,10 +98,23 @@ class ProductSide {
 			msy = area.offsetY * shape.getScaleY() * scale;
 
 			ctx.save();
-			ctx.setTransform(1, 0, 0, 1, cw / 2 - mw / 2, ch / 2 - mh / 2);
+			// ctx.setTransform(1, 0, 0, 1, cw / 2 - mw / 2, ch / 2 - mh / 2);
+			ctx.setTransform(1, 0, 0, 1, cw / 2 + msx, ch / 2 + msy);
 			ctx.rect(0, 0, mw, mh);
 			ctx.restore();
 		}
+	}
+
+	getOffsetFromCenter() {
+		var area, shape, scale, x, y;
+
+		area = this.area;
+		shape = this.shape;
+		scale = this.scale;
+		x = area.offsetX; // * shape.getScaleX() * scale;
+		y = area.offsetY; // * shape.getScaleY() * scale;
+
+		return {x, y};
 	}
 
 	getAreaCenter() {
