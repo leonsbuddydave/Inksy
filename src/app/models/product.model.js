@@ -12,6 +12,7 @@ class Product {
 		var p = new Product(json.name);
 		p.setId(json.id || 0);
 		p.setType(json.type || "N/A");
+		p.setIcon(json.icon || "")
 		p.setPricing(json.pricing || {
 			base: 0.00,
 			suggested_sale: 0.00
@@ -59,6 +60,14 @@ class Product {
 
 	getName() {
 		return this.name;
+	}
+
+	setIcon(icon){
+		this.icon = icon;
+	}
+
+	getIcon(){
+		return this.icon;
 	}
 
 	setPricing(pricing) {

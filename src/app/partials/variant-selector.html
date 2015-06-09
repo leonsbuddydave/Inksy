@@ -6,7 +6,7 @@
 		
 		<div class="variant-selector" ng-show="showVariants()">
 			<div class="variant" ng-repeat="variant in getVariants()" ng-click='selectVariant(variant)' ng-class="{selected: isSelected(variant)}">
-				<img ng-src="{{getPreviewImage(variant)}}">
+				<img ng-src="{{getPreviewImage(variant)}}" ng-show="{{getPreviewImage(variant).length > 5}}">
 			</div>
 		</div>
 
