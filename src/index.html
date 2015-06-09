@@ -114,7 +114,7 @@
           <h2 class="price sell-it-text">sell it:</h2>
           <div class="arrow arrow-upside" ng-click="cart.priceUp()"><div class="arrow-up"></div></div>
           <div class="user-price">{{cart.userPrice | currency:'$'}}</div>
-          <div class="arrow arrow-downside" ng-click="cart.priceDown()"><div class="arrow-down"></div></div>
+          <div class="arrow arrow-downside" ng-click="cart.priceDown()"><div class="arrow-down"></div></div><br>
           <h3 class="price-profit">your profit per item: {{cart.profit | currency:'$'}}</h3>
           <button ng-click="cart.addProductDetails('Send')" ng-hide="cart.modalOpened" class="cart-action save" type="button">list it!</button>
           <div class="product-details-modal" ng-show="cart.modalOpened">
