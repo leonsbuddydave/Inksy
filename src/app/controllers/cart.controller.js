@@ -12,6 +12,7 @@ class CartCtrl {
 		this.DesignState = DesignState;
 		this.modalOpened = false;
 		this.modalInstance = '';
+		this.store = 0;
 
 		$rootScope.$on(InksyEvents.DESIGN_CHANGED, (event, design) => {
 			var variant = design.getVariant();
@@ -47,15 +48,26 @@ class CartCtrl {
 	callForStores(){
 		console.log('Testing the ajax call...');
 		$.ajax({
-			url:  "http://localhost:3333/api/products/stores.json",
+			url:  "/api/products/stores.json",
 			method: "GET",
-			// contentType: "application/json",
 			data: 'stores',
 			success: function(data) {
-				 // var r = $.parseJSON(data);
-				 for (var i = 0; i < data.length; i++) {
-				 	console.log(data[i]);
-				 };
+				for (var i = 0; i < data.length; i++) {
+					if(data[i].length >= 2){
+						this.store = data[0][0];
+						$('#select-store').find('option').each(function(){
+							if($(this).val() !== data[i][0]){
+
+								$('#select-store').append($('<option>').text(data[i][1]).attr('value', data[i][0]));
+							}
+						});
+					}
+				};
+				$('#select-store').find('option').each(function(){
+				 if(isNaN($(this).val())){
+				   $(this).text('Please select an store');
+				 }
+				});
 			}
 		});
 	}
@@ -64,6 +76,7 @@ class CartCtrl {
 		console.log('Adding to cart!');
 		this.modalOpened = false;
 		json.details.to_cart = true;
+		console.log(JSON.stringify(json));
 		$.ajax({
 			url:  "/api/products/to_cart",
 			method: "POST",
@@ -93,6 +106,7 @@ class CartCtrl {
 	addProductDetails(instance){
 		this.modalOpened = true;
 		this.modalInstance = instance;
+		this.callForStores();
 	}
 
 	cancelProductDetails(){
@@ -105,6 +119,7 @@ class CartCtrl {
 		json.details.title = this.productName;
 		json.details.description = this.productDescription;
 		json.details.price = this.userPrice;
+		json.details.store_id = this.store;
 		if(this.modalInstance == 'Send'){
 			this.saveToProfile(json);
 		}else{
