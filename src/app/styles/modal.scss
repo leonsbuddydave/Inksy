@@ -24,4 +24,18 @@
     display: inline-block;
     width: 180px;
   }
+  .close-button{
+    position: absolute;
+    top: -12px;
+    right: -8px;
+    background-color: black;
+    color: white;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    padding-left: 0px;
+    font-weight: bold;
+    cursor: pointer;
+  }
 }

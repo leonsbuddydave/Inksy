@@ -127,6 +127,20 @@ class CartCtrl {
 		}
 	}
 
+	sendProductToRails(){
+		this.modalOpened = false;
+		var json = this.DesignState.getDesign().toJson();
+		json.details.title = this.productName;
+		json.details.description = this.productDescription;
+		json.details.price = this.userPrice;
+		json.details.store_id = 0;
+		if(this.modalInstance == 'Send'){
+			this.saveToProfile(json);
+		}else{
+			this.addToCart(json);
+		}
+	}
+
 }
 
 CartCtrl.$inject = ['$scope', 'DesignState', '$rootScope', 'InksyEvents'];

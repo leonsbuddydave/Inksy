@@ -120,6 +120,7 @@
           <button ng-click="cart.addProductDetails('Send')"  class="cart-action save" type="button">list it!</button>
 
           <div class="product-details-modal" ng-show="cart.modalOpened">
+            <div class="close-button" ng-click="cart.cancelProductDetails()" >X</div>
             <form action="">
               <label for="productName">name it: </label>
               <input type="text" name="productName" ng-model="cart.productName">
@@ -129,7 +130,7 @@
               <select name="store" class="select-store" id="select-store" ng-model ="cart.store">
               </select><br><br>
               <button ng-click="cart.sendProductToRails()" class="cart-action save modal-button" type="button">Save</button>
-              <button ng-click="cart.cancelProductDetails()" class="cart-action cancel modal-button" type="button">Cancel</button>
+              <button ng-click="cart.publishProductToRails()" class="cart-action cancel modal-button" type="button">Publish</button>
             </form>
           </div>
 
