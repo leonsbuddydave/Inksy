@@ -8,4 +8,20 @@
   padding: 25px;
   text-align: center;
   border: 1px solid black;
+  padding-top:52px;
+  label{
+    display: block;
+  }
+  .description{
+    width: 90%;
+  }
+  .select-store{
+    height: 24px;
+    width: 170px;
+    background-color: white;
+  }
+  .modal-button{
+    display: inline-block;
+    width: 180px;
+  }
 }
