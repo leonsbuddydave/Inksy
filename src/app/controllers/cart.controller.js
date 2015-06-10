@@ -44,6 +44,22 @@ class CartCtrl {
 		}
 	}
 
+	callForStores(){
+		console.log('Testing the ajax call...');
+		$.ajax({
+			url:  "http://localhost:3333/api/products/stores.json",
+			method: "GET",
+			// contentType: "application/json",
+			data: 'stores',
+			success: function(data) {
+				 // var r = $.parseJSON(data);
+				 for (var i = 0; i < data.length; i++) {
+				 	console.log(data[i]);
+				 };
+			}
+		});
+	}
+
 	addToCart(json) {
 		console.log('Adding to cart!');
 		this.modalOpened = false;
@@ -55,7 +71,7 @@ class CartCtrl {
 			data: json,
 			success: function(data) {
 				 var r = $.parseJSON(data);
-				 console.log(r);
+				 console.log(data);
 			}
 		});
 	}
