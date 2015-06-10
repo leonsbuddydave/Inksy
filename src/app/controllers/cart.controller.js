@@ -127,7 +127,7 @@ class CartCtrl {
 		}
 	}
 
-	sendProductToRails(){
+	publishProductToRails(){
 		this.modalOpened = false;
 		var json = this.DesignState.getDesign().toJson();
 		json.details.title = this.productName;
