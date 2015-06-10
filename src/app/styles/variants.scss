@@ -5,6 +5,8 @@
 // |___/\__,_/_/  /_/\__,_/_/ /_/\__/____/  
 //                                         
 .variant-selector {
+	background-color: #fafafa;
+	overflow: hidden;
 
 	&:after {
 		content: " ";
@@ -14,18 +16,13 @@
 	}
 
 	.variant {
-		width: 110px;
-		height: 110px;
-		margin: 5px;
+		width: 33%;
+		height: 100px;
 		float: left;
+		outline: solid 1px #f1f1f1;
 		cursor: pointer;
 		text-align: center;
 		overflow: hidden;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		background-color: #fff;
-		@include faint-shadow();
 
 		&.selected {
 			opacity: .5 !important;
@@ -36,7 +33,7 @@
 		}
 
 		img {
-			width: 70px;
+			height: 100%;
 		}
 	}
 }
