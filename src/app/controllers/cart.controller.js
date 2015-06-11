@@ -19,8 +19,8 @@ class CartCtrl {
 
 			if (variant) {
 				this.price = variant.getBasePrice();
-				this.suggestedPrice = variant.getSuggestedSalePrice();
-				this.userPrice = variant.getBasePrice();
+				this.suggestedPrice = design.material.suggested_price;
+				this.userPrice = design.material.base_price;
 				this.productName = variant.getName();
 			}
 		});
