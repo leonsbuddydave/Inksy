@@ -128,7 +128,11 @@
               <textarea class="description" type="text"  cols="60" name="productDescription" ng-model="cart.productDescription"></textarea>
               <label for="store">choose a store</label>
               <select name="store" class="select-store" id="select-store" ng-model ="cart.store">
-              </select><br><br>
+              </select>
+              <select name="size" class="select-store" id="select-size" ng-model ="cart.product_size" ng-show="cart.modalInstance == 'Add to cart' && cart.isShirtOrHoodie()">
+              <option value="{{size.id}}" ng-repeat="size in cart.sizes">{{size.label}}</option>
+              </select>
+              <br><br>
               <button ng-click="cart.sendProductToRails()" class="cart-action save modal-button" type="button">Save</button>
               <button ng-click="cart.publishProductToRails()" class="cart-action cancel modal-button" type="button">Publish</button>
             </form>

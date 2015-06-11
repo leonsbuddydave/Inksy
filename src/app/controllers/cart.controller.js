@@ -13,6 +13,8 @@ class CartCtrl {
 		this.modalOpened = false;
 		this.modalInstance = '';
 		this.store = 0;
+		this.product_size = '';
+		this.sizes = [];
 
 		$rootScope.$on(InksyEvents.DESIGN_CHANGED, (event, design) => {
 			var variant = design.getVariant();
@@ -45,10 +47,18 @@ class CartCtrl {
 		}
 	}
 
+	isShirtOrHoodie(){
+		var type = this.DesignState.getDesign().product.displayName;
+		if(type == "shirt" || type == "hoodie"){
+			return true;
+		}
+		return false;
+	}
+
 	callForStores(){
 		console.log('Testing the ajax call...');
 		$.ajax({
-			url:  "/api/products/stores.json",
+			url:  "/api/stores.json",
 			method: "GET",
 			data: 'stores',
 			success: function(data) {
@@ -65,17 +75,39 @@ class CartCtrl {
 				};
 				$('#select-store').find('option').each(function(){
 				 if(isNaN($(this).val())){
-				   $(this).text('Please select an store');
+				   $(this).text('Please select a store');
 				 }
 				});
 			}
 		});
 	}
 
+	callForSizes(){
+		if(this.isShirtOrHoodie()){
+			var type = this.DesignState.getDesign().product.displayName;
+			var material = this.DesignState.getDesign().material.name;
+			var self = this;
+			$.ajax({
+				url:  "/api/products/get_sizes.json",
+				method: "GET",
+				data: {"product_type": type, "material_type": material},
+				success: function(data) {
+					self.sizes = data;
+					$('#select-size').find('option').each(function(){
+					 if(isNaN($(this).val())){
+					   $(this).text('Select your size');
+					 }
+					});
+				}
+			});
+		}
+	}
+
 	addToCart(json) {
 		console.log('Adding to cart!');
 		this.modalOpened = false;
 		json.details.to_cart = true;
+		json.product_size = this.product_size;
 		console.log(JSON.stringify(json));
 		$.ajax({
 			url:  "/api/products/to_cart",
@@ -107,6 +139,7 @@ class CartCtrl {
 		this.modalOpened = true;
 		this.modalInstance = instance;
 		this.callForStores();
+		this.callForSizes();
 	}
 
 	cancelProductDetails(){
