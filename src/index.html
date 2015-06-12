@@ -124,8 +124,10 @@
             <form action="">
               <label for="productName">name it: </label>
               <input type="text" name="productName" ng-model="cart.productName">
-              <label for="productName">describe it: </label>
-              <textarea class="description" type="text"  cols="60" name="productDescription" ng-model="cart.productDescription"></textarea>
+              <div ng-show="cart.modalInstance == 'Send'">
+                <label for="productName">describe it: </label>
+                <textarea class="description" type="text"  cols="60" name="productDescription" ng-model="cart.productDescription"></textarea>
+              </div>
               <label for="store">{{cart.modalDropdownLabel()}}</label>
               <select name="store" class="select-store" id="select-store" ng-model ="cart.store" ng-show="cart.modalInstance == 'Send'">
                 <option value="{{store.id}}" ng-repeat="store in cart.stores">{{store.name}}</option>
@@ -134,8 +136,13 @@
                 <option value="{{size.id}}" ng-repeat="size in cart.sizes">{{size.label}}</option>
               </select>
               <br><br>
-              <button ng-click="cart.sendProductToRails()" class="cart-action save modal-button" type="button">Save</button>
-              <button ng-click="cart.publishProductToRails()" class="cart-action cancel modal-button" type="button">Publish</button>
+              <div ng-show="cart.modalInstance == 'Add to cart'">
+                <button ng-click="cart.sendToCart()" class="cart-action save modal-button" type="button">Add to cart</button>
+              </div>
+              <div ng-show="cart.modalInstance == 'Send'">
+                <button ng-click="cart.sendProductToRails('save')" class="cart-action save modal-button" type="button">Save</button>
+                <button ng-click="cart.sendProductToRails('publish')" class="cart-action cancel modal-button" type="button">Publish</button>
+              </div>
             </form>
           </div>
 

@@ -94,11 +94,19 @@ class CartCtrl {
 		}
 	}
 
+	sendToCart(){
+		var json                 = this.DesignState.getDesign().toJson();
+		json.details.title       = this.productName;
+		json.details.description = this.productDescription;
+		json.details.price       = this.userPrice;
+		json.details.to_cart     = true;
+		json.product_size        = this.product_size;
+		this.addToCart(json);
+	}
+
 	addToCart(json) {
 		console.log('Adding to cart!');
 		this.modalOpened = false;
-		json.details.to_cart = true;
-		json.product_size = this.product_size;
 		$.ajax({
 			url:  "/api/products/to_cart",
 			method: "POST",
@@ -134,38 +142,27 @@ class CartCtrl {
 		this.modalOpened = false;
 	}
 
-	sendProductToRails(){
+	sendProductToRails(action){
 		this.modalOpened = false;
-		var json = this.DesignState.getDesign().toJson();
-		json.details.title = this.productName;
-		json.details.description = this.productDescription;
-		json.details.price = this.userPrice;
-		json.details.store_id = this.store;
-		if(this.modalInstance == 'Send'){
-			this.saveToProfile(json);
-		}else{
-			this.addToCart(json);
-		}
-	}
 
-	publishProductToRails(){
-		this.modalOpened = false;
-		var json = this.DesignState.getDesign().toJson();
-		json.details.title = this.productName;
+		var json                 = this.DesignState.getDesign().toJson();
+		json.details.title       = this.productName;
 		json.details.description = this.productDescription;
-		json.details.price = this.userPrice;
-		json.details.store_id = 0;
+		json.details.price       = this.userPrice;
+
+		if(action == 'publish'){
+			json.details.store_id = this.store;
+		}
+
 		if(this.modalInstance == 'Send'){
 			this.saveToProfile(json);
-		}else{
-			this.addToCart(json);
 		}
 	}
 
 	modalDropdownLabel(){
 		if(this.modalInstance == 'Add to cart' && this.isShirtOrHoodie()){
 			return "chose your size";
-		}else if(this.modalInstance == 'Save'){
+		}else if(this.modalInstance == 'Send'){
 			return "chose a store";
 		}else{
 			return ""
