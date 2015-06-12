@@ -126,11 +126,12 @@
               <input type="text" name="productName" ng-model="cart.productName">
               <label for="productName">describe it: </label>
               <textarea class="description" type="text"  cols="60" name="productDescription" ng-model="cart.productDescription"></textarea>
-              <label for="store">choose a store</label>
-              <select name="store" class="select-store" id="select-store" ng-model ="cart.store">
+              <label for="store">{{cart.modalDropdownLabel()}}</label>
+              <select name="store" class="select-store" id="select-store" ng-model ="cart.store" ng-show="cart.modalInstance == 'Send'">
+                <option value="{{store.id}}" ng-repeat="store in cart.stores">{{store.name}}</option>
               </select>
               <select name="size" class="select-store" id="select-size" ng-model ="cart.product_size" ng-show="cart.modalInstance == 'Add to cart' && cart.isShirtOrHoodie()">
-              <option value="{{size.id}}" ng-repeat="size in cart.sizes">{{size.label}}</option>
+                <option value="{{size.id}}" ng-repeat="size in cart.sizes">{{size.label}}</option>
               </select>
               <br><br>
               <button ng-click="cart.sendProductToRails()" class="cart-action save modal-button" type="button">Save</button>

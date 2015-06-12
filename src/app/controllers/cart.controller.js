@@ -12,9 +12,10 @@ class CartCtrl {
 		this.DesignState = DesignState;
 		this.modalOpened = false;
 		this.modalInstance = '';
-		this.store = 0;
+		this.store = '';
 		this.product_size = '';
 		this.sizes = [];
+		this.stores = [];
 
 		$rootScope.$on(InksyEvents.DESIGN_CHANGED, (event, design) => {
 			var variant = design.getVariant();
@@ -56,23 +57,13 @@ class CartCtrl {
 	}
 
 	callForStores(){
-		console.log('Testing the ajax call...');
+		var self = this;
 		$.ajax({
 			url:  "/api/stores.json",
 			method: "GET",
 			data: 'stores',
 			success: function(data) {
-				for (var i = 0; i < data.length; i++) {
-					if(data[i].length >= 2){
-						this.store = data[0][0];
-						$('#select-store').find('option').each(function(){
-							if($(this).val() !== data[i][0]){
-
-								$('#select-store').append($('<option>').text(data[i][1]).attr('value', data[i][0]));
-							}
-						});
-					}
-				};
+				self.stores = data;
 				$('#select-store').find('option').each(function(){
 				 if(isNaN($(this).val())){
 				   $(this).text('Please select a store');
@@ -108,15 +99,13 @@ class CartCtrl {
 		this.modalOpened = false;
 		json.details.to_cart = true;
 		json.product_size = this.product_size;
-		console.log(JSON.stringify(json));
 		$.ajax({
 			url:  "/api/products/to_cart",
 			method: "POST",
 			// contentType: "application/json",
 			data: json,
 			success: function(data) {
-				 var r = $.parseJSON(data);
-				 console.log(data);
+				 data;
 			}
 		});
 	}
@@ -128,8 +117,7 @@ class CartCtrl {
 			// contentType: "application/json",
 			data: json,
 			success: function(data) {
-				 var r = $.parseJSON(data);
-				 console.log(r);
+				 data;
 			}
 		});
 		console.log('Saving to profile!');
@@ -171,6 +159,16 @@ class CartCtrl {
 			this.saveToProfile(json);
 		}else{
 			this.addToCart(json);
+		}
+	}
+
+	modalDropdownLabel(){
+		if(this.modalInstance == 'Add to cart' && this.isShirtOrHoodie()){
+			return "chose your size";
+		}else if(this.modalInstance == 'Save'){
+			return "chose a store";
+		}else{
+			return ""
 		}
 	}
 
