@@ -18,8 +18,8 @@ class ProductColorPickerCtrl {
 
 			if (material) {
 				if (material.getColors() !== this.colors) {
-					this.setColors(material.getColors());	
-					this.changeColor(this.colors[0]);
+					this.setColors(material.getColors());
+					this.changeColor(this.colors[0].name, this.colors[0].id);
 				}
 			}
 		});
@@ -29,14 +29,14 @@ class ProductColorPickerCtrl {
 		this.colors = colors;
 	}
 
-	changeColor(color) {
+	changeColor(color, color_id) {
 		var DesignState;
 
 		DesignState = this.DesignState;
 
 		this.selectedColor = color;
 
-		DesignState.getDesign().setColor(color);
+		DesignState.getDesign().setColor(color, color_id);
 		DesignState.commit();
 	}
 

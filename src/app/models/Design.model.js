@@ -4,6 +4,7 @@ var Design = function(LayerSet) {
 	return class Design {
 		constructor() {
 			this.color = "#fff";
+			this.colorId = 0;
 			this.sides = {};
 			this.variant = null;
 			this.material = null;
@@ -20,6 +21,7 @@ var Design = function(LayerSet) {
 			};
 
 			json.designer.color = this.color;
+			json.desiger.color_id = this.colorId;
 
 			if (this.material) json.designer.material = this.material.getName();
 			if (this.product) json.designer.product = this.product.getId();
@@ -41,6 +43,7 @@ var Design = function(LayerSet) {
 			instance = new Design();
 
 			instance.color = json.designer.color;
+			instance.colorId = json.designer.color_id;
 			instance.product = _.find(productData, (p) => p.getId() === json.designer.product);
 			instance.variant = _.find(instance.product.getProducts(), (v) => v.getId() === json.designer.variant);
 			instance.material = instance.product.getMaterial(json.designer.material);
@@ -77,8 +80,9 @@ var Design = function(LayerSet) {
 			return this.color;
 		}
 
-		setColor(color) {
+		setColor(color, color_id) {
 			this.color = color;
+			this.colorId = color_id;
 		}
 
 		setVariant(variant) {

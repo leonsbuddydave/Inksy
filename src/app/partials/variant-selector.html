@@ -3,7 +3,7 @@
 
 	<div ng-show="hasCategory()">
 		<select ng-show="showMaterials()" class="form-control" ng-model="selectedMaterial" ng-options="material as matName for (matName, material) in getMaterials()" ng-change="changeMaterial()"></select>
-		
+
 		<div class="variant-selector" ng-show="showVariants()">
 			<div class="variant" ng-repeat="variant in getVariants()" ng-click='selectVariant(variant)' ng-class="{selected: isSelected(variant)}">
 				<img ng-src="{{getPreviewImage(variant)}}" ng-show="{{getPreviewImage(variant).length > 5}}">
@@ -11,7 +11,7 @@
 		</div>
 
 		<ul ng-controller="ProductColorPickerCtrl as productColorPicker" class="product-color-picker">
-		  <li ng-repeat-start="color in productColorPicker.colors track by color" ng-click="productColorPicker.changeColor(color)" class="swatch" style="background-color: {{color}};" ng-class="{selected: productColorPicker.isSelected(color)}">
+		  <li ng-repeat-start="color in productColorPicker.colors track by color.name" ng-click="productColorPicker.changeColor(color.name, color.id)" class="swatch" style="background-color: {{color.name}};" ng-class="{selected: productColorPicker.isSelected(color.name)}">
 		  </li>
 		  <br ng-repeat-end ng-show="($index + 1) % 9 === 0">
 		</ul>

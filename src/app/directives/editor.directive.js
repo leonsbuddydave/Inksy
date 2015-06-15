@@ -96,7 +96,7 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				side = getCurrentSide();
 
 				if (!side) return;
-				
+
 				shape = side.getShape();
 				texture = side.getTexture();
 
@@ -248,7 +248,7 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 			};
 
 			/*
-				Reflects all user-controlled layers 
+				Reflects all user-controlled layers
 				to the canvas
 			*/
 			ctrl.reflectLayersToCanvas = function() {
@@ -280,7 +280,7 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 					// Create a mask and size it
 					baseShapeMask = object.createMask(productSide.getShape().getElement(), {});
 					[baseShapeMask.width, baseShapeMask.height] = MathUtils.contain(baseShapeMask._element.naturalWidth, baseShapeMask._element.naturalHeight, PRODUCT_AREA_WIDTH, PRODUCT_AREA_HEIGHT);
-					
+
 					// Create and set an offset for the mask image
 					var sideLeft = fc.getCenter().left;
 					var sideTop = fc.getCenter().top;
@@ -288,7 +288,7 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 
 					if (patternImage) {
 						var patternMask = object.createMask(patternImage, {});
-						[patternMask.width, patternMask.height] = MathUtils.contain(patternMask._element.naturalWidth, patternMask._element.naturalHeight, PRODUCT_AREA_WIDTH, PRODUCT_AREA_HEIGHT);		
+						[patternMask.width, patternMask.height] = MathUtils.contain(patternMask._element.naturalWidth, patternMask._element.naturalHeight, PRODUCT_AREA_WIDTH, PRODUCT_AREA_HEIGHT);
 					}
 
 					if (layer.isSelected()) {
@@ -343,7 +343,7 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				// console.info('Editor rebuild completed in ', t2, ' milliseconds.');
 			};
 
-			
+
 			ctrl.resize();
 			ctrl.update();
 			$window.addEventListener('resize', ctrl.resize);
