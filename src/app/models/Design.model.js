@@ -21,7 +21,7 @@ var Design = function(LayerSet) {
 			};
 
 			json.designer.color = this.color;
-			json.desiger.color_id = this.colorId;
+			json.designer.color_id = this.colorId;
 
 			if (this.material) json.designer.material = this.material.getName();
 			if (this.product) json.designer.product = this.product.getId();
