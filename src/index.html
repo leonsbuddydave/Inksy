@@ -107,18 +107,28 @@
 
       <div class="right-sidebar">
         <div ng-controller="CartCtrl as cart" class="cart-actions">
-          <h2 class="price">buy it:</h2>
+        
+        <div class="add-to-store-container">
+
+          <div class="price">SET YOUR PRICE</div>
+          
+          <div class="user-price"> $10.00<!-- {{cart.userPrice | currency:'$'}} -->
+           <br/> your profit per item: {{cart.profit | currency:'$'}}
+            <div class="arrow arrow-upside" ng-click="cart.priceUp()"><div class="arrow-up"></div></div>
+            <div class="arrow arrow-downside" ng-click="cart.priceDown()"><div class="arrow-down"></div></div>
+          </div>
+
+          <button ng-click="cart.addProductDetails('Send')"  class="cart-action save" type="button">ADD IT TO YOUR STORE</button>
+
+        </div>
+        
+        <div class="add-to-cart-container">
           <h2 class="price" ng-bind="(cart.suggestedPrice | currency:'$')"></h2>
           <!-- <h2 class="name" ng-bind="cart.productName"></h2> -->
-          <button ng-click="cart.addProductDetails('Add to cart')" class="cart-action add-to-cart" type="button">add to cart</button>
+          <button ng-click="cart.addProductDetails('Add to cart')" class="cart-action add-to-cart" type="button">ADD TO CART</button>
 <!--           <button ng-click="cart.callForStores()" class="cart-action add-to-cart" type="button">Test Stores</button> -->
-          <h2 class="price sell-it-text">sell it:</h2>
-          <div class="arrow arrow-upside" ng-click="cart.priceUp()"><div class="arrow-up"></div></div>
-          <div class="user-price">{{cart.userPrice | currency:'$'}}</div>
-          <div class="arrow arrow-downside" ng-click="cart.priceDown()"><div class="arrow-down"></div></div><br>
-          <h3 class="price-profit">your profit per item: {{cart.profit | currency:'$'}}</h3>
-          <button ng-click="cart.addProductDetails('Send')"  class="cart-action save" type="button">list it!</button>
-
+        </div>
+          
           <div class="product-details-modal" ng-show="cart.modalOpened">
             <div class="close-button" ng-click="cart.cancelProductDetails()" >X</div>
             <form action="">

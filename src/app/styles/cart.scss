@@ -12,15 +12,16 @@
 	height: 100%;
 	flex: 1;
 	.arrow{
-		$base-color: #00aeef;
-		width: 80px;
+		$base-color: white;
+		width: 38px;
 		height: 30px;
 		display: block;
 		background-color: $base-color;
-		border-color: #1088B6 !important;
+		border-color: #cdcdcd !important;
 		border: solid 1px;
 		position: relative;
 		cursor: pointer;
+		margin-bottom: 10px;
 		&:active {
 			background-color: darken($base-color, 10%) !important;
 		}
@@ -30,36 +31,37 @@
 		}
 	}
 	.arrow-upside{
-		border-radius: 15px 15px 0px 0px;
+		border-radius: 20%;
 	}
 	.arrow-downside{
-		border-radius: 0px 0px 15px 15px;
+		border-radius: 20%;
 	}
 	.arrow-up {
 		width: 0; 
 		height: 0; 
 		border-left: 10px solid transparent;
 		border-right: 10px solid transparent;
-		border-bottom: 10px solid white;
+		border-bottom: 10px solid #cdcdcd;
 		position: absolute;
 		top: 8px;
-		left: 30px;
+		left: 8px;
 	}
 	.arrow-down {
 		width: 0; 
 		height: 0; 
 		border-left: 10px solid transparent;
 		border-right: 10px solid transparent;
-		border-top: 10px solid white;
+		border-top: 10px solid #cdcdcd;
 		position: absolute;
-		top: 9px;
-		left: 30px;
+		top: 8px;
+		left: 8px;
 	}
 	.price {
 		font-weight: bold;
 		padding: 0;
 		margin: 0;
 		margin-bottom: 5px;
+		display: inline-block;
 	}
 
 	.sell-it-text{
@@ -77,18 +79,18 @@
 	}
 
 	.cart-action {
-		width: 100%;
 		margin: 5px;
-		border-radius: 3px;
+		border-radius: 10px;
 		color: #fff;
 		border: solid 1px;
 		padding: 8px;
-
+		padding-right: 10px;
+		padding-left: 10px;
 		&.add-to-cart {
 			$base-color: #00aeef;
 
 			background-color: $base-color;
-			border-color: #0076a3;
+			border-color: $base-color;
 
 			&:active {
 				background-color: darken($base-color, 10%) !important;
@@ -100,11 +102,11 @@
 		}
 
 		&.save {
-			$save-color: #73e6bf;
+			$save-color: #00aeef;
 
 			background-color: $save-color;
-			border: 1px solid #2db486;
-			border-radius: 3px;
+			border: 1px solid $save-color;
+			border-radius: 10px;
 			text-align: center;
 			color: #ffffff;
 
@@ -122,7 +124,7 @@
 
 			background-color: #B4D7E4;
 			border: 1px solid #2DACB4;
-			border-radius: 3px;
+			border-radius: 10px;
 			text-align: center;
 			color: #116686;
 
@@ -133,11 +135,43 @@
 			&:hover {
 				background-color: lighten($cancel-color, 5%);
 			}
-		}
-		
+		}	
 	}
 	h3{
 		font-size: 22px;
+	}
+		.add-to-store-container {
+		display: inline-block;
+		background-color: white;
+		border-radius: 4%;
+		padding-top: 20px;
+		padding-bottom: 20px;
+		padding: 10px;
+		text-align: center;
+		margin-right: 10px;
+		margin-bottom: 20px;
+		width: 250px;
+		color: #666666;
+		.price {
+			font-size: 25px;
+
+		}
+	}
+
+	.add-to-cart-container {
+		display: inline-block;
+		background-color: white;
+		border-radius: 4%;
+		padding-top: 20px;
+		padding-bottom: 20px;
+		padding: 10px;
+		text-align: center;
+		margin-right: 10px;
+		width: 250px;
+	}
+
+	.user-price {
+		font-size: 14px;
 	}
 
 }
