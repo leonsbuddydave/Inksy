@@ -98,7 +98,7 @@ class CartCtrl {
 		var json                 = this.DesignState.getDesign().toJson();
 		json.details.title       = this.productName;
 		json.details.description = this.productDescription;
-		json.details.price       = this.userPrice;
+		json.details.price       = this.suggestedPrice;
 		json.details.to_cart     = true;
 		json.product_size        = this.product_size;
 		this.addToCart(json);
