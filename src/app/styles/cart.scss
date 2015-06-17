@@ -14,16 +14,19 @@
 	.arrow{
 		$base-color: white;
 		width: 38px;
-		height: 30px;
+		height: 34px;
 		display: block;
 		background-color: $base-color;
 		border-color: #cdcdcd !important;
 		border: solid 1px;
 		position: relative;
 		cursor: pointer;
-		margin-bottom: 10px;
+	  margin-bottom: 5px;
+  	margin-left: 185px;
+  	margin-top: 3px;
 		&:active {
-			background-color: darken($base-color, 10%) !important;
+			background-color: darken($base-color, 3%) !important;
+			border-color: #00aeef !important;
 		}
 
 		&:hover {
@@ -43,8 +46,12 @@
 		border-right: 10px solid transparent;
 		border-bottom: 10px solid #cdcdcd;
 		position: absolute;
-		top: 8px;
+		top: 11px;
 		left: 8px;
+
+		&:active {
+			border-bottom: 10px solid #00aeef;
+ 		}
 	}
 	.arrow-down {
 		width: 0; 
@@ -53,8 +60,12 @@
 		border-right: 10px solid transparent;
 		border-top: 10px solid #cdcdcd;
 		position: absolute;
-		top: 8px;
-		left: 8px;
+		top: 11px;
+ 		left: 8px;
+ 		
+ 		&:active {
+			border-top: 10px solid #00aeef;
+ 		}
 	}
 	.price {
 		font-weight: bold;
@@ -97,7 +108,7 @@
 			}
 
 			&:hover {
-				background-color: lighten($base-color, 5%);
+				background-color: #26cc99;
 			}
 		}
 
@@ -115,7 +126,7 @@
 			}
 
 			&:hover {
-				background-color: lighten($save-color, 5%);
+				background-color: #26cc99;
 			}
 		}
 
@@ -154,7 +165,6 @@
 		color: #666666;
 		.price {
 			font-size: 25px;
-
 		}
 	}
 
@@ -171,7 +181,41 @@
 	}
 
 	.user-price {
-		font-size: 14px;
+		z-index: 2;
+		font-size: 24px;
+  	margin-top: -57px;
+  	font-family: raleway;
+  	color: #00aeef;
+  	margin-left: 65px;
+  	font-weight: bold;
+  	float: left;
 	}
 
+	img {
+		float: left;
+	}
+
+	.buy-now-price {
+		font-size: 24px;
+		font-family: raleway;
+  	color: #00aeef;
+  	font-weight: bold;
+	}
+
+	.your-profit {
+	  font-size: 12px;
+	  letter-spacing: .05em;
+	}
+
+	.buy-now-text {
+		text-decoration: underline;
+		margin-bottom: 10px;
+		margin-top: -10px;
+		color: #666666;
+		cursor: pointer;
+	}
 }
+
+
+
+
