@@ -10,7 +10,7 @@ var InksyAPI = function($http, GarbageFactory, $q) {
 			return callback && callback(products);
 		}
 		else {
-			return $http.get('/assets/json/products.json').then(function(response) {
+			return $http.get('/api/products.json').then(function(response) {
 				var products = GarbageFactory.trash(response.data);
 				callback && callback(products);
 			});

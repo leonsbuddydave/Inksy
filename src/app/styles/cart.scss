@@ -148,10 +148,8 @@
 			}
 		}	
 	}
-	h3{
-		font-size: 22px;
-	}
-		.add-to-store-container {
+	
+	.add-to-store-container {
 		display: inline-block;
 		background-color: white;
 		border-radius: 12px;
@@ -166,6 +164,9 @@
 		.price {
 			font-size: 25px;
 		}
+		img {
+			float: left;
+		}
 	}
 
 	.add-to-cart-container {
@@ -178,6 +179,26 @@
 		text-align: center;
 		margin-right: 10px;
 		width: 250px;
+		-webkit-transition: .25s ease-in-out all;
+		-moz-transition: .25s ease-in-out all;
+		-o-transition: .25s ease-in-out all;
+		transition: .25s ease-in-out all;
+	}
+
+	.add-to-cart-container.ng-enter {
+		opacity: 0;
+	}
+
+	.add-to-cart-container.ng-enter-active {
+		opacity: 1;
+	}
+
+	.add-to-cart-container.ng-leave {
+		opacity: 1;
+	}
+
+	.add-to-cart-container.ng-leave.active {
+		opacity: 0;
 	}
 
 	.user-price {
@@ -189,10 +210,6 @@
   	margin-left: 65px;
   	font-weight: bold;
   	float: left;
-	}
-
-	img {
-		float: left;
 	}
 
 	.buy-now-price {
