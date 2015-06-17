@@ -59,7 +59,7 @@ class CartCtrl {
 	callForStores(){
 		var self = this;
 		$.ajax({
-			url:  "http://localhost:3333/api/stores.json",
+			url:  "/api/stores.json",
 			method: "GET",
 			data: 'stores',
 			success: function(data) {

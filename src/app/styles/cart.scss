@@ -97,11 +97,15 @@
 		padding: 8px;
 		padding-right: 10px;
 		padding-left: 10px;
+		font-family: raleway;
+		font-weight: bold;
+		font-size: 14px;	
 		&.add-to-cart {
 			$base-color: #00aeef;
-
+			letter-spacing: .05em;
 			background-color: $base-color;
 			border-color: $base-color;
+			width: 131px;
 
 			&:active {
 				background-color: darken($base-color, 10%) !important;
@@ -114,7 +118,7 @@
 
 		&.save {
 			$save-color: #00aeef;
-
+			width: 214px;
 			background-color: $save-color;
 			border: 1px solid $save-color;
 			border-radius: 10px;
@@ -161,11 +165,13 @@
 		margin-bottom: 20px;
 		width: 250px;
 		color: #666666;
+		font-family: raleway;
 		.price {
 			font-size: 25px;
 		}
 		img {
 			float: left;
+			margin-left: 4px;
 		}
 	}
 
@@ -179,6 +185,7 @@
 		text-align: center;
 		margin-right: 10px;
 		width: 250px;
+		font-family: raleway;
 		-webkit-transition: .25s ease-in-out all;
 		-moz-transition: .25s ease-in-out all;
 		-o-transition: .25s ease-in-out all;

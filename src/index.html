@@ -105,6 +105,7 @@
         </div>
       </div>
 
+
       <div class="right-sidebar">
         <div ng-controller="CartCtrl as cart" class="cart-actions">
           <div class="add-to-store-container">
@@ -115,7 +116,7 @@
             <div class="arrow arrow-upside" ng-click="cart.priceUp()"><div class="arrow-up"></div></div>
             <div class="arrow arrow-downside" ng-click="cart.priceDown()"><div class="arrow-down"></div></div>
           
-          
+            
             <div class="your-profit">YOUR PROFIT PER ITEM {{cart.profit | currency:'$'}}</div>
             <button ng-click="cart.addProductDetails('Send')"  class="cart-action save" type="button">ADD IT TO YOUR STORE</button>
           <!-- Modal -->
@@ -146,11 +147,13 @@
               </form>
             </div>
           </div>
-        <div ng-click="cart.addToCartContainer=!cart.addToCartContainer" class="buy-now-text">Or, buy it for yourself >></div>
-        <div class="add-to-cart-container price" ng-if="cart.addToCartContainer">
-          <div class="price buy-now-price" ng-bind="(cart.suggestedPrice | currency:'$')">
+          <div ng-click="cart.addToCartContainer=!cart.addToCartContainer" class="buy-now-text">Or, buy it for yourself >></div>
+          <div class="add-to-cart-container price" ng-if="cart.addToCartContainer">
+            <div class="price buy-now-price" ng-bind="(cart.suggestedPrice | currency:'$')"></div>
+            <button ng-click="cart.addProductDetails('Add to cart')" class="cart-action add-to-cart" type="button">ADD TO CART</button>
+
           <!-- <h2 class="name" ng-bind="cart.productName"></h2> -->
-            <button ng-click="cart.cart.sendToCart()" class="cart-action save add-to-cart" type="button">ADD TO CART</button>
+             
           </div>
 <!--           <button ng-click="cart.callForStores()" class="cart-action add-to-cart" type="button">Test Stores</button> -->
         </div>
