@@ -107,56 +107,54 @@
 
       <div class="right-sidebar">
         <div ng-controller="CartCtrl as cart" class="cart-actions">
-        
-        <div class="add-to-store-container">
-
-          <div class="price">SET YOUR PRICE</div>
-          <img src="assets/images/icons/price-tag.png" height="80px">
-          <div class="user-price"> {{cart.userPrice | currency:'$'}}
-          </div><br/> 
+          <div class="add-to-store-container">
+            <div class="price">SET YOUR PRICE</div>
+            <img src="assets/images/icons/price-tag.png" height="80px">
+            <div class="user-price"> {{cart.userPrice | currency:'$'}}
+            </div><br/> 
             <div class="arrow arrow-upside" ng-click="cart.priceUp()"><div class="arrow-up"></div></div>
             <div class="arrow arrow-downside" ng-click="cart.priceDown()"><div class="arrow-down"></div></div>
           
           
-          <div class="your-profit">YOUR PROFIT PER ITEM {{cart.profit | currency:'$'}}</div>
-          <button ng-click="cart.addProductDetails('Send')"  class="cart-action save" type="button">ADD IT TO YOUR STORE</button>
-
-        </div>
+            <div class="your-profit">YOUR PROFIT PER ITEM {{cart.profit | currency:'$'}}</div>
+            <button ng-click="cart.addProductDetails('Send')"  class="cart-action save" type="button">ADD IT TO YOUR STORE</button>
+          <!-- Modal -->
+            <div class="product-details-modal" ng-show="cart.modalOpened">
+              <div class="close-button" ng-click="cart.cancelProductDetails()" >X</div>
+              <form action="">
+                <label for="productName">name it: </label>
+                <input type="text" name="productName" ng-model="cart.productName">
+                <div ng-show="cart.modalInstance == 'Send'">
+                  <label for="productName">describe it: </label>
+                  <textarea class="description" type="text"  cols="60" name="productDescription" ng-model="cart.productDescription"></textarea>
+                </div>
+                <label for="store">{{cart.modalDropdownLabel()}}</label>
+                <select name="store" class="select-store" id="select-store" ng-model ="cart.store" ng-show="cart.modalInstance == 'Send'">
+                  <option value="{{store.id}}" ng-repeat="store in cart.stores">{{store.name}}</option>
+                </select>
+                <select name="size" class="select-store" id="select-size" ng-model ="cart.product_size" ng-show="cart.modalInstance == 'Add to cart' && cart.isShirtOrHoodie()">
+                  <option value="{{size.id}}" ng-repeat="size in cart.sizes">{{size.label}}</option>
+                </select>
+                <br><br>
+                <div ng-show="cart.modalInstance == 'Add to cart'">
+                  <button ng-click="cart.sendToCart()" class="cart-action save modal-button" type="button">Add to cart</button>
+                </div>
+                <div ng-show="cart.modalInstance == 'Send'">
+                  <button ng-click="cart.sendProductToRails('save')" class="cart-action save modal-button" type="button">Save</button>
+                  <button ng-click="cart.sendProductToRails('publish')" class="cart-action cancel modal-button" type="button">Publish</button>
+                </div>
+              </form>
+            </div>
+          </div>
         <div ng-click="cart.addToCartContainer=!cart.addToCartContainer" class="buy-now-text">Or, buy it for yourself >></div>
         <div class="add-to-cart-container price" ng-if="cart.addToCartContainer">
-          <div class="price buy-now-price" ng-bind="(cart.suggestedPrice | currency:'$')"</div>
+          <div class="price buy-now-price" ng-bind="(cart.suggestedPrice | currency:'$')">
           <!-- <h2 class="name" ng-bind="cart.productName"></h2> -->
-          <button ng-click="cart.addProductDetails('Add to cart')" class="cart-action add-to-cart" type="button">ADD TO CART</button>
+            <button ng-click="cart.cart.sendToCart()" class="cart-action save add-to-cart" type="button">ADD TO CART</button>
+          </div>
 <!--           <button ng-click="cart.callForStores()" class="cart-action add-to-cart" type="button">Test Stores</button> -->
         </div>
-          
-          <div class="product-details-modal" ng-show="cart.modalOpened">
-            <div class="close-button" ng-click="cart.cancelProductDetails()" >X</div>
-            <form action="">
-              <label for="productName">name it: </label>
-              <input type="text" name="productName" ng-model="cart.productName">
-              <div ng-show="cart.modalInstance == 'Send'">
-                <label for="productName">describe it: </label>
-                <textarea class="description" type="text"  cols="60" name="productDescription" ng-model="cart.productDescription"></textarea>
-              </div>
-              <label for="store">{{cart.modalDropdownLabel()}}</label>
-              <select name="store" class="select-store" id="select-store" ng-model ="cart.store" ng-show="cart.modalInstance == 'Send'">
-                <option value="{{store.id}}" ng-repeat="store in cart.stores">{{store.name}}</option>
-              </select>
-              <select name="size" class="select-store" id="select-size" ng-model ="cart.product_size" ng-show="cart.modalInstance == 'Add to cart' && cart.isShirtOrHoodie()">
-                <option value="{{size.id}}" ng-repeat="size in cart.sizes">{{size.label}}</option>
-              </select>
-              <br><br>
-              <div ng-show="cart.modalInstance == 'Add to cart'">
-                <button ng-click="cart.sendToCart()" class="cart-action save modal-button" type="button">Add to cart</button>
-              </div>
-              <div ng-show="cart.modalInstance == 'Send'">
-                <button ng-click="cart.sendProductToRails('save')" class="cart-action save modal-button" type="button">Save</button>
-                <button ng-click="cart.sendProductToRails('publish')" class="cart-action cancel modal-button" type="button">Publish</button>
-              </div>
-            </form>
-          </div>
-
+        
         </div>
       </div>
     </div>
