@@ -11,6 +11,9 @@
 	flex-direction: column;
 	height: 100%;
 	flex: 1;
+	button:focus {
+		outline: none;
+	}
 	.arrow{
 		$base-color: white;
 		width: 38px;

@@ -4,21 +4,35 @@
   left: 30%;
   background: rgb(255, 255, 255);
   height: 350px;
-  width: 515px;
-  padding: 25px;
+  width: 500px;
   text-align: center;
-  border: 1px solid black;
-  padding-top:52px;
+  border: 1px solid #e4e4e4;
+  padding-top:20px;
+  border-radius: 10px;
+  button:focus {
+    outline: none;
+  }
   label{
     display: block;
   }
+  input {
+    width: 80%;
+    border: 1px solid #e4e4e4;
+    margin-bottom: 10px;
+  }
+    input:focus {
+      outline: none;
+      background-color: #fafafa;
+    }
   .description{
-    width: 90%;
+    width: 80%;
+    border: 1px solid #e4e4e4;
   }
   .select-store{
     height: 24px;
-    width: 170px;
+    width: 80%;
     background-color: white;
+    border: 1px solid #e4e4e4;
   }
   .modal-button{
     display: inline-block;
@@ -26,10 +40,11 @@
   }
   .close-button{
     position: absolute;
-    top: -12px;
-    right: -8px;
-    background-color: black;
-    color: white;
+    top: 10px;
+    right: 10px;
+    background-color: white;
+    border: 1px solid #e4e4e4;
+    color:#e4e4e4;
     border-radius: 50%;
     width: 25px;
     height: 25px;
@@ -37,5 +52,22 @@
     padding-left: 0px;
     font-weight: bold;
     cursor: pointer;
+    
+    &:hover {
+      color: #00aeef;
+      border: 1px solid #00aeef;
+    }
+  }
+  .modal-text {
+    text-align: center;
+    font-weight: bold;
+    p {
+      padding-left: 43px;
+      padding-right: 43px;
+      font-size: 15px;
+    }
+    h2 {
+      font-size: 25px;
+    }
   }
 }

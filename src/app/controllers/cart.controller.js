@@ -7,7 +7,7 @@ class CartCtrl {
 		this.suggestedPrice = 0.00;
 		this.userPrice = 0.00;
 		this.profit = 0.00;
-		this.productName = "No Product";
+		this.productName = "";
 		this.productDescription = "";
 		this.DesignState = DesignState;
 		this.modalOpened = false;
@@ -162,9 +162,9 @@ class CartCtrl {
 
 	modalDropdownLabel(){
 		if(this.modalInstance == 'Add to cart' && this.isShirtOrHoodie()){
-			return "chose your size";
+			return "CHOOSE YOUR SIZE";
 		}else if(this.modalInstance == 'Send'){
-			return "chose a store";
+			return "CHOOSE A STORE";
 		}else{
 			return ""
 		}
