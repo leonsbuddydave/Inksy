@@ -10,7 +10,7 @@ var InksyAPI = function($http, GarbageFactory, $q) {
 			return callback && callback(products);
 		}
 		else {
-			return $http.get('/api/products.json').then(function(response) {
+			return $http.get('http://localhost:3333/api/products.json').then(function(response) {
 				var products = GarbageFactory.trash(response.data);
 				callback && callback(products);
 			});
@@ -18,7 +18,7 @@ var InksyAPI = function($http, GarbageFactory, $q) {
 	};
 
 	var getSavedDesign = function(callback) {
-		return $http.get('/assets/json/saved.json').then(function(response) {
+		return $http.get('http://localhost:3333/assets/json/saved.json').then(function(response) {
 			callback && callback(response.data);
 		});
 	};
