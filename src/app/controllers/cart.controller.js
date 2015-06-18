@@ -45,6 +45,7 @@ class CartCtrl {
 	priceDown(){
 		if(this.userPrice > this.price){
 			this.userPrice --;
+			this.profit = this.userPrice - this.price;
 		}
 	}
 
