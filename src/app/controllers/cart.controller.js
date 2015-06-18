@@ -21,7 +21,7 @@ class CartCtrl {
 			var variant = design.getVariant();
 
 			if (variant) {
-				this.price = variant.getBasePrice();
+				this.price = design.material.base_price;
 				this.suggestedPrice = design.material.suggested_price;
 				this.userPrice = design.material.base_price;
 				this.productName = variant.getName();
