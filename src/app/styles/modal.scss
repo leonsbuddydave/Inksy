@@ -4,38 +4,103 @@
   left: 30%;
   background: rgb(255, 255, 255);
   height: 350px;
-  width: 515px;
-  padding: 25px;
+  width: 500px;
   text-align: center;
-  border: 1px solid black;
-  padding-top:52px;
+  border: 1px solid #e4e4e4;
+  padding-top:20px;
+  border-radius: 10px;
+  padding-left: 60px;
+  padding-right: 60px;
+  select {
+    color: #cccccc;
+    font-weight: bold;
+    font-size: 15px;
+  }
+  select:focus {
+    outline: none;
+    color: #747474;
+    opacity: 1;
+    font-weight: normal;
+    background-color: white;
+  }
+  button:focus {
+    outline: none;
+  }
   label{
     display: block;
   }
-  .description{
-    width: 90%;
+  input, textarea {
+    width: 100%;
+    border: 1px solid #e4e4e4;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    color: #cccccc;
+    font-weight: bold;
+    font-size: 15px;
+    opacity: .6;
   }
+    input:focus, textarea:focus {
+      outline: none;
+      background-color: #fafafa;
+      color: #747474;
+      opacity: 1;
+      font-weight: normal;
+    }
   .select-store{
     height: 24px;
-    width: 170px;
+    width: 100%;
     background-color: white;
+    border: 1px solid #e4e4e4;
+  }
+
+  .modal-buttons {
+    display: inline-block;
   }
   .modal-button{
     display: inline-block;
-    width: 180px;
+    width: 177px;
+    background-color: #00aeef;
+    border: 1px solid #00aeef;
+    border-radius: 10px;
+    text-align: center;
+    color: #ffffff;
+    display: inline-block;
+    &:active {
+      background-color: darken( #00aeef, 10%) !important;
+    }
+    &:hover {
+      background-color: #26cc99;
+    }
   }
   .close-button{
     position: absolute;
-    top: -12px;
-    right: -8px;
-    background-color: black;
-    color: white;
+    top: 10px;
+    right: 10px;
+    background-color: white;
+    border: 1px solid #e4e4e4;
+    color:#e4e4e4;
     border-radius: 50%;
     width: 25px;
     height: 25px;
     line-height: 25px;
     padding-left: 0px;
     font-weight: bold;
-    cursor: pointer;
+    cursor: pointer; 
+    &:hover {
+      color: #00aeef;
+      border: 1px solid #00aeef;
+    }
+  }
+  .modal-text {
+    text-align: center;
+    font-weight: bold;
+    p {
+      // padding-left: 30px;
+      // padding-right: 30px;
+      font-size: 15px;
+    }
+    h2 {
+      font-size: 25px;
+    }
   }
 }

@@ -54,8 +54,8 @@ angular.module('templates', []);
 
 angular.module('inksy', ['ngAnimate', 'ui.bootstrap', 'templates', 'dndLists', 'facebook', 'ui.select', 'colorpicker.module'])
 	.config(function(FacebookProvider, InstagramProvider) {
-		FacebookProvider.init('1561447194144363');
-		InstagramProvider.init('755dd07bfe2e49408dd93d59cc810b2c', 'http://localhost:3000/assets/instagram_redirect.html');
+		FacebookProvider.init('890048857724673');
+		InstagramProvider.init('4728f3e1dc9a4a90814f062d5ce0f13e', 'http://beta.inksy.co/inksy.co/admin/stores/tool');
 	})
 	.controller('MainCtrl', MainCtrl)
 	.controller('CartCtrl', CartCtrl)
