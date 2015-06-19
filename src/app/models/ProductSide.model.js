@@ -168,6 +168,7 @@ class ProductSide {
 			originX: 'center',
 			originY: 'center'
 		});
+
 		im.src = texture;
 	}
 
@@ -177,7 +178,7 @@ class ProductSide {
 
 	setShape(shape) {
 		this.images.shape = shape;
-		
+
 		var im = new Image();
 		im.crossOrigin = "anonymous";
 		this.shape = new fabric.Image(im, {

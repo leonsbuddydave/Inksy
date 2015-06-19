@@ -1,5 +1,3 @@
-'use strict'
-
 const MAX_LAYERS = 8;
 
 class LayerPaletteCtrl {
@@ -10,6 +8,7 @@ class LayerPaletteCtrl {
 		this.$rootScope = $rootScope;
 		this.DesignState = DesignState;
 		this.InksyEvents = InksyEvents;
+		this.selectedLayer = null;
 
 		this.layerSets = {
 			[ProductAngle.Front]: new LayerSet(),
@@ -25,6 +24,9 @@ class LayerPaletteCtrl {
 		})
 
 		// $scope.$on('fabric:selection:cleared', this.onFabricSelectionCleared.bind(this));
+		$scope.$on('fabric:object:selected', (event, layer) => {
+			this.selectedLayer = layer;
+		})
 
 		$scope.$on('image:new', (event, image) => {
 			var imageLayer, layerSet;
@@ -96,7 +98,7 @@ class LayerPaletteCtrl {
 		layer set
 	*/
 	getLayerSet() {
-		if (this.$scope.product) 
+		if (this.$scope.product)
 			return this.layerSets[this.$scope.product.angle];
 		else
 			return null;
@@ -120,6 +122,44 @@ class LayerPaletteCtrl {
 
 		layerSet.moveDown(layer);
 
+		event.stopPropagation();
+		this.update();
+	}
+
+	onClickUpControl(event){
+		var layerSet = this.getLayerSet();
+		var selected = this.selectedLayer;
+		if (layerSet === null) return;
+		var layerIndex = _.findIndex(layerSet.layers, function(l){return l.canvasObject == selected});
+		var layer = layerSet.layers[layerIndex];
+		console.log(layer);
+		// var layer = this.selectedLayer;
+		layerSet.moveDown(layer);
+		event.stopPropagation();
+		this.update();
+	}
+
+	onClickDownControl(event){
+		var layerSet = this.getLayerSet();
+		var selected = this.selectedLayer;
+		if (layerSet === null) return;
+		var layerIndex = _.findIndex(layerSet.layers, function(l){return l.canvasObject == selected});
+		var layer = layerSet.layers[layerIndex];
+		console.log(layer);
+		// var layer = this.selectedLayer;
+		layerSet.moveUp(layer);
+		event.stopPropagation();
+		this.update();
+	}
+
+	onClickDeleteControl(event){
+		var layerSet = this.getLayerSet();
+		var selected = this.selectedLayer;
+		if (layerSet === null) return;
+		var layerIndex = _.findIndex(layerSet.layers, function(l){return l.canvasObject == selected});
+		var layer = layerSet.layers[layerIndex];
+		// $rootScope.$broadcast('fabric:object:selected', event.target);
+		layerSet.deleteLayer(layer);
 		event.stopPropagation();
 		this.update();
 	}

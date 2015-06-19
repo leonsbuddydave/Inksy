@@ -8,11 +8,52 @@
 	background-color: #ececec;
 	flex-direction: column;
 	padding: 0;
-
+	.editor{
+		position: relative;
+	}
 	.editor-action-bar {
 		width: 100%;
 	}
-
+	.layer-control{
+		text-align: center;
+		width: 50%;
+		height: 60px;
+		background-color: white;
+		border-radius: 5px;
+		margin: 0 auto;
+		position: absolute;
+		left: 0;
+		right: 0;
+		.layer-icon{
+			display: inline-block;
+			margin-left: 5px;
+			width: 50px;
+			height: 50px;
+			background-position: center;
+			background-size: 50px;
+			background-repeat: no-repeat;
+			transition: all 0.5s ease-in-out;
+			cursor: pointer;
+		}
+		.layer-up-control{
+			background-image: url('/assets/images/icons/layer_up_control.png');
+			&:hover {
+				background-image: url('/assets/images/icons/layer_up_control_active.png');
+			}
+		}
+		.layer-down-control{
+			background-image: url('/assets/images/icons/layer_down_control.png');
+			&:hover {
+				background-image: url('/assets/images/icons/layer_down_control_active.png');
+			}
+		}
+		.layer-delete-control{
+			background-image: url('/assets/images/icons/layer_delete_control.png');
+			&:hover {
+				background-image: url('/assets/images/icons/layer_delete_control_active.png');
+			}
+		}
+	}
 	.editor {
 		flex: 1;
 		display: flex;

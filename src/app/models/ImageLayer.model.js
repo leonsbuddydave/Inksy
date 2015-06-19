@@ -11,7 +11,7 @@ var ImageLayer = function(Layer) {
 			}
 
 			this.setCanvasObject(new fabric.DynamicMaskedImage(image, {
-				selectable: false
+				selectable: true
 			}));
 			this.canvasObject.setControlsVisibility({
 				ml: false,
@@ -37,7 +37,7 @@ var ImageLayer = function(Layer) {
 			var im, instance;
 
 			instance = new ImageLayer(json, new Image());
-			
+
 			instance.image = new Image();
 			instance.image.src = json.imageSrc;
 

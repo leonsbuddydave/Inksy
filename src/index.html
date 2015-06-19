@@ -30,7 +30,6 @@
     </style>
   </head>
   <body>
-    <div class="header"></div>
     <div class="inksy-product-designer" ng-controller="MainCtrl as main">
 
       <div class="left-sidebar">
@@ -70,7 +69,7 @@
               </div>
             </tab>
             <!-- design tab -->
-            <tab heading="Design">
+<!--             <tab heading="Design">
 
               <div class="design-elements-container" ng-controller="DesignElementsTabCtrl">
                 <div class="tab-header tab-5"></div>
@@ -113,10 +112,10 @@
                 <div class="floating-panel text-panel" ng-class="{show: isActive('text')}">
                   <div ng-include="'app/partials/text-properties.html'" class="asset-panel"></div>
                 </div>
-              </div>
+              </div> -->
 
               <!-- Layers Palette -->
-              <div ng-include="'app/partials/layer-palette.html'"></div>
+
 
               <div class="btn-group" ng-show="productSides.length > 1">
                 <label class="btn btn-default" ng-repeat="side in productSides" ng-model="product.angle" btn-radio="side">{{side}}</label>
@@ -135,6 +134,11 @@
         <!-- Editor Canvas -->
         <div class="editor">
           <div class="editor-inner" editor></div>
+          <div class="layer-control" ng-controller="LayerPaletteCtrl as layerPalette">
+            <div class="layer-up-control layer-icon" ng-click="layerPalette.onClickUpControl($event)"></div>
+            <div class="layer-down-control layer-icon" ng-click="layerPalette.onClickDownControl($event)"></div>
+            <div class="layer-delete-control layer-icon" ng-click="layerPalette.onClickDeleteControl($event)"></div>
+          </div>
         </div>
       </div>
 

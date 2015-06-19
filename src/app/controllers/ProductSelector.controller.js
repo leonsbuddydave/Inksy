@@ -11,7 +11,6 @@ class ProductSelectorCtrl {
 		this.selectedProduct = null;
 
 		InksyAPI.getProductData(function(productData) {
-			console.log(productData);
 		});
 	}
 

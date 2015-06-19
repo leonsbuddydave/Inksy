@@ -30,7 +30,7 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				rawCanvas = fabric.util.createCanvasElement();
 				element.append(rawCanvas);
 				fCanvas = new fabric.Canvas(rawCanvas, {
-					selection: false,
+					selection: true,
 					controlsAboveOverlay: true,
 					imageSmoothingEnabled: true
 				});
@@ -41,7 +41,6 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 
 			var onCanvasSelectionCleared = function(event) {
 				$rootScope.$broadcast('fabric:selection:cleared');
-				fc.setActiveObject(selectedObject);
 			}
 
 			var onCanvasBeforeSelectionCleared = function(event) {
@@ -158,7 +157,7 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				ctrl.rebuild();
 			});
 
-			scope.$on(InksyEvents.GLOBAL_RENDER, (event) => {
+			scope.$on(InksyEvents.TEXTURE_LOADED, (event) => {
 				ctrl.rebuild();
 			});
 
@@ -205,9 +204,12 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				ctrl.rebuild();
 			});
 
-			$interval(function() {
+			scope.$on('$viewContentLoaded', function(){
 				ctrl.rebuild();
-			}, 500);
+  		});
+			// $interval(function() {
+			// 	ctrl.rebuild();
+			// }, 500);
 
 			/*
 				Handles updating the canvas whenever
@@ -292,7 +294,7 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 					}
 
 					if (layer.isSelected()) {
-						fc.setActiveObject(object);
+						// fc.setActiveObject(object);
 					}
 
 					// If the layer has not been added previously,
@@ -340,7 +342,7 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				if (design) {
 					design.setFullCanvas(fc);
 				}
-				// console.info('Editor rebuild completed in ', t2, ' milliseconds.');
+				console.info('Editor rebuild completed in ', t2, ' milliseconds.');
 			};
 
 

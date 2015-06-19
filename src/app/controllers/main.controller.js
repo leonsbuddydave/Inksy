@@ -20,16 +20,16 @@ class MainCtrl {
       variant = _design.getVariant();
 
       if (variant !== null && angular.isDefined(variant)) {
-        $scope.productSides = Object.keys(variant.getAllSides());  
+        $scope.productSides = Object.keys(variant.getAllSides());
       }
     });
 
     /* Load some product data */
-    const ARTIFICIAL_DELAY = 0;
+    const ARTIFICIAL_DELAY = 2300;
     InksyAPI.getProductData(function(products) {
       $timeout(function() {
-        $rootScope.$broadcast(InksyEvents.PRODUCT_DATA_READY, products);  
-        
+        $rootScope.$broadcast(InksyEvents.PRODUCT_DATA_READY, products);
+
         InksyAPI.getSavedDesign(function(savedDesign) {
 
           $timeout(function() {

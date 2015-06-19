@@ -25,7 +25,7 @@ var Layer = function($timeout, $injector, InksyPhoto) {
 			var layerClass = $injector.get(json.layerClass);
 			var layer = layerClass.fromJson(json);
 
-			json.canvasObject.selectable = false;
+			json.canvasObject.selectable = true;
 			fabric.util.enlivenObjects([json.canvasObject], (objects) => {
 				layer.canvasObject = objects[0];
 			})
@@ -74,11 +74,13 @@ var Layer = function($timeout, $injector, InksyPhoto) {
 			this.getCanvasObject().selectable = true;
 			this.getCanvasObject().evented = true;
 			this.getCanvasObject().canvas.setActiveObject(this.canvasObject);
+			console.log(this.getCanvasObject());
 		}
 
 		deselect() {
-			this.getCanvasObject().selectable = false;
-			this.getCanvasObject().evented = false;
+			this.getCanvasObject().selectable = true;
+			this.getCanvasObject().evented = true;
+			// this.getCanvasObject().canvas.setActiveObject(this.canvasObject);
 		}
 
 		isSelected() {
