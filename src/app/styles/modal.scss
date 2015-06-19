@@ -11,7 +11,6 @@
   border-radius: 10px;
   padding-left: 60px;
   padding-right: 60px;
-  background-color: blue;
   select {
     color: #cccccc;
     font-weight: bold;
@@ -53,17 +52,21 @@
     background-color: white;
     border: 1px solid #e4e4e4;
   }
+
+  .modal-buttons {
+    display: inline-block;
+  }
   .modal-button{
     display: inline-block;
-     width: 440px;
-    width: 214px;
+    width: 177px;
     background-color: #00aeef;
     border: 1px solid #00aeef;
     border-radius: 10px;
     text-align: center;
     color: #ffffff;
+    display: inline-block;
     &:active {
-      background-color: darken($save-color, 10%) !important;
+      background-color: darken( #00aeef, 10%) !important;
     }
     &:hover {
       background-color: #26cc99;
