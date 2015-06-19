@@ -116,15 +116,15 @@
             <div class="arrow arrow-upside" ng-click="cart.priceUp()"><div class="arrow-up"></div></div>
             <div class="arrow arrow-downside" ng-click="cart.priceDown()"><div class="arrow-down"></div></div>
           
-            
-            <div class="your-profit">YOUR PROFIT PER ITEM {{cart.profit | currency:'$'}}</div>
+            <div class="base-price">BASE PRICE PER ITEM: {{cart.price | currency:'$'}}</div>
+            <div class="your-profit">YOUR PROFIT PER ITEM: {{cart.profit | currency:'$'}}</div>
             <button ng-click="cart.addProductDetails('Send')"  class="cart-action save" type="button">ADD IT TO YOUR STORE</button>
           <!-- Modal -->
             <div class="product-details-modal" ng-show="cart.modalOpened">
               <div class="close-button" ng-click="cart.cancelProductDetails()" >X</div>
               <form action="">
               <div class="modal-text">
-                <h2>YOUR ALMOST THERE</h2>
+                <h2>YOU'RE ALMOST THERE</h2>
                 <p>Time to give your create a name! This way, after adding it to your cart, you'll be able to find it again in your profile.</p>
               </div>
                 <input type="text" name="productName" ng-model="cart.productName" placeholder="PRODUCT TITLE">
@@ -132,20 +132,23 @@
                   <label for="productName"></label>
                   <textarea class="description" type="text" placeholder="PRODUCT DESCRIPTION"  cols="60" name="productDescription" ng-model="cart.productDescription"></textarea>
                 </div>
-                <label for="store">{{cart.modalDropdownLabel()}}</label>
+               <!--  <label for="store">{{cart.modalDropdownLabel()}}</label> -->
                 <select name="store" class="select-store" id="select-store" ng-model ="cart.store" ng-show="cart.modalInstance == 'Send'">
+                  <option value="" disabled selected>CHOOSE A STORE</option>
                   <option value="{{store.id}}" ng-repeat="store in cart.stores">{{store.name}}</option>
                 </select>
-                <select name="size" class="select-store" id="select-size" placeholder="CHOOSE YOUR SIZE" ng-model ="cart.product_size" ng-show="cart.modalInstance == 'Add to cart' && cart.isShirtOrHoodie()">
+                <select name="size" class="select-store" id="select-size" ng-model ="cart.product_size" ng-show="cart.modalInstance == 'Add to cart' && cart.isShirtOrHoodie()">
+                  <option value="" disabled selected>CHOOSE YOUR SIZE</option>
+                  <option value="" disabled selected>testing</option>
                   <option value="{{size.id}}" ng-repeat="size in cart.sizes">{{size.label}}</option>
                 </select>
                 <br><br>
                 <div ng-show="cart.modalInstance == 'Add to cart'">
-                  <button ng-click="cart.sendToCart()" class="cart-action save modal-button" type="button">Add to cart</button>
+                  <button ng-click="cart.sendToCart()" class="cart-action save modal-button" type="button">ADD TO CART</button>
                 </div>
                 <div ng-show="cart.modalInstance == 'Send'">
-                  <button ng-click="cart.sendProductToRails('save')" class="cart-action save modal-button" type="button">Save</button>
-                  <button ng-click="cart.sendProductToRails('publish')" class="cart-action save modal-button" type="button">Publish</button>
+                  <button ng-click="cart.sendProductToRails('save')" class="cart-action save modal-button" type="button">SAVE</button>
+                  <button ng-click="cart.sendProductToRails('publish')" class="cart-action save modal-button" type="button">PUBLISH</button>
                 </div>
               </form>
             </div>
