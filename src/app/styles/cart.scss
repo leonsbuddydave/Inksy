@@ -229,9 +229,16 @@
   	font-weight: bold;
 	}
 
-	.your-profit {
+	.your-profit, .base-price {
 	  font-size: 12px;
 	  letter-spacing: .05em;
+	  color: #00AEEF;
+	  font-weight: bold;
+	}
+
+	.base-price {
+		color:  #AAAAAA;
+		font-weight: bold;
 	}
 
 	.buy-now-text {

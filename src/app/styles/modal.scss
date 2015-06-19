@@ -9,34 +9,65 @@
   border: 1px solid #e4e4e4;
   padding-top:20px;
   border-radius: 10px;
+  padding-left: 60px;
+  padding-right: 60px;
+  background-color: blue;
+  select {
+    color: #cccccc;
+    font-weight: bold;
+    font-size: 15px;
+  }
+  select:focus {
+    outline: none;
+    color: #747474;
+    opacity: 1;
+    font-weight: normal;
+    background-color: white;
+  }
   button:focus {
     outline: none;
   }
   label{
     display: block;
   }
-  input {
-    width: 80%;
+  input, textarea {
+    width: 100%;
     border: 1px solid #e4e4e4;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    color: #cccccc;
+    font-weight: bold;
+    font-size: 15px;
+    opacity: .6;
   }
-    input:focus {
+    input:focus, textarea:focus {
       outline: none;
       background-color: #fafafa;
+      color: #747474;
+      opacity: 1;
+      font-weight: normal;
     }
-  .description{
-    width: 80%;
-    border: 1px solid #e4e4e4;
-  }
   .select-store{
     height: 24px;
-    width: 80%;
+    width: 100%;
     background-color: white;
     border: 1px solid #e4e4e4;
   }
   .modal-button{
     display: inline-block;
-    width: 180px;
+     width: 440px;
+    width: 214px;
+    background-color: #00aeef;
+    border: 1px solid #00aeef;
+    border-radius: 10px;
+    text-align: center;
+    color: #ffffff;
+    &:active {
+      background-color: darken($save-color, 10%) !important;
+    }
+    &:hover {
+      background-color: #26cc99;
+    }
   }
   .close-button{
     position: absolute;
@@ -51,8 +82,7 @@
     line-height: 25px;
     padding-left: 0px;
     font-weight: bold;
-    cursor: pointer;
-    
+    cursor: pointer; 
     &:hover {
       color: #00aeef;
       border: 1px solid #00aeef;
@@ -62,8 +92,8 @@
     text-align: center;
     font-weight: bold;
     p {
-      padding-left: 43px;
-      padding-right: 43px;
+      // padding-left: 30px;
+      // padding-right: 30px;
       font-size: 15px;
     }
     h2 {
