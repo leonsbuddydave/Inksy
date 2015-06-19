@@ -1,13 +1,13 @@
-//    ______      __                        _          
+//    ______      __                        _
 //   / ____/___ _/ /____  ____ _____  _____(_)__  _____
 //  / /   / __ `/ __/ _ \/ __ `/ __ \/ ___/ / _ \/ ___/
-// / /___/ /_/ / /_/  __/ /_/ / /_/ / /  / /  __(__  ) 
-// \____/\__,_/\__/\___/\__, /\____/_/  /_/\___/____/  
-//                     /____/                          
+// / /___/ /_/ / /_/  __/ /_/ / /_/ / /  / /  __(__  )
+// \____/\__,_/\__/\___/\__, /\____/_/  /_/\___/____/
+//                     /____/
 .category-selector {
 	background-color: #fafafa;
 	overflow: hidden;
-
+	border-radius: 0 0px 5px 5px;
 	&:after {
 		content: " ";
 		display: block;
@@ -16,10 +16,10 @@
 	}
 
 	.category {
-		width: 33%;
+		margin: 10px 12px;
+		width: 100px;
 		height: 100px;
 		float: left;
-		outline: solid 1px #f1f1f1;
 		cursor: pointer;
 		text-align: center;
 		overflow: hidden;

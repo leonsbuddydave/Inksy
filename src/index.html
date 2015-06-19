@@ -21,26 +21,59 @@
     <!-- css files will be automatically insert here -->
     <!-- endinject -->
     <!-- endbuild -->
+    <style>
+      .header{
+        height: 47px;
+        width: 100%;
+        background-color: white;
+      }
+    </style>
   </head>
   <body>
+    <div class="header"></div>
     <div class="inksy-product-designer" ng-controller="MainCtrl as main">
 
       <div class="left-sidebar">
         <div class="left-sidebar-inner">
-          <tabset class="asset-sources inksy-tabset" justified="true">
-
+          <tabset vertical="true" type="pills">
+            <!-- product tab -->
             <tab heading="Product">
+              <div class="tab-header"></div>
               <category-selector></category-selector>
             </tab>
-
-            <tab heading="Variant">
+            <!-- variant tab -->
+            <tab heading="Color">
+              <div class="tab-header tab-2"></div>
               <variant-selector></variant-selector>
             </tab>
-
+            <tab heading="Text">
+              <div class="tab-header tab-3"></div>
+            </tab>
+            <tab heading="Images">
+              <div class="tab-header tab-4"></div>
+              <div class="images-selector" ng-controller="DesignElementsTabCtrl">
+                <div class="images-options">
+                  Upload an image from:
+                  <span file-upload-button>Your computer</span>
+                  <span ng-click="toggle('facebook')">Facebook</span>
+                  <span ng-click="toggle('instagram')">Instagram</span>
+                </div>
+                <div class="floating-panel upload-panel" ng-class="{show: false}">
+                  <div class="asset-panel" gallery-panel></div>
+                </div>
+                <div class="floating-panel facebook-panel" ng-class="{show: isActive('facebook')}">
+                  <div class="asset-panel" facebook-panel active="active.facebook"></div>
+                </div>
+                <div class="floating-panel instagram-panel" ng-class="{show: isActive('instagram')}">
+                  <div class="asset-panel" instagram-panel active="active.instagram"></div>
+                </div>
+              </div>
+            </tab>
+            <!-- design tab -->
             <tab heading="Design">
 
               <div class="design-elements-container" ng-controller="DesignElementsTabCtrl">
-
+                <div class="tab-header tab-5"></div>
                 <ul>
 
                   <li file-upload-button>
@@ -112,11 +145,11 @@
             <div class="price">SET YOUR PRICE</div>
             <img src="assets/images/icons/price-tag.png" height="80px">
             <div class="user-price"> {{cart.userPrice | currency:'$'}}
-            </div><br/> 
+            </div><br/>
             <div class="arrow arrow-upside" ng-click="cart.priceUp()"><div class="arrow-up"></div></div>
             <div class="arrow arrow-downside" ng-click="cart.priceDown()"><div class="arrow-down"></div></div>
-          
-            
+
+
             <div class="your-profit">YOUR PROFIT PER ITEM {{cart.profit | currency:'$'}}</div>
             <button ng-click="cart.addProductDetails('Send')"  class="cart-action save" type="button">ADD IT TO YOUR STORE</button>
           <!-- Modal -->
@@ -153,11 +186,11 @@
             <button ng-click="cart.addProductDetails('Add to cart')" class="cart-action add-to-cart" type="button">ADD TO CART</button>
 
           <!-- <h2 class="name" ng-bind="cart.productName"></h2> -->
-             
+
           </div>
 <!--           <button ng-click="cart.callForStores()" class="cart-action add-to-cart" type="button">Test Stores</button> -->
         </div>
-        
+
         </div>
       </div>
     </div>

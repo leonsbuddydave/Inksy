@@ -7,7 +7,7 @@ function fileUploadButton($rootScope, InksyEvents) {
 			fileHandler: '&'
 		},
 		link: function(scope, element, attributes, ctrl) {
-			var fileInput = angular.element("<input type='file' multiple />");
+			var fileInput = angular.element("<input type='file' multiple style='display:none;'/>");
 
 			element.bind('click', function(event) {
 				fileInput.trigger('click');

@@ -11,6 +11,7 @@ class Product {
 	static fromJson(json) {
 		var p = new Product(json.name);
 		p.setId(json.id || 0);
+		p.setVariantName(json.variant_name || "");
 		p.setType(json.type || "N/A");
 		p.setIcon(json.icon || "")
 		p.setPricing(json.pricing || {
@@ -32,6 +33,10 @@ class Product {
 
 	getId() {
 		return this.id;
+	}
+
+	setVariantName(variant){
+		this.variantName = variant
 	}
 
 	setSide(id, side) {

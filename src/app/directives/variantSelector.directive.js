@@ -76,43 +76,6 @@ var variantSelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) {
 			}
 
 			/**
-			 * [getVariants Returns the product list for the selected category]
-			 * @return {[type]} [A list of products in the given category]
-			 */
-			scope.getVariants = function() {
-				if (scope.hasCategory()) {
-					return getCategory().getProducts();
-				} else {
-					return [];
-				}
-			}
-
-			scope.showVariants = function() {
-				/**
-			 * [showVariants Returns true if the products variants contain icons]
-			 * @return {Boolean} []
-			 */
-				if (scope.hasCategory()) {
-					return getCategory().getProducts()[0].icon.length > 5;
-				} else {
-					return false;
-				}
-			}
-
-			/**
-			 * [selectVariant Changes the variant to the selected one]
-			 * @param  {[type]} index [The variant to switch to]
-			 * @return {[type]}       [description]
-			 */
-			scope.selectVariant = function(variant) {
-				if (variant) {
-					selectedVariantId = variant.getId();
-					DesignState.getDesign().setVariant(variant);
-					DesignState.commit(this);
-				}
-			}
-
-			/**
 			 * [isSelected Returns true if the provided index is selected]
 			 * @param  {[type]}  index [The index to check]
 			 * @return {Boolean}       [description]
@@ -120,7 +83,13 @@ var variantSelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) {
 			scope.isSelected = function(variant) {
 				return variant && (selectedVariantId === variant.getId());
 			}
-
+			scope.selectVariant = function(variant) {
+				if (variant) {
+					selectedVariantId = variant.getId();
+					DesignState.getDesign().setVariant(variant);
+					DesignState.commit(this);
+				}
+			}
 			/**
 			 * [getMaterials Returns list of materials from the selected category]
 			 * @return {[type]} [A list of Material objects]

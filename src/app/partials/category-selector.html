@@ -2,4 +2,18 @@
 	<div class="category" ng-repeat='category in categories' ng-click='selectCategory(category)' ng-class="{ selected: isSelected(category) }">
 		<img ng-src="{{category.icon}}">
 	</div>
+  <div class="variants-list">
+    <ul id="double" class="variants" ng-if="showVariants()">
+      <li class="variant" ng-repeat='variant in getVariants()' ng-click='selectVariant(variant)'>
+        {{variant.variantName}}
+      </li>
+    </ul>
+  </div>
+  <div class="materials-list">
+    <ul id="double" class="materials" ng-if="showMaterials()">
+      <li class="material" ng-repeat='(matName, matId) in getMaterials()' data-id="matName" ng-click="changeMaterialTo(matName)">
+        {{matName}}
+      </li>
+    </ul>
+  </div>
 </div>

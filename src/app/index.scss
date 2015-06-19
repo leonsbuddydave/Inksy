@@ -8,12 +8,12 @@ $app-width: 100%;
 	box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.4);
 }
 
-//     __  ___      _     
-//    /  |/  /___ _(_)___ 
+//     __  ___      _
+//    /  |/  /___ _(_)___
 //   / /|_/ / __ `/ / __ \
 //  / /  / / /_/ / / / / /
-// /_/  /_/\__,_/_/_/ /_/ 
-//                       
+// /_/  /_/\__,_/_/_/ /_/
+//
 
 html {
 	height: 100%;
@@ -32,18 +32,14 @@ body {
 	flex-direction: row;
 
 	.left-sidebar {
-		width: 375px;
-		padding-top: 15px;
-		padding-right: 15px;
-		padding-bottom: 15px;
+		margin-left: 17px;
+		padding-top: 22px;
 		display: flex;
+		z-index:99;
 
 		.left-sidebar-inner {
-			background-color: #f1f1f1;
 			display: flex;
 			flex: 1;
-
-			@include faint-shadow();
 		}
 	}
 
