@@ -36,21 +36,21 @@
 			cursor: pointer;
 		}
 		.layer-up-control{
-			background-image: url('/assets/images/icons/layer_up_control.png');
+			background-image: url('assets/images/icons/layer_up_control.png');
 			&:hover {
-				background-image: url('/assets/images/icons/layer_up_control_active.png');
+				background-image: url('assets/images/icons/layer_up_control_active.png');
 			}
 		}
 		.layer-down-control{
-			background-image: url('/assets/images/icons/layer_down_control.png');
+			background-image: url('assets/images/icons/layer_down_control.png');
 			&:hover {
-				background-image: url('/assets/images/icons/layer_down_control_active.png');
+				background-image: url('assets/images/icons/layer_down_control_active.png');
 			}
 		}
 		.layer-delete-control{
-			background-image: url('/assets/images/icons/layer_delete_control.png');
+			background-image: url('assets/images/icons/layer_delete_control.png');
 			&:hover {
-				background-image: url('/assets/images/icons/layer_delete_control_active.png');
+				background-image: url('assets/images/icons/layer_delete_control_active.png');
 			}
 		}
 	}
