@@ -6,7 +6,7 @@ class ProductColorPickerCtrl {
 		this.$scope = $scope;
 		this.$rootScope = $rootScope;
 		this.DesignState = DesignState;
-
+		this.InksyEvents = InksyEvents;
 		this.colors = [];
 
 		this.selectedColor = null;
@@ -38,6 +38,7 @@ class ProductColorPickerCtrl {
 
 		DesignState.getDesign().setColor(color, color_id);
 		DesignState.commit();
+		this.$rootScope.$broadcast(this.InksyEvents.COLOR_CHANGED);
 	}
 
 	isSelected(color) {

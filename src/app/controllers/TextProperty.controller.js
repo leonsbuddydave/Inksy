@@ -56,7 +56,7 @@ class TextPropertyCtrl {
 	}
 
 	addNew() {
-		this.$rootScope.$broadcast('text:new', '');
+		this.$rootScope.$broadcast('text:new', this.text);
 	}
 
 	enabled() {

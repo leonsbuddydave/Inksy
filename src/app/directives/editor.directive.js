@@ -197,6 +197,13 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				ctrl.rebuild();
 			});
 
+			scope.$on(InksyEvents.COLOR_CHANGED, (event) => {
+				ctrl.rebuild();
+				$timeout(function() {
+					ctrl.rebuild();
+        }, 300);
+			});
+
 			scope.$on(InksyEvents.LAYER_PALETTE_SELECTION_CLEARED, (event) => {
 				unbindCanvasEvents();
 				fc.deactivateAll();

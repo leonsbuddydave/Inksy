@@ -25,7 +25,7 @@ var Layer = function($timeout, $injector, InksyPhoto) {
 			var layerClass = $injector.get(json.layerClass);
 			var layer = layerClass.fromJson(json);
 
-			json.canvasObject.selectable = true;
+			json.canvasObject.selectable = false;
 			fabric.util.enlivenObjects([json.canvasObject], (objects) => {
 				layer.canvasObject = objects[0];
 			})
