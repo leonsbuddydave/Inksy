@@ -195,7 +195,6 @@
                 </select>
                 <select name="size" class="select-store" id="select-size" ng-model ="cart.product_size" ng-show="cart.modalInstance == 'Add to cart' && cart.isShirtOrHoodie()">
                   <option value="" disabled selected>CHOOSE YOUR SIZE</option>
-                  <option value="" disabled selected>testing</option>
                   <option value="{{size.id}}" ng-repeat="size in cart.sizes">{{size.label}}</option>
                 </select>
                 <br><br>
