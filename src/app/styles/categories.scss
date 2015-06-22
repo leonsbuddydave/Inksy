@@ -36,4 +36,48 @@
 			height: 100%;
 		}
 	}
+
+	.variant {
+		width: 33%;
+		height: 100px;
+		float: left;
+		outline: solid 1px #f1f1f1;
+		cursor: pointer;
+		text-align: center;
+		overflow: hidden;
+
+		&.selected {
+			opacity: .5 !important;
+		}
+
+		&:hover {
+			opacity: .8;
+		}
+
+		img {
+			height: 100%;
+		}
+	}
+
+	.material {
+		width: 33%;
+		height: 100px;
+		float: left;
+		outline: solid 1px #f1f1f1;
+		cursor: pointer;
+		text-align: center;
+		overflow: hidden;
+
+		&.selected {
+			opacity: .5 !important;
+		}
+
+		&:hover {
+			opacity: .8;
+		}
+
+		img {
+			height: 100%;
+		}
+	}
 }
