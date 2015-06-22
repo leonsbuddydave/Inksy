@@ -190,28 +190,6 @@
 		margin-right: 10px;
 		width: 250px;
 		font-family: raleway;
-		-webkit-transition: .25s ease-in-out all;
-		-moz-transition: .25s ease-in-out all;
-		-o-transition: .25s ease-in-out all;
-		transition: .25s ease-in-out all;
-	}
-
-	.add-to-cart-container.ng-enter {
-		opacity: 0;
-	}
-
-	.add-to-cart-container.ng-enter-active {
-		opacity: 1;
-	}
-
-	.add-to-cart-container.ng-leave {
-		opacity: 1;
-	}
-
-	.add-to-cart-container.ng-leave.active {
-		opacity: 0;
-	}
-
 	.user-price {
 		z-index: 2;
 		font-size: 24px;
