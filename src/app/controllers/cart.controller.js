@@ -153,10 +153,12 @@ class CartCtrl {
 
 		if(action == 'publish'){
 			json.details.store_id = this.store;
+			$location.path( "/store/" + this.store.slug );
 		}
 
 		if(this.modalInstance == 'Send'){
 			this.saveToProfile(json);
+			$location.path( "/admin/stores/" + this.store.slug + "/dashboard" );
 		}
 	}
 
