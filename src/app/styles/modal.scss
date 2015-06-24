@@ -16,6 +16,7 @@
     color: #cccccc;
     font-weight: bold;
     font-size: 15px;
+    padding: 3px;
   }
   select:focus {
     outline: none;
@@ -39,6 +40,7 @@
     font-weight: bold;
     font-size: 15px;
     opacity: .6;
+    padding: 3px;
   }
     input:focus, textarea:focus {
       outline: none;
@@ -61,13 +63,13 @@
     display: inline-block;
     width: 177px;
     background-color: #00aeef;
-    border: 1px solid #00aeef;
+    border: 1px solid;
     border-radius: 10px;
     text-align: center;
     color: #ffffff;
     display: inline-block;
     &:active {
-      background-color: darken( #00aeef, 10%) !important;
+      background-color: #26cc99!important;
     }
     &:hover {
       background-color: #26cc99;
@@ -93,15 +95,15 @@
     }
   }
   .modal-text {
-    text-align: center;
+    text-align: justify;
     font-weight: bold;
     p {
-      // padding-left: 30px;
-      // padding-right: 30px;
-      font-size: 15px;
+      font-size: 14px;
+      font-weight: lighter;
     }
     h2 {
       font-size: 25px;
+      text-align: center;
     }
   }
 }
