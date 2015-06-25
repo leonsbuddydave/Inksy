@@ -1,9 +1,9 @@
-//    ______           __ 
+//    ______           __
 //   / ____/___ ______/ /_
 //  / /   / __ `/ ___/ __/
-// / /___/ /_/ / /  / /_  
-// \____/\__,_/_/   \__/  
-// 
+// / /___/ /_/ / /  / /_
+// \____/\__,_/_/   \__/
+//
 .cart-actions {
 	display: flex;
 	align-items: center;
@@ -43,8 +43,8 @@
 		border-radius: 20%;
 	}
 	.arrow-up {
-		width: 0; 
-		height: 0; 
+		width: 0;
+		height: 0;
 		border-left: 10px solid transparent;
 		border-right: 10px solid transparent;
 		border-bottom: 10px solid #cdcdcd;
@@ -57,15 +57,15 @@
  		}
 	}
 	.arrow-down {
-		width: 0; 
-		height: 0; 
+		width: 0;
+		height: 0;
 		border-left: 10px solid transparent;
 		border-right: 10px solid transparent;
 		border-top: 10px solid #cdcdcd;
 		position: absolute;
 		top: 11px;
  		left: 8px;
- 		
+
  		&:active {
 			border-top: 10px solid #00aeef;
  		}
@@ -102,7 +102,10 @@
 		padding-left: 10px;
 		font-family: Raleway;
 		font-weight: bold;
-		font-size: 14px;	
+		font-size: 14px;
+		&:disabled{
+      background-color: #d7d7d7 !important;
+    }
 		&.add-to-cart {
 			$base-color: #00aeef;
 			letter-spacing: .05em;
@@ -153,9 +156,9 @@
 			&:hover {
 				background-color: lighten($cancel-color, 5%);
 			}
-		}	
+		}
 	}
-	
+
 	.add-to-store-container {
 		display: inline-block;
 		background-color: white;

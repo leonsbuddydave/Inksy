@@ -74,6 +74,9 @@
     &:hover {
       background-color: #26cc99;
     }
+    &:disabled{
+      background-color: #d7d7d7 !important;
+    }
   }
   .close-button{
     position: absolute;
@@ -88,7 +91,7 @@
     line-height: 25px;
     padding-left: 0px;
     font-weight: bold;
-    cursor: pointer; 
+    cursor: pointer;
     &:hover {
       color: #00aeef;
       border: 1px solid #00aeef;

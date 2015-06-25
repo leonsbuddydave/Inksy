@@ -1,7 +1,7 @@
 'use strict';
 
 var DesignState = function(Design, $rootScope, InksyEvents, $q) {
-	
+
 	var design;
 
 	/**
