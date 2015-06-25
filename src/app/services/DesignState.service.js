@@ -90,7 +90,7 @@ var DesignState = function(Design, $rootScope, InksyEvents, $q) {
 				cloneObject = fabric.util.object.clone(layer.getCanvasObject());
 				cloneObject.clipTo = null;
 				// cloneObject.popMask();
-				cloneObject.removeFirstMask();
+				// cloneObject.removeFirstMask();
 
 				referenceCanvas = layer.getCanvasObject().canvas;
 
