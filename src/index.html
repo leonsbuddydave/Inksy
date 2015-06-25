@@ -184,7 +184,7 @@
             <div class="base-price">BASE PRICE PER ITEM: {{cart.price | currency:'$'}}</div>
             <div class="your-profit">YOUR PROFIT PER ITEM: {{cart.profit | currency:'$'}}</div>
             <button ng-click="cart.addProductDetails('Send')"  class="cart-action save" ng-disabled="!cart.loaded" type="button">ADD IT TO YOUR STORE</button>
-            <!-- <button ng-click="cart.testImage()"  class="cart-action save" ng-disabled="!cart.loaded" type="button">Test output</button> -->
+            <button ng-click="cart.testImage()"  class="cart-action save" ng-disabled="!cart.loaded" type="button">Test output</button>
           <!-- Modal -->
             <div class="product-details-modal" ng-if="cart.modalOpened">
               <div class="close-button" ng-click="cart.cancelProductDetails()" >X</div>
