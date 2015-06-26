@@ -42,11 +42,13 @@
 		cursor: pointer;
 
 		&.selected {
-			opacity: .5 !important;
+			//opacity: .5 !important;
+			color: #ec008c !important;
 		}
 
 		&:hover {
-			opacity: .8;
+			//opacity: .8;
+			color: #00aeef;
 		}
 	}
 
@@ -54,11 +56,13 @@
 		cursor: pointer;
 
 		&.selected {
-			opacity: .5 !important;
+			//opacity: .5 !important;
+			color: #ec008c !important;
 		}
 
 		&:hover {
-			opacity: .8;
+			//opacity: .8;
+			color: #00aeef;
 		}
 	}
 }
