@@ -226,7 +226,7 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				fc.setWidth(element.width());
 				fc.setHeight(element.height());
 				fc.calcOffset();
-				ctrl.update();
+				ctrl.rebuild();
 			}
 
 			/*
@@ -334,7 +334,6 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				unbindCanvasEvents();
 
 				ctrl.clear();
-				ctrl.resize();
 				fc.setViewportTransform([CANVAS_SCALE, 0, 0, CANVAS_SCALE, -fc.getWidth() / 2 * (CANVAS_SCALE - 1), -fc.getHeight() / 2 * (CANVAS_SCALE - 1)]);
 				ctrl.reflectLayersToCanvas();
 				ctrl.addProductToCanvas();
