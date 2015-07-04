@@ -36,4 +36,33 @@
 			height: 100%;
 		}
 	}
+
+	.variant {
+	
+		cursor: pointer;
+
+		&.selected {
+			//opacity: .5 !important;
+			color: #ec008c !important;
+		}
+
+		&:hover {
+			//opacity: .8;
+			color: #00aeef;
+		}
+	}
+
+	.material {
+		cursor: pointer;
+
+		&.selected {
+			//opacity: .5 !important;
+			color: #ec008c !important;
+		}
+
+		&:hover {
+			//opacity: .8;
+			color: #00aeef;
+		}
+	}
 }

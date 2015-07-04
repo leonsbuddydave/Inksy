@@ -16,6 +16,7 @@ class CartCtrl {
 		this.product_size = '';
 		this.sizes = [];
 		this.stores = [];
+		this.loaded = false;
 
 		$rootScope.$on(InksyEvents.DESIGN_CHANGED, (event, design) => {
 			var variant = design.getVariant();
@@ -25,6 +26,7 @@ class CartCtrl {
 				this.suggestedPrice = design.material.suggested_price;
 				this.userPrice = design.material.base_price;
 				this.productName = variant.getName();
+				this.loaded = true;
 			}
 		});
 
@@ -69,6 +71,7 @@ class CartCtrl {
 				 if(isNaN($(this).val())){
 				   $(this).text('Please select a store');
 				 }
+				 $('#store-placeholder').text('CHOOSE A STORE');
 				});
 			}
 		});
@@ -89,6 +92,7 @@ class CartCtrl {
 					 if(isNaN($(this).val())){
 					   $(this).text('Select your size');
 					 }
+					 $('#size-placeholder').text('CHOOSE YOUR SIZE');
 					});
 				}
 			});
@@ -129,7 +133,14 @@ class CartCtrl {
 				 data;
 			}
 		});
+		this.DesignState.exportForPrint({}, function() {
+
+		});
 		console.log('Saving to profile!');
+	}
+
+	testImage(){
+		this.DesignState.exportForPrint({}, function() { });
 	}
 
 	addProductDetails(instance){
@@ -158,6 +169,20 @@ class CartCtrl {
 		if(this.modalInstance == 'Send'){
 			this.saveToProfile(json);
 		}
+	}
+
+	validateStore(){
+		if(this.store !== ''){
+			return false;
+		}
+		return true;
+	}
+
+	validateCart(){
+		if(this.isShirtOrHoodie() && this.product_size !== ''){
+			return false;
+		}
+		return true;
 	}
 
 	modalDropdownLabel(){

@@ -1,282 +1,1523 @@
 {
-  "categories": [
+  "categories":[
     {
-      "id": 1,
-      "name": "shirt",
-      "displayName": "shirt",
-      "icon": "http://s3.amazonaws.com/inksy-staging/product_types/icons/000/000/001/original/category_shirt.png?1432676585",
-      "materials": {
-        "basic": {
-          "colors": [
-            "#CCCCCC",
-            "#000000",
-            "#330066",
-            "#020D35"
+      "id":1,
+      "name":"shirt",
+      "displayName":"shirt",
+      "icon":"http://s3.amazonaws.com/inksy-staging/product_types/icons/000/000/001/original/category_shirt.png?1434986629",
+      "materials":{
+        "premium":{
+          "suggested_price":30.0,
+          "base_price":15.0,
+          "colors":[
+            {
+              "id":1,
+              "name":"#FFFFFF"
+            },
+            {
+              "id":2,
+              "name":"#fbee61"
+            },
+            {
+              "id":3,
+              "name":"#d9b890"
+            },
+            {
+              "id":4,
+              "name":"#f2cacd"
+            },
+            {
+              "id":5,
+              "name":"#81bbd1"
+            },
+            {
+              "id":6,
+              "name":"#95ceee"
+            },
+            {
+              "id":7,
+              "name":"#d2ec91"
+            },
+            {
+              "id":8,
+              "name":"#dfe0e3"
+            },
+            {
+              "id":9,
+              "name":"#e9d562"
+            },
+            {
+              "id":10,
+              "name":"#fe7f45"
+            },
+            {
+              "id":11,
+              "name":"#533532"
+            },
+            {
+              "id":12,
+              "name":"#f7383f"
+            },
+            {
+              "id":13,
+              "name":"#702b3e"
+            },
+            {
+              "id":14,
+              "name":"#fb6899"
+            },
+            {
+              "id":15,
+              "name":"#6f60c6"
+            },
+            {
+              "id":16,
+              "name":"#436694"
+            },
+            {
+              "id":17,
+              "name":"#33519c"
+            },
+            {
+              "id":18,
+              "name":"#4369a9"
+            },
+            {
+              "id":19,
+              "name":"#383e5e"
+            },
+            {
+              "id":20,
+              "name":"#68c199"
+            },
+            {
+              "id":21,
+              "name":"#3b4a45"
+            },
+            {
+              "id":22,
+              "name":"#8d898a"
+            },
+            {
+              "id":23,
+              "name":"#2c2c2c"
+            }
           ]
         },
-        "premium": {
-          "colors": [
-            "#FFFFFF",
-            "#000000",
-            "#330066",
-            "#020D35"
-          ]
-        }
-      },
-      "products": [
-        {
-          "type": "shirt",
-          "material_id": 1,
-          "pricing": {
-            "base": 10.0,
-            "suggested_sale": 20.0
-          },
-          "sides": {
-            "front": {
-              "name": "front",
-              "images": {
-                "shape": "http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/001/original/shirt_shape.png?1432676597",
-                "texture": "http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/001/original/shirt_texture.png?1432676597"
-              },
-              "area": {
-                "width": 195,
-                "height": 320,
-                "offsetX": -95,
-                "offsetY": -130
-              },
-              "printArea": {
-                "unit": "mm",
-                "width": 279.4,
-                "height": 431.8
-              }
-            }
-          }
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "name": "hoodie",
-      "displayName": "hoodie",
-      "icon": "http://s3.amazonaws.com/inksy-staging/product_types/icons/000/000/002/original/category_hoodie.png?1432676586",
-      "materials": {
-        "basic": {
-          "colors": [
-            "#FFFFFF",
-            "#000000",
-            "#330066",
-            "#020D35"
-          ]
-        }
-      },
-      "products": [
-        {
-          "type": "hoodie",
-          "material_id": 19,
-          "pricing": {
-            "base": 18.0,
-            "suggested_sale": 36.0
-          },
-          "sides": {
-            "front": {
-              "name": "front",
-              "images": {
-                "shape": "http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/021/original/0070-shape.png?1432676604",
-                "texture": "http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/021/original/0070-texture.png?1432676604"
-              },
-              "area": {
-                "width": 180,
-                "height": 185,
-                "offsetX": -90,
-                "offsetY": -130
-              },
-              "printArea": {
-                "unit": "mm",
-                "width": 279.4,
-                "height": 431.8
-              }
-            }
-          }
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "name": "phone_case",
-      "displayName": "phone_case",
-      "icon": "http://s3.amazonaws.com/inksy-staging/product_types/icons/000/000/003/original/category_phone_case.png?1432676586",
-      "materials": {
-        "basic": {
-          "colors": [
-            "#FFFFFF",
-            "#000000",
-            "#330066",
-            "#020D35"
-          ]
-        }
-      },
-      "products": [
-        {
-          "type": "phone_case",
-          "material_id": 37,
-          "pricing": {
-            "base": 15.0,
-            "suggested_sale": 30.0
-          },
-          "sides": {
-            "front": {
-              "name": "front",
-              "images": {
-                "shape": "http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/031/original/iphone_6_shape.png?1432676607",
-                "texture": "http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/031/original/iphone_6_texture.png?1432676607"
-              },
-              "area": {
-                "width": 200,
-                "height": 415,
-                "offsetX": -100,
-                "offsetY": -210
-              },
-              "printArea": {
-                "unit": "mm",
-                "width": 94.01,
-                "height": 176.76
-              }
-            }
-          }
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "name": "coaster",
-      "displayName": "coaster",
-      "icon": "http://s3.amazonaws.com/inksy-staging/product_types/icons/000/000/004/original/category_coaster.png?1432676586",
-      "materials": {
-        "basic": {
-          "colors": [
-            "#FFFFFF",
-            "#000000",
-            "#330066",
-            "#020D35"
-          ]
-        }
-      },
-      "products": [
-        {
-          "type": "coaster",
-          "material_id": 29,
-          "pricing": {
-            "base": 12.0,
-            "suggested_sale": 24.0
-          },
-          "sides": {
-            "front": {
-              "name": "front",
-              "images": {
-                "shape": "http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/030/original/coaster_shape.png?1432676607",
-                "texture": "http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/030/original/coaster_texture.png?1432676607"
-              },
-              "area": {
-                "width": 300,
-                "height": 300,
-                "offsetX": -150,
-                "offsetY": -150
-              },
-              "printArea": {
-                "unit": "mm",
-                "width": 98.43,
-                "height": 98.43
-              }
-            }
-          }
-        }
-      ]
-    },
-    {
-      "id": 5,
-      "name": "canvas",
-      "displayName": "canvas",
-      "icon": "http://s3.amazonaws.com/inksy-staging/product_types/icons/000/000/005/original/category_canvas.png?1432676586",
-      "materials": {
-        "basic": {
-          "colors": [
-            "#FFFFFF",
-            "#000000",
-            "#330066",
-            "#020D35"
-          ]
-        }
-      },
-      "products": [
-        {
-          "type": "canvas",
-          "material_id": 30,
-          "pricing": {
-            "base": 32.0,
-            "suggested_sale": 53.0
-          },
-          "sides": {}
-        }
-      ]
-    },
-    {
-      "id": 6,
-      "name": "mug",
-      "displayName": "mug",
-      "icon": "http://s3.amazonaws.com/inksy-staging/product_types/icons/000/000/006/original/category_mug.png?1432676587",
-      "materials": {
-        "basic": {
-          "colors": [
-            "#FFFFFF",
-            "#000000",
-            "#330066",
-            "#020D35"
-          ]
-        }
-      },
-      "products": [
-        {
-          "type": "mug",
-          "material_id": 28,
-          "pricing": {
-            "base": 7.0,
-            "suggested_sale": 14.0
-          },
-          "sides": {
-            "back": {
-              "name": "back",
-              "images": {
-                "shape": "http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/020/original/0030-back-shape.png?1432676604",
-                "texture": "http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/020/original/0030-back-texture.png?1432676604"
-              },
-              "area": {
-                "width": 225,
-                "height": 300,
-                "offsetX": -180,
-                "offsetY": -130
-              },
-              "printArea": {
-                "unit": "mm",
-                "width": 82.55,
-                "height": 82.55
-              }
+        "basic":{
+          "suggested_price":20.0,
+          "base_price":10.0,
+          "colors":[
+            {
+              "id":208,
+              "name":"#FFFFFF"
             },
-            "front": {
-              "name": "front",
-              "images": {
-                "shape": "http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/019/original/0030-shape.png?1432676604",
-                "texture": "http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/019/original/0030-texture.png?1432676604"
+            {
+              "id":209,
+              "name":"#fbee61"
+            },
+            {
+              "id":210,
+              "name":"#d9b890"
+            },
+            {
+              "id":211,
+              "name":"#f2cacd"
+            },
+            {
+              "id":212,
+              "name":"#81bbd1"
+            },
+            {
+              "id":213,
+              "name":"#95ceee"
+            },
+            {
+              "id":214,
+              "name":"#d2ec91"
+            },
+            {
+              "id":215,
+              "name":"#dfe0e3"
+            },
+            {
+              "id":216,
+              "name":"#e9d562"
+            },
+            {
+              "id":217,
+              "name":"#fe7f45"
+            },
+            {
+              "id":218,
+              "name":"#533532"
+            },
+            {
+              "id":219,
+              "name":"#f7383f"
+            },
+            {
+              "id":220,
+              "name":"#702b3e"
+            },
+            {
+              "id":221,
+              "name":"#fb6899"
+            },
+            {
+              "id":222,
+              "name":"#6f60c6"
+            },
+            {
+              "id":223,
+              "name":"#436694"
+            },
+            {
+              "id":224,
+              "name":"#33519c"
+            },
+            {
+              "id":225,
+              "name":"#4369a9"
+            },
+            {
+              "id":226,
+              "name":"#383e5e"
+            },
+            {
+              "id":227,
+              "name":"#68c199"
+            },
+            {
+              "id":228,
+              "name":"#3b4a45"
+            },
+            {
+              "id":229,
+              "name":"#8d898a"
+            },
+            {
+              "id":230,
+              "name":"#2c2c2c"
+            }
+          ]
+        }
+      },
+      "products":[
+        {
+          "type":"shirt",
+          "icon":"",
+          "variant_name":"Youth Large Premium Tee",
+          "material_id":18,
+          "pricing":{
+            "base":15.0,
+            "suggested_sale":30.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/001/original/shirt_shape.png?1434986649",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/001/original/shirt_texture.png?1434986649"
               },
-              "area": {
-                "width": 225,
-                "height": 300,
-                "offsetX": -180,
-                "offsetY": -130
+              "area":{
+                "width":171,
+                "height":261,
+                "offsetX":-85,
+                "offsetY":-135
               },
-              "printArea": {
-                "unit": "mm",
-                "width": 82.55,
-                "height": 82.55
+              "printArea":{
+                "unit":"mm",
+                "width":279.4,
+                "height":431.8
+              }
+            }
+          }
+        },
+        {
+          "type":"shirt",
+          "icon":"",
+          "variant_name":"Youth Medium Premium Tee",
+          "material_id":17,
+          "pricing":{
+            "base":15.0,
+            "suggested_sale":30.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/002/original/shirt_shape.png?1434986650",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/002/original/shirt_texture.png?1434986650"
+              },
+              "area":{
+                "width":171,
+                "height":261,
+                "offsetX":-85,
+                "offsetY":-135
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":279.4,
+                "height":431.8
+              }
+            }
+          }
+        },
+        {
+          "type":"shirt",
+          "icon":"",
+          "variant_name":"Youth Small Premium Tee",
+          "material_id":16,
+          "pricing":{
+            "base":15.0,
+            "suggested_sale":30.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/003/original/shirt_shape.png?1434986650",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/003/original/shirt_texture.png?1434986650"
+              },
+              "area":{
+                "width":171,
+                "height":261,
+                "offsetX":-85,
+                "offsetY":-135
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":279.4,
+                "height":431.8
+              }
+            }
+          }
+        },
+        {
+          "type":"shirt",
+          "icon":"",
+          "variant_name":"Adult 3X-Large Premium Tee",
+          "material_id":15,
+          "pricing":{
+            "base":15.0,
+            "suggested_sale":30.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/004/original/shirt_shape.png?1434986651",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/004/original/shirt_texture.png?1434986651"
+              },
+              "area":{
+                "width":171,
+                "height":261,
+                "offsetX":-85,
+                "offsetY":-135
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":279.4,
+                "height":431.8
+              }
+            }
+          }
+        },
+        {
+          "type":"shirt",
+          "icon":"",
+          "variant_name":"Adult 2X-Large Premium Tee",
+          "material_id":14,
+          "pricing":{
+            "base":15.0,
+            "suggested_sale":30.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/005/original/shirt_shape.png?1434986651",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/005/original/shirt_texture.png?1434986651"
+              },
+              "area":{
+                "width":171,
+                "height":261,
+                "offsetX":-85,
+                "offsetY":-135
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":279.4,
+                "height":431.8
+              }
+            }
+          }
+        },
+        {
+          "type":"shirt",
+          "icon":"",
+          "variant_name":"Adult X-Large Premium Tee",
+          "material_id":13,
+          "pricing":{
+            "base":15.0,
+            "suggested_sale":30.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/006/original/shirt_shape.png?1434986651",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/006/original/shirt_texture.png?1434986651"
+              },
+              "area":{
+                "width":171,
+                "height":261,
+                "offsetX":-85,
+                "offsetY":-135
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":279.4,
+                "height":431.8
+              }
+            }
+          }
+        },
+        {
+          "type":"shirt",
+          "icon":"",
+          "variant_name":"Adult Large Premium Tee",
+          "material_id":12,
+          "pricing":{
+            "base":15.0,
+            "suggested_sale":30.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/007/original/shirt_shape.png?1434986652",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/007/original/shirt_texture.png?1434986652"
+              },
+              "area":{
+                "width":171,
+                "height":261,
+                "offsetX":-85,
+                "offsetY":-135
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":279.4,
+                "height":431.8
+              }
+            }
+          }
+        },
+        {
+          "type":"shirt",
+          "icon":"",
+          "variant_name":"Adult Medium Premium Tee",
+          "material_id":11,
+          "pricing":{
+            "base":15.0,
+            "suggested_sale":30.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/008/original/shirt_shape.png?1434986652",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/008/original/shirt_texture.png?1434986652"
+              },
+              "area":{
+                "width":171,
+                "height":261,
+                "offsetX":-85,
+                "offsetY":-135
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":279.4,
+                "height":431.8
+              }
+            }
+          }
+        },
+        {
+          "type":"shirt",
+          "icon":"",
+          "variant_name":"Adult Small Premium Tee",
+          "material_id":10,
+          "pricing":{
+            "base":15.0,
+            "suggested_sale":30.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/009/original/shirt_shape.png?1434986653",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/009/original/shirt_texture.png?1434986653"
+              },
+              "area":{
+                "width":171,
+                "height":261,
+                "offsetX":-85,
+                "offsetY":-135
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":279.4,
+                "height":431.8
+              }
+            }
+          }
+        },
+        {
+          "type":"shirt",
+          "icon":"",
+          "variant_name":"Youth Large Basic Tee",
+          "material_id":9,
+          "pricing":{
+            "base":10.0,
+            "suggested_sale":20.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/010/original/shirt_shape.png?1434986653",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/010/original/shirt_texture.png?1434986653"
+              },
+              "area":{
+                "width":171,
+                "height":261,
+                "offsetX":-85,
+                "offsetY":-135
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":279.4,
+                "height":431.8
+              }
+            }
+          }
+        },
+        {
+          "type":"shirt",
+          "icon":"",
+          "variant_name":"Youth Medium Basic Tee",
+          "material_id":8,
+          "pricing":{
+            "base":10.0,
+            "suggested_sale":20.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/011/original/shirt_shape.png?1434986653",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/011/original/shirt_texture.png?1434986653"
+              },
+              "area":{
+                "width":171,
+                "height":261,
+                "offsetX":-85,
+                "offsetY":-135
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":279.4,
+                "height":431.8
+              }
+            }
+          }
+        },
+        {
+          "type":"shirt",
+          "icon":"",
+          "variant_name":"Youth Small Basic Tee",
+          "material_id":7,
+          "pricing":{
+            "base":10.0,
+            "suggested_sale":20.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/012/original/shirt_shape.png?1434986654",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/012/original/shirt_texture.png?1434986654"
+              },
+              "area":{
+                "width":171,
+                "height":261,
+                "offsetX":-85,
+                "offsetY":-135
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":279.4,
+                "height":431.8
+              }
+            }
+          }
+        },
+        {
+          "type":"shirt",
+          "icon":"",
+          "variant_name":"Adult 3X-Large Basic Tee",
+          "material_id":6,
+          "pricing":{
+            "base":10.0,
+            "suggested_sale":20.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/013/original/shirt_shape.png?1434986654",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/013/original/shirt_texture.png?1434986654"
+              },
+              "area":{
+                "width":171,
+                "height":261,
+                "offsetX":-85,
+                "offsetY":-135
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":279.4,
+                "height":431.8
+              }
+            }
+          }
+        },
+        {
+          "type":"shirt",
+          "icon":"",
+          "variant_name":"Adult 2X-Large Basic Tee",
+          "material_id":5,
+          "pricing":{
+            "base":10.0,
+            "suggested_sale":20.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/014/original/shirt_shape.png?1434986655",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/014/original/shirt_texture.png?1434986655"
+              },
+              "area":{
+                "width":171,
+                "height":261,
+                "offsetX":-85,
+                "offsetY":-135
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":279.4,
+                "height":431.8
+              }
+            }
+          }
+        },
+        {
+          "type":"shirt",
+          "icon":"",
+          "variant_name":"Adult X-Large Basic Tee",
+          "material_id":4,
+          "pricing":{
+            "base":10.0,
+            "suggested_sale":20.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/015/original/shirt_shape.png?1434986655",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/015/original/shirt_texture.png?1434986655"
+              },
+              "area":{
+                "width":171,
+                "height":261,
+                "offsetX":-85,
+                "offsetY":-135
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":279.4,
+                "height":431.8
+              }
+            }
+          }
+        },
+        {
+          "type":"shirt",
+          "icon":"",
+          "variant_name":"Adult Large Basic Tee",
+          "material_id":3,
+          "pricing":{
+            "base":10.0,
+            "suggested_sale":20.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/016/original/shirt_shape.png?1434986655",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/016/original/shirt_texture.png?1434986656"
+              },
+              "area":{
+                "width":171,
+                "height":261,
+                "offsetX":-85,
+                "offsetY":-135
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":279.4,
+                "height":431.8
+              }
+            }
+          }
+        },
+        {
+          "type":"shirt",
+          "icon":"",
+          "variant_name":"Adult Medium Basic Tee",
+          "material_id":2,
+          "pricing":{
+            "base":10.0,
+            "suggested_sale":20.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/017/original/shirt_shape.png?1434986656",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/017/original/shirt_texture.png?1434986656"
+              },
+              "area":{
+                "width":171,
+                "height":261,
+                "offsetX":-85,
+                "offsetY":-135
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":279.4,
+                "height":431.8
+              }
+            }
+          }
+        },
+        {
+          "type":"shirt",
+          "icon":"",
+          "variant_name":"Adult Small Basic Tee",
+          "material_id":1,
+          "pricing":{
+            "base":10.0,
+            "suggested_sale":20.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/018/original/shirt_shape.png?1434986656",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/018/original/shirt_texture.png?1434986656"
+              },
+              "area":{
+                "width":171,
+                "height":261,
+                "offsetX":-85,
+                "offsetY":-135
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":279.4,
+                "height":431.8
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id":2,
+      "name":"hoodie",
+      "displayName":"hoodie",
+      "icon":"http://s3.amazonaws.com/inksy-staging/product_types/icons/000/000/002/original/category_hoodie.png?1434986630",
+      "materials":{
+        "basic":{
+          "suggested_price":36.0,
+          "base_price":18.0,
+          "colors":[
+            {
+              "id":415,
+              "name":"#FFFFFF"
+            },
+            {
+              "id":416,
+              "name":"#fbee61"
+            },
+            {
+              "id":417,
+              "name":"#d9b890"
+            },
+            {
+              "id":418,
+              "name":"#f2cacd"
+            },
+            {
+              "id":419,
+              "name":"#81bbd1"
+            },
+            {
+              "id":420,
+              "name":"#95ceee"
+            },
+            {
+              "id":421,
+              "name":"#d2ec91"
+            },
+            {
+              "id":422,
+              "name":"#dfe0e3"
+            },
+            {
+              "id":423,
+              "name":"#e9d562"
+            },
+            {
+              "id":424,
+              "name":"#fe7f45"
+            },
+            {
+              "id":425,
+              "name":"#533532"
+            },
+            {
+              "id":426,
+              "name":"#f7383f"
+            },
+            {
+              "id":427,
+              "name":"#702b3e"
+            },
+            {
+              "id":428,
+              "name":"#fb6899"
+            },
+            {
+              "id":429,
+              "name":"#6f60c6"
+            },
+            {
+              "id":430,
+              "name":"#436694"
+            },
+            {
+              "id":431,
+              "name":"#33519c"
+            },
+            {
+              "id":432,
+              "name":"#4369a9"
+            },
+            {
+              "id":433,
+              "name":"#383e5e"
+            },
+            {
+              "id":434,
+              "name":"#68c199"
+            },
+            {
+              "id":435,
+              "name":"#3b4a45"
+            },
+            {
+              "id":436,
+              "name":"#8d898a"
+            },
+            {
+              "id":437,
+              "name":"#2c2c2c"
+            }
+          ]
+        }
+      },
+      "products":[
+        {
+          "type":"hoodie",
+          "icon":"",
+          "variant_name":"Youth Large Basic hoodie",
+          "material_id":27,
+          "pricing":{
+            "base":18.0,
+            "suggested_sale":36.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/020/original/0070-shape.png?1434986657",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/020/original/0070-texture.png?1434986657"
+              },
+              "area":{
+                "width":180,
+                "height":185,
+                "offsetX":-90,
+                "offsetY":-130
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":279.4,
+                "height":431.8
+              }
+            }
+          }
+        },
+        {
+          "type":"hoodie",
+          "icon":"",
+          "variant_name":"Youth Medium Basic hoodie",
+          "material_id":26,
+          "pricing":{
+            "base":18.0,
+            "suggested_sale":36.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/021/original/0070-shape.png?1434986657",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/021/original/0070-texture.png?1434986657"
+              },
+              "area":{
+                "width":180,
+                "height":185,
+                "offsetX":-90,
+                "offsetY":-130
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":279.4,
+                "height":431.8
+              }
+            }
+          }
+        },
+        {
+          "type":"hoodie",
+          "icon":"",
+          "variant_name":"Youth Small Basic hoodie",
+          "material_id":25,
+          "pricing":{
+            "base":18.0,
+            "suggested_sale":36.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/022/original/0070-shape.png?1434986658",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/022/original/0070-texture.png?1434986658"
+              },
+              "area":{
+                "width":180,
+                "height":185,
+                "offsetX":-90,
+                "offsetY":-130
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":279.4,
+                "height":431.8
+              }
+            }
+          }
+        },
+        {
+          "type":"hoodie",
+          "icon":"",
+          "variant_name":"Adult 3X-Large Basic hoodie",
+          "material_id":24,
+          "pricing":{
+            "base":18.0,
+            "suggested_sale":36.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/023/original/0070-shape.png?1434986658",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/023/original/0070-texture.png?1434986658"
+              },
+              "area":{
+                "width":180,
+                "height":185,
+                "offsetX":-90,
+                "offsetY":-130
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":279.4,
+                "height":431.8
+              }
+            }
+          }
+        },
+        {
+          "type":"hoodie",
+          "icon":"",
+          "variant_name":"Adult 2X-Large Basic hoodie",
+          "material_id":23,
+          "pricing":{
+            "base":18.0,
+            "suggested_sale":36.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/024/original/0070-shape.png?1434986659",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/024/original/0070-texture.png?1434986659"
+              },
+              "area":{
+                "width":180,
+                "height":185,
+                "offsetX":-90,
+                "offsetY":-130
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":279.4,
+                "height":431.8
+              }
+            }
+          }
+        },
+        {
+          "type":"hoodie",
+          "icon":"",
+          "variant_name":"Adult X-Large Basic hoodie",
+          "material_id":22,
+          "pricing":{
+            "base":18.0,
+            "suggested_sale":36.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/025/original/0070-shape.png?1434986659",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/025/original/0070-texture.png?1434986659"
+              },
+              "area":{
+                "width":180,
+                "height":185,
+                "offsetX":-90,
+                "offsetY":-130
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":279.4,
+                "height":431.8
+              }
+            }
+          }
+        },
+        {
+          "type":"hoodie",
+          "icon":"",
+          "variant_name":"Adult Large Basic hoodie",
+          "material_id":21,
+          "pricing":{
+            "base":18.0,
+            "suggested_sale":36.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/026/original/0070-shape.png?1434986660",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/026/original/0070-texture.png?1434986660"
+              },
+              "area":{
+                "width":180,
+                "height":185,
+                "offsetX":-90,
+                "offsetY":-130
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":279.4,
+                "height":431.8
+              }
+            }
+          }
+        },
+        {
+          "type":"hoodie",
+          "icon":"",
+          "variant_name":"Adult Medium Basic hoodie",
+          "material_id":20,
+          "pricing":{
+            "base":18.0,
+            "suggested_sale":36.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/027/original/0070-shape.png?1434986660",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/027/original/0070-texture.png?1434986660"
+              },
+              "area":{
+                "width":180,
+                "height":185,
+                "offsetX":-90,
+                "offsetY":-130
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":279.4,
+                "height":431.8
+              }
+            }
+          }
+        },
+        {
+          "type":"hoodie",
+          "icon":"",
+          "variant_name":"Adult Small Basic hoodie",
+          "material_id":19,
+          "pricing":{
+            "base":18.0,
+            "suggested_sale":36.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/028/original/0070-shape.png?1434986661",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/028/original/0070-texture.png?1434986661"
+              },
+              "area":{
+                "width":180,
+                "height":185,
+                "offsetX":-90,
+                "offsetY":-130
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":279.4,
+                "height":431.8
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id":3,
+      "name":"phone_case",
+      "displayName":"phone_case",
+      "icon":"http://s3.amazonaws.com/inksy-staging/product_types/icons/000/000/003/original/category_phone_case.png?1434986630",
+      "materials":{
+        "basic":{
+          "suggested_price":30.0,
+          "base_price":15.0,
+          "colors":[
+            {
+              "id":623,
+              "name":"#FFFFFF"
+            }
+          ]
+        }
+      },
+      "products":[
+        {
+          "type":"phone_case",
+          "icon":"http://s3.amazonaws.com/inksy-staging/product_materials/icons/000/000/039/original/n3.png?1434986640",
+          "variant_name":"Note 3",
+          "material_id":39,
+          "pricing":{
+            "base":15.0,
+            "suggested_sale":30.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/039/original/note_s3_shape.png?1434986665",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/039/original/note_s3_texture.png?1434986665"
+              },
+              "area":{
+                "width":250,
+                "height":400,
+                "offsetX":-140,
+                "offsetY":-200
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":93.63,
+                "height":170.67
+              }
+            }
+          }
+        },
+        {
+          "type":"phone_case",
+          "icon":"http://s3.amazonaws.com/inksy-staging/product_materials/icons/000/000/038/original/n4.png?1434986640",
+          "variant_name":"Note 4",
+          "material_id":38,
+          "pricing":{
+            "base":15.0,
+            "suggested_sale":30.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/038/original/note_s4_shape.png?1434986664",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/038/original/note_s4_texture.png?1434986664"
+              },
+              "area":{
+                "width":200,
+                "height":400,
+                "offsetX":-100,
+                "offsetY":-200
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":93.2,
+                "height":173.34
+              }
+            }
+          }
+        },
+        {
+          "type":"phone_case",
+          "icon":"http://s3.amazonaws.com/inksy-staging/product_materials/icons/000/000/037/original/s4.png?1434986640",
+          "variant_name":"Galaxy S4",
+          "material_id":37,
+          "pricing":{
+            "base":15.0,
+            "suggested_sale":30.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/037/original/galaxy_s4_shape.png?1434986664",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/037/original/galaxy_s4_texture.png?1434986664"
+              },
+              "area":{
+                "width":250,
+                "height":400,
+                "offsetX":-130,
+                "offsetY":-200
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":86.31,
+                "height":154.62
+              }
+            }
+          }
+        },
+        {
+          "type":"phone_case",
+          "icon":"http://s3.amazonaws.com/inksy-staging/product_materials/icons/000/000/036/original/s5.png?1434986640",
+          "variant_name":"Galaxy S5",
+          "material_id":36,
+          "pricing":{
+            "base":15.0,
+            "suggested_sale":30.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/036/original/galaxy_s5_shape.png?1434986664",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/036/original/galaxy_s5_texture.png?1434986664"
+              },
+              "area":{
+                "width":210,
+                "height":400,
+                "offsetX":-105,
+                "offsetY":-200
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":86.24,
+                "height":160.61
+              }
+            }
+          }
+        },
+        {
+          "type":"phone_case",
+          "icon":"http://s3.amazonaws.com/inksy-staging/product_materials/icons/000/000/035/original/iphone4.png?1434986640",
+          "variant_name":"iPhone 4s",
+          "material_id":35,
+          "pricing":{
+            "base":15.0,
+            "suggested_sale":30.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/034/original/4_shape.png?1434986663",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/034/original/4_texture.png?1434986663"
+              },
+              "area":{
+                "width":210,
+                "height":400,
+                "offsetX":-105,
+                "offsetY":-200
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":77.4,
+                "height":133.22
+              }
+            }
+          }
+        },
+        {
+          "type":"phone_case",
+          "icon":"http://s3.amazonaws.com/inksy-staging/product_materials/icons/000/000/034/original/iphone4.png?1434986639",
+          "variant_name":"iPhone 4",
+          "material_id":34,
+          "pricing":{
+            "base":15.0,
+            "suggested_sale":30.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/035/original/4_shape.png?1434986663",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/035/original/4_texture.png?1434986663"
+              },
+              "area":{
+                "width":210,
+                "height":400,
+                "offsetX":-105,
+                "offsetY":-200
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":77.4,
+                "height":133.22
+              }
+            }
+          }
+        },
+        {
+          "type":"phone_case",
+          "icon":"http://s3.amazonaws.com/inksy-staging/product_materials/icons/000/000/033/original/iphone5c.png?1434986639",
+          "variant_name":"iPhone 5c",
+          "material_id":33,
+          "pricing":{
+            "base":15.0,
+            "suggested_sale":30.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/033/original/5c_shape.png?1434986662",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/033/original/5c_texture.png?1434986662"
+              },
+              "area":{
+                "width":200,
+                "height":400,
+                "offsetX":-100,
+                "offsetY":-200
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":81.39,
+                "height":145.88
+              }
+            }
+          }
+        },
+        {
+          "type":"phone_case",
+          "icon":"http://s3.amazonaws.com/inksy-staging/product_materials/icons/000/000/032/original/iphone5.png?1434986639",
+          "variant_name":"iPhone 5s",
+          "material_id":32,
+          "pricing":{
+            "base":15.0,
+            "suggested_sale":30.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/031/original/iphone_5_shape.png?1434986662",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/031/original/iphone_5_texture.png?1434986662"
+              },
+              "area":{
+                "width":210,
+                "height":400,
+                "offsetX":-105,
+                "offsetY":-200
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":75.58,
+                "height":140.6
+              }
+            }
+          }
+        },
+        {
+          "type":"phone_case",
+          "icon":"http://s3.amazonaws.com/inksy-staging/product_materials/icons/000/000/031/original/iphone5.png?1434986639",
+          "variant_name":"iPhone 5",
+          "material_id":31,
+          "pricing":{
+            "base":15.0,
+            "suggested_sale":30.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/032/original/iphone_5_shape.png?1434986662",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/032/original/iphone_5_texture.png?1434986662"
+              },
+              "area":{
+                "width":210,
+                "height":400,
+                "offsetX":-105,
+                "offsetY":-200
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":75.58,
+                "height":140.6
+              }
+            }
+          }
+        },
+        {
+          "type":"phone_case",
+          "icon":"http://s3.amazonaws.com/inksy-staging/product_materials/icons/000/000/030/original/iphone6.png?1434986639",
+          "variant_name":"iPhone 6",
+          "material_id":30,
+          "pricing":{
+            "base":15.0,
+            "suggested_sale":30.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/030/original/iphone_6_shape.png?1434986661",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/030/original/iphone_6_texture.png?1434986661"
+              },
+              "area":{
+                "width":200,
+                "height":400,
+                "offsetX":-100,
+                "offsetY":-200
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":79.07,
+                "height":144.45
+              }
+            }
+          }
+        },
+        {
+          "type":"phone_case",
+          "icon":"http://s3.amazonaws.com/inksy-staging/product_materials/icons/000/000/029/original/iphone6plus.png?1434986638",
+          "variant_name":"iPhone 6 Plus",
+          "material_id":29,
+          "pricing":{
+            "base":15.0,
+            "suggested_sale":30.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/029/original/iphone_6_shape.png?1434986661",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/029/original/iphone_6_texture.png?1434986661"
+              },
+              "area":{
+                "width":200,
+                "height":400,
+                "offsetX":-100,
+                "offsetY":-200
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":94.01,
+                "height":176.76
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id":4,
+      "name":"mug",
+      "displayName":"mug",
+      "icon":"http://s3.amazonaws.com/inksy-staging/product_types/icons/000/000/004/original/category_mug.png?1434986631",
+      "materials":{
+        "basic":{
+          "suggested_price":14.0,
+          "base_price":7.0,
+          "colors":[
+            {
+              "id":622,
+              "name":"#FFFFFF"
+            }
+          ]
+        }
+      },
+      "products":[
+        {
+          "type":"mug",
+          "icon":"",
+          "variant_name":"Basic Mug",
+          "material_id":28,
+          "pricing":{
+            "base":7.0,
+            "suggested_sale":14.0
+          },
+          "sides":{
+            "front":{
+              "name":"front",
+              "images":{
+                "shape":"http://s3.amazonaws.com/inksy-staging/product_sides/shapes/000/000/019/original/0030-shape.png?1434986657",
+                "texture":"http://s3.amazonaws.com/inksy-staging/product_sides/textures/000/000/019/original/0030-texture.png?1434986657"
+              },
+              "area":{
+                "width":225,
+                "height":300,
+                "offsetX":-175,
+                "offsetY":-145
+              },
+              "printArea":{
+                "unit":"mm",
+                "width":82.55,
+                "height":82.55
               }
             }
           }

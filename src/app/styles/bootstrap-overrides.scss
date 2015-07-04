@@ -11,6 +11,12 @@ header, .header{
 	background-color: #fff;
 	width: 100%;
 }
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide {
+    display: none !important;
+}
+
+
 .tab-header{
   background:#00aeef;
   width:100%;
@@ -82,6 +88,8 @@ ul.nav{
 	text-align: center;
 	width: 100%;
 	min-height: 205px;
+	max-height: 450px;
+	overflow-y: auto;
 	background-color: white;
 	padding-top: 15px;
 	.images-options{

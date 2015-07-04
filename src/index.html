@@ -2,6 +2,8 @@
 <html ng-app="inksy">
   <head>
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700%7CLora:400,700,400italic,700italic%7CPress+Start+2P%7CIndie+Flower&subset=latin,latin,latin,latin">
+    <link href='http://fonts.googleapis.com/css?family=Raleway:700,600,500' rel='stylesheet' type='text/css'>
+
 
     <meta charset="utf-8">
     <title>inksy</title>
@@ -29,7 +31,7 @@
       }
     </style>
   </head>
-  <body>
+  <body class="ng-cloak" ng-cloak >
     <div class="inksy-product-designer" ng-controller="MainCtrl as main">
 
       <div class="left-sidebar">
@@ -165,18 +167,26 @@
 
       <div class="right-sidebar">
         <div ng-controller="CartCtrl as cart" class="cart-actions">
+          <div class="add-to-cart-container price">
+            <div class="price ">BUY IT FOR YOURSELF</div><br/>
+            <div class="buy-now-price " ng-bind="(cart.suggestedPrice | currency:'$')"></div>
+            <button ng-click="cart.addProductDetails('Add to cart')" ng-disabled="!cart.loaded" class="cart-action add-to-cart" type="button">ADD TO CART</button>
+
+          <!-- <h2 class="name" ng-bind="cart.productName"></h2> -->
+          </div>
           <div class="add-to-store-container">
             <div class="price">SET YOUR PRICE</div>
             <img src="assets/images/icons/price-tag.png" height="80px">
             <div class="user-price"> {{cart.userPrice | currency:'$'}}
             </div><br/>
             <div class="arrow arrow-upside" ng-click="cart.priceUp()"><div class="arrow-up"></div></div>
-            <div class="arrow arrow-downside" ng-click="cart.priceDown()"><div class="arrow-down"></div></div> 
+            <div class="arrow arrow-downside" ng-click="cart.priceDown()"><div class="arrow-down"></div></div>
             <div class="base-price">BASE PRICE PER ITEM: {{cart.price | currency:'$'}}</div>
             <div class="your-profit">YOUR PROFIT PER ITEM: {{cart.profit | currency:'$'}}</div>
-            <button ng-click="cart.addProductDetails('Send')"  class="cart-action save" type="button">ADD IT TO YOUR STORE</button>
+            <button ng-click="cart.addProductDetails('Send')"  class="cart-action save" ng-disabled="!cart.loaded" type="button">ADD IT TO YOUR STORE</button>
+            <!-- <button ng-click="cart.testImage()"  class="cart-action save" ng-disabled="!cart.loaded" type="button">Test output</button> -->
           <!-- Modal -->
-            <div class="product-details-modal" ng-show="cart.modalOpened">
+            <div class="product-details-modal" ng-if="cart.modalOpened">
               <div class="close-button" ng-click="cart.cancelProductDetails()" >X</div>
               <form action="">
               <div class="modal-text">
@@ -190,34 +200,24 @@
                 </div>
                <!--  <label for="store">{{cart.modalDropdownLabel()}}</label> -->
                 <select name="store" class="select-store" id="select-store" ng-model ="cart.store" ng-show="cart.modalInstance == 'Send'">
-                  <option value="" disabled selected>CHOOSE A STORE</option>
+                  <option value="" disabled selected id="store-placeholder">FETCHING YOUR STORES...</option>
                   <option value="{{store.id}}" ng-repeat="store in cart.stores">{{store.name}}</option>
                 </select>
                 <select name="size" class="select-store" id="select-size" ng-model ="cart.product_size" ng-show="cart.modalInstance == 'Add to cart' && cart.isShirtOrHoodie()">
-                  <option value="" disabled selected>CHOOSE YOUR SIZE</option>
-                  <option value="" disabled selected>testing</option>
+                  <option value="" disabled selected id="size-placeholder">LOADING SIZES...</option>
                   <option value="{{size.id}}" ng-repeat="size in cart.sizes">{{size.label}}</option>
                 </select>
                 <br><br>
                 <div ng-show="cart.modalInstance == 'Add to cart'">
-                  <button ng-click="cart.sendToCart()" class="cart-action save modal-button" type="button">ADD TO CART</button>
+                  <button ng-click="cart.sendToCart()" class="cart-action save modal-button" ng-disabled="cart.validateCart()" type="button">ADD TO CART</button>
                 </div>
                 <div ng-show="cart.modalInstance == 'Send'">
                   <button ng-click="cart.sendProductToRails('save')" class="cart-action modal-button" type="button">SAVE</button>
-                  <button ng-click="cart.sendProductToRails('publish')" class="cart-action modal-button" type="button">PUBLISH</button>
+                  <button ng-click="cart.sendProductToRails('publish')" class="cart-action modal-button" ng-disabled="cart.validateStore()" type="button">PUBLISH</button>
                 </div>
               </form>
             </div>
           </div>
-          <div ng-click="cart.addToCartContainer=!cart.addToCartContainer" class="buy-now-text">Or, buy it for yourself >></div>
-          <div class="add-to-cart-container price" ng-if="cart.addToCartContainer">
-            <div class="price buy-now-price" ng-bind="(cart.suggestedPrice | currency:'$')"></div>
-            <button ng-click="cart.addProductDetails('Add to cart')" class="cart-action add-to-cart" type="button">ADD TO CART</button>
-
-          <!-- <h2 class="name" ng-bind="cart.productName"></h2> -->
-
-          </div>
-<!--           <button ng-click="cart.callForStores()" class="cart-action add-to-cart" type="button">Test Stores</button> -->
         </div>
 
         </div>

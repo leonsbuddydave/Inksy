@@ -1,9 +1,9 @@
-//    ______           __ 
+//    ______           __
 //   / ____/___ ______/ /_
 //  / /   / __ `/ ___/ __/
-// / /___/ /_/ / /  / /_  
-// \____/\__,_/_/   \__/  
-// 
+// / /___/ /_/ / /  / /_
+// \____/\__,_/_/   \__/
+//
 .cart-actions {
 	display: flex;
 	align-items: center;
@@ -43,8 +43,8 @@
 		border-radius: 20%;
 	}
 	.arrow-up {
-		width: 0; 
-		height: 0; 
+		width: 0;
+		height: 0;
 		border-left: 10px solid transparent;
 		border-right: 10px solid transparent;
 		border-bottom: 10px solid #cdcdcd;
@@ -57,15 +57,15 @@
  		}
 	}
 	.arrow-down {
-		width: 0; 
-		height: 0; 
+		width: 0;
+		height: 0;
 		border-left: 10px solid transparent;
 		border-right: 10px solid transparent;
 		border-top: 10px solid #cdcdcd;
 		position: absolute;
 		top: 11px;
  		left: 8px;
- 		
+
  		&:active {
 			border-top: 10px solid #00aeef;
  		}
@@ -100,18 +100,20 @@
 		padding: 8px;
 		padding-right: 10px;
 		padding-left: 10px;
-		font-family: raleway;
+		font-family: Raleway;
 		font-weight: bold;
-		font-size: 14px;	
+		font-size: 14px;
+		&:disabled{
+      background-color: #d7d7d7 !important;
+    }
 		&.add-to-cart {
 			$base-color: #00aeef;
 			letter-spacing: .05em;
 			background-color: $base-color;
-			border-color: $base-color;
 			width: 131px;
 
 			&:active {
-				background-color: darken($base-color, 10%) !important;
+				background-color: #26cc99 !important;
 			}
 
 			&:hover {
@@ -123,14 +125,14 @@
 			$save-color: #00aeef;
 			width: 214px;
 			background-color: $save-color;
-			border: 1px solid $save-color;
+			border: 1px solid;
 			border-radius: 10px;
 			text-align: center;
 			color: #ffffff;
 			width: 100%;
 
 			&:active {
-				background-color: darken($save-color, 10%) !important;
+				background-color: #26cc99 !important;
 			}
 
 			&:hover {
@@ -154,9 +156,9 @@
 			&:hover {
 				background-color: lighten($cancel-color, 5%);
 			}
-		}	
+		}
 	}
-	
+
 	.add-to-store-container {
 		display: inline-block;
 		background-color: white;
@@ -169,7 +171,7 @@
 		margin-bottom: 20px;
 		width: 250px;
 		color: #666666;
-		font-family: raleway;
+		font-family: Raleway;
 		.price {
 			font-size: 25px;
 		}
@@ -189,34 +191,19 @@
 		text-align: center;
 		margin-right: 10px;
 		width: 250px;
-		font-family: raleway;
-		-webkit-transition: .25s ease-in-out all;
-		-moz-transition: .25s ease-in-out all;
-		-o-transition: .25s ease-in-out all;
-		transition: .25s ease-in-out all;
-	}
-
-	.add-to-cart-container.ng-enter {
-		opacity: 0;
-	}
-
-	.add-to-cart-container.ng-enter-active {
-		opacity: 1;
-	}
-
-	.add-to-cart-container.ng-leave {
-		opacity: 1;
-	}
-
-	.add-to-cart-container.ng-leave.active {
-		opacity: 0;
+		font-family: Raleway;
+		color: #666666;
+		margin-bottom: 10px;
+		.price {
+			font-size: 25px;
+		}
 	}
 
 	.user-price {
 		z-index: 2;
 		font-size: 24px;
   	margin-top: -57px;
-  	font-family: raleway;
+  	font-family: Raleway;
   	color: #00aeef;
   	margin-left: 65px;
   	font-weight: bold;
@@ -225,9 +212,10 @@
 
 	.buy-now-price {
 		font-size: 24px;
-		font-family: raleway;
+		font-family: Raleway;
   	color: #00aeef;
   	font-weight: bold;
+  	display: inline;
 	}
 
 	.your-profit, .base-price {
