@@ -53,7 +53,7 @@ var DesignState = function(Design, $rootScope, InksyEvents, $q) {
 		console.log('variant: ' + JSON.stringify(variant));
 		console.log('variant sides' + JSON.stringify(variantSides));
 		angular.extend(options || {}, {
-			ppi: 300
+			ppi: 100
 		});
 
 		for (let sideId in variantSides) {
@@ -89,8 +89,8 @@ var DesignState = function(Design, $rootScope, InksyEvents, $q) {
 
 				cloneObject = fabric.util.object.clone(layer.getCanvasObject());
 				cloneObject.clipTo = null;
-				// cloneObject.popMask();
-				// cloneObject.removeFirstMask();
+				cloneObject.popMask();
+				cloneObject.removeFirstMask();
 
 				referenceCanvas = layer.getCanvasObject().canvas;
 
