@@ -30,14 +30,14 @@ var DynamicMaskedImage = (function() {
 		},
 
 		// Removing this in order to just use Image._render for now
-		// _render: function(ctx) {
-		// 	this._renderMask(ctx, (newCtx) => {
-		// 		newCtx.save();
-		// 		this.transform(newCtx);
-		// 		this.callSuper('_render', newCtx);
-		// 		newCtx.restore();
-		// 	});
-		// },
+		_render: function(ctx) {
+			this._renderMask(ctx, (newCtx) => {
+				newCtx.save();
+				this.transform(newCtx);
+				this.callSuper('_render', newCtx);
+				newCtx.restore();
+			});
+		},
 
 		toObject: function(propertiesToInclude) {
 			var object = fabric.util.object.extend(this.callSuper('toObject', propertiesToInclude), {

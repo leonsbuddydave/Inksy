@@ -227,6 +227,9 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				fc.setHeight(element.height());
 				fc.calcOffset();
 				ctrl.rebuild();
+				$timeout(function() {
+					ctrl.rebuild();
+        }, 300);
 			}
 
 			/*

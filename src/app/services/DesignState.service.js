@@ -50,8 +50,7 @@ var DesignState = function(Design, $rootScope, InksyEvents, $q) {
 
 		variant = design.getVariant();
 		variantSides = variant.getAllSides();
-		console.log('variant: ' + JSON.stringify(variant));
-		console.log('variant sides' + JSON.stringify(variantSides));
+
 		angular.extend(options || {}, {
 			ppi: 100
 		});
@@ -125,8 +124,8 @@ var DesignState = function(Design, $rootScope, InksyEvents, $q) {
 			var url = printCanvas.toDataURL({
 				format: 'png'
 			});
-
-			console.log('DesignState', url);
+			$rootScope.$broadcast(InksyEvents.COLOR_CHANGED);
+			return url;
 		}
 	}
 
