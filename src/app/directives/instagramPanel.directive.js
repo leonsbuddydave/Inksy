@@ -93,6 +93,7 @@ var instagramPanel = function(Instagram, InksyAlbum, $rootScope, InksyEvents) {
 						$rootScope.$broadcast('image:new', image);
 					});
 				}
+				image.crossOrigin = "anonymous";
 				image.src = photo.getHD();
 				scope.active = false
 			}
