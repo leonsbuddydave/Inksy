@@ -177,7 +177,7 @@ class CartCtrl {
 	}
 
 	validateCart(){
-		if(this.isShirtOrHoodie() && this.product_size !== ''){
+		if((this.isShirtOrHoodie() && this.product_size !== '') || (this.isShirtOrHoodie() === false)){
 			return false;
 		}
 		return true;
