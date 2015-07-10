@@ -6,6 +6,7 @@
 	</div>
 
 	<div class="gallery" ng-show="isConnected() && !getSelectedAlbum()">
+		<h4>Albums</h4>
 		<div class="photo-container" ng-repeat="album in getAlbums()">
 			<div class="photo" background-image="{{getAlbumPreviewUrl(album)}}" cover ng-click="selectAlbum(album)">
 			</div>
@@ -13,6 +14,7 @@
 	</div>
 
 	<div class="gallery" ng-show="isConnected() && getSelectedAlbum()">
+		<h4>Photos</h4>
 		<div class="photo-container" ng-repeat="photo in getSelectedAlbum().getPhotos()">
 			<div class="photo" background-image="{{photo.getHD()}}" cover ng-click="onPhotoClick(photo)">
 			</div>
