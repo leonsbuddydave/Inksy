@@ -9,6 +9,7 @@ var categorySelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) 
 			scope.categories = null;
 			scope.selectedCategory = null;
 			scope.thisCategory = null;
+			scope.thisVariant = null;
 			var selectedVariantId = null;
 			/**
 			 * [selectCategory Changes the category to the selected one]
@@ -30,6 +31,10 @@ var categorySelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) 
 			 */
 			scope.isSelected = function(category) {
 				return scope.selectedCategory === category.getId();
+			}
+
+			scope.currentVariant = function(variant){
+				return scope.thisVariant == variant;
 			}
 
 			// variants ------------------------------------------------------------
@@ -62,6 +67,7 @@ var categorySelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) 
 			 */
 			scope.selectVariant = function(variant) {
 				if (variant) {
+					scope.thisVariant = variant;
 					selectedVariantId = variant.getId();
 					DesignState.getDesign().setVariant(variant);
 					DesignState.commit(this);

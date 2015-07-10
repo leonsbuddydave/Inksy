@@ -4,7 +4,7 @@
 	</div>
   <div class="variants-list">
     <ul id="double" class="variants" ng-if="showVariants()">
-      <li class="variant" ng-repeat='variant in getVariants()' ng-click='selectVariant(variant)'>
+      <li class="variant" ng-repeat='variant in getVariants()' ng-click='selectVariant(variant)' ng-class="{ 'selected-variant': currentVariant(variant) }">
         {{variant.variantName}}
       </li>
     </ul>
