@@ -73,6 +73,7 @@ class CartCtrl {
 				 }
 				 $('#store-placeholder').text('CHOOSE A STORE');
 				});
+				$scope.$apply();
 			}
 		});
 	}
@@ -154,17 +155,14 @@ class CartCtrl {
 		this.modalOpened = false;
 	}
 
-	sendProductToRails(action){
+	sendProductToRails(){
 		this.modalOpened = false;
 
 		var json                 = this.DesignState.getDesign().toJson();
 		json.details.title       = this.productName;
 		json.details.description = this.productDescription;
 		json.details.price       = this.userPrice;
-
-		if(action == 'publish'){
-			json.details.store_id = this.store;
-		}
+		json.details.store_id    = this.store;
 
 		if(this.modalInstance == 'Send'){
 			this.saveToProfile(json);
