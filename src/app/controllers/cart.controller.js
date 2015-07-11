@@ -106,6 +106,7 @@ class CartCtrl {
 		json.details.description = this.productDescription;
 		json.details.price       = this.suggestedPrice;
 		json.details.to_cart     = true;
+		json.details.print       = this.DesignState.exportForPrint({}, function() {});
 		json.product_size        = this.product_size;
 		this.addToCart(json);
 	}
@@ -116,7 +117,6 @@ class CartCtrl {
 		$.ajax({
 			url:  "/api/products/to_cart",
 			method: "POST",
-			// contentType: "application/json",
 			data: json,
 			success: function(data) {
 				 data;
@@ -128,16 +128,11 @@ class CartCtrl {
 		$.ajax({
 			url:  "/api/products",
 			method: "POST",
-			// contentType: "application/json",
 			data: json,
 			success: function(data) {
 				 data;
 			}
 		});
-		this.DesignState.exportForPrint({}, function() {
-
-		});
-		console.log('Saving to profile!');
 	}
 
 	testImage(){
@@ -163,6 +158,7 @@ class CartCtrl {
 		json.details.description = this.productDescription;
 		json.details.price       = this.userPrice;
 		json.details.store_id    = this.store;
+		json.details.print       = this.DesignState.exportForPrint({}, function() {});
 
 		if(this.modalInstance == 'Send'){
 			this.saveToProfile(json);
