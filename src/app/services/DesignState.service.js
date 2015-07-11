@@ -124,7 +124,7 @@ var DesignState = function(Design, $rootScope, InksyEvents, $q) {
 			var url = printCanvas.toDataURL({
 				format: 'png'
 			});
-			$rootScope.$broadcast(InksyEvents.COLOR_CHANGED);
+			$rootScope.$broadcast(InksyEvents.CANVAS_CHANGED);
 			return url;
 		}
 	}

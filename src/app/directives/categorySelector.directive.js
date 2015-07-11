@@ -71,6 +71,7 @@ var categorySelector = function(InksyAPI, InksyEvents, $rootScope, DesignState) 
 					selectedVariantId = variant.getId();
 					DesignState.getDesign().setVariant(variant);
 					DesignState.commit(this);
+					$rootScope.$broadcast(InksyEvents.CANVAS_CHANGED);
 				}
 			}
 			// materials ------------------------------------------------------------

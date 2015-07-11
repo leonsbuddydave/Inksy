@@ -13,5 +13,6 @@ InksyEvents.TAB_STATUS_CHANGED = "6";
 InksyEvents.NEW_FILE_INCOMING = "7";
 InksyEvents.TEXTURE_LOADED = "8";
 InksyEvents.COLOR_CHANGED = "9";
+InksyEvents.CANVAS_CHANGED = "10";
 
 export default InksyEvents;
