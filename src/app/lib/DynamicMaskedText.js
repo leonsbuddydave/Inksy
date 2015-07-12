@@ -40,7 +40,6 @@ var DynamicMaskedText = (function() {
         	this.callSuper('_render', ctx, noTransform);
         	renderCallback && renderCallback(ctx);
         	ctx.restore();
-        	console.log(canvas.toDataURL());
         },
 
         /**
