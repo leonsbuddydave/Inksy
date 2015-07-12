@@ -7,14 +7,29 @@ class TextPropertyCtrl {
 		this.$timeout = $timeout;
 
 		this.textObject = null;
+		this.loadingFonts = true;
+
+		var FontFamilies = [
+			'Open Sans',
+			'Lora',
+			'Press Start 2P',
+			'Indie Flower',
+			'Raleway'
+		];
+
+		WebFont.load({
+			google: {
+				families: FontFamilies
+			},
+			active: () => {
+				this.loadingFonts = false;
+			}
+		})
 
 		this.options = {
-			fontFamilies: [
-				{ name: 'Open Sans' },
-				{ name: 'Lora' },
-				{ name: 'Press Start 2P' },
-				{ name: 'Indie Flower' }
-			]
+			fontFamilies: $.map(FontFamilies, (e) => {
+				return { name: e };
+			})
 		};
 
 		this.styles = {
@@ -57,6 +72,7 @@ class TextPropertyCtrl {
 
 	addNew() {
 		this.$rootScope.$broadcast('text:new', this.text);
+		// this.text = null;
 	}
 
 	enabled() {

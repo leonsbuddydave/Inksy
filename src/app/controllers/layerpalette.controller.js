@@ -188,6 +188,7 @@ class LayerPaletteCtrl {
 	update() {
 		this.DesignState.getDesign().setSides(this.layerSets);
 		this.DesignState.commit();
+		this.$rootScope.$broadcast('global:render');
 	}
 
 	onLayerClick(event, layer) {
