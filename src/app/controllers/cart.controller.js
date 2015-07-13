@@ -11,6 +11,7 @@ class CartCtrl {
 		this.productDescription = "";
 		this.DesignState = DesignState;
 		this.modalOpened = false;
+		this.storeModalOpened = false;
 		this.modalInstance = '';
 		this.store = '';
 		this.product_size = '';
@@ -18,6 +19,8 @@ class CartCtrl {
 		this.stores = [];
 		this.storeName = '';
 		this.loaded = false;
+
+		this.callForStores();
 
 		$rootScope.$on(InksyEvents.DESIGN_CHANGED, (event, design) => {
 			var variant = design.getVariant();
@@ -146,7 +149,7 @@ class CartCtrl {
 
 		console.log('Creating Store!');
 		console.log(json_store);
-		this.modalOpened = false;
+		this.storeModalOpened = false;
 		$.ajax({
 			url:  "/api/stores",
 			method: "POST",
@@ -159,15 +162,31 @@ class CartCtrl {
 
 	}
 
+	userStoreChecker(){
+		if(this.stores.length > 0){
+			return true
+		}else{
+			return false
+		}
+	}
+
+	popStoreModal(){
+		this.storeModalOpened = true;
+	}
+
+	killStoreModal(){
+		this.storeModalOpened = false;
+	}
+
 	testImage(){
 		this.DesignState.exportForPrint({}, function() { });
 	}
 
 	addProductDetails(instance){
-		this.modalOpened = true;
 		this.modalInstance = instance;
 		this.callForStores();
 		this.callForSizes();
+		this.modalOpened = true;
 	}
 
 	cancelProductDetails(){
