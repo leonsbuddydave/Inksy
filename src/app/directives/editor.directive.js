@@ -161,6 +161,10 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 				ctrl.rebuild();
 			});
 
+			scope.$on(InksyEvents.GLOBAL_RENDER, (event) => {
+				fc.renderAll();
+			});
+
 			scope.$watch(() => scope.product.angle, function() {
 				ctrl.rebuild();
 			}, true);
