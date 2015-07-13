@@ -16,6 +16,7 @@ class CartCtrl {
 		this.product_size = '';
 		this.sizes = [];
 		this.stores = [];
+		this.storeName = '';
 		this.loaded = false;
 
 		$rootScope.$on(InksyEvents.DESIGN_CHANGED, (event, design) => {
@@ -138,6 +139,24 @@ class CartCtrl {
 
 		});
 		console.log('Saving to profile!');
+	}
+
+	createStore(storeName) {
+		var json_store = {name: this.storeName};
+
+		console.log('Creating Store!');
+		console.log(json_store);
+		this.modalOpened = false;
+		$.ajax({
+			url:  "/api/stores",
+			method: "POST",
+			// contentType: "application/json",
+			data: json_store,
+			success: function(data) {
+				 data;
+			}
+		});
+
 	}
 
 	testImage(){
