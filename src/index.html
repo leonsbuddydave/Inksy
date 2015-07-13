@@ -190,10 +190,15 @@
             <div class="product-details-modal" ng-if="cart.modalOpened">
               <div class="close-button" ng-click="cart.cancelProductDetails()" >X</div>
               <form action="">
-              <div class="modal-text">
+              <div class="modal-text" ng-show="cart.modalInstance == 'Add to cart'">
                 <h2>YOU'RE ALMOST THERE</h2>
-                <p>Time to give your create a name! This way, after adding it to your cart, you'll be able to find it again in your profile.</p>
+                <p>Time to give your creation a name! This way, after adding it to your cart, you'll be able to find it again in your profile.</p>
               </div>
+              <div class="modal-text" ng-show="cart.modalInstance == 'Send'">
+                <h2>YOU'RE ALMOST THERE</h2>
+                <p>The following information will be displayed in your store. Hit publish to make your new product live!</p>
+              </div>
+
                 <input type="text" name="productName" ng-model="cart.productName" placeholder="PRODUCT TITLE">
                 <div ng-show="cart.modalInstance == 'Send'">
                   <label for="productName"></label>
