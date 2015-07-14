@@ -183,26 +183,35 @@
             <div class="arrow arrow-downside" ng-click="cart.priceDown()"><div class="arrow-down"></div></div>
             <div class="base-price">BASE PRICE PER ITEM: {{cart.price | currency:'$'}}</div>
             <div class="your-profit">YOUR PROFIT PER ITEM: {{cart.profit | currency:'$'}}</div>
-            <button ng-click="cart.addProductDetails('Send')"  class="cart-action save" ng-disabled="!cart.loaded" type="button">ADD IT TO YOUR STORE</button>
+            <button ng-click="cart.addProductDetails('Send')"  class="cart-action save" ng-disabled="!cart.loaded" ng-show="cart.userStoreChecker()" type="button">ADD IT TO YOUR STORE</button>
+            <button ng-click="cart.popStoreModal()"  class="cart-action save" ng-disabled="!cart.loaded" ng-show="!cart.userStoreChecker()" type="button">Create Store</button>
             <!-- <button ng-click="cart.testImage()"  class="cart-action save" ng-disabled="!cart.loaded" type="button">Test output</button> -->
           <!-- Modal -->
             <div class="product-details-modal" ng-if="cart.modalOpened">
               <div class="close-button" ng-click="cart.cancelProductDetails()" >X</div>
               <form action="">
-              <div class="modal-text">
+              <div class="modal-text" ng-show="cart.modalInstance == 'Add to cart'">
                 <h2>YOU'RE ALMOST THERE</h2>
-                <p>Time to give your create a name! This way, after adding it to your cart, you'll be able to find it again in your profile.</p>
+                <p>Time to give your creation a name! This way, after adding it to your cart, you'll be able to find it again in your profile.</p>
               </div>
+              <div class="modal-text" ng-show="cart.modalInstance == 'Send'">
+                <h2>YOU'RE ALMOST THERE</h2>
+                <p>The following information will be displayed in your store. Hit publish to make your new product live!</p>
+              </div>
+
                 <input type="text" name="productName" ng-model="cart.productName" placeholder="PRODUCT TITLE">
                 <div ng-show="cart.modalInstance == 'Send'">
                   <label for="productName"></label>
                   <textarea class="description" type="text" placeholder="PRODUCT DESCRIPTION"  cols="60" name="productDescription" ng-model="cart.productDescription"></textarea>
                 </div>
                <!--  <label for="store">{{cart.modalDropdownLabel()}}</label> -->
+               
                 <select name="store" class="select-store" id="select-store" ng-model ="cart.store" ng-show="cart.modalInstance == 'Send'">
                   <option value="" disabled selected id="store-placeholder">FETCHING YOUR STORES...</option>
                   <option value="{{store.id}}" ng-repeat="store in cart.stores">{{store.name}}</option>
                 </select>
+                
+
                 <select name="size" class="select-store" id="select-size" ng-model ="cart.product_size" ng-show="cart.modalInstance == 'Add to cart' && cart.isShirtOrHoodie()">
                   <option value="" disabled selected id="size-placeholder">LOADING SIZES...</option>
                   <option value="{{size.id}}" ng-repeat="size in cart.sizes">{{size.label}}</option>
@@ -216,6 +225,22 @@
                 </div>
               </form>
             </div>
+
+
+            <!-- Store Modal -->
+                 <div class="product-details-modal" ng-if="cart.storeModalOpened">
+              <div class="close-button" ng-click="cart.killStoreModal()" >X</div>
+              <form action="">
+              <div class="modal-text">
+                <h2>Create a Store</h2>
+              </div>
+               <!--  <label for="store">{{cart.modalDropdownLabel()}}</label> -->
+                  <input type="text" name="storeName" ng-model="cart.storeName" placeholder="Store Name">
+                  <button ng-click="cart.createStore()" class="cart-action save modal-button" type="button">Create Store</button>
+              </form>
+            </div>
+
+
           </div>
         </div>
 

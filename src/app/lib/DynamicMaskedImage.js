@@ -10,23 +10,23 @@ var DynamicMaskedImage = (function() {
 			this._maskCanvas = fabric.util.createCanvasElement();
 			this.masks = [];
 
-			this.resizeFilters.push(new fabric.Image.filters.Resize({
-				// Bilinear resize - fast, low quality
-				// resizeType: 'bilinear'
+			// this.resizeFilters.push(new fabric.Image.filters.Resize({
+			// 	// Bilinear resize - fast, low quality
+			// 	// resizeType: 'bilinear'
 
-				// 'Slice Hack', essentially the same as
-				// bilinear filtering, but in steps, halving
-				// the image size by two and then to its final res
-				// fractionally slower than regular bilinear, but much
-				// higher quality
-				resizeType: 'sliceHack'
+			// 	// 'Slice Hack', essentially the same as
+			// 	// bilinear filtering, but in steps, halving
+			// 	// the image size by two and then to its final res
+			// 	// fractionally slower than regular bilinear, but much
+			// 	// higher quality
+			// 	resizeType: 'sliceHack'
 
-				// Lanczos resampling - slow enough to 
-				// cause a stutter, but the highest possible
-				// quality.
-				// resizeType: 'lanczos',
-				// lanczosLobes: 2
-			}));
+			// 	// Lanczos resampling - slow enough to 
+			// 	// cause a stutter, but the highest possible
+			// 	// quality.
+			// 	// resizeType: 'lanczos',
+			// 	// lanczosLobes: 2
+			// }));
 		},
 
 		// Removing this in order to just use Image._render for now
