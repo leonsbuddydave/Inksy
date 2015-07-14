@@ -357,7 +357,8 @@ function editor($rootScope, $window, ProductAngle, MathUtils, $timeout, $interva
 
 			ctrl.resize();
 			ctrl.update();
-			$window.addEventListener('resize', ctrl.resize);
+			// Commented out to remove resizing of canvas editor
+			// $window.addEventListener('resize', ctrl.resize);
 		},
 		controller: function($scope) {
 			var self = this;
