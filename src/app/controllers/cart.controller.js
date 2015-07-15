@@ -111,6 +111,7 @@ class CartCtrl {
 		json.details.price       = this.suggestedPrice;
 		json.details.to_cart     = true;
 		json.product_size        = this.product_size;
+		json.variant_name        = design.getVariant().variantName;
 		this.addToCart(json);
 	}
 
@@ -148,7 +149,6 @@ class CartCtrl {
 		var json_store = {name: this.storeName};
 
 		console.log('Creating Store!');
-		console.log(json_store);
 		this.storeModalOpened = false;
 		$.ajax({
 			url:  "/api/stores",
