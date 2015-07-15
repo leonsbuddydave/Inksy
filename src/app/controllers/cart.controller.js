@@ -19,6 +19,7 @@ class CartCtrl {
 		this.stores = [];
 		this.storeName = '';
 		this.loaded = false;
+		this.variant_name = '';
 
 		this.callForStores();
 
@@ -30,6 +31,7 @@ class CartCtrl {
 				this.suggestedPrice = design.material.suggested_price;
 				this.userPrice = design.material.base_price;
 				this.productName = variant.getName();
+				this.variant_name = variant.variantName;
 				this.loaded = true;
 			}
 		});
@@ -111,7 +113,7 @@ class CartCtrl {
 		json.details.price       = this.suggestedPrice;
 		json.details.to_cart     = true;
 		json.product_size        = this.product_size;
-		json.variant_name        = design.getVariant().variantName;
+		json.variant_name        = this.variant_name;
 		this.addToCart(json);
 	}
 
