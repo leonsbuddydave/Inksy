@@ -107,6 +107,8 @@ class CartCtrl {
 	}
 
 	sendToCart(){
+		var self                 = this;
+		var image_data           = this.DesignState.exportForPrint({}, function() {});
 		var json                 = this.DesignState.getDesign().toJson();
 		json.details.title       = this.productName;
 		json.details.description = this.productDescription;
@@ -115,7 +117,16 @@ class CartCtrl {
 		json.details.print       = this.DesignState.exportForPrint({}, function() {});
 		json.product_size        = this.product_size;
 		json.variant_name        = this.variant_name;
-		this.addToCart(json);
+
+		$.ajax({
+			url:'/api/product_images',
+			method: 'POST',
+			data: {file: image_data},
+			success: function(data){
+				json.details.print = data;
+				self.addToCart(json);
+			}
+		});
 	}
 
 	addToCart(json) {
@@ -193,16 +204,23 @@ class CartCtrl {
 	sendProductToRails(){
 		this.modalOpened = false;
 
+		var self                 = this;
+		var image_data           = this.DesignState.exportForPrint({}, function() {});
 		var json                 = this.DesignState.getDesign().toJson();
 		json.details.title       = this.productName;
 		json.details.description = this.productDescription;
 		json.details.price       = this.userPrice;
 		json.details.store_id    = this.store;
-		json.details.print       = this.DesignState.exportForPrint({}, function() {});
 
-		if(this.modalInstance == 'Send'){
-			this.saveToProfile(json);
-		}
+		$.ajax({
+			url:'/api/product_images',
+			method: 'POST',
+			data: {file: image_data},
+			success: function(data){
+				json.details.print = data;
+				self.saveToProfile(json);
+			}
+		});
 	}
 
 	validateStore(){
