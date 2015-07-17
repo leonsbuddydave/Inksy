@@ -212,10 +212,8 @@
                     <option value="{{store.id}}" ng-repeat="store in cart.stores">{{store.name}}</option>
                   </select>
                 </div>
-                <div ng-if="cart.stores.length === 0">
-                  <label>Create a Store</label>
+                <div ng-if="cart.stores.length === 0" ng-show="cart.modalInstance == 'Send'">
                   <input type="text" name="storeName" ng-model="cart.storeName" placeholder="Store Name">
-                  <button ng-click="cart.createStore()" class="cart-action save modal-button" type="button">Create Store</button>
                 </div>
                 
 
@@ -228,7 +226,7 @@
                   <button ng-click="cart.sendToCart()" class="cart-action save modal-button" ng-disabled="cart.validateCart()" type="button">ADD TO CART</button>
                 </div>
                 <div ng-show="cart.modalInstance == 'Send'">
-                  <button ng-click="cart.sendProductToRails()" class="cart-action modal-button" ng-disabled="cart.validateStore()" type="button">PUBLISH</button>
+                  <button ng-click="cart.sendProductToRails()" class="cart-action modal-button" ng-disabled="cart.validateStore() && cart.stores.length > 0 " type="button">PUBLISH</button>
                 </div>
               </form>
             </div>
