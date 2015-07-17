@@ -203,6 +203,7 @@ class CartCtrl {
 		json.details.description = this.productDescription;
 		json.details.price       = this.userPrice;
 		json.details.store_id    = this.store;
+		json.details.new_store   = this.storeName;
 
 		if(this.modalInstance == 'Send'){
 			this.saveToProfile(json);

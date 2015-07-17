@@ -183,8 +183,8 @@
             <div class="arrow arrow-downside" ng-click="cart.priceDown()"><div class="arrow-down"></div></div>
             <div class="base-price">BASE PRICE PER ITEM: {{cart.price | currency:'$'}}</div>
             <div class="your-profit">YOUR PROFIT PER ITEM: {{cart.profit | currency:'$'}}</div>
-            <button ng-click="cart.addProductDetails('Send')"  class="cart-action save" ng-disabled="!cart.loaded" ng-show="cart.userStoreChecker()" type="button">ADD IT TO YOUR STORE</button>
-            <button ng-click="cart.popStoreModal()"  class="cart-action save" ng-disabled="!cart.loaded" ng-show="!cart.userStoreChecker()" type="button">Create Store</button>
+            <button ng-click="cart.addProductDetails('Send')"  class="cart-action save" ng-disabled="!cart.loaded" type="button">ADD IT TO YOUR STORE</button>
+            <!-- <button ng-click="cart.popStoreModal()"  class="cart-action save" ng-disabled="!cart.loaded" ng-show="!cart.userStoreChecker()" type="button">Create Store</button> -->
             <!-- <button ng-click="cart.testImage()"  class="cart-action save" ng-disabled="!cart.loaded" type="button">Test output</button> -->
           <!-- Modal -->
             <div class="product-details-modal" ng-if="cart.modalOpened">
@@ -206,10 +206,17 @@
                 </div>
                <!--  <label for="store">{{cart.modalDropdownLabel()}}</label> -->
                
-                <select name="store" class="select-store" id="select-store" ng-model ="cart.store" ng-show="cart.modalInstance == 'Send'">
-                  <option value="" disabled selected id="store-placeholder">FETCHING YOUR STORES...</option>
-                  <option value="{{store.id}}" ng-repeat="store in cart.stores">{{store.name}}</option>
-                </select>
+                <div ng-if="cart.stores.length > 0">
+                  <select name="store" class="select-store" id="select-store" ng-model ="cart.store" ng-show="cart.modalInstance == 'Send'">
+                    <option value="" disabled selected id="store-placeholder">FETCHING YOUR STORES...</option>
+                    <option value="{{store.id}}" ng-repeat="store in cart.stores">{{store.name}}</option>
+                  </select>
+                </div>
+                <div ng-if="cart.stores.length === 0">
+                  <label>Create a Store</label>
+                  <input type="text" name="storeName" ng-model="cart.storeName" placeholder="Store Name">
+                  <button ng-click="cart.createStore()" class="cart-action save modal-button" type="button">Create Store</button>
+                </div>
                 
 
                 <select name="size" class="select-store" id="select-size" ng-model ="cart.product_size" ng-show="cart.modalInstance == 'Add to cart' && cart.isShirtOrHoodie()">
