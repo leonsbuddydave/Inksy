@@ -199,6 +199,7 @@ class CartCtrl {
 		json.details.price       = this.userPrice;
 		json.details.store_id    = this.store;
 		json.details.print       = this.DesignState.exportForPrint({}, function() {});
+		json.details.new_store   = this.storeName;
 
 		if(this.modalInstance == 'Send'){
 			this.saveToProfile(json);
