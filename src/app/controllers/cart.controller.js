@@ -76,9 +76,8 @@ class CartCtrl {
 				$('#select-store').find('option').each(function(){
 				 if(isNaN($(this).val())){
 				   $(this).text('Please select a store');
-				 }else{
-				 $('#store-placeholder').text('CHOOSE A STORE');
-					}
+				 }
+				 // $('#store-placeholder').text('CHOOSE A STORE');
 				});
 				$scope.$apply();
 			}
@@ -99,9 +98,8 @@ class CartCtrl {
 					$('#select-size').find('option').each(function(){
 					 if(isNaN($(this).val())){
 					   $(this).text('Select your size');
-					 }else{
-					 $('#size-placeholder').text('CHOOSE YOUR SIZE');
-						}
+					 }
+					 // $('#size-placeholder').text('CHOOSE YOUR SIZE');
 					});
 				}
 			});

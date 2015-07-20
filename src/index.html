@@ -206,19 +206,16 @@
                 </div>
                <!--  <label for="store">{{cart.modalDropdownLabel()}}</label> -->
                
-                <div ng-if="cart.stores.length > 0">
-                  <select name="store" class="select-store" id="select-store" ng-model ="cart.store" ng-show="cart.modalInstance == 'Send'">
-                    <option value="" disabled selected id="store-placeholder">FETCHING YOUR STORES...</option>
-                    <option value="{{store.id}}" ng-repeat="store in cart.stores">{{store.name}}</option>
+          
+                  <select name="store" class="select-store" id="select-store" ng-model ="cart.store" ng-show="cart.modalInstance == 'Send' && cart.stores.length > 0" ng-options="store.name for store in cart.stores">
+                    <!-- <option value="" disabled selected id="store-placeholder">FETCHING YOUR STORES...</option> -->
                   </select>
-                </div>
-                <div ng-if="cart.stores.length === 0" ng-show="cart.modalInstance == 'Send'">
-                  <input type="text" name="storeName" ng-model="cart.storeName" placeholder="Store Name">
-                </div>
+              
+                  <input type="text" name="storeName" ng-model="cart.storeName" placeholder="Store Name" ng-show="cart.modalInstance == 'Send' && cart.stores.length === 0">
                 
 
                 <select name="size" class="select-store" id="select-size" ng-model ="cart.product_size" ng-show="cart.modalInstance == 'Add to cart' && cart.isShirtOrHoodie()">
-                  <option value="" disabled selected id="size-placeholder">LOADING SIZES...</option>
+                  <!-- <option value="" disabled selected id="size-placeholder">LOADING SIZES...</option> -->
                   <option value="{{size.id}}" ng-repeat="size in cart.sizes">{{size.label}}</option>
                 </select>
                 <br><br>
