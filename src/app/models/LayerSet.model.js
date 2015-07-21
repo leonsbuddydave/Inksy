@@ -7,13 +7,13 @@ var LayerSet = function(Layer) {
 			this.selectedLayer = null;
 		}
 
-		expToJson() {
+		toJson() {
 			var json = {};
 
 			json.layers = [];
 
 			_.each(this.layers, (layer, index) => {
-				json.layers.push(layer.expToJson());
+				json.layers.push(layer.toJson());
 			});
 
 			return json;

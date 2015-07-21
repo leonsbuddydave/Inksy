@@ -107,8 +107,8 @@ class CartCtrl {
 	}
 
 	sendToCart(){
-		var self                 = this;
-		var image_data           = this.DesignState.exportForPrint({}, function() {});
+		// var self                 = this;
+		// var image_data           = this.DesignState.exportForPrint({}, function() {});
 		var json                 = this.DesignState.getDesign().toJson();
 		json.details.title       = this.productName;
 		json.details.description = this.productDescription;
@@ -117,8 +117,8 @@ class CartCtrl {
 		json.details.print       = this.DesignState.exportForPrint({}, function() {});
 		json.product_size        = this.product_size;
 		json.variant_name        = this.variant_name;
-
-		this.uploadAndSendToCart(json);
+		this.addToCart(json);
+		// this.uploadAndSendToCart(json);
 	}
 
 	uploadAndSendToCart(json){
@@ -233,10 +233,14 @@ class CartCtrl {
 		json.details.description = this.productDescription;
 		json.details.price       = this.userPrice;
 		json.details.store_id    = this.store;
+		json.details.print       = this.DesignState.exportForPrint({}, function() {});
 		json.details.new_store   = this.storeName;
 
+		if(this.modalInstance == 'Send'){
+-			this.saveToProfile(json);
+-		}
 
-		this.uploadAndPublish(json);
+		//this.uploadAndPublish(json);
 	}
 
 	uploadAndPublish(json){

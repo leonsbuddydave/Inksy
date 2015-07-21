@@ -29,7 +29,8 @@ var Design = function(LayerSet) {
 
 			json.design.sides = {};
 			_.each(this.sides, (side, key, list) => {
-				json.design.sides[key] = side.expToJson();
+				json.design.sides[key] = side.toJson();
+				//json.design.sides[key] = side.expToJson();
 			});
 
 			json["fullCanvas"] = this.getFullCanvasPreview();
