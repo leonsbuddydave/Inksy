@@ -237,8 +237,8 @@ class CartCtrl {
 		json.details.new_store   = this.storeName;
 
 		if(this.modalInstance == 'Send'){
--			this.saveToProfile(json);
--		}
+			this.saveToProfile(json);
+		}
 
 		//this.uploadAndPublish(json);
 	}
