@@ -274,11 +274,8 @@ class CartCtrl {
 		});
 	}
 
-	validateStore(){
-		if(this.store !== ''){
-			return false;
-		}
-		return true;
+	productInvalid(){
+    return (this.store === '' && this.stores.length > 0) || this.productDescription.length > 1000
 	}
 
 	validateCart(){
