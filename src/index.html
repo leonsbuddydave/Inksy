@@ -23,13 +23,6 @@
     <!-- css files will be automatically insert here -->
     <!-- endinject -->
     <!-- endbuild -->
-    <style>
-      .header{
-        height: 47px;
-        width: 100%;
-        background-color: white;
-      }
-    </style>
   </head>
   <body class="ng-cloak" ng-cloak >
     <div class="inksy-product-designer" ng-controller="MainCtrl as main">
@@ -190,40 +183,71 @@
             <div class="product-details-modal" ng-if="cart.modalOpened">
               <div class="close-button" ng-click="cart.cancelProductDetails()" >X</div>
               <form action="">
-              <div class="modal-text" ng-show="cart.modalInstance == 'Add to cart'">
-                <h2>YOU'RE ALMOST THERE</h2>
-                <p>Time to give your creation a name! This way, after adding it to your cart, you'll be able to find it again in your profile.</p>
-              </div>
-              <div class="modal-text" ng-show="cart.modalInstance == 'Send'">
-                <h2>YOU'RE ALMOST THERE</h2>
-                <p>The following information will be displayed in your store. Hit publish to make your new product live!</p>
-              </div>
-
-                <input type="text" name="productName" ng-model="cart.productName" placeholder="PRODUCT TITLE">
-                <div ng-show="cart.modalInstance == 'Send'">
-                  <label for="productName"></label>
-                  <textarea class="description" type="text" placeholder="PRODUCT DESCRIPTION"  cols="60" name="productDescription" ng-model="cart.productDescription"></textarea>
+                <div class="modal-text" ng-show="cart.modalInstance == 'Add to cart'">
+                  <h2>YOU'RE ALMOST THERE</h2>
+                  <p>Time to give your creation a name! This way, after adding it
+                  to your cart, you'll be able to find it again in your
+                  profile.</p>
                 </div>
-               <!--  <label for="store">{{cart.modalDropdownLabel()}}</label> -->
-               
-          
-                  <select name="store" class="select-store" id="select-store" ng-model ="cart.store" ng-show="cart.modalInstance == 'Send' && cart.stores.length > 0" ng-options="store.name for store in cart.stores">
-                    <!-- <option value="" disabled selected id="store-placeholder">FETCHING YOUR STORES...</option> -->
-                  </select>
-              
-                  <input type="text" name="storeName" ng-model="cart.storeName" placeholder="Store Name" ng-show="cart.modalInstance == 'Send' && cart.stores.length === 0">
-                
+                <div class="modal-text" ng-show="cart.modalInstance == 'Send'">
+                  <h2>YOU'RE ALMOST THERE</h2>
+                  <p>The following information will be displayed in your store.
+                  Hit publish to make your new product live!</p>
+                </div>
 
-                <select name="size" class="select-store" id="select-size" ng-model ="cart.product_size" ng-show="cart.modalInstance == 'Add to cart' && cart.isShirtOrHoodie()">
-                  <!-- <option value="" disabled selected id="size-placeholder">LOADING SIZES...</option> -->
-                  <option value="{{size.id}}" ng-repeat="size in cart.sizes">{{size.label}}</option>
-                </select>
-                <br><br>
+                <div class="form-group">
+                  <input required type="text" name="productName" class="form-control"
+                    ng-model="cart.productName" placeholder="PRODUCT TITLE"
+                  >
+                </div>
+
+                <div ng-show="cart.modalInstance == 'Send'">
+                  <div class="form-group">
+                    <textarea class="description form-control" type="text"
+                      placeholder="PRODUCT DESCRIPTION"  rows="3"
+                      name="productDescription"
+                      ng-trim="false"
+                      ng-model="cart.productDescription">
+                    </textarea>
+                    <p class="help-block pull-right">
+                      <span ng-class="{'text-danger': cart.productDescription.length > 1000}">{{cart.productDescription.length}}</span>/1000
+                    </p>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <select name="store" class="form-control" id="select-store"
+                    ng-model ="cart.store"
+                    ng-show="cart.modalInstance == 'Send' && cart.stores.length > 0"
+                    ng-options="store.name for store in cart.stores"
+                  >
+                  </select>
+
+                  <input type="text" name="storeName" ng-model="cart.storeName"
+                    placeholder="Store Name" class="form-control"
+                    ng-show="cart.modalInstance == 'Send' && cart.stores.length === 0"
+                  >
+                </div>
+
+                <div class="form-group">
+                  <select name="size" class="select-store form-control" id="select-size"
+                    ng-model ="cart.product_size"
+                    ng-show="cart.modalInstance == 'Add to cart' && cart.isShirtOrHoodie()"
+                  >
+                    <option value="{{size.id}}" ng-repeat="size in cart.sizes">{{size.label}}</option>
+                  </select>
+                </div>
+
                 <div ng-show="cart.modalInstance == 'Add to cart'">
                   <button ng-click="cart.sendToCart()" class="cart-action save modal-button" ng-disabled="cart.validateCart()" type="button">ADD TO CART</button>
                 </div>
+
                 <div ng-show="cart.modalInstance == 'Send'">
-                  <button ng-click="cart.sendProductToRails()" class="cart-action modal-button" ng-disabled="cart.validateStore() && cart.stores.length > 0 " type="button">PUBLISH</button>
+                  <button ng-click="cart.sendProductToRails()"
+                    class="cart-action modal-button"
+                    ng-disabled="cart.productInvalid()">
+                    PUBLISH
+                  </button>
                 </div>
               </form>
             </div>
