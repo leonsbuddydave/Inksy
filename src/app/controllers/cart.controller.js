@@ -124,7 +124,7 @@ class CartCtrl {
 			url:'/api/product_images',
 			method: 'POST',
 			data: {file: image_data},
-			success: function(){
+			success: function(data){
 				var image_id = data;
 				self.checkAndSendToCart(image_id, json);
 			}
