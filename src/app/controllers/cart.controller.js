@@ -95,12 +95,6 @@ class CartCtrl {
 				data: {"product_type": type, "material_type": material},
 				success: function(data) {
 					self.sizes = data;
-					$('#select-size').find('option').each(function(){
-					 if(isNaN($(this).val())){
-					   $(this).text('Select your size');
-					 }
-					 // $('#size-placeholder').text('CHOOSE YOUR SIZE');
-					});
 				}
 			});
 		}
@@ -214,10 +208,13 @@ class CartCtrl {
 	}
 
 	addProductDetails(instance){
-		this.modalInstance = instance;
-		this.callForStores();
-		this.callForSizes();
-		this.modalOpened = true;
+    if (instance === 'Add to cart' && !this.isShirtOrHoodie()) return this.sendToCart();
+    else {
+      this.modalInstance = instance;
+      this.callForStores();
+      this.callForSizes();
+      this.modalOpened = true;
+    }
 	}
 
 	cancelProductDetails(){
@@ -226,7 +223,6 @@ class CartCtrl {
 
 	sendProductToRails(){
 		this.modalOpened = false;
-
 
 		var json                 = this.DesignState.getDesign().toJson();
 		json.details.title       = this.productName;
