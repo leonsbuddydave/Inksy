@@ -10,11 +10,10 @@ var Layer = function($timeout, $injector, InksyPhoto) {
 			this.layerSet = null;
 		};
 
-		toJson() {
+		expToJson() {
 			var json = {};
 
 			json.name = this.name;
-		  if (this.pattern) json.pattern = this.pattern.toJSON();
 			if (this.canvasObject) json.canvasObject = this.canvasObject.toObject();
 			json.layerClass = this.constructor.name;
 

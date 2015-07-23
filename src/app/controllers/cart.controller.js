@@ -112,7 +112,6 @@ class CartCtrl {
 		json.details.description = this.productDescription;
 		json.details.price       = this.suggestedPrice;
 		json.details.to_cart     = true;
-		json.details.print       = this.DesignState.exportForPrint({}, function() {});
 		json.product_size        = this.product_size;
 		json.variant_name        = this.variant_name;
 		this.uploadAndSendToCart(json);
@@ -230,7 +229,6 @@ class CartCtrl {
 		json.details.description = this.productDescription;
 		json.details.price       = this.userPrice;
 		json.details.store_id    = this.store;
-		json.details.print       = this.DesignState.exportForPrint({}, function() {});
 		json.details.new_store   = this.storeName;
 
 		this.uploadAndPublish(json);
