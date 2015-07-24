@@ -197,8 +197,7 @@
 
                 <div class="form-group">
                   <input required type="text" name="productName" class="form-control"
-                    ng-model="cart.productName" placeholder="PRODUCT TITLE"
-                  >
+                  ng-model="cart.productName" placeholder="PRODUCT TITLE" ng-show="cart.modalInstance == 'Send'">
                 </div>
 
                 <div ng-show="cart.modalInstance == 'Send'">
